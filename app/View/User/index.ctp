@@ -3,7 +3,7 @@
 	de un row-
 -->
 
-<div class="row content">
+<div class="row ">
 	<div class="col-md-6 aliniar">
 		<img alt="500x250"  src="app/webroot/assets/imagenes/500x200.gif" style="margin-top:40px; margin-left:20px;"> 
 	</div>

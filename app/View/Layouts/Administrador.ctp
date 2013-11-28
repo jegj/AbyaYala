@@ -39,30 +39,16 @@
 	?>
 </head>
 <body>
-	<div id="wrap"> 
-		<div class="container">
-		<!-- -------CONTENIDO-------- -->	
-		<div class="row">
-			<div class="row">
-		  	<div class="col-md-2" id="logos-facultades">
+	<div id="wrapper">
+		<div class="container">			
+		  <div id="background-banner" class="col-md-12">
+				<div id="logo" class="col-md-11">
 		  		<a href="#">
-			  			<img alt="Ciencias"  width="85" height="115" src="../app/webroot/assets/imagenes/logo_ucv_fc.png" style="margin-top:5px;"> 
-			  	</a>
-			  	<a href="">
-			  		<img alt="Humanidades"  width="85	" height="115" src="../app/webroot/assets/imagenes/logo_ucv_fhe.png" style="margin-top:5px;">
-			  	</a>
-		  	</div>
-			  <div id="background-banner" class="col-md-8">
-					<div id="logo" class="col-md-10">
-			  		<a href="#">
-			  			<img alt="AbyaYala" height="76" src="../app/webroot/assets/imagenes/banner.png" width="250"> 
-			  		</a>
-					</div>
+		  			<img alt="AbyaYala" height="76" src="../app/webroot/assets/imagenes/banner.png" width="250"> 
+		  		</a>
 				</div>
-				<div id="imagen_indio_7" class="col-md-2">
-					<a href="">
-						<img alt="AbyaYala" height="115" src="../app/webroot/assets/imagenes/indio_7.jpg" width="175"> 
-					</a>
+				<div class="col-md-1" style="padding-left:0px;">
+					<img alt="Tehedor"  src="../app/webroot/assets/imagenes/indio_7.jpg" width="100" height="115"> 
 				</div>
 			</div>
 			<div class="container" id="contenido-administrador">
@@ -83,21 +69,13 @@
              	<a href = "#" class = "list-group-item">
               	<h4 class = "list-group-item-heading">Opción 4</h4>
              	</a>
+             		<a href = "#" class = "list-group-item">
+              	<h4 class = "list-group-item-heading">Opción 5</h4>
+             	</a>
              	<a href = "#" class = "list-group-item">
               	<h4 class = "list-group-item-heading">Cerrar Sesión</h4>
              	</a>
              </div>
-					 	<!--
-						<ul id="sidebar" class="nav nav-stacked ">
-	            <li>Bienvenido: Administrador</li>
-	            <li role="presentation" class="divider"></li>
-	            <li><a href="#">Gestión de Administradores</a></li>
-	            <li><a href="#">Opción 2</a></li>
-	            <li><a href="#">Opción 3</a></li>
-	            <li><a href="#">Opción 4	</a></li>
-	            <li><a href="#">Cerrar Sesión</a></li>
-	        	</ul>
-	        	-->
 					</div>
 					<div class="col-md-10" id="container-administrador">
 							<?php echo $this->Session->flash(); ?>
@@ -105,53 +83,35 @@
 					</div>
 			</div>
 		</div>
-		<!-- -------FIN CONTENIDO-------- -->	
 
+		<!-- -------FIN CONTENIDO-------- -->	
 	</div>
-</div>
-<div class="row">
-	<div id="footer">
-		<div id="footer-text">
-				<p>
-					<a href="#">Universidad Central de Venezuela</a>
-					::
-					<a href="#">Facultad de Humanidades</a>
-					::
-					<a href="#">Facultad de Ciencias</a>
-					::
-					<a href="#">Contáctenos </a>
-					::
-					<a href="#">Créditos</a>
-				</p>
-				<p>
-					© 2014 Universidad Central de Venezuela. Derechos reservados. 
-				</p>
-		</div>
-	</div>
-</div>
-<!-- -------FOOTER-------- -->	
-<!--
-<div class="row">
-	<div id="footer">
-		<div id="footer-text">
-				<p>
-					<a href="#">Universidad Central de Venezuela</a>
-					::
-					<a href="#">Facultad de Humanidades</a>
-					::
-					<a href="#">Facultad de Ciencias</a>
-					::
-					<a href="#">Contáctenos </a>
-					::
-					<a href="#">Créditos</a>
-				</p>
-				<p>
-					© 2014 Universidad Central de Venezuela. Derechos reservados. 
-				</p>
-		</div>
-	</div>
-</div>
--->
-	<!-- -------FIN FOOTER-------- -->	
+<div class = "navbar navbar-default navbar-fixed-bottom">
+		 <div id="footer">
+	  	<div class = "container">  
+					<div id="footer-text">
+					<p>
+						<a href="http://www.ciens.ucv.ve/ciens/">
+							<img src="../app/webroot/assets/imagenes/logo_ucv_fc.png" alt="Ciencias" width="30" height="30">
+						</a>
+						::
+						<a href="http://www.ucv.ve/">Universidad Central de Venezuela</a>
+						::
+						<a href="#">Contáctenos </a>
+						::
+						<a href="#">Créditos</a>
+						::
+						<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion.html">
+							<img src="../app/webroot/assets/imagenes/logo_ucv_fhe.png" alt="Humanidades" width="30" height="30">
+						</a>
+					</p>
+						
+					<p>
+						© 2014 Universidad Central de Venezuela. Derechos reservados. 
+					</p>
+				</div>
+			</div>
+	  </div>          
+  </div>
 </body>
 </html>
