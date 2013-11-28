@@ -96,10 +96,13 @@
 		<!--CONTENIDO-->
 		<div class="container">			
 		  <div id="background-banner" class="col-md-12">
-				<div id="logo" class="col-md-8">
+				<div id="logo" class="col-md-11">
 		  		<a href="#">
 		  			<img alt="AbyaYala" height="76" src="app/webroot/assets/imagenes/banner.png" width="250"> 
 		  		</a>
+				</div>
+				<div class="col-md-1" style="padding-left:0px;">
+					<img alt="Tehedor"  src="app/webroot/assets/imagenes/indio_7.jpg" width="100" height="115"> 
 				</div>
 			</div>
 			<?php echo $this->Session->flash(); ?>
