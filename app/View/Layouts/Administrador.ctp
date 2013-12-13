@@ -10,6 +10,7 @@
 		echo $this->Html->css('bootstrap/bootstrap.min');
 		echo $this->Html->css('abyayala/abyayala');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
+			echo $this->Html->css('../js/upload/css/style');
 	?>
 	<!-- Archivos Javascript-->
 	<?
@@ -25,11 +26,11 @@
 
 		echo $this->Html->script('jquery.dataTables.min', array('inline' => false));
 
-		
-
-		//echo $this->Html->script('ckeditor/ckeditor');
-
-		//echo $this->Html->script('AbyaYala/validaciones', array('inline' => false));
+		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.fileupload', array('inline' => false));		
+		echo $this->Html->script('upload/js/script', array('inline' => false));
 	?>
 		
 	<?php
@@ -57,12 +58,22 @@
 					 		<a href = "#" class = "list-group-item active">
 	              <h4 class = "list-group-item-heading">Inicio</h4>
           		</a>
+
           		<a href = "#" class = "list-group-item">
 	              <h4 class = "list-group-item-heading">Administradores</h4>
           		</a>
-              <a href = "#" class = "list-group-item">
-              	<h4 class = "list-group-item-heading">Opción 2</h4>
-             	</a>
+              <?php
+          			echo $this->Html->link(
+							    'Contenido',
+							    array(
+							        'controller' => 'contents',
+							        'action' => 'index',
+							    ),
+							    array(
+							    	'class'=>'list-group-item'
+							    )
+								);
+          		?>
              	<a href = "#" class = "list-group-item">
               	<h4 class = "list-group-item-heading">Opción 3</h4>
              	</a>

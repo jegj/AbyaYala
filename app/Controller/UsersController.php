@@ -14,4 +14,10 @@ class UsersController extends AppController
 	{	
 		$this->set('prueba', 'esto es una prueba');
 	}
+
+	public function index2()
+	{	
+		$this->layout='UsuarioLogos';
+		$this->set('prueba', 'esto es una prueba');
+	}
 }
