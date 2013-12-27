@@ -45,11 +45,11 @@
 		  <div id="background-banner" class="col-md-12">
 				<div id="logo" class="col-md-11">
 		  		<a href="#">
-		  			<img alt="AbyaYala" height="76" src="../app/webroot/assets/imagenes/banner.png" width="250"> 
+		  			<img alt="AbyaYala" height="76" src="app/webroot/assets/imagenes/banner.png" width="250"> 
 		  		</a>
 				</div>
 				<div class="col-md-1" style="padding-left:0px;">
-					<img alt="Tehedor"  src="../app/webroot/assets/imagenes/indio_7.jpg" width="100" height="115"> 
+					<img alt="Tehedor"  src="app/webroot/assets/imagenes/indio_7.jpg" width="100" height="115"> 
 				</div>
 			</div>
 			<div class="container" id="contenido-administrador">
@@ -103,7 +103,7 @@
 					<div id="footer-text">
 					<p>
 						<a href="http://www.ciens.ucv.ve/ciens/">
-							<img src="../app/webroot/assets/imagenes/logo_ucv_fc.png" alt="Ciencias" width="30" height="30">
+							<img src="app/webroot/assets/imagenes/logo_ucv_fc.png" alt="Ciencias" width="30" height="30">
 						</a>
 						::
 						<a href="http://www.ucv.ve/">Universidad Central de Venezuela</a>
@@ -113,7 +113,7 @@
 						<a href="#">Créditos</a>
 						::
 						<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion.html">
-							<img src="../app/webroot/assets/imagenes/logo_ucv_fhe.png" alt="Humanidades" width="30" height="30">
+							<img src="app/webroot/assets/imagenes/logo_ucv_fhe.png" alt="Humanidades" width="30" height="30">
 						</a>
 					</p>
 						
