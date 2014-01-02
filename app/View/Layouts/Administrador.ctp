@@ -10,7 +10,8 @@
 		echo $this->Html->css('bootstrap/bootstrap.min');
 		echo $this->Html->css('abyayala/abyayala');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
-			echo $this->Html->css('../js/upload/css/style');
+		echo $this->Html->css('../js/upload/css/style');
+		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
 	?>
 	<!-- Archivos Javascript-->
 	<?
@@ -24,7 +25,7 @@
 
 		echo $this->Html->script('jquery-validation/additional-methods.min', array('inline' => false));
 
-		echo $this->Html->script('jquery.dataTables.min', array('inline' => false));
+		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
