@@ -103,16 +103,25 @@ $(function(){
         var name = data.files[0].name;
         size= (size / 1000000).toFixed(2)
         if(size<=10){
-            var extension=name.split('.').pop();
-            
-            var allowExtensions=['pdf', 'mp3', 'png', 'gif', 'jpg'];
-            
-            if(allowExtensions.indexOf(extension)>=0){
-                return true;    
+            var arrayExtension=name.split('.');
+            console.log(arrayExtension.length-1);
+            if(arrayExtension.length-1==1){
+                var extension=arrayExtension.pop();
+
+                
+                var allowExtensions=['pdf', 'mp3', 'png', 'gif', 'jpg'];
+                
+                if(allowExtensions.indexOf(extension)>=0){
+                    return true;    
+                }else{
+                    alert('La extension del archivo  no esta permitida');
+                    return false;
+                }
             }else{
-                alert('La extension del archivo  no esta permitida');
-                return false;
+                alert('El nombre de archivo no debe tener caracteres especiales');
+                return false;    
             }
+
         }else{
             alert('El archivo es muy grande');
             return false;
