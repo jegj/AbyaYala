@@ -75,9 +75,18 @@
 							    )
 								);
           		?>
-             	<a href = "#" class = "list-group-item">
-              	<h4 class = "list-group-item-heading">Opción 3</h4>
-             	</a>
+             	 <?php
+          			echo $this->Html->link(
+							    'Etnias',
+							    array(
+							        'controller' => 'ethnicities',
+							        'action' => 'index',
+							    ),
+							    array(
+							    	'class'=>'list-group-item'
+							    )
+								);
+          		?>
              	<a href = "#" class = "list-group-item">
               	<h4 class = "list-group-item-heading">Opción 4</h4>
              	</a>
