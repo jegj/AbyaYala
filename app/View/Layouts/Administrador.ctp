@@ -32,6 +32,7 @@
 		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.fileupload', array('inline' => false));		
 		echo $this->Html->script('upload/js/script', array('inline' => false));
+		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
 	?>
 		
 	<?php
