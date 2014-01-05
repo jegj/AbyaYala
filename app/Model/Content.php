@@ -43,12 +43,25 @@ class Content extends AppModel {
 		return $success;
 	}
 
-	public function checkContent($name,$extension,$path){
+	public function checkContent($name,$extension,$path)
+	{
 		return $this->find('first', array(
   		'conditions' => array('name' => $name,
   		'extesion_document' => $extension,
   		'path' => $path)
   		));
+	}
+
+	public function deleteModel($id)
+	{
+		$success=false;
+		try{
+			if ($this->delete($id))
+				$success=true;
+		}catch(Exception $e){
+			CakeLog::write('development', $e->message);
+		}
+		return $success;
 	}
 
 }

@@ -8,8 +8,11 @@ App::uses('AppController', 'Controller');
 class ContentsController extends AppController {
 
 	var $helpers=array('Html','Form', 'Js', 'Session');
+	
 	public $components = array('Session');
+
   var $layout='Administrador';
+
 	var $name ='Content';
 
 
@@ -42,7 +45,7 @@ class ContentsController extends AppController {
     }
     
     $contentPath = $this->Content->findByContentId($id)['Content']['path'];
-    if ($this->Content->delete($id)) {
+    if ($this->Content->deleteModel($id)) {
     		if(unlink($contentPath)){
 	        $this->Session->setFlash(
 	            __('Se elimino el archivo correctamente '.$contentPath)
@@ -54,6 +57,11 @@ class ContentsController extends AppController {
 	        );
 	        return $this->redirect(array('action' => 'index'));
       	}
+    }else{
+			$this->Session->setFlash(
+          __('No se pudo eliminar archivo')
+      );
+      return $this->redirect(array('action' => 'index'));
     }
 	}
 
