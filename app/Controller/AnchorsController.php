@@ -35,7 +35,7 @@ class AnchorsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null, $ethnicityId) {
+	public function view($id = null, $ethnicityId=null) {
 		if (!$this->Anchor->exists($id)) {
 			throw new NotFoundException(__('Invalid anchor'));
 		}
@@ -86,21 +86,22 @@ class AnchorsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null,$ethnicityId=null) {
 		if (!$this->Anchor->exists($id)) {
 			throw new NotFoundException(__('Invalid anchor'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Anchor->save($this->request->data)) {
-				$this->Session->setFlash(__('The anchor has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			if ($this->Anchor->saveModel($this->request->data,false)) {
+				$this->Session->setFlash(__('Se modifico la ancla correctamente.'));
+					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			} else {
-				$this->Session->setFlash(__('The anchor could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('No se pudo actualizar la ancla correctamente'));
 			}
 		} else {
 			$options = array('conditions' => array('Anchor.' . $this->Anchor->primaryKey => $id));
 			$this->request->data = $this->Anchor->find('first', $options);
 		}
+		$this->set('ethnicityId',$ethnicityId);
 	}
 
 /**
@@ -110,17 +111,17 @@ class AnchorsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		$this->Anchor->id = $id;
+	public function delete($id = null,$ethnicityId=null) {
+		$this->Anchor->read(null,$id);
 		if (!$this->Anchor->exists()) {
 			throw new NotFoundException(__('Invalid anchor'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Anchor->delete()) {
-			$this->Session->setFlash(__('The anchor has been deleted.'));
+		if ($this->Anchor->deleteModel($id)) {
+			$this->Session->setFlash(__('Se elimino la ancla correctamente'));
 		} else {
-			$this->Session->setFlash(__('The anchor could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('No se pudo eliminar la ancla'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 	}
 }

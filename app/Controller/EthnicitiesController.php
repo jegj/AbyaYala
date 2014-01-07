@@ -93,12 +93,5 @@ class EthnicitiesController extends AppController {
         
 	}
 
-	public function anchors($id)
-	{
-		if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
-        }
-
-	}
 
 }

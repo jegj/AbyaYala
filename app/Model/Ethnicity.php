@@ -56,6 +56,7 @@ class Ethnicity extends AppModel {
         'HasAnchors' => array(
             'className' => 'EthnicitiesHasAnchors',
             'foreignKey' => 'ethnicity_id', 
+            'dependent'  =>  true, 
         )
   );
 
@@ -75,12 +76,24 @@ class Ethnicity extends AppModel {
     return $success;
   }
 
+  public function deleteAnchors($id)
+  {
+    $ethnicity=$this->findByEthnicityId($id);
+    $staticAnchor = ClassRegistry::init('Anchor');
+    $success=true;
+    foreach ($ethnicity['HasAnchors'] as $anchor){   
+      $success &= $staticAnchor->deleteModel($anchor['anchor_id'],true);
+    }
+    return $success;
+  }
+
   public function deleteModel($id)
   {
     $success=false;
     try{
-      if ($this->delete($id))
-        $success=true;
+      if($this->deleteAnchors($id))
+        if ($this->delete($id,true))
+          $success=true;
     }catch(Exception $e){
       CakeLog::write('development', $e->message);
     }

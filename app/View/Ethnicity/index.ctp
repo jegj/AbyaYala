@@ -32,7 +32,7 @@ margin-right:auto;">
 	              echo $this->Form->postLink(
 	                  'Eliminar',
 	                  array('action' => 'delete', $data['Ethnicity']['ethnicity_id']),
-	                  array('confirm' => '¿Esta usted seguro?')
+	                  array('confirm' => '¿Esta usted seguro que desea eliminar la etnia '.$data['Ethnicity']['name'].'?')
 	              );
 	          		?>
 		    			</td>

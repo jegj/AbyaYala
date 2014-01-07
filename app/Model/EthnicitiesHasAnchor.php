@@ -27,6 +27,7 @@ class EthnicitiesHasAnchor extends AppModel {
 		'Ethnicity' => array(
 			'className' => 'Ethnicity',
 			'foreignKey' => 'ethnicity_id',
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -34,6 +35,7 @@ class EthnicitiesHasAnchor extends AppModel {
 		'Anchor' => array(
 			'className' => 'Anchor',
 			'foreignKey' => 'anchor_id',
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

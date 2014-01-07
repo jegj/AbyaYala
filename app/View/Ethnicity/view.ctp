@@ -29,13 +29,16 @@
 				<td>
 					<?php 
 						echo $this->Html->link('Modificar',
-						array('controller'=>'anchors', 'action'=>'edit', $anchors['Anchor']['anchor_id']));
+						array('controller'=>'anchors', 'action'=>'edit', $anchors['Anchor']['anchor_id'],$ethnicity['ethnicity']['Ethnicity']['ethnicity_id']));
 					?>
 				</td>
 				<td>
 					<?php 
-						echo $this->Html->link('Eliminar',
-						array('controller'=>'anchors', 'action'=>'delete', $anchors['Anchor']['anchor_id']));
+						echo $this->Form->postLink(
+							__('Eliminar'), 
+							array('controller'=>'anchors','action' => 'delete', $anchors['Anchor']['anchor_id'],$ethnicity['ethnicity']['Ethnicity']['ethnicity_id']),
+							array('confirm' => '¿Esta usted seguro que desea eliminar la ancla '.$anchors['Anchor']['name'].'?')
+						);
 					?>
 				</td>
 			</tr>

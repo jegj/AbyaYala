@@ -28,6 +28,15 @@ class Anchor extends AppModel {
 	public $displayField = 'name';
 
 
+	public $hasMany = array(
+        'HasAnchors' => array(
+            'className' => 'EthnicitiesHasAnchors',
+            'foreignKey' => 'anchor_id', 
+            'dependent'  =>  true, 
+        )
+  );
+
+
 	public function saveModel($data=null, $newRecord=true)
 	{
 		$success=false;
@@ -42,6 +51,18 @@ class Anchor extends AppModel {
 		}
 
 		return $success;
+	}
+
+	public function deleteModel($id)
+	{
+		$success=false;
+    try{
+    	if ($this->delete($id,true))
+        $success=true;
+    }catch(Exception $e){
+      CakeLog::write('development', $e->message);
+    }
+    return $success;
 	}
 
 }
