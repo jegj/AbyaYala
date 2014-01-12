@@ -27,15 +27,39 @@ class ContentsController extends AppController {
 
 	}
 
+	public function audio($id=null)
+	{
+		if ($this->request->is('get')) {
+			$content = $this->Content->findByContentId($id);
+			$this->set('content', $content);
+    }
+	}
+
+	public function uploadDocuments()
+	{
+		if ($this->request->is('post')) {
+			ini_set('post_max_size', '10M');
+			ini_set('upload_max_filesize', '10M');
+			ini_set('max_execution_time', 300);
+			ini_set('max_input_time', 300);
+
+			$file=$this->request->data['Content']['file'];
+			
+
+			/*	
+			$this->Session->setFlash(__($file['name']));
+      return $this->redirect(array('action' => 'index'));
+      */
+		}
+	}
+
 	public function download($id)
 	{
 		if ($this->request->is('get')) {
-        throw new MethodNotAllowedException();
+			$content = $this->Content->findByContentId($id);
+	   	$this->response->file($content['Content']['path'], array('download' => true));
+	   	return $this->response;
     }
-    
-		$content = $this->Content->findByContentId($id);
-   	$this->response->file($content['Content']['path'], array('download' => true));
-   	return $this->response;
 	}
 
 	public function delete($id)
@@ -66,6 +90,30 @@ class ContentsController extends AppController {
 	}
 
 
+	public function edit($id=null)
+	{
+		if (!$id) {
+    	throw new NotFoundException(__('Etnia invalida'));
+    }
+    $content = $this->Content->findByContentId($id);
+
+    if(!$content)
+    	 throw new NotFoundException(__('Contenido Invalido'));
+
+  	if ($this->request->is(array('post', 'put'))) {
+          $this->Content->read(null, $id);
+          if ($this->Ethnicity->saveModel($this->request->data,false)) {
+              $this->Session->setFlash(__('Se modifico la etnia'));
+              return $this->redirect(array('action' => 'index'));
+          }
+          $this->Session->setFlash(__('no se pudo modificar la etnia'));
+    }
+
+    if (!$this->request->data) {
+            $this->request->data = $content;
+    }
+	}
+
 	public function upload()
 	{
 		$this->autoRender=false;
@@ -86,7 +134,7 @@ class ContentsController extends AppController {
 		ini_set('max_execution_time', 300);
 		ini_set('max_input_time', 300);
 
-		$allowed = array('png', 'jpg', 'gif', 'pdf', 'mp3');
+		$allowed = array('png', 'jpg', 'gif', 'ogg');
 
 		if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 			$name=$_FILES['upl']['name'];
@@ -110,7 +158,7 @@ class ContentsController extends AppController {
 				$folder=WWW_ROOT.'media/imagenes/';
 				$type='imagen';
 			}
-			else if($extension=='mp3'){
+			else if($extension=='ogg'){
 				$folder=WWW_ROOT.'media/audio/';
 				$type='audio';
 			}

@@ -109,7 +109,7 @@ $(function(){
                 var extension=arrayExtension.pop();
 
                 
-                var allowExtensions=['pdf', 'mp3', 'png', 'gif', 'jpg'];
+                var allowExtensions=['ogg', 'png', 'gif', 'jpg'];
                 
                 if(allowExtensions.indexOf(extension)>=0){
                     return true;    
@@ -118,7 +118,7 @@ $(function(){
                     return false;
                 }
             }else{
-                alert('El nombre de archivo no debe tener caracteres especiales');
+                alert('Cambie el nombre del archivo, ya que posee muchos caracteres especiales');
                 return false;    
             }
 

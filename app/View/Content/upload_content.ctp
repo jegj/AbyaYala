@@ -1,8 +1,8 @@
-<h1>Módulo de Carga de Contenido</h1>
+<h1>Módulo de Carga de Imagenes y Audio</h1>
 <div class="row content">	
 	<div class="col-md-12">
 		<p>
-			Atraves de este módulo podra subir contenido al servidor. Solo se permiten las siguiente extensiones: <b>pdf,png,jpg,gif,mp3</b> y los archivo deben ser a los maximo de <b>10MB</b>.
+			Atraves de este módulo podra subir contenido al servidor. Solo se permiten las siguiente extensiones: <b>png,jpg,gif,ogg</b> y los archivo deben ser a los maximo de <b>10MB</b>.
 		</p>
 	</div>
 </div>

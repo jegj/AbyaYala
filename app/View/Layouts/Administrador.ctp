@@ -12,6 +12,7 @@
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
 		echo $this->Html->css('../js/upload/css/style');
 		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
+		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
 	?>
 	<!-- Archivos Javascript-->
 	<?
@@ -27,6 +28,7 @@
 
 		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
+		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	
