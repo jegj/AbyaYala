@@ -29,8 +29,10 @@ class ContentsController extends AppController {
 
 	public function audio($id=null)
 	{
+		//Validar que el contenido exista y que sea de Audio y se pase un $id por GET
 		if ($this->request->is('get')) {
 			$content = $this->Content->findByContentId($id);
+
 			$this->set('content', $content);
     }
 	}
@@ -44,26 +46,27 @@ class ContentsController extends AppController {
 			ini_set('max_input_time', 300);
 
 			$file=$this->request->data['Content']['file'];
-			
-
-			/*	
-			$this->Session->setFlash(__($file['name']));
+			$result=$this->Content->saveFile($file, $this->request->data, true);
+			$this->Session->setFlash(
+            __($result['complete']['message'])
+        );
       return $this->redirect(array('action' => 'index'));
-      */
 		}
 	}
 
-	public function download($id)
+	public function download($id, $viewOnline=false)
 	{
+		//Validar que el contenido exista y se pase un $id por GET
 		if ($this->request->is('get')) {
 			$content = $this->Content->findByContentId($id);
-	   	$this->response->file($content['Content']['path'], array('download' => true));
+	   	$this->response->file($content['Content']['path'], array('download' => $viewOnline));
 	   	return $this->response;
     }
 	}
 
 	public function delete($id)
 	{
+		//Validar que el contenido exista y sea POST
 		if ($this->request->is('get')) {
         throw new MethodNotAllowedException();
     }
@@ -92,6 +95,7 @@ class ContentsController extends AppController {
 
 	public function edit($id=null)
 	{
+		////Validar que el contenido exista y se pase un id por GET
 		if (!$id) {
     	throw new NotFoundException(__('Etnia invalida'));
     }
@@ -102,13 +106,18 @@ class ContentsController extends AppController {
 
   	if ($this->request->is(array('post', 'put'))) {
           $this->Content->read(null, $id);
-          if ($this->Ethnicity->saveModel($this->request->data,false)) {
-              $this->Session->setFlash(__('Se modifico la etnia'));
-              return $this->redirect(array('action' => 'index'));
-          }
-          $this->Session->setFlash(__('no se pudo modificar la etnia'));
+        	$file=$this->request->data['Content']['file'];
+        	if($this->Content->saveFile($content, $file)){
+	          if ($this->Content->saveModel($this->request->data,false)) {
+	              $this->Session->setFlash(__('Se modifico el contenido'));
+	              return $this->redirect(array('action' => 'index'));
+	          }
+	        }
+
+          $this->Session->setFlash(__('no se pudo modificar el contenido'));
     }
 
+    $this->set('content', $content);
     if (!$this->request->data) {
             $this->request->data = $content;
     }
@@ -142,7 +151,8 @@ class ContentsController extends AppController {
 
 			$size=$_FILES['upl']['size'];
 			$size=number_format($size / 1000000, 2);
-			if($size <= $maxFileSize){
+
+			if($size > $maxFileSize){
 				$this->response->type('json');
 				$json = json_encode(array('status'=>'error'));
 				$this->response->body($json);
@@ -156,20 +166,18 @@ class ContentsController extends AppController {
 			
 			if($extension=='png' ||$extension=='jpg' || $extension=='gif'){
 				$folder=WWW_ROOT.'media/imagenes/';
+				$pathDB=$this->webroot.'media/imagenes/';
 				$type='imagen';
 			}
 			else if($extension=='ogg'){
 				$folder=WWW_ROOT.'media/audio/';
+				$pathDB=$this->webroot.'media/audio/';
 				$type='audio';
-			}
-			else if($extension=='pdf'){
-				$folder=WWW_ROOT.'media/docs/';
-				$type='documentos';
 			}
 			$path=$folder.$_FILES['upl']['name'];
 
 			if(!$this->Content->checkContent($name,$extension, $path)){
-				if(move_uploaded_file($_FILES['upl']['tmp_name'], $path=$folder.$_FILES['upl']['name'])){
+				if(move_uploaded_file($_FILES['upl']['tmp_name'], $path)){
 					$data = array(
 	              'Content' => array(
 	                'name' => $name,
@@ -177,6 +185,7 @@ class ContentsController extends AppController {
 	                'type' => $type,
 	                'filesize' => $size,
 	                'extesion_document' => $extension,
+	                'access_path' => $pathDB.$_FILES['upl']['name'],
 	              )
 	        );
 					if ($this->Content->saveModel($data)){

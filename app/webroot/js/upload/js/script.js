@@ -104,7 +104,6 @@ $(function(){
         size= (size / 1000000).toFixed(2)
         if(size<=10){
             var arrayExtension=name.split('.');
-            console.log(arrayExtension.length-1);
             if(arrayExtension.length-1==1){
                 var extension=arrayExtension.pop();
 

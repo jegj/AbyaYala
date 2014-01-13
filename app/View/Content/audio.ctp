@@ -58,7 +58,7 @@
         $('#jquery_jplayer_1').jPlayer({
           ready: function () {
             $(this).jPlayer('setMedia', {
-              oga:'".$this->webroot.'media/audio/'.$content['Content']['name']."' 
+              oga:'".$content['Content']['access_path']."' 
             });
           },
           swfPath: '/AbyaYala/js/jplayer',

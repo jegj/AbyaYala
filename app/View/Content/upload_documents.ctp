@@ -1,4 +1,9 @@
 <h1>Módulo de Carga de Documentos</h1>
+<?php
+	if(isset($result)){
+		print_r($result);
+	}
+?>
 <div class="row content">	
 	<div class="col-md-12">
 		<p>

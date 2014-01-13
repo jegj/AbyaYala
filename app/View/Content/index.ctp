@@ -9,7 +9,6 @@
 		            <th>Tipo</th>
 		            <th>Tamaño(MB)</th>
 		            <th>Extension</th>
-		            <th>Modificar</th>
 		            <th>Descargar</th>
 		            <th>Eliminar</th>
 		        </tr>
@@ -19,7 +18,7 @@
 		    		<tr>
 		    			<td>
 	    					<?php if($myContent['Content']['type']=='imagen'):?>
-			    					<a href= '<?echo $this->webroot?>media/imagenes/<?php echo $myContent['Content']['name']?>'
+			    					<a href= '<?echo $myContent['Content']['access_path']?>'
 			    					rel='prettyPhoto' title= '<?php echo $myContent['Content']['name']?>'
 			    					>
 			    						<?php echo $myContent['Content']['name']?>
@@ -33,12 +32,23 @@
                 		);	    			
                 		?>
 			    			<?php else:?>
-
+			    				<?php
+                		echo $this->Html->link(
+                    $myContent['Content']['name'],
+                     array('action' => 'download',$myContent['Content']['content_id'])
+                		);
+            			?>
 			    			<?php endif;?>
 		    			
 		    			</td>
 		    			<td>
-		    				<?echo $myContent['Content']['type']?>
+		    				<?
+			    				if($myContent['Content']['type']=='documento'){
+			    					echo $myContent['Content']['type'].'-'.$myContent['Content']['type_document'];
+			    				}else{
+			    					echo $myContent['Content']['type'];
+			    				}
+		    				?>
 		    			</td>
 		    			<td>
 		    				<?echo $myContent['Content']['filesize']?>
@@ -46,19 +56,21 @@
 		    			<td>
 		    				<?echo $myContent['Content']['extesion_document']?>
 		    			</td>
+		    			<!--
 		    			<td>
 		    				<?php
                 echo $this->Html->link(
-                    'Modificar',
+                    'Modificar Media',
                     array('action' => 'edit', $myContent['Content']['content_id'])
                 );
             		?>
 		    			</td>
+		    			-->
 		    			<td>
 		    				<?php
                 echo $this->Html->link(
                     'Descargar',
-                     array('action' => 'download',$myContent['Content']['content_id'])
+                     array('action' => 'download',$myContent['Content']['content_id'], true)
                 );
             		?>
 		    			</td>
