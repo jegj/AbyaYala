@@ -108,7 +108,7 @@ $(function(){
                 var extension=arrayExtension.pop();
 
                 
-                var allowExtensions=['ogg', 'png', 'gif', 'jpg'];
+                var allowExtensions=['ogg', 'png', 'gif', 'jpg', 'pdf'];
                 
                 if(allowExtensions.indexOf(extension)>=0){
                     return true;    

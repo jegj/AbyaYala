@@ -17,23 +17,32 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li>
+			<?php
+				echo $this->Html->link('Agregar Nota', 
+					array('controller'=>'notes', 'action'=>'add',$ethnicityId)
+				);
+			?>
+		</li>
+		<li>
 			<?php	 
 			echo $this->Html->link(
-							    'Regresar',
-							    array(
-							    		'controller' => 'ethnicities',
-							        'action' => 'view',
-							        $ethnicityId
-							    ));
+		    'Regresar',
+		    array(
+		    		'controller' => 'ethnicities',
+		        'action' => 'view',
+		        $ethnicityId
+		    ));
 			?>
 		</li>
 	</ul>
 </div>
 <script>
-	CKEDITOR.replace( 'AnchorDescription', {
-    filebrowserBrowseUrl: '/ckeditor/posts/browse',
-    filebrowserUploadUrl: '/ckeditor/posts/upload',
-    width: "100%",
-    height: "300px"
+	$(document).ready(function(){
+		CKEDITOR.replace( 'AnchorDescription', {
+	    filebrowserBrowseUrl: '/AbyaYala/contents/browse',
+	    filebrowserUploadUrl: '/AbyaYala/contents/upload',
+	    width: "100%",
+	    height: "300px"
+		});
 	});
 </script>

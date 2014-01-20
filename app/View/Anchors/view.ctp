@@ -9,11 +9,9 @@
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Descripción'); ?></dt>
-		<div style="width:550px margin-left:auto; margin-right:auto;">
-			<dd>
-				<?php echo html_entity_decode(h($anchor['Anchor']['description'])); ?>
+		<div style="width:550px margin-left:auto; margin-right:auto;" id="anchor-description">
+			<?php echo html_entity_decode(h($anchor['Anchor']['description'])); ?>
 				&nbsp;
-			</dd>
 		</div>
 	</dl>
 </div>
@@ -25,3 +23,16 @@
 		</li>
 	</ul>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#anchor-description img').each(function() {
+			$(this).error(function(){
+				$(this).attr('src', '/AbyaYala/img/no-disponible.jpeg');
+			})
+		});
+		$('#anchor-description img').each(function() {
+			$(this).attr('src', $(this).attr('src')+'?'+Math.random());
+		});
+	});
+</script>

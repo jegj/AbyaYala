@@ -1,8 +1,8 @@
-<h1>Módulo de Carga de Imagenes y Audio</h1>
 <div class="row content">	
 	<div class="col-md-12">
+		<h1>Módulo de Carga de Contenido</h1>
 		<p>
-			Atraves de este módulo podra subir contenido al servidor. Solo se permiten las siguiente extensiones: <b>png,jpg,gif,ogg</b> y los archivo deben ser a los maximo de <b>10MB</b>.
+			Atraves de este módulo podra subir contenido al servidor. Solo se permiten las siguiente extensiones: <b>png, jpg, gif, ogg, pdf</b> y los archivo deben ser a lo maximo de <b>10MB</b>.
 		</p>
 	</div>
 </div>
@@ -17,14 +17,15 @@
 		</form>
 	</div>
 	<div id="files" class="col-md-6">
-		Contenido:
+		Contenido Subido:
 		<ul id="upload_files">
 
 		</ul>
 		<button type="button" id="limpiarLista" class="btn btn-success">Limpiar	</button>
+		<p></p>
 	<?php 
 		echo $this->Html->link(
-							    'Ver Contenido',
+							    'Ver Contenido Subido',
 							    array(
 							        'action' => 'index',
 							    ));

@@ -1,19 +1,15 @@
 <div class="row content">	
 	<div class="col-md-12">
-		<h1>Módulo de Carga de Contenido</h1>
-		<h3>Contenido en AbyaYala:</h3>
-		<div style="width:800px;">
-		<table id="content" style="width:690px;">
+		<h1>Cargar Imagen</h1>
+		<div class ="contenidoCargar" style="width:730px;">
+			<table id="uploadImage" style="width:650px;">
 		    <thead>
 		        <tr>
 		            <th>Nombre</th>
 		            <th>Tipo</th>
 		            <th>Tamaño(MB)</th>
 		            <th>Extension</th>
-		            <th>Clasificación</th>
-		            <th>Modificar Información</th>
-		            <th>Descargar</th>
-		            <th>Eliminar</th>
+		            <th>Usar</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -46,7 +42,11 @@
 		    			</td>
 		    			<td>
 		    				<?
-			    				echo $myContent['Content']['type'];
+			    				if($myContent['Content']['type']=='documento'){
+			    					echo $myContent['Content']['type'].'-'.$myContent['Content']['type_document'];
+			    				}else{
+			    					echo $myContent['Content']['type'];
+			    				}
 		    				?>
 		    			</td>
 		    			<td>
@@ -54,83 +54,31 @@
 		    			</td>		    	
 		    			<td>
 		    				<?echo $myContent['Content']['extesion_document']?>
-		    			</td>
 		    			<td>
-		    				<?if($myContent['Content']['type']=='imagen' || $myContent['Content']['type']=='audio'):?>
-		    					No-aplica
-		    				<?else:?>
-		    					<? if($myContent['Content']['type_document']):?>
-		    						<?echo $myContent['Content']['type_document'];?>
-		    					<?else:?>
-		    						No Asignada
-		    					<?endif;?>
-		    				<?endif;?>
-		    			</td>
-		    			
-		    			<td>
-		    				<?php
-                echo $this->Html->link(
-                    'Modificar Información',
-                    array('action' => 'edit', $myContent['Content']['content_id'])
-                );
-            		?>
-		    			</td>
-		    			
-		    			<td>
-		    				<?php
-                echo $this->Html->link(
-                    'Descargar',
-                     array('action' => 'download',$myContent['Content']['content_id'], true)
-                );
-            		?>
-		    			</td>
-		    			<td>
-		    				<?php
-                echo $this->Form->postLink(
-                    'Eliminar',
-                    array('action' => 'delete', $myContent['Content']['content_id']),
-                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'?')
-                );
-            		?>
+		    				<a href='#' onclick="cargarImagen(<?php echo $ckeditor['funcnum']?>, '<?php echo $myContent['Content']['access_path'] ?>', 'Se cargo la imagen correctamente')">Cargar</a>
 		    			</td>
 		    		</tr>
 		    	<?endforeach;?>
 		    </tbody>
 		</table>
 		</div>
+		<div class='imagenCargada'>
+
+			<p><b>Se cargo la imagen correctamente</b>, si ve este mensaje cierre la ventana</p>
+		</div>
 	</div>
 </div>
-<p></p>
-<p><b>Notas:</b></p> 
-<ul>
-	<li>
-		<p>
-		Para agregar la información adicional al contenido entre en <i>Modificar Información</i>.</p>
-	</li>
-	<li>
-		<p>
-			Puede ver el contenido haciendo click en <i>Nombre</i>
-		</p>
-	</li>
-</ul>
-
-<div>
-	<h3>Acciones:</h3>
-	<ul>
-		<li>
-			<?php 
-					echo $this->Html->link(
-										    'Subir Contenido',
-										    array(
-										        'action' => 'uploadContent',
-										    ));
-			?>
-		</li>
-	</ul>
-</div>
 <script>
+	function cargarImagen(ckeditor, url, message){
+		window.opener.CKEDITOR.tools.callFunction(ckeditor, url, '');
+		alert('Se cargo la imagen correctamente');
+		$('.contenidoCargar').hide();
+		$('.imagenCargada').show();
+		return false;
+	}
+
  	$(document).ready(function(){
-	 $('#content').dataTable({
+	 $('#uploadImage').dataTable({
 	 		'oLanguage': {
 				'sLengthMenu': 'Mostrando _MENU_ registros por página',
 				'sZeroRecords': 'No hay información',

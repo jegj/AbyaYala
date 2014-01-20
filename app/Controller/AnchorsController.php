@@ -67,7 +67,7 @@ class AnchorsController extends AppController {
 					$this->Session->setFlash(__('Se creo el ancla correctamente '.$anchorId));
 					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 				}else{
-					$this->Session->setFlash(__('Hubo problemas al crear la ancla. Please, try again.'));
+					$this->Session->setFlash(__('Hubo problemas al crear la etnia-ancla. save Model'));
 					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 				}
 			} else {	
