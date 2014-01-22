@@ -1,5 +1,4 @@
-<div class="row content">	
-	<div class="col-md-12">
+
 		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
   <div id="jp_container_1" class="jp-audio">
     <div class="jp-type-single">
@@ -44,8 +43,7 @@
       </div>
     </div>
   </div>
-	</div>
-</div>
+
 <p></p>
 <p></p>
 <?php
@@ -58,8 +56,10 @@
             });
           },
           swfPath: '/AbyaYala/js/jplayer',
-          supplied: 'oga'
+          supplied: 'oga',
+          
         });
       });
     ");
 ?>
+

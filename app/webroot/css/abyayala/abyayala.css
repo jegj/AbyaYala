@@ -9,6 +9,24 @@
 	width: 175px !important;
 }
 
+.member-box{
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.member-box {
+    background-color: #FBFBFB;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+    background-repeat: repeat-x;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+}
+.round-all {
+    border-radius: 3px;
+}
+
 h3{
 	color:#339966;
 }
@@ -25,6 +43,10 @@ h1{
 .aliniar 
 {
 	padding-left: 0px !important;
+}
+
+.verticalLine {
+    border-left: thick solid #ff0000 !importan;
 }
  /**********NAVBAR**********/
 #background-banner {
@@ -58,6 +80,10 @@ h1{
 
 .content h3, h1{
 	color: #339966;
+}
+
+#container-administrador{
+	margin-left: 20px;
 }
 /****FIN CONTENIDO******/
 

@@ -1,9 +1,9 @@
-<h1>Etnias Indigenas</h1>
 <div class="row content">	
 	<div class="col-md-12">
-		<div style="width:550px;margin-left:auto;
-margin-right:auto;">
-			<table id="ethnicity" style="width:550px;">
+		<h1>Etnias Indigenas</h1>
+		<h3>Etnias Registradas en AbyaYala</h3>
+		<div style="width:830px;">
+			<table id="ethnicity" style="width:830px;">
 				<thead>
 		      <tr>
 		          <th>Nombre</th>
@@ -44,20 +44,23 @@ margin-right:auto;">
 	</div>
 </div>
 
-<p></p>
-<div class="actions">
-	<h3><?php echo __('Acciones'); ?></h3>
-	<ul>
-		<li>
-			<?php 
-			echo $this->Html->link(
-				'Agregar Etnia',
-				array(
-				'action' => 'add',
-			));	
-			?>		
-		</li>
-	</ul>
+<div class="row content">
+	<div class="col-md-12">
+		<div class="actions">
+			<h3><?php echo __('Acciones'); ?></h3>
+			<ul>
+				<li>
+					<?php 
+					echo $this->Html->link(
+						'Agregar Etnia',
+						array(
+						'action' => 'add',
+					));	
+					?>		
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 

@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<h1>Módulo de Carga de Contenido</h1>
 		<h3>Contenido en AbyaYala:</h3>
-		<div style="width:800px;">
+		<div style="width:830px;">
 		<table id="content" style="width:690px;">
 		    <thead>
 		        <tr>
@@ -100,20 +100,39 @@
 		</div>
 	</div>
 </div>
-<p></p>
-<p><b>Notas:</b></p> 
-<ul>
-	<li>
-		<p>
-		Para agregar la información adicional al contenido entre en <i>Modificar Información</i>.</p>
-	</li>
-	<li>
-		<p>
-			Puede ver el contenido haciendo click en <i>Nombre</i>
-		</p>
-	</li>
-</ul>
 
+<div class="row content">
+	<div class="col-md-12">
+		<p></p>
+		<p><b>Notas:</b></p> 
+		<ul>
+			<li>
+				<p>
+				Para agregar la información adicional al contenido entre en <i>Modificar Información</i>.</p>
+			</li>
+			<li>
+				<p>
+					Puede ver el contenido haciendo click en <i>Nombre</i>
+				</p>
+			</li>
+		</ul>
+		<div>
+			<h3>Acciones:</h3>
+			<ul>
+				<li>
+					<?php 
+							echo $this->Html->link(
+						    'Subir Contenido',
+						    array(
+						        'action' => 'uploadContent',
+						    ));
+					?>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--
 <div>
 	<h3>Acciones:</h3>
 	<ul>
@@ -128,6 +147,7 @@
 		</li>
 	</ul>
 </div>
+-->
 <script>
  	$(document).ready(function(){
 	 $('#content').dataTable({

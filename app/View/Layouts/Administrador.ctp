@@ -58,49 +58,53 @@
 			</div>
 			<div class="container" id="contenido-administrador">
 					<div class="col-md-2" id="sidebar">
-					 	<div class = "list-group">
-					 		<a href = "#" class = "list-group-item active">
-	              <h4 class = "list-group-item-heading">Inicio</h4>
-          		</a>
-
-          		<a href = "#" class = "list-group-item">
-	              <h4 class = "list-group-item-heading">Administradores</h4>
-          		</a>
-              <?php
-          			echo $this->Html->link(
-							    'Contenido',
-							    array(
-							        'controller' => 'contents',
-							        'action' => 'index',
-							    ),
-							    array(
-							    	'class'=>'list-group-item'
-							    )
-								);
-          		?>
-             	 <?php
-          			echo $this->Html->link(
-							    'Etnias',
-							    array(
-							        'controller' => 'ethnicities',
-							        'action' => 'index',
-							    ),
-							    array(
-							    	'class'=>'list-group-item'
-							    )
-								);
-          		?>
-             	<a href = "#" class = "list-group-item">
-              	<h4 class = "list-group-item-heading">Opción 4</h4>
-             	</a>
-             		<a href = "#" class = "list-group-item">
-              	<h4 class = "list-group-item-heading">Opción 5</h4>
-             	</a>
-             	<a href = "#" class = "list-group-item">
-              	<h4 class = "list-group-item-heading">Cerrar Sesión</h4>
-             	</a>
-             </div>
+						<div class="member-box round-all"> 
+        			<a>
+        				<img class="member-box-avatar" src="images/member_ph.png">
+        			</a>
+			        <span>
+			            <strong>Administrador</strong><br>
+			            <a>Javier Galarza</a><br>
+			            <span class="member-box-links"><a>Opciones</a> | <a>Salir</a></span>
+			        </span>
+      			</div>
+						<div class="sidebar-nav">
+							<div style="padding: 8px 0;" class="well">
+								 <ul class="nav nav-list"> 
+								 	<li class="dropdown-header">Menú Administrador</li>
+								 	<li>
+								 		<?php
+          						echo $this->Html->link(
+							    			'Contenido',
+									    array(
+									        'controller' => 'contents',
+									        'action' => 'index',
+									    )	
+										);
+          						?>
+								 	</li>
+								 	<li>
+								 		<?php
+			          			echo $this->Html->link(
+										    'Etnias',
+										    array(
+										        'controller' => 'ethnicities',
+										        'action' => 'index',
+										    )
+											);
+          					?>
+								 	</li>	
+								 	<li>
+								 		<a href="#">Galeria</a>
+								 	</li>
+								 	<li>
+								 		<a href="#">Noticias</a>
+								 	</li>
+								 </ul>
+							</div>
+						</div>
 					</div>
+
 					<div class="col-md-10" id="container-administrador">
 							<?php echo $this->Session->flash(); ?>
 							<?php echo $this->fetch('content'); ?>
