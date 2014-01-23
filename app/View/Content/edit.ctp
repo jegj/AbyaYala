@@ -29,6 +29,13 @@
 		echo $this->Form->create('Content', array('type'=>'file', 'class'=>'form-horizontal'));?>
 
 			<div class="form-group">
+				<label for="data[Content][name]" class="col-sm-2 control-label">Nombre:</label>
+				<div class="col-sm-10">
+					<?php echo $this->Form->input('name',array('label'=>false));?>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label for="data[Content][description]" class="col-sm-2 control-label">Descripción:</label>
 				<br>
 				<br>
@@ -90,18 +97,28 @@
 			</div>
 
 			<?php if($content['Content']['type']=='documento'):?>
+				 <label>
+					<?php echo $this->Form->checkbox('only_read');?>
+					Solo Lectura
+				 </label>
+				<!--
 				<div class="checkbox">
 			    <label>
-			      <input type="checkbox" name="data[Content][only_read]"> Solo Lectura
+			    	<input type="hidden" name="data[Content][only_read]" value="0" />
+			      <input type="checkbox" name="data[Content][only_read]" value="1"> 
+			      Solo Lectura
 			    </label>
 	  		</div>
+	  		-->
 	  	<?php endif;?>
 	  	<p></p>
 		
 			<div class="form-group">
-				<?php
-				echo $this->Form->submit('Guardar Cambios', array('class'=>'btn btn-default'));
-				?>
+				<div class="col-sm-10">
+					<?php
+					echo $this->Form->submit('Guardar Cambios', array('class'=>'btn btn-success'));
+					?>
+				</div>
 			</div>
 			<?php echo $this->Form->end();?>
 	</div>
@@ -126,7 +143,7 @@
 				</ul>
 			<?php elseif($content['Content']['type']=='imagen'):?>
 				<p>Imagen Previa:</p>
-				<a href='<?php echo  $content['Content']['access_path']?>' rel="prettyPhoto" title='<?php echo $content['Content']['name']?>'>
+				<a href='<?php echo  $content['Content']['access_path']?>' rel="prettyPhoto" title='<?php echo $content['Content']['description']?>'>
 					<img src='<?php echo  $content['Content']['access_path']?>' width="80" height="80" alt='<?php echo $content['Content']['name']?>' />
 				</a>
 				<p></p>

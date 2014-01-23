@@ -53,6 +53,49 @@ class Content extends AppModel {
   		));
 	}
 
+	public function replaceFile($content, $file, $pathWeb)
+	{
+		ini_set('post_max_size', '10M');
+		ini_set('upload_max_filesize', '10M');
+		ini_set('max_execution_time', 300);
+		ini_set('max_input_time', 300);
+
+		$maxFileSize=10;
+
+		$allowed = array('png', 'jpg', 'gif', 'ogg', 'pdf');
+
+		$oldExtension=$content['Content']['extesion_document'];
+		$oldPath=$content['Content']['path'];
+		$oldAccessPath=$content['Content']['access_path'];
+
+		$result=array();
+		if(isset($file) && $file['error'] == 0){
+			$name=$file['name'];
+			$extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+			$size=number_format($file['size']/1000000, 2);
+			if($size > $maxFileSize){
+				$result['complete']=array('result'=>'error','message'=>'Archivo muy grande, maximo hasta 10MB');
+				return $result;
+			}else{
+				if($extension!=$oldExtension){
+					$result['complete']=array('result'=>'error','message'=>'El archivo debe tener la misma extension');
+					return $result;
+				}else{
+					if(move_uploaded_file($file['tmp_name'], $oldPath)){
+						$result['complete']=array('result'=>'success','message'=>'Se agrego el archivo correctamente');
+								return $result;	
+					}else{
+						$result['complete']=array('result'=>'error','message'=>'No se pudo guardar el archivo en la ruta especificada');
+						return $result;	
+					}
+				}
+			}
+		}else{
+			$result['complete']=array('result'=>'error','message'=>'Problemas al subir el archivo');
+			return $result;
+		}
+
+	}
 
 	public function saveFile($file, $pathWeb)
 	{

@@ -1,8 +1,6 @@
-<h1>Reproductor de Audio</h1>
-<div class="row content">	
-	<div class="col-md-12">
-		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-  <div id="jp_container_1" class="jp-audio">
+
+	<div id="jquery_jplayer_1" class="jp-jplayer" ></div>
+  <div id="jp_container_1" class="jp-audio" style="width: 80%; margin: 0 auto;">
     <div class="jp-type-single">
       <div class="jp-gui jp-interface">
         <ul class="jp-controls">
@@ -34,7 +32,7 @@
         <ul>
           <li>
           	<?php
-          		echo $content['Content']['name'];
+          		echo $name;
           	?>
           </li>
         </ul>
@@ -45,20 +43,16 @@
       </div>
     </div>
   </div>
-	</div>
-</div>
+
 <p></p>
 <p></p>
 <?php
-		echo $this->Html->link('Regresar',
-			array('action'=>'index')
-		);
     echo $this->Html->scriptBlock("
       $(document).ready(function(){
         $('#jquery_jplayer_1').jPlayer({
           ready: function () {
             $(this).jPlayer('setMedia', {
-              oga:'".$content['Content']['access_path']."' 
+              oga:'".$accessPath."' 
             });
           },
           swfPath: '/AbyaYala/js/jplayer',

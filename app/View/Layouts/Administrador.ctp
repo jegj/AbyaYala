@@ -106,8 +106,33 @@
 					</div>
 
 					<div class="col-md-10" id="container-administrador">
-							<?php echo $this->Session->flash(); ?>
-							<?php echo $this->fetch('content'); ?>
+						<?php 
+							$success=$this->Session->flash('success'); 
+							$error=$this->Session->flash('error');
+							$warning=$this->Session->flash('warning');
+						?>
+						<?php if($success):?>
+							<div class="alert alert-success alert-dismissable">
+  								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  									<?php echo $success; ?>
+							</div>
+						<?endif;?>
+
+						<?php if($error):?>
+							<div class="alert alert-danger alert-dismissable">
+  								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  									<?php echo $error; ?>
+							</div>
+						<?endif;?>
+
+						<?php if($warning):?>
+							<div class="alert alert-warning alert-dismissable">
+  								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  									<?php echo $warning; ?>
+							</div>
+						<?endif;?>
+
+						<?php echo $this->fetch('content'); ?>
 					</div>
 			</div>
 		</div>

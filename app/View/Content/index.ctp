@@ -21,7 +21,7 @@
 		    		<tr>
 		    			<td>
 	    					<?php if($myContent['Content']['type']=='imagen'):?>
-			    					<a href= '<?echo $myContent['Content']['access_path']?>'
+			    					<a href= '<?echo $myContent['Content']['access_path'].'?'.rand()?>'
 			    					rel='prettyPhoto' title= '<?php echo $myContent['Content']['name']?>'
 			    					>
 			    						<?php echo $myContent['Content']['name']?>
@@ -31,7 +31,7 @@
 									 	echo $this->Html->link(
 									 		$myContent['Content']['name']
                     ,
-                     array('action' => 'audio',$myContent['Content']['content_id'])
+                     array('action' => 'audio',$myContent['Content']['content_id']), array('onclick'=>'return getMusic('.$myContent['Content']['content_id'].');')
                 		);	    			
                 		?>
 			    			<?php else:?>
@@ -60,7 +60,7 @@
 		    					No-aplica
 		    				<?else:?>
 		    					<? if($myContent['Content']['type_document']):?>
-		    						<?echo $myContent['Content']['type_document'];?>
+		    						<?echo $myContent['Content']['type_document']==1?'Trabajo/Articulo':'Ley';?>
 		    					<?else:?>
 		    						No Asignada
 		    					<?endif;?>
@@ -132,6 +132,23 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Cancion</h4>
+      </div>
+      <div class="modal-body" id="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
 <!--
 <div>
 	<h3>Acciones:</h3>
@@ -150,6 +167,7 @@
 -->
 <script>
  	$(document).ready(function(){
+
 	 $('#content').dataTable({
 	 		'oLanguage': {
 				'sLengthMenu': 'Mostrando _MENU_ registros por página',
@@ -170,8 +188,24 @@
 				social_tools: false,
 		});
 
-		$("a[rel^='audio']").prettyPhoto({
-			custom_markup: '<div id="map_canvas" style="width:260px; height:265px">aaaaa</div>'
-		});
+		$('#myModal').on('hidden.bs.modal', function (e) {
+  			$("#jquery_jplayer_1").jPlayer("stop");
+		})
 	});
+
+	function getMusic(id){
+		
+		$.ajax({
+	    url: '/AbyaYala/contents/audio',
+	    type: 'POST',
+	    data:'data[Content][id]='+id,
+	    dataType: 'HTML',
+	    success: function (data) {
+	    	$('#myModalLabel').html('Reproductor de AbyaYala');
+	      $('#modal-body').html(data);
+	      $('#myModal').modal('show')
+	    }
+		});
+		return false;
+	}
 </script>
