@@ -84,7 +84,7 @@
 			<?php endif;?>
 
 			
-
+			<!--
 			<div class="form-group">
 				<label for="data[Content][file]" class="col-sm-2 control-label">Archivo:</label>
 				<br>
@@ -95,6 +95,7 @@
 					?>
 				</div>
 			</div>
+			-->
 
 			<?php if($content['Content']['type']=='documento'):?>
 				 <label>
@@ -188,5 +189,29 @@
 					theme:'light_square',
 					social_tools: false,
 		});
+
+		$('#ContentEditForm').validate({
+    rules: {
+        "data[Content][name]": {
+            required:true,
+             messages: {
+							required: "Campo Obligatorio",
+						}
+        }
+    },
+    messages: {
+    	"data[Content][name]": {
+    		required: 'Campo Obligatorio'
+    	}
+    },
+    highlight: function(element) {
+			$(element).closest('.form-group').removeClass('success').addClass('error');
+		},
+		success: function(element) {
+			element
+			.text('OK!').addClass('valid')
+			.closest('.form-group').removeClass('error').addClass('success');
+		}
+  });
 	});
 </script>

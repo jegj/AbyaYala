@@ -33,10 +33,12 @@ class ContentsController extends AppController {
 
 			$id=$this->data['Content']['id'];
 			$content=$this->Content->findByContentId($id);
-			$accessPath=$content['Content']['access_path'];
-			$name=$content['Content']['name'];
-
-			$this->set(compact('name', 'accessPath'));
+			if($content)
+				$this->set('content',$content);		
+			else{
+				$error=true;
+				$this->set('error',$error);		
+			}
     }
 	}
 
@@ -120,26 +122,24 @@ class ContentsController extends AppController {
 
   	if ($this->request->is(array('post', 'put'))) {
 	    $this->Content->read(null, $id);
+
+	    /*
 	  	$file=$this->request->data['Content']['file'];
 
 	  	if($file)
 	  		$resultado=$this->Content->replaceFile(
 	  			$content, $file, $this->webroot);
+			*/
 
-	  	if($resultado['complete']['result']){
-	  		$this->Content->saveField('filesize',
-	  			number_format($file['size']/1000000, 2));
-		  	if($this->Content->saveModel($this->request->data, false)){
-		  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido correctamente', 'default', array(), 'success');
-		  		return $this->redirect(array('action'=>'index'));
-		  	}else{
-		  		  $this->Session->setFlash('<strong>Error!</strong> No se pudo actualizar el contenido especificado', 'default', array(), 'error');
-		  		  return $this->redirect(array('action'=>'index'));
-		  	}
-		  }else{
-		  	 $this->Session->setFlash('<strong>Error!</strong>'.$resultado['complete']['message'], 'default', array(), 'error');
-		  	 return $this->redirect(array('action'=>'index'));
-		  }
+	  
+	  	if($this->Content->saveModel($this->request->data, false)){
+	  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido correctamente', 'default', array(), 'success');
+	  		return $this->redirect(array('action'=>'index'));
+	  	}else{
+	  		  $this->Session->setFlash('<strong>Error!</strong> No se pudo actualizar el contenido especificado', 'default', array(), 'error');
+	  		  return $this->redirect(array('action'=>'index'));
+	  	}
+		 
     }
 
 		$this->set('content', $content);

@@ -1,4 +1,10 @@
 
+  <?php if(isset($content)): ?>
+  <div>
+    <p><b>Nombre: </b><?php echo $content['Content']['name']?></p>
+    <p><b>Descripción: </b><?php echo $content['Content']['description']?></p>
+  </div>
+
 	<div id="jquery_jplayer_1" class="jp-jplayer" ></div>
   <div id="jp_container_1" class="jp-audio" style="width: 80%; margin: 0 auto;">
     <div class="jp-type-single">
@@ -32,7 +38,7 @@
         <ul>
           <li>
           	<?php
-          		echo $name;
+          		echo $content['Content']['name'];
           	?>
           </li>
         </ul>
@@ -52,7 +58,7 @@
         $('#jquery_jplayer_1').jPlayer({
           ready: function () {
             $(this).jPlayer('setMedia', {
-              oga:'".$accessPath."' 
+              oga:'".$content['Content']['access_path']."' 
             });
           },
           swfPath: '/AbyaYala/js/jplayer',
@@ -61,3 +67,10 @@
       });
     ");
 ?>
+<?php endif;?>
+
+<?php if(isset($error)):?>
+   <div>
+    <p><strong>Error!</strong> No es posible cargar el contenido especificado.</p>
+  </div>
+<?php endif;?>
