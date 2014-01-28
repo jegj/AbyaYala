@@ -1,3 +1,4 @@
+
 <div class="anchors index">
 	<h2><?php echo __('Anchors'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

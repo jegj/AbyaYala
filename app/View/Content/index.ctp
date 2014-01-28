@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<h1>Módulo de Carga de Contenido</h1>
 		<h3>Contenido en AbyaYala:</h3>
-		<div style="width:830px;">
+		<div style="width:900px;">
 		<table id="content" style="width:690px;">
 		    <thead>
 		        <tr>
@@ -121,11 +121,11 @@
 			<ul>
 				<li>
 					<?php 
-							echo $this->Html->link(
-						    'Subir Contenido',
-						    array(
-						        'action' => 'uploadContent',
-						    ));
+						echo $this->Html->link(
+					    'Subir Contenido',
+					    array(
+					        'action' => 'uploadContent',
+					    ));
 					?>
 				</li>
 			</ul>

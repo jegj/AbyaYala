@@ -1,6 +1,13 @@
 <div class="row content">
-	<h1 style='margin-left:15px;'>Modificar Información Contenido</h1>
-	
+	<div style='margin-left:15px;'>
+	<h1>Etnias Indigenas</h1>
+	<h3 >
+		Modificar Información Contenido
+	</h3>
+	<p>En esta sección podra visualizar el contenido anteriormente cargado en AbayYala, así tambien como poder modificar su información básica.
+	</p>
+	</div>
+	<hr>
 	<!--
 	<div class="col-md-5">	
 			<?php if($content['Content']['type']=='documento'):?>
@@ -22,9 +29,8 @@
 		<?php endif;?>
 	</div>
 	-->
-	<div class="col-md-6">
+	<div class="col-md-6" style ="border-right:thick double #339966;">
 		<h3>Información Básica</h3>	
-
 		<?php
 		echo $this->Form->create('Content', array('type'=>'file', 'class'=>'form-horizontal'));?>
 
@@ -140,25 +146,16 @@
 				<p><b>Notas:</b></p>
 				<ul>
 					<li>Para descargar la documento debes clickear la imagen.</li>
-					<li>Si desea cambiar el archivo subido debe tener la misma extensión.</li>
 				</ul>
 			<?php elseif($content['Content']['type']=='imagen'):?>
 				<p>Imagen Previa:</p>
 				<a href='<?php echo  $content['Content']['access_path']?>' rel="prettyPhoto" title='<?php echo $content['Content']['description']?>'>
 					<img src='<?php echo  $content['Content']['access_path']?>' width="80" height="80" alt='<?php echo $content['Content']['name']?>' />
 				</a>
-				<p></p>
-				<p><b>Notas:</b></p>
-				<ul>
-					<li>Si desea cambiar el archivo subido debe tener la misma extensión.</li>
-				</ul>
+				<p></p>			
 			<?php else:?>
 				<p>Pista:</p>
 				<?php echo $this->element('player', array('name'=>$content['Content']['name'], 'audio'=>$content['Content']['access_path']));?>
-				<p><b>Notas:</b></p>
-				<ul>
-					<li>Si desea cambiar el archivo subido debe tener la misma extensión.</li>
-				</ul>
 			<?php endif;?>
 		</div>
 	</div>
@@ -194,24 +191,24 @@
     rules: {
         "data[Content][name]": {
             required:true,
-             messages: {
-							required: "Campo Obligatorio",
-						}
-        }
+            rangelength: [3, 45]
+        },
     },
     messages: {
     	"data[Content][name]": {
-    		required: 'Campo Obligatorio'
+    		required: 'Campo Obligatorio',
+    		rangelength: 'El campo debe tener entre 3 y 45 caracteres'
     	}
     },
-    highlight: function(element) {
-			$(element).closest('.form-group').removeClass('success').addClass('error');
-		},
-		success: function(element) {
-			element
-			.text('OK!').addClass('valid')
-			.closest('.form-group').removeClass('error').addClass('success');
-		}
+	  highlight: function(element) {
+	  	$(element).closest('.form-group').addClass('has-error');
+	  },
+    unhighlight: function(element) {
+			$(element).closest('.form-group').removeClass('has-error');
+    },
+  errorElement: 'span',
+  errorClass: 'help-block',
+   
   });
 	});
 </script>

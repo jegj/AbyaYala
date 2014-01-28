@@ -1,9 +1,11 @@
 <div class="row content">	
-	<div class="col-md-10">
+	<div class="col-md-12">
 		<h1>Módulo de Carga de Contenido</h1>
+		<h3>Subir Contenido</h3>
 		<p>
 			Atraves de este módulo podra subir contenido al servidor. Solo se permiten las siguiente extensiones: <b>png, jpg, gif, ogg, pdf</b> y los archivo deben ser a lo maximo de <b>10MB</b>.
 		</p>
+		<hr>
 		<div class="row content">
 			<div class="col-md-6">
 				<form id="upload" method="post" action="/AbyaYala/contents/upload" enctype="multipart/form-data">

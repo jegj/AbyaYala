@@ -1,7 +1,7 @@
 <div class="row content">	
 	<div class="col-md-12">
 		<h1>Etnias Indigenas</h1>
-		<h3>Etnias Registradas en AbyaYala</h3>
+		<h3>Etnias Registradas en AbyaYala:</h3>
 		<div style="width:830px;">
 			<table id="ethnicity" style="width:830px;">
 				<thead>
@@ -46,8 +46,21 @@
 
 <div class="row content">
 	<div class="col-md-12">
-		<div class="actions">
-			<h3><?php echo __('Acciones'); ?></h3>
+		<p></p>
+		<p><b>Notas:</b></p> 
+		<ul>
+			<li>
+				<p>
+				Para cambiar la información de una etnia entre en <i>Modificar</i>.</p>
+			</li>
+			<li>
+				<p>
+					Puede ver la etnia haciendo click en <i>Nombre.</i>
+				</p>
+			</li>
+		</ul>
+		<div class="acciones">
+			<h3>Acciones:</h3>
 			<ul>
 				<li>
 					<?php 

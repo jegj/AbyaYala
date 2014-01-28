@@ -27,68 +27,90 @@ class EthnicitiesController extends AppController {
 	public function add()
 	{
 		if ($this->request->is('post')) {
-    	    if ($this->Ethnicity->saveModel($this->request->data)) {
-    	        $this->Session->setFlash(__('Se creo la Etnia exitosamente'));
-    	        return $this->redirect(array('action' => 'index'));
-    	    }
-	       $this->Session->setFlash(__('No se pudo agregar la Etnia'));
+
+            $this->Ethnicity->set($this->request->data);
+
+            if($this->Ethnicity->validates()){
+
+        	    if ($this->Ethnicity->saveModel($this->request->data)) {
+        	       $this->Session->setFlash('<strong>Exito!</strong> Se creo la etnia exitosamente.', 'default', array(), 'success');
+                    return $this->redirect(array('action'=>'index'));
+        	    }else{
+    	           $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+                  return $this->redirect(array('action'=>'index'));
+              }
+          }
         }
 	}
 
 	public function delete($id)
 	{
-		if ($this->request->is('get')) {
-            throw new MethodNotAllowedException();
+		      
+        if ($this->request->is('get') || !isset($id)) {
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
 
         if ($this->Ethnicity->deleteModel($id)) {
-        	 $this->Session->setFlash(
-    	            __('Se elimino la etnia correctamente ')
-    	        );
-    	        return $this->redirect(array('action' => 'index'));
+           $this->Session->setFlash('<strong>Exito!</strong> Se eliminó  la etnia exitosamente.', 'default', array(), 'success');
+            return $this->redirect(array('action'=>'index'));
         }else{
-        	 $this->Session->setFlash(__('No se pudo eliminar la Etnia'));
-        	  return $this->redirect(array('action' => 'index'));
+        	$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
 
-	}
+	}  
 
 	public function edit($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Etnia invalida'));
+       if (!$id) {
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
 
         $ethnicity = $this->Ethnicity->findByEthnicityId($id);
 
         if (!$ethnicity) {
-            throw new NotFoundException(__('Etnia invalida'));
+            $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
 
         if ($this->request->is(array('post', 'put'))) {
+            
             $this->Ethnicity->read(null, $id);
-            if ($this->Ethnicity->saveModel($this->request->data,false)) {
-                $this->Session->setFlash(__('Se modifico la etnia'));
-                return $this->redirect(array('action' => 'index'));
+            $this->Ethnicity->set($this->request->data);
+            if($this->Ethnicity->validates()){
+                if ($this->Ethnicity->saveModel($this->request->data,false)) {
+                    $this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la etnia exitosamente.', 'default', array(), 'success');
+                    return $this->redirect(array('action'=>'index'));
+                }else{
+                    $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+                    return $this->redirect(array('action'=>'index'));
+                }
             }
-            $this->Session->setFlash(__('no se pudo modificar la etnia'));
         }
 
         if (!$this->request->data) {
             $this->request->data = $ethnicity;
         }
+
+        $this->set('ethnicity', $ethnicity);
 	}
 
 	public function view($id)
 	{
 
         if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
 
         $ethnicity = $this->Ethnicity->getCompactInformation($id);
+
         if (!$ethnicity) {
-            throw new NotFoundException(__('Invalid post'));
+            $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
         }
+
         $this->set(compact('ethnicity'));
         
 	}

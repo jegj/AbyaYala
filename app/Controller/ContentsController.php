@@ -51,15 +51,15 @@ class ContentsController extends AppController {
 			   	$this->response->file($content['Content']['path'], array('download' => $viewOnline));
 			   	return $this->response;
 			   }else{
-			   	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado', 'default', array(), 'error');
+			   	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
 		  		return $this->redirect(array('action' => 'index'));
 			   }
 	    }else{
-	    	$this->Session->setFlash('<strong>Error!</strong> No se pudo descargar el contenido especificado', 'default', array(), 'error');
+	    	$this->Session->setFlash('<strong>Error!</strong> No se pudo descargar el contenido especificado.', 'default', array(), 'error');
 		  	return $this->redirect(array('action' => 'index'));
 	    }
 	  }else{
-	  	$this->Session->setFlash('<strong>Error!</strong> No se pudo descargar el contenido especificado', 'default', array(), 'error');
+	  	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 		  return $this->redirect(array('action' => 'index'));
 	  }
 	}
@@ -67,27 +67,35 @@ class ContentsController extends AppController {
 	public function delete($id)
 	{
 		
-		if ($this->request->is('get')&& !isset($id)) {
-    	$this->Session->setFlash('<strong>Error!</strong> No se puede elimiar el contenido especificado', 'default', array(), 'error');
+		if ($this->request->is('get') || !isset($id)) {
+    	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  	return $this->redirect(array('action'=>'index'));
     }
+
     $content=$this->Content->findByContentId($id);
+
+    if(!$content){
+    	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
+	  	return $this->redirect(array('action'=>'index'));
+    }
+
+
     $contentPath = $content['Content']['path'];
     if($contentPath){
 	    if ($this->Content->deleteModel($id)) {
 	    		if(unlink($contentPath)){
-		        $this->Session->setFlash('<strong>Exito!</strong> Se elimino el contenido exitosamente', 'default', array(), 'success');
-	  				return $this->redirect(array('action'=>'index'));
+		         $this->Session->setFlash('<strong>Exito!</strong> Se elimino  contenido exitosamente', 'default', array(), 'success');
+            return $this->redirect(array('action'=>'index'));
 	      	}else{
-	      		$this->Session->setFlash('<strong>Error!</strong> No se puede elimiar el contenido especificado', 'default', array(), 'error');
+	      		$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  				return $this->redirect(array('action'=>'index'));
 	      	}
 	    }else{
-				$this->Session->setFlash('<strong>Error!</strong> No se puede elimiar el contenido especificado', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  		return $this->redirect(array('action'=>'index'));
 	    }
 	  }else{
-	  	$this->Session->setFlash('<strong>Error!</strong> No se puede elimiar el contenido especificado', 'default', array(), 'error');
+	  	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  	return $this->redirect(array('action'=>'index'));
 	  }
 	}
@@ -110,33 +118,24 @@ class ContentsController extends AppController {
 	public function edit($id=null)
 	{
 		if (!$id) {
-    	$this->Session->setFlash('<strong>Error!</strong> No se puede actualizar el contenido especificado', 'default', array(), 'error');
+    	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  	return $this->redirect(array('action'=>'index'));
     }
     $content = $this->Content->findByContentId($id);
 
     if(!$content){
-    	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado', 'default', array(), 'error');
+    	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
 	  	return $this->redirect(array('action'=>'index'));
 	  }
 
   	if ($this->request->is(array('post', 'put'))) {
 	    $this->Content->read(null, $id);
-
-	    /*
-	  	$file=$this->request->data['Content']['file'];
-
-	  	if($file)
-	  		$resultado=$this->Content->replaceFile(
-	  			$content, $file, $this->webroot);
-			*/
-
 	  
 	  	if($this->Content->saveModel($this->request->data, false)){
-	  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido correctamente', 'default', array(), 'success');
+	  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido exitosamente.', 'default', array(), 'success');
 	  		return $this->redirect(array('action'=>'index'));
 	  	}else{
-	  		  $this->Session->setFlash('<strong>Error!</strong> No se pudo actualizar el contenido especificado', 'default', array(), 'error');
+	  		  $this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  		  return $this->redirect(array('action'=>'index'));
 	  	}
 		 
