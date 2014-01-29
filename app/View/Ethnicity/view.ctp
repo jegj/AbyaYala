@@ -10,9 +10,9 @@
 		<?php echo h($ethnicity['ethnicity']['Ethnicity']['type']);?>
 		</p>
 
-		<h3>Anclas</h3>
-		<div style="width:600px">
-		<table id="anchors" style="width:600px;">
+		<h3>Anclas(<?php echo $ethnicity['ethnicity']['Ethnicity']['name']; ?>)</h3>
+		<div style="width:800px">
+		<table id="anchors" style="width:800px;">
 			<thead>
 				<tr>
 					<th>Nombre</th>

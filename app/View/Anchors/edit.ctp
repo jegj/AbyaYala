@@ -1,26 +1,69 @@
-<div class="anchors form">
-<?php echo $this->Form->create('Anchor'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Anchor'); ?></legend>
-	<?php
-		echo $this->Form->input('anchor_id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->hidden('ethnicitiesId',array('value'=>$ethnicityId));
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Modificar')); ?>
+<div class="row content">
+	<div style='margin-left:15px;'>
+		<h1>Etnias Indigenas</h1>
+		<h3>
+			Modificar Ancla(<?echo $name?>)
+		</h3>
+	</div>	
+	<hr>
+	<div class="col-md-12">
+		<?php
+		echo $this->Form->create('Anchor', array('class'=>'form-horizontal'));
+		?>
+
+		<div class="form-group">
+			<label for="data[Anchor][name]" class="col-sm-1 control-label">Nombre:</label>
+			<div class="col-sm-11">
+					<?php echo $this->Form->input('name',array('label'=>false));?>
+			</div>
+		</div>
+
+		<?php echo $this->Form->hidden('ethnicitiesId',array('value'=>$ethnicityId));?>
+
+		<div class="form-group" style="margin-left:2px;">
+			<?php
+			echo $this->Form->input('description', array('label'=>'Descripción:'));
+			?>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-10">
+				<?php
+				echo $this->Form->submit('Modificar Ancla', array('class'=>'btn btn-success'));
+				?>
+			</div>
+		</div>
+	</div>
+
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li>
-			<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $this->Form->value('Anchor.anchor_id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Anchor.anchor_id'))); ?>
-		</li>
-		<li>
-			<?php echo $this->Html->link(__('Todas las Anclas'), array('controller'=>'ethnicities','action' => 'view',$ethnicityId)); ?>
-		</li>
-	</ul>
+
+
+<div class="row content">
+	<div class="col-md-12">
+		<div>
+			<h3>Acciones:</h3>
+			<ul>
+				<li>
+					<?php
+						echo $this->Html->link('Agregar Nota', 
+							array('controller'=>'notes', 'action'=>'add',$ethnicityId)
+						);
+					?>
+				</li>
+				<li>
+					<?php	 
+					echo $this->Html->link(
+				    'Regresar',
+				    array(
+				    		'controller' => 'ethnicities',
+				        'action' => 'view',
+				        $ethnicityId
+				    ));
+					?>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <script>
@@ -28,6 +71,6 @@
     filebrowserBrowseUrl: '/ckeditor/posts/browse',
     filebrowserUploadUrl: '/ckeditor/posts/upload',
     width: "100%",
-    height: "300px"
+    height: "250px"
 	});
 </script>

@@ -37,7 +37,8 @@ class AnchorsController extends AppController {
  */
 	public function view($id = null, $ethnicityId=null) {
 		if (!$this->Anchor->exists($id)) {
-			throw new NotFoundException(__('Invalid anchor'));
+			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'success');
+    	return $this->redirect(array('action'=>'index'));
 		}
 		$options = array('conditions' => array('Anchor.' . $this->Anchor->primaryKey => $id));
 		$this->set('anchor', $this->Anchor->find('first', $options));
@@ -64,17 +65,18 @@ class AnchorsController extends AppController {
 				);
 				
 				if($this->EthnicitiesHasAnchor->saveModel($data)){
-					$this->Session->setFlash(__('Se creo el ancla correctamente '.$anchorId));
+					$this->Session->setFlash('Se creó la ancla exitosamente', 'default', array(), 'success');
 					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 				}else{
-					$this->Session->setFlash(__('Hubo problemas al crear la etnia-ancla. save Model'));
+					 $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 				}
 			} else {	
-				$this->Session->setFlash(__('Hubo problemas al crear la ancla. Please, try again.'));
+				 $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			}
 		}
+
 		$this->set(compact('ethnicityId', 'ethnicityName'));
 	}
 	
@@ -87,21 +89,28 @@ class AnchorsController extends AppController {
  * @return void
  */
 	public function edit($id = null,$ethnicityId=null) {
+
 		if (!$this->Anchor->exists($id)) {
-			throw new NotFoundException(__('Invalid anchor'));
+			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'error');
+			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 		}
+
+		$name=$this->Anchor->findByAnchorId($id)['Anchor']['name'];
+
 		if ($this->request->is(array('post', 'put'))) {
+			$this->Anchor->read(null, $id);
 			if ($this->Anchor->saveModel($this->request->data,false)) {
-				$this->Session->setFlash(__('Se modifico la ancla correctamente.'));
-					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
+				$this->Session->setFlash('Se actualizó la ancla exitosamente', 'default', array(), 'success');
+				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			} else {
-				$this->Session->setFlash(__('No se pudo actualizar la ancla correctamente'));
+				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			}
 		} else {
 			$options = array('conditions' => array('Anchor.' . $this->Anchor->primaryKey => $id));
 			$this->request->data = $this->Anchor->find('first', $options);
 		}
-		$this->set('ethnicityId',$ethnicityId);
+		$this->set(compact('ethnicityId', 'name'));
 	}
 
 /**
@@ -114,14 +123,16 @@ class AnchorsController extends AppController {
 	public function delete($id = null,$ethnicityId=null) {
 		$this->Anchor->read(null,$id);
 		if (!$this->Anchor->exists()) {
-			throw new NotFoundException(__('Invalid anchor'));
+			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'error');
+			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Anchor->deleteModel($id)) {
-			$this->Session->setFlash(__('Se elimino la ancla correctamente'));
+			$this->Session->setFlash('Se eliminó la ancla exitosamente.', 'default', array(), 'success');
 		} else {
-			$this->Session->setFlash(__('No se pudo eliminar la ancla'));
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 		}
+
 		return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 	}
 }

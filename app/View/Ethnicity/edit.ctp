@@ -54,3 +54,39 @@
 		</div>
 	</div>	
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#EthnicityEditForm').validate({
+			rules: {
+				"data[Ethnicity][name]":{
+					required:true,
+					rangelength: [5, 45]
+				},
+				"data[Ethnicity][type]":{
+					required:true,
+					rangelength: [5, 45]
+				},
+			},
+			messages: {
+				"data[Ethnicity][name]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 5 y 45 caracteres'
+				},
+				"data[Ethnicity][type]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 5 y 45 caracteres'
+				},
+
+			},
+			 highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+			errorElement: 'span',
+      errorClass: 'help-block',
+		});
+	});
+</script>
