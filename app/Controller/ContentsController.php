@@ -9,11 +9,13 @@ class ContentsController extends AppController {
 
 	var $helpers=array('Html','Form', 'Js', 'Session');
 	
-	public $components = array('Session', 'RequestHandler');
+	public $components = array('Session', 'RequestHandler', 'Paginator');
 
   var $layout='Administrador';
 
 	var $name ='Content';
+
+	var $uses = array('ImageContent', 'Content');
 
 
 	public function index()
@@ -107,11 +109,13 @@ class ContentsController extends AppController {
    		$ckeditor=$this->request->query['CKEditor'];	
    		$funcnum=$this->request->query['CKEditorFuncNum'];
    		$ckeditor= array('langCod' => $langCode,'ckeditor'=>$ckeditor, 'funcnum'=> $funcnum );	
-			$content= $this->Content->find('all',
+			$content= $this->Content->find('all');
+				/*,
 				array('conditions'=>
 					array('type'=>'imagen')
 				)
-			);
+
+			);*/
 			$this->set(compact('ckeditor', 'content'));
 	}
 
@@ -155,6 +159,36 @@ class ContentsController extends AppController {
 		$this->response->type('json');
 		$json = json_encode(array('status'=>$result['complete']['result']));
 		$this->response->body($json);
+	}
+
+	public function gallery()
+	{
+		$data = $this->Content->findAllByType('imagen');
+		/*
+  	$this->paginate = array(
+        'ImageContent' => array(
+        	'limit'=>2,
+        ),
+        'Content' => array(
+        	'limit'=>5,
+        	'conditions' =>array('Content.type'=>'audio')
+        ),
+    );
+
+    $this->Paginator->settings=$this->paginate;
+
+		$data = $this->Paginator->paginate('ImageContent');
+		$data2=null;
+    //$data2 = $this->Paginator->paginate('Content');
+
+		 /*
+		 $this->paginate = array( 
+        'limit' => 5, 
+        'conditions' => array('Content.type'=>'imagen'), 
+ 			); 
+      $data2= $this->Paginator->paginate('Content'); 
+			*/
+    	$this->set(compact('data'));
 	}
 	
 

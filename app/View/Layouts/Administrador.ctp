@@ -35,6 +35,7 @@
 		echo $this->Html->script('upload/js/jquery.fileupload', array('inline' => false));		
 		echo $this->Html->script('upload/js/script', array('inline' => false));
 		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
+		echo $this->Html->script('underscore/underscore',array('inline'=>false));
 	?>
 		
 	<?php

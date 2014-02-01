@@ -67,10 +67,13 @@
 </div>
 
 <script>
-	CKEDITOR.replace( 'AnchorDescription', {
-    filebrowserBrowseUrl: '/ckeditor/posts/browse',
-    filebrowserUploadUrl: '/ckeditor/posts/upload',
-    width: "100%",
-    height: "250px"
+	$(document).ready(function(){
+		CKEDITOR.replace( 'AnchorDescription', {
+	    filebrowserBrowseUrl: '/AbyaYala/contents/browse',
+		  filebrowserUploadUrl: '/AbyaYala/contents/upload',
+	    width: "100%",
+	    height: "250px"
+		});
+
 	});
 </script>

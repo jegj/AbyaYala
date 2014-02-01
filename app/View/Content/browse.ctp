@@ -55,7 +55,7 @@
 		    			<td>
 		    				<?echo $myContent['Content']['extesion_document']?>
 		    			<td>
-		    				<a href='#' onclick="cargarImagen(<?php echo $ckeditor['funcnum']?>, '<?php echo $myContent['Content']['access_path'] ?>', 'Se cargo la imagen correctamente')">Cargar</a>
+		    				<a href='#' onclick="cargarImagen(<?php echo $ckeditor['funcnum']?>, '<?php echo $myContent['Content']['access_path']. '?'.$myContent['Content']['content_id']?>', 'Se cargo la imagen correctamente')">Cargar</a>
 		    			</td>
 		    		</tr>
 		    	<?endforeach;?>
@@ -71,7 +71,7 @@
 <script>
 	function cargarImagen(ckeditor, url, message){
 		window.opener.CKEDITOR.tools.callFunction(ckeditor, url, '');
-		alert('Se cargo la imagen correctamente');
+		alert('Se cargo el contenido correctamente');
 		$('.contenidoCargar').hide();
 		$('.imagenCargada').show();
 		return false;

@@ -1,5 +1,5 @@
 
-		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
   <div id="jp_container_1" class="jp-audio">
     <div class="jp-type-single">
       <div class="jp-gui jp-interface">
