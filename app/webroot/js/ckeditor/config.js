@@ -6,10 +6,10 @@
 CKEDITOR.editorConfig = function( config ) {
     config.width = '500';
     //config.filebrowserBrowseUrl = '/AbyaYala/js/ckeditor/filemanager/index.html';
-    config.filebrowserImageBrowseUrl = '/AbyaYala/contents/browse'
+   config.filebrowserImageBrowseUrl = '/AbyaYala/contents/browse'
    //config.filebrowserFlashBrowseUrl = '/AbyaYala/js/ckeditor/filemanager/index.html?type=Flash';
    // config.filebrowserUploadUrl = '/AbyaYala/js/ckeditor/filemanager/connectors/php/filemanager.php';
     config.filebrowserImageUploadUrl = '/AbyaYala/contents/upload'
     //config.filebrowserFlashUploadUrl = '/AbyaYala/js/ckeditor/filemanager/connectors/php/filemanager.php?command=QuickUpload&type;=Flash';
-   config.extraPlugins = 'youtube';
+   //config.extraPlugins = 'youtube';
 };

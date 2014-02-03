@@ -8,6 +8,7 @@
 		      <tr>
 		          <th>Nombre</th>
 		          <th>Tipo</th>
+		          <th>Vista Previa</th>
 		          <th>Modificar</th>
 		          <th>Eliminar</th>
 		      </tr>
@@ -21,6 +22,11 @@
 				 			</td>
 				 			<td>
 				 				<?echo $data['Ethnicity']['type']?>
+				 			</td>
+				 			<td>
+				 				<?php
+	              echo $this->Html->link('Vista Previa', array('action' => 'preview', $data['Ethnicity']['ethnicity_id'])); 
+	          		?>
 				 			</td>
 			 				<td>
 		    				<?php
@@ -56,6 +62,11 @@
 			<li>
 				<p>
 					Puede ver la etnia haciendo click en <i>Nombre.</i>
+				</p>
+			</li>
+			<li>
+				<p>
+					Para visualizar la etnia con todo su contenido entre en <i>Vista Previa.</i>
 				</p>
 			</li>
 		</ul>

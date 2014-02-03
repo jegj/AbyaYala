@@ -115,5 +115,24 @@ class EthnicitiesController extends AppController {
         
 	}
 
+    public function preview($id)
+    {
+
+        if (!$id) {
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
+        }
+
+        $ethnicity = $this->Ethnicity->getCompactInformation($id);
+
+        if (!$ethnicity) {
+            $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
+            return $this->redirect(array('action'=>'index'));
+        }
+
+        $this->set(compact('ethnicity'));
+        
+    }
+
 
 }

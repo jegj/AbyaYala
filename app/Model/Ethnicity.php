@@ -110,7 +110,7 @@ class Ethnicity extends AppModel {
       array_push($anchors, $staticAnchor->find('first',
         array(
           'conditions' => array('anchor_id' =>$anchor['anchor_id'] ),
-          'fields' => array('anchor_id', 'name'),
+          'fields' => array('anchor_id', 'name', 'description'),
         )
       ));
     }

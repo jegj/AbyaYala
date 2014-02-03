@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 	</div>
-</div>
+</div>a
 
 <div class="modal fade" id="modal-anchor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

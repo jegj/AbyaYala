@@ -1,8 +1,8 @@
 <div class="row content">	
 	<div class="col-md-12">
-		<h1>Cargar Imagen</h1>
-		<div class ="contenidoCargar" style="width:730px;">
-			<table id="uploadImage" style="width:650px;">
+		<h1>Cargar Contenido</h1>
+		<div class ="contenidoCargar" style="width:900px;">
+			<table id="uploadImage" style="width:890px;">
 		    <thead>
 		        <tr>
 		            <th>Nombre</th>
@@ -43,7 +43,7 @@
 		    			<td>
 		    				<?
 			    				if($myContent['Content']['type']=='documento'){
-			    					echo $myContent['Content']['type'].'-'.$myContent['Content']['type_document'];
+			    					echo $myContent['Content']['type_document']==1?'Documento-Trabajo/Articulo':'Documento-Ley';
 			    				}else{
 			    					echo $myContent['Content']['type'];
 			    				}
@@ -63,7 +63,6 @@
 		</table>
 		</div>
 		<div class='imagenCargada'>
-
 			<p><b>Se cargo la imagen correctamente</b>, si ve este mensaje cierre la ventana</p>
 		</div>
 	</div>
@@ -78,6 +77,7 @@
 	}
 
  	$(document).ready(function(){
+ 	 $('.imagenCargada').hide();
 	 $('#uploadImage').dataTable({
 	 		'oLanguage': {
 				'sLengthMenu': 'Mostrando _MENU_ registros por página',

@@ -108,6 +108,7 @@ class ContentsController extends AppController {
 			$langCode=$this->request->query['langCode'];	
    		$ckeditor=$this->request->query['CKEditor'];	
    		$funcnum=$this->request->query['CKEditorFuncNum'];
+   		
    		$ckeditor= array('langCod' => $langCode,'ckeditor'=>$ckeditor, 'funcnum'=> $funcnum );	
 			$content= $this->Content->find('all');
 				/*,
