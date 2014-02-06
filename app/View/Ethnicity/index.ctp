@@ -61,7 +61,7 @@
 			</li>
 			<li>
 				<p>
-					Puede ver la etnia haciendo click en <i>Nombre.</i>
+					Puede administrar el contenido de la etnia haciendo click en <i>Nombre.</i>
 				</p>
 			</li>
 			<li>

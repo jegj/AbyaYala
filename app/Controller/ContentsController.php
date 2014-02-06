@@ -105,19 +105,22 @@ class ContentsController extends AppController {
 	public function browse()
 	{
 			$this->layout = 'ckeditor';
+
 			$langCode=$this->request->query['langCode'];	
    		$ckeditor=$this->request->query['CKEditor'];	
    		$funcnum=$this->request->query['CKEditorFuncNum'];
    		
    		$ckeditor= array('langCod' => $langCode,'ckeditor'=>$ckeditor, 'funcnum'=> $funcnum );	
-			$content= $this->Content->find('all');
-				/*,
-				array('conditions'=>
-					array('type'=>'imagen')
-				)
 
-			);*/
-			$this->set(compact('ckeditor', 'content'));
+			//$content= $this->Content->find('all');
+			
+			$this->set(compact('ckeditor'));
+	}
+
+	public function imagenes()
+	{
+		$content= $this->Content->findAllByType('imagen');
+		$this->set(compact('content'));
 	}
 
 	public function edit($id=null)
@@ -143,7 +146,6 @@ class ContentsController extends AppController {
 	  		  $this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  		  return $this->redirect(array('action'=>'index'));
 	  	}
-		 
     }
 
 		$this->set('content', $content);
@@ -152,6 +154,11 @@ class ContentsController extends AppController {
 			$this->request->data = $content;
 	}
 
+
+	/**
+	* Funcion que permite subir contenido
+	* al servidor.
+	*/
 	public function upload()
 	{
 		$this->autoRender=false;
@@ -161,36 +168,5 @@ class ContentsController extends AppController {
 		$json = json_encode(array('status'=>$result['complete']['result']));
 		$this->response->body($json);
 	}
-
-	public function gallery()
-	{
-		$data = $this->Content->findAllByType('imagen');
-		/*
-  	$this->paginate = array(
-        'ImageContent' => array(
-        	'limit'=>2,
-        ),
-        'Content' => array(
-        	'limit'=>5,
-        	'conditions' =>array('Content.type'=>'audio')
-        ),
-    );
-
-    $this->Paginator->settings=$this->paginate;
-
-		$data = $this->Paginator->paginate('ImageContent');
-		$data2=null;
-    //$data2 = $this->Paginator->paginate('Content');
-
-		 /*
-		 $this->paginate = array( 
-        'limit' => 5, 
-        'conditions' => array('Content.type'=>'imagen'), 
- 			); 
-      $data2= $this->Paginator->paginate('Content'); 
-			*/
-    	$this->set(compact('data'));
-	}
-	
 
 }

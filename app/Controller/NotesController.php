@@ -13,7 +13,9 @@ class NotesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
+
+	var $layout='Administrador';
 
 /**
  * index method
@@ -21,8 +23,9 @@ class NotesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Note->recursive = 0;
-		$this->set('notes', $this->Paginator->paginate());
+		$this->layout = 'ckeditor';
+		$notes= $this->Note->find('all');
+		$this->set('notes', $notes);
 	}
 
 /**
@@ -46,14 +49,22 @@ class NotesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender=false;
+		$this->response->type('json');
+
 		if ($this->request->is('post')) {
-			$this->Note->create();
-			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('The note has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
-			}
+			
+			$name=$this->data['Note']['name'];
+			$description=$this->data['Note']['description'];
+
+	
+			$status=$this->Note->saveModel($this->data,true);
+
+
+
+			$json = json_encode(array('status'=>$status));
+
+			$this->response->body($json);
 		}
 	}
 

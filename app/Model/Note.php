@@ -27,4 +27,21 @@ class Note extends AppModel {
  */
 	public $displayField = 'name';
 
+
+	public function saveModel($data=null,$newRecord=true)
+  {
+      $success=false;
+    try{
+      if($newRecord)
+        $this->create();
+
+      $success=$this->save($data);
+      
+    }catch(Exception $e){
+      CakeLog::write('development', $e->message);
+    }
+
+    return $success;
+  }
+
 }

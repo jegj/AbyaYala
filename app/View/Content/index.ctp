@@ -203,7 +203,7 @@
 	    success: function (data) {
 	    	$('#myModalLabel').html('Reproductor de AbyaYala');
 	      $('#modal-body').html(data);
-	      $('#myModal').modal('show')
+	      $('#myModal').modal('show');
 	    }
 		});
 		return false;

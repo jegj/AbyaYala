@@ -96,9 +96,6 @@
           					?>
 								 	</li>	
 								 	<li>
-								 		<a href="#">Galeria</a>
-								 	</li>
-								 	<li>
 								 		<a href="#">Noticias</a>
 								 	</li>
 								 </ul>

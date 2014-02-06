@@ -1,3 +1,5 @@
+<h1>Hola</h1>
+<!--
 <div class="row content">	
 	<div class="col-md-12">
 		<h1>Cargar Contenido</h1>
@@ -63,10 +65,31 @@
 		</table>
 		</div>
 		<div class='imagenCargada'>
-			<p><b>Se cargo la imagen correctamente</b>, si ve este mensaje cierre la ventana</p>
+			<p><b>Se cargo el contenido correctamente</b>, si ve este mensaje cierre la ventana</p>
 		</div>
 	</div>
 </div>
+
+<div class="row content">	
+	<div class="col-md-12">
+		<div>
+			<h3>Acciones:</h3>
+			<ul>
+				<li>
+					<?php 
+						echo $this->Html->link(
+					    'Ver Notas',
+					    array(
+					    		'controller'=> 'notes',
+					        'action' => 'index',
+					    ));
+					?>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 <script>
 	function cargarImagen(ckeditor, url, message){
 		window.opener.CKEDITOR.tools.callFunction(ckeditor, url, '');
@@ -103,3 +126,5 @@
 		});
 	});
 </script>
+
+-->
