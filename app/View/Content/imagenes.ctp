@@ -1,13 +1,13 @@
 <div class="row">
 	<div style="margin-left:10px;">
-		<h3>Imagenes</h3>
+		<h3>Imagenes Cargadas</h3>
 	</div>
 	<hr>
-	<div id="contenedor_imagenes">
+	<div id="contenedor_imagenes" class='row'>
 		<?foreach ($content as $imagen):?>
 			<div class="col-xs-6 col-md-3 back">
 				<div class="img">
-  				<a  href="#" onclick="return cargarImagen('<?php echo $imagen['Content']['access_path']?>')">
+  				<a  href="#" onclick="return cargarImagenLocal('<?php echo $imagen['Content']['access_path']?>')">
   					<img height="90" width="110" src="<?echo $imagen['Content']['access_path']?>" alt="Imagen">	
   				</a>
   				<div class="desc">
@@ -17,4 +17,30 @@
 			</div>
 		<?endforeach;?>
 	</div>
+	<div class='row' style="margin-top:20px;">
+		<div class="col-md-12">
+			<?php
+
+				echo $this->Paginator->counter(array(
+				'format' => __('Página {:page} de {:pages}, mostrando {:current} registros de {:count}')
+				));
+			?>
+			<?php
+				echo $this->Paginator->prev('<< ' . __('ant'), array(), null, array('class' => 'prev disabled'));
+				echo('|');
+				echo $this->Paginator->next(__('sig') . ' >>', array(), null, array('class' => 'next disabled'));
+			?>
+		</div>	
+		</div>
 </div>
+
+<?php
+    echo $this->Html->scriptBlock("
+      function cargarImagenLocal(url){
+      		window.opener.CKEDITOR.tools.callFunction($ckeditor, url, '');	
+					cargaExitosa();
+      		return false;
+      }
+    ");
+?>
+

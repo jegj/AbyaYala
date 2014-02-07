@@ -107,21 +107,39 @@ class ContentsController extends AppController {
 			$this->layout = 'ckeditor';
 
 			$langCode=$this->request->query['langCode'];	
-   		$ckeditor=$this->request->query['CKEditor'];	
-   		$funcnum=$this->request->query['CKEditorFuncNum'];
+   		$funcnum=$this->request->query['CKEditor'];	
+   		$ckeditor=$this->request->query['CKEditorFuncNum'];
    		
+   		/*
    		$ckeditor= array('langCod' => $langCode,'ckeditor'=>$ckeditor, 'funcnum'=> $funcnum );	
-
-			//$content= $this->Content->find('all');
+   		*/
 			
 			$this->set(compact('ckeditor'));
 	}
 
 	public function imagenes()
 	{
-		$content= $this->Content->findAllByType('imagen');
-		$this->set(compact('content'));
+		$this->layout = 'ckeditor';	
+
+		$ckeditor=$this->request->query['ckeditor'];	
+
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'imagen'),
+        'limit' => 8,
+        'paramType'=>'querystring',
+    );
+
+    $content = $this->Paginator->paginate('Content');
+
+		$this->set(compact('content', 'ckeditor'));
 	}
+
+	public function audios()
+	{
+		$content= $this->Content->findAllByType('audio');
+		$this->set(compact('content'));	
+	}
+
 
 	public function edit($id=null)
 	{

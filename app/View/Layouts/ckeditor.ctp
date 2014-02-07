@@ -33,14 +33,18 @@
 <body>
 	<div class="container" id="container_layout">
 		<div class="row" id="row_layout">
-			<div class="col-md-2" id="ckeditor_sidebar">
+			<div class=	"col-md-2" id="ckeditor_sidebar">
 				<div class="sidebar-nav">
 					<div style="padding: 8px 0;" class="well">
 						<ul class="nav nav-list" id="ul-sidebar"> 
 							<li class="dropdown-header" id="sidebar_titulo">	Contenido
 							</li>
 							<li>
-								<a id="link_imagenes" href="#"><span class="glyphicon glyphicon-folder-open"></span> Imagenes</a>
+								<?php
+									echo $this->Html->link("<span class='glyphicon glyphicon-folder-close'></span> Imagenes", array('action' => 'imagenes', '?'=>array('ckeditor'=>$ckeditor)),
+										array('escape' => false, 'id'=>'link_imagenes')
+									);
+								?>
 							</li>
 							<li>
 								<a id="link_audio" href="#"><span class="glyphicon glyphicon-folder-close"></span> Audio</a>
@@ -73,11 +77,3 @@
 </body>
 </html>
 
-<?php
-		$ck=$ckeditor['funcnum'];
-    echo $this->Html->scriptBlock("
-      $(document).ready(function(){
-        setCkeditor($ck);
-      });
-    ");
-?>
