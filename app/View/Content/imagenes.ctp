@@ -32,7 +32,7 @@
 				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
 			?>
 		</div>	
-		</div>
+	</div>
 </div>
 
 <?php

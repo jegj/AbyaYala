@@ -61,12 +61,13 @@
 								?>
 							</li>
 							<li>
-								<form role="search" class="navbar-form">
+								<form action="search" role="search" class="navbar-form">
           				<div class="input-group">
-				            <input type="text" id="srch-term" name="srch-term" placeholder="Buśqueda" class="form-control">
+				            <input type="text" id="srch-term" name="term" placeholder="Buśqueda" class="form-control" required>
 				            <div class="input-group-btn">
 				              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 				            </div>
+				            <input type="hidden" name="ckeditor" value=<?echo $ckeditor ?> />
           				</div>
         				</form>
 							</li>

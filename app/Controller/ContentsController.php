@@ -125,7 +125,7 @@ class ContentsController extends AppController {
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'imagen'),
-        'limit' => 3,
+        'limit' => 8,
         'paramType'=>'querystring',
     );
 
@@ -146,7 +146,7 @@ class ContentsController extends AppController {
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'audio'),
-        'limit' => 1,
+        'limit' => 5,
         'paramType'=>'querystring',
     );
 
@@ -166,7 +166,7 @@ class ContentsController extends AppController {
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'documento'),
-        'limit' => 2,
+        'limit' => 5,
         'paramType'=>'querystring',
     );
 
@@ -179,6 +179,33 @@ class ContentsController extends AppController {
 		$this->set(compact('content', 'ckeditor'));	
 	}
 
+	public function search()
+	{
+		$this->layout = 'ckeditor';
+		$ckeditor=$this->request->query['ckeditor'];
+		$term=$this->request->query['term'];
+
+		$this->Paginator->settings = array(
+        'conditions' => 
+        				array('OR'=> 
+        						array(
+        							array('Content.name LIKE' => "%$term%"),
+        							array('Content.description LIKE' => "%$term%")
+        						)
+        				),
+        'limit' => 2,
+        'paramType'=>'querystring',
+    );
+
+		try{
+    	$content = $this->Paginator->paginate('Content');
+    }catch(NotFoundException $e) {
+        return $this->redirect(array('action'=>'documentos'));
+    }
+
+		$this->set(compact('ckeditor', 'content'));	
+		
+	}
 
 	public function edit($id=null)
 	{
