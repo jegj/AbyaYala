@@ -26,9 +26,10 @@
 				));
 			?>
 			<?php
-				echo $this->Paginator->prev('<< ' . __('ant'), array(), null, array('class' => 'prev disabled'));
+				echo $this->Paginator->prev("<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false));
+
 				echo('|');
-				echo $this->Paginator->next(__('sig') . ' >>', array(), null, array('class' => 'next disabled'));
+				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
 			?>
 		</div>	
 		</div>

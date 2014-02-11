@@ -125,19 +125,58 @@ class ContentsController extends AppController {
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'imagen'),
-        'limit' => 8,
+        'limit' => 3,
         'paramType'=>'querystring',
     );
 
-    $content = $this->Paginator->paginate('Content');
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'imagenes'));
+    }
+    
 
 		$this->set(compact('content', 'ckeditor'));
 	}
 
 	public function audios()
 	{
-		$content= $this->Content->findAllByType('audio');
-		$this->set(compact('content'));	
+		$this->layout = 'ckeditor';
+		$ckeditor=$this->request->query['ckeditor'];
+
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'audio'),
+        'limit' => 1,
+        'paramType'=>'querystring',
+    );
+
+		try{
+			$content = $this->Paginator->paginate('Content');
+		}catch(NotFoundException $e) {
+        return $this->redirect(array('action'=>'audios'));
+    }
+
+		$this->set(compact('content', 'ckeditor'));	
+	}
+
+	public function documentos()
+	{
+		$this->layout = 'ckeditor';
+		$ckeditor=$this->request->query['ckeditor'];
+
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'documento'),
+        'limit' => 2,
+        'paramType'=>'querystring',
+    );
+
+		try{
+			$content = $this->Paginator->paginate('Content');
+		}catch(NotFoundException $e) {
+        return $this->redirect(array('action'=>'documentos'));
+    }
+
+		$this->set(compact('content', 'ckeditor'));	
 	}
 
 

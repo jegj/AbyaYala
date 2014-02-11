@@ -47,13 +47,18 @@
 								?>
 							</li>
 							<li>
-								<a id="link_audio" href="#"><span class="glyphicon glyphicon-folder-close"></span> Audio</a>
+								<?php
+									echo $this->Html->link("<span class='glyphicon glyphicon-folder-close'></span> Audio", array('action' => 'audios', '?'=>array('ckeditor'=>$ckeditor)),
+										array('escape' => false, 'id'=>'link_audio')
+									);
+								?>
 							</li>
 							<li>
-								<a id="link_video" href="#"><span class="glyphicon glyphicon-folder-close"></span> Video</a>
-							</li>
-							<li>
-								<a id="link_docs" href="#"><span class="glyphicon glyphicon-folder-close"></span> Documentos</a>
+								<?php
+									echo $this->Html->link("<span class='glyphicon glyphicon-folder-close'></span> Documentos", array('action' => 'documentos', '?'=>array('ckeditor'=>$ckeditor)),
+										array('escape' => false, 'id'=>'link_docs')
+									);
+								?>
 							</li>
 							<li>
 								<form role="search" class="navbar-form">
