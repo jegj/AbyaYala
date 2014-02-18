@@ -42,16 +42,20 @@
         <h4 class="modal-title" id="myModalLabel">Agregar Nota</h4>
       </div>
       <div class="modal-body" id="modal-body">
-     		<form role="form">
-				  <div class="form-group">
-				    <label for="noteName">Nota</label>
-				    <input type="email" class="form-control" id="noteName" placeholder="Nombre de la Nota">
-				  </div>
-				  <div class="form-group">
-				    <label for="noteDescription">Descripción</label>
-				    <textarea  id ="noteDescription" class="form-control" rows="3"></textarea>
-				  </div>
-				</form>
+      	<div id="modalForm">
+	     		<form role="form">
+					  <div id="formNoteName" class="form-group">
+					    <label for="noteName">Nota</label>
+					    <input type="email" class="form-control" id="noteName" placeholder="Nombre de la Nota" required>
+					  </div>
+					  <div id="formNoteDesc" class="form-group">
+					    <label for="noteDescription">Descripción</label>
+					    <textarea  id ="noteDescription" class="form-control" rows="3" required></textarea>
+					  </div>
+					</form>
+				</div>
+				<div id="modalResul">
+				</div>
       </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-success" onclick="return crearNota()">Agregar Nota</button>
@@ -86,23 +90,59 @@
 		</div>
 	</div>
 </div>
+
 <script>
+	function formValido()
+	{
+		var noteName=$('#noteName').val();
+		var noteDesc=$('#noteDescription').val();
+		if(noteName && noteDesc)
+			return true;
+		else
+			return false;
+	}
+
 	function desplegarFormulario()
 	{
 		$('#noteName').val('');
 		$('#noteDescription').val('');
+		$('#formNoteName').removeClass('has-error');
+		$('#formNoteDesc').removeClass('has-error');
+		$('#modalForm').show();
+		$('#modalResul').hide();
 		$('#modal-form').modal('show');
 		return false;		
 	}
 
 	function crearNota()
 	{
-		$.ajax({
-			url: '/AbyaYala/notes/add',
-			type: 'POST',
-			data:'data[Note][name]='+$('#noteName').val()+'&& data[Note][description]='+$('#noteDescription').val(),
-	    dataType: 'json',
-		});
+		if(formValido()){
+			$.ajax({
+				url: '/AbyaYala/notes/add',
+				type: 'POST',
+				data:'data[Note][name]='+$('#noteName').val()+'&& data[Note][description]='+$('#noteDescription').val(),
+		    dataType: 'json',
+		    success: function (data) {
+		    	$('#modalForm').hide();
+		    	if(data.status){
+		    		$('#modalResul').html("<div class='alert alert-success'><strong>Exito!</strong> Se creó la nota correctamente</div>");
+		    	}else{
+		    		$('#modalResul').html("<div class='alert alert-danger'><strong>Error!</strong> No se pudo crear la nota correctamente</div>");
+		    	}
+		    	$('#modalResul').show();
+		    }
+		    
+			});
+		}else{
+			var noteName=$('#noteName').val();
+			var noteDesc=$('#noteDescription').val();
+			alert('Rellene todos los campos necesarios');
+			if(!noteName)
+				$('#formNoteName').addClass('has-error');
+
+			if(!noteDesc)
+				$('#formNoteDesc').addClass('has-error');
+		}
 
 		return false;
 	}

@@ -50,8 +50,6 @@
 	    data:'data[Content][id]='+id,
 	    dataType: 'HTML',
 	    success: function (data) {
-	    	console.log(data);
-	    	
 	    	$('#myModalLabel').html('Reproductor de AbyaYala');
 	      $('#modal-body-anchor').html(data);
 	      $('#modal-anchor').modal('show')

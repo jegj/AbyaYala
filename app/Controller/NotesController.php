@@ -60,8 +60,6 @@ class NotesController extends AppController {
 	
 			$status=$this->Note->saveModel($this->data,true);
 
-
-
 			$json = json_encode(array('status'=>$status));
 
 			$this->response->body($json);

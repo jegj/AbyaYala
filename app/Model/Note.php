@@ -35,8 +35,8 @@ class Note extends AppModel {
       if($newRecord)
         $this->create();
 
-      $success=$this->save($data);
-      
+      $this->save($data);
+      $success=true;
     }catch(Exception $e){
       CakeLog::write('development', $e->message);
     }
