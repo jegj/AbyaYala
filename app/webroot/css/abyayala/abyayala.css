@@ -14,10 +14,14 @@ h3, h1{
 	color:#339966;
 }
 
+#spinner{
+	display: none;
+}
+
 /************sidebar**************/
 .member-box{
     display: block;
-    padding: 10px;
+    padding:8px;
     margin-bottom: 20px;
     margin-top: 30px;
 }
@@ -30,6 +34,19 @@ h3, h1{
     box-shadow: 0 1px 0 #FFFFFF inset;
 }
 .round-all {
+    border-radius: 3px;
+}
+
+img.member-box-avatar {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    padding: 1px;
+    width: 40px;
+}
+
+img.member-box-avatar {
+    border: 1px solid #CCCCCC;
     border-radius: 3px;
 }
 
@@ -76,7 +93,7 @@ h3, h1{
 
  /**********NAVBAR**********/
 #background-banner {
-	height: 115px;
+	height: 130px;
 	background: url('../../assets/imagenes/cesteria2.jpg'); 
 	padding-right: 0px !important;
 }

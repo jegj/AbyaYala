@@ -11,8 +11,9 @@
 		</p>
 
 		<h3>Anclas(<?php echo $ethnicity['ethnicity']['Ethnicity']['name']; ?>)</h3>
-		<div style="width:800px">
-		<table id="anchors" style="width:800px;">
+		
+		<div class="table-responsive">
+		<table id="anchors" class="table table-hover">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -84,18 +85,5 @@
 </div>
 
 <script>
-	  $('#anchors').dataTable({
-	 		'oLanguage': {
-				'sLengthMenu': 'Mostrando _MENU_ registros por página',
-				'sZeroRecords': 'No hay información',
-				'sInfo': 'Mostrando _START_ - _END_ de _TOTAL_ registros',
-				'sInfoEmpty': 'Mostrando 0 de 0 de 0 registros',
-				'sInfoFiltered': '(filtrado de _MAX_ registros)',
-				'sSearch': 'Búsqueda',
-				'oPaginate': {
-           'sNext': 'Siguiente',
-           'sPrevious': 'Anterior'
-         }
-			}
-	 });
+	  
 </script>

@@ -1,103 +1,157 @@
+<?php
+$this->Paginator->options(array(
+  'update' => '#container-administrador',
+  'evalScripts' => true,
+  'before' => $this->Js->get('#spinner')->effect(
+        'fadeIn',
+        array('buffer' => false)
+  ),
+  'complete' => $this->Js->get('#spinner')->effect(
+      'fadeOut',
+      array('buffer' => false)
+  ),
+));
+?>
+
 <div class="row content">	
 	<div class="col-md-12">
 		<h1>Módulo de Carga de Contenido</h1>
 		<h3>Contenido en AbyaYala:</h3>
-		<div style="width:900px;">
-		<table id="content" style="width:690px;">
-		    <thead>
-		        <tr>
-		            <th>Nombre</th>
-		            <th>Tipo</th>
-		            <th>Tamaño(MB)</th>
-		            <th>Extension</th>
-		            <th>Clasificación</th>
-		            <th>Modificar Información</th>
-		            <th>Descargar</th>
-		            <th>Eliminar</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    	<?foreach ($content as $myContent):?>
-		    		<tr>
-		    			<td>
-	    					<?php if($myContent['Content']['type']=='imagen'):?>
-			    					<a href= '<?echo $myContent['Content']['access_path'].'?'.rand()?>'
-			    					rel='prettyPhoto' title= '<?php echo $myContent['Content']['name']?>'
-			    					>
-			    						<?php echo $myContent['Content']['name']?>
-			    					</a>
-			    			<?php elseif($myContent['Content']['type']=='audio') :?>
-									 <?php
-									 	echo $this->Html->link(
-									 		$myContent['Content']['name']
-                    ,
-                     array('action' => 'audio',$myContent['Content']['content_id']), array('onclick'=>'return getMusic('.$myContent['Content']['content_id'].');')
-                		);	    			
-                		?>
-			    			<?php else:?>
+		<div class="table-responsive">
+			<table id="contenat" class="table table-hover">
+			    <thead>
+			        <tr>
+			            <th>
+			            Nombre
+			            <?php echo $this->Paginator->sort('name',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+			            </th>
+			            
+			            <th>
+			            Tipo
+			            	<?php echo $this->Paginator->sort('type',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+			            </th>
+
+			            <th>
+			            Tam.(MB)
+			            <?php echo $this->Paginator->sort('filesize',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+			            </th>
+
+			            <th>
+			            Ext.
+			            <?php echo $this->Paginator->sort('extesion_document',$this->Html->image('ordenar.png'), array('escape'=>false));?>	            
+			            </th>
+
+			            <th>
+			            Clasificación
+			            </th>
+
+			            <th>Modificar Información</th>
+			            <th>Descargar</th>
+			            <th>Eliminar</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    	<?foreach ($content as $myContent):?>
+			    		<tr>
+			    			<td>
+		    					<?php if($myContent['Content']['type']=='imagen'):?>
+				    					<a href= '<?echo $myContent['Content']['access_path'].'?'.rand()?>'
+				    					rel='prettyPhoto' title= '<?php echo $myContent['Content']['name']?>'
+				    					>
+				    						<?php echo $myContent['Content']['name']?>
+				    					</a>
+				    			<?php elseif($myContent['Content']['type']=='audio') :?>
+										 <?php
+										 	echo $this->Html->link(
+										 		$myContent['Content']['name']
+	                    ,
+	                     array('action' => 'audio',$myContent['Content']['content_id']), array('onclick'=>'return getMusic('.$myContent['Content']['content_id'].');')
+	                		);	    			
+	                		?>
+				    			<?php else:?>
+				    				<?php
+	                		echo $this->Html->link(
+	                    $myContent['Content']['name'],
+	                     array('action' => 'download',$myContent['Content']['content_id'])
+	                		);
+	            			?>
+				    			<?php endif;?>
+			    			
+			    			</td>
+			    			<td>
+			    				<?
+				    				echo $myContent['Content']['type'];
+			    				?>
+			    			</td>
+			    			<td>
+			    				<?echo $myContent['Content']['filesize']?>
+			    			</td>		    	
+			    			<td>
+			    				<?echo $myContent['Content']['extesion_document']?>
+			    			</td>
+			    			<td>
+			    				<?if($myContent['Content']['type']=='imagen' || $myContent['Content']['type']=='audio'):?>
+			    					No-aplica
+			    				<?else:?>
+			    					<? if($myContent['Content']['type_document']):?>
+			    						<?echo $myContent['Content']['type_document']==1?'Trabajo/Articulo':'Ley';?>
+			    					<?else:?>
+			    						No Asignada
+			    					<?endif;?>
+			    				<?endif;?>
+			    			</td>
+			    			
+			    			<td>
 			    				<?php
-                		echo $this->Html->link(
-                    $myContent['Content']['name'],
-                     array('action' => 'download',$myContent['Content']['content_id'])
-                		);
-            			?>
-			    			<?php endif;?>
-		    			
-		    			</td>
-		    			<td>
-		    				<?
-			    				echo $myContent['Content']['type'];
-		    				?>
-		    			</td>
-		    			<td>
-		    				<?echo $myContent['Content']['filesize']?>
-		    			</td>		    	
-		    			<td>
-		    				<?echo $myContent['Content']['extesion_document']?>
-		    			</td>
-		    			<td>
-		    				<?if($myContent['Content']['type']=='imagen' || $myContent['Content']['type']=='audio'):?>
-		    					No-aplica
-		    				<?else:?>
-		    					<? if($myContent['Content']['type_document']):?>
-		    						<?echo $myContent['Content']['type_document']==1?'Trabajo/Articulo':'Ley';?>
-		    					<?else:?>
-		    						No Asignada
-		    					<?endif;?>
-		    				<?endif;?>
-		    			</td>
-		    			
-		    			<td>
-		    				<?php
-                echo $this->Html->link(
-                    'Modificar Información',
-                    array('action' => 'edit', $myContent['Content']['content_id'])
-                );
-            		?>
-		    			</td>
-		    			
-		    			<td>
-		    				<?php
-                echo $this->Html->link(
-                    'Descargar',
-                     array('action' => 'download',$myContent['Content']['content_id'], true)
-                );
-            		?>
-		    			</td>
-		    			<td>
-		    				<?php
-                echo $this->Form->postLink(
-                    'Eliminar',
-                    array('action' => 'delete', $myContent['Content']['content_id']),
-                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'?')
-                );
-            		?>
-		    			</td>
-		    		</tr>
-		    	<?endforeach;?>
-		    </tbody>
-		</table>
+	                echo $this->Html->link(
+	                    'Modificar Información',
+	                    array('action' => 'edit', $myContent['Content']['content_id'])
+	                );
+	            		?>
+			    			</td>
+			    			
+			    			<td>
+			    				<?php
+	                echo $this->Html->link(
+	                    'Descargar',
+	                     array('action' => 'download',$myContent['Content']['content_id'], true)
+	                );
+	            		?>
+			    			</td>
+			    			<td>
+			    				<?php
+	                echo $this->Form->postLink(
+	                    'Eliminar',
+	                    array('action' => 'delete', $myContent['Content']['content_id']),
+	                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'?')
+	                );
+	            		?>
+			    			</td>
+			    		</tr>
+			    	<?endforeach;?>
+			    </tbody>
+			</table>
 		</div>
+	</div>
+</div>
+
+<div class="row content">
+	<div class="col-md-12">
+			<?php
+				echo $this->Paginator->counter(array(
+				'format' => __('Página {:page} de {:pages}, mostrando {:current} registros de {:count}')
+				));
+			?>
+			<?php
+				echo $this->Paginator->prev("<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false));
+
+				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
+			?>
+			<div style="text-align:right;">
+			<?php
+				echo $this->Paginator->numbers();
+			?>
+			</div>
 	</div>
 </div>
 
@@ -128,6 +182,15 @@
 					    ));
 					?>
 				</li>
+				<li>
+					<?php 
+						echo $this->Html->link(
+					    'Búsqueda',
+					    array(
+					        'action' => 'searchContent',
+					    ));
+					?>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -149,22 +212,6 @@
   </div><!-- /.modal-dialog -->
 </div>
 
-<!--
-<div>
-	<h3>Acciones:</h3>
-	<ul>
-		<li>
-			<?php 
-					echo $this->Html->link(
-										    'Subir Contenido',
-										    array(
-										        'action' => 'uploadContent',
-										    ));
-			?>
-		</li>
-	</ul>
-</div>
--->
 <script>
  	$(document).ready(function(){
 
@@ -192,20 +239,5 @@
   			$("#jquery_jplayer_1").jPlayer("stop");
 		})
 	});
-
-	function getMusic(id){
-		
-		$.ajax({
-	    url: '/AbyaYala/contents/audio',
-	    type: 'POST',
-	    data:'data[Content][id]='+id,
-	    dataType: 'HTML',
-	    success: function (data) {
-	    	$('#myModalLabel').html('Reproductor de AbyaYala');
-	      $('#modal-body').html(data);
-	      $('#myModal').modal('show');
-	    }
-		});
-		return false;
-	}
 </script>
+<? echo $this->Js->writeBuffer();?>

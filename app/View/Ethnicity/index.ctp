@@ -1,12 +1,30 @@
+<?php
+$this->Paginator->options(array(
+  'update' => '#container-administrador',
+  'evalScripts' => true,
+  'before' => $this->Js->get('#spinner')->effect(
+        'fadeIn',
+        array('buffer' => false)
+  ),
+  'complete' => $this->Js->get('#spinner')->effect(
+      'fadeOut',
+      array('buffer' => false)
+  ),
+));
+?>
+
 <div class="row content">	
 	<div class="col-md-12">
 		<h1>Etnias Indigenas</h1>
 		<h3>Etnias Registradas en AbyaYala:</h3>
-		<div style="width:830px;">
-			<table id="ethnicity" style="width:830px;">
+		<div class="table-responsive">
+			<table id="ethnicity" class="table table-hover">
 				<thead>
 		      <tr>
-		          <th>Nombre</th>
+		          <th>
+		          Nombre
+		          <?php echo $this->Paginator->sort('name',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+		          </th>
 		          <th>Tipo</th>
 		          <th>Vista Previa</th>
 		          <th>Modificar</th>
@@ -52,6 +70,26 @@
 
 <div class="row content">
 	<div class="col-md-12">
+			<?php
+				echo $this->Paginator->counter(array(
+				'format' => __('Página {:page} de {:pages}, mostrando {:current} registros de {:count}')
+				));
+			?>
+			<?php
+				echo $this->Paginator->prev("<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false));
+
+				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
+			?>
+			<div style="text-align:right;">
+			<?php
+				echo $this->Paginator->numbers();
+			?>
+			</div>
+	</div>
+</div>
+
+<div class="row content">
+	<div class="col-md-12">
 		<p></p>
 		<p><b>Notas:</b></p> 
 		<ul>
@@ -75,32 +113,15 @@
 			<ul>
 				<li>
 					<?php 
-					echo $this->Html->link(
-						'Agregar Etnia',
-						array(
-						'action' => 'add',
-					));	
+						echo $this->Html->link(
+							'Agregar Etnia',
+							array(
+							'action' => 'add',
+						));	
 					?>		
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
-
-
-<script>
-	  $('#ethnicity').dataTable({
-	 		'oLanguage': {
-				'sLengthMenu': 'Mostrando _MENU_ registros por página',
-				'sZeroRecords': 'No hay información',
-				'sInfo': 'Mostrando _START_ - _END_ de _TOTAL_ registros',
-				'sInfoEmpty': 'Mostrando 0 de 0 de 0 registros',
-				'sInfoFiltered': '(filtrado de _MAX_ registros)',
-				'sSearch': 'Búsqueda',
-				'oPaginate': {
-           'sNext': 'Siguiente',
-           'sPrevious': 'Anterior'
-         }
-			}
-	 });
-</script>
+<? echo $this->Js->writeBuffer();?>

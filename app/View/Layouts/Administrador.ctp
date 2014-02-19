@@ -36,6 +36,7 @@
 		echo $this->Html->script('upload/js/script', array('inline' => false));
 		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
 		echo $this->Html->script('underscore/underscore',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
 	?>
 		
 	<?php
@@ -53,7 +54,7 @@
 	  		</a>
 			</div>
 			<div class="col-md-1" style="padding-left:0px;">
-				<img alt="Tehedor"  src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
+				<img alt="Tehedor" class="img-responsive" src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
 			</div>
 		</div>
 
@@ -62,12 +63,20 @@
 				<div class="col-md-2" id="sidebar">
 					<div class="member-box round-all"> 
 	    			<a>
-	    				<img class="member-box-avatar" src="images/member_ph.png">
+	    				<img class="member-box-avatar" src="<?php echo $this->webroot;?>img/member.png">
 	    			</a>
 		        <span>
 		            <strong>Administrador</strong><br>
 		            <a>Javier Galarza</a><br>
-		            <span class="member-box-links"><a>Opciones</a> | <a>Salir</a></span>
+		            <p></p>
+		            <span class="member-box-links">
+		            	<p>
+		            		<a href="#">Opciones</a>
+		            	</p>
+		            	<p>
+		            		<a href="#">Salir</a>
+		            	</p>
+		            </span>
 		        </span>
       		</div>
       		<div class="sidebar-nav">
@@ -131,6 +140,12 @@
 						<?endif;?>
 
 						<?php echo $this->fetch('content'); ?>
+						<?php
+			        echo $this->Html->image(
+			            'spinner.gif',
+			            array('id' => 'spinner')
+			        );
+    				?>
 					</div>
       </div>
 		</div>
@@ -160,7 +175,7 @@
 					<p></p>
 					<p>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
-						<a href="#"><img src="img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="#"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
 					</p>

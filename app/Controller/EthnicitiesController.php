@@ -13,15 +13,28 @@ class EthnicitiesController extends AppController {
  *
  * @var array
  */
-	var $helpers=array('Html','Form', 'Js', 'Session');
-	public $components = array('Session');
+	
+    var $helpers=array('Html','Form', 'Js', 'Session');
+    
+    public $components = array('Session', 'RequestHandler', 'Paginator');
+
     var $layout='Administrador';
 	var $name ='Ethnicity';
 
 	public function index()
 	{
-		$ethnicity=$this->Ethnicity->find('all');
-		$this->set('ethnicity',$ethnicity);
+        $this->Paginator->settings = array(
+            'limit' => 5,
+            'paamType'=>'querystring',     
+        );
+
+        try{
+            $content = $this->Paginator->paginate('Ethnicity');
+        }catch (NotFoundException $e) {
+            return $this->redirect(array('action'=>'index'));
+        }
+
+		$this->set('ethnicity',$content);
 	}
 
 	public function add()

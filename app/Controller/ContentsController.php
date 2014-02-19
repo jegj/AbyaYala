@@ -20,7 +20,19 @@ class ContentsController extends AppController {
 
 	public function index()
 	{
-		$content= $this->Content->find('all');
+		
+		$this->Paginator->settings = array(
+        'limit' => 5,
+        'paramType'=>'querystring',    	
+    );
+
+
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'index'));
+    }
+		//$content= $this->Content->find('all');
 		$this->set('content', $content);
 	}
 

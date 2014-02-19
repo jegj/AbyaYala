@@ -88,7 +88,6 @@
 	<div class='row' style="margin-top:20px;">
 		<div class="col-md-12">
 			<?php
-
 				echo $this->Paginator->counter(array(
 				'format' => __('Página {:page} de {:pages}, mostrando {:current} registros de {:count}')
 				));

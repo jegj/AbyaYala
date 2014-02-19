@@ -33,6 +33,9 @@
 							</a>
 						</li>
 					<?endforeach;?>
+					<li >
+						<a href="#preview_actions">Acciones</a>
+					</li>
 				</ul>
 				<div class="scroll-to-top">
 					<a href="#">Subir</a>
@@ -44,7 +47,7 @@
 <hr>
 <div class="row content">
 	<div class="col-md-12">
-		<div>
+		<div id="preview_actions">
 			<h3>Acciones:</h3>
 			<ul>
 				<li>
@@ -126,8 +129,8 @@
 		});
 
 		$('.scroll-to-top').click(function () {
-		$('html, body').animate({ scrollTop: 0 }, 800);
-		return false;
+			$('html, body').animate({ scrollTop: 0 }, 800);
+			return false;
 		});
 });
 
