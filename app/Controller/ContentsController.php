@@ -26,14 +26,36 @@ class ContentsController extends AppController {
         'paramType'=>'querystring',    	
     );
 
-
 		try{
        $content = $this->Paginator->paginate('Content');
     }catch (NotFoundException $e) {
         return $this->redirect(array('action'=>'index'));
     }
-		//$content= $this->Content->find('all');
-		$this->set('content', $content);
+
+    $this->set(compact('content'));
+	}
+
+	public function resultsIndex()
+	{
+		if(isset($this->request->query['term']))
+			$term=$this->request->query['term'];
+		else
+			$term=false;
+
+		if($term)
+			$this->Paginator->settings = array(
+	        'limit' => 5,
+	        'paramType'=>'querystring',
+	        'conditions' => array('Content.name LIKE' => "%$term%")   	
+	    );
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'index'));
+    }
+
+    $this->set(compact('content'));
+
 	}
 
 	public function uploadContent()
@@ -121,10 +143,6 @@ class ContentsController extends AppController {
 			$langCode=$this->request->query['langCode'];	
    		$funcnum=$this->request->query['CKEditor'];	
    		$ckeditor=$this->request->query['CKEditorFuncNum'];
-   		
-   		/*
-   		$ckeditor= array('langCod' => $langCode,'ckeditor'=>$ckeditor, 'funcnum'=> $funcnum );	
-   		*/
 			
 			$this->set(compact('ckeditor'));
 	}
@@ -250,11 +268,6 @@ class ContentsController extends AppController {
 			$this->request->data = $content;
 	}
 
-
-	/**
-	* Funcion que permite subir contenido
-	* al servidor.
-	*/
 	public function upload()
 	{
 		$this->autoRender=false;

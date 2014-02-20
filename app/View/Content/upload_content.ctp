@@ -10,7 +10,7 @@
 			<div class="col-md-6">
 				<form id="upload" method="post" action="/AbyaYala/contents/upload" enctype="multipart/form-data">
 					<div id="drop">
-						¡Arrastra el contenido hasta aqui!
+						¡Arrastra el contenido hasta aquí!
 						<a>Buscar</a>
 						<input type="file" name="upl" multiple />
 					</div>
