@@ -56,20 +56,6 @@
 <script>
  	$(document).ready(function(){
 
-	 $('#content').dataTable({
-	 		'oLanguage': {
-				'sLengthMenu': 'Mostrando _MENU_ registros por página',
-				'sZeroRecords': 'No hay información',
-				'sInfo': 'Mostrando _START_ - _END_ de _TOTAL_ registros',
-				'sInfoEmpty': 'Mostrando 0 de 0 de 0 registros',
-				'sInfoFiltered': '(filtrado de _MAX_ registros)',
-				'sSearch': 'Búsqueda',
-				'oPaginate': {
-           'sNext': 'Siguiente',
-           'sPrevious': 'Anterior'
-         }
-			}
-	 	});
 		$("a[rel^='prettyPhoto']").prettyPhoto({
 				animation_speed:'normal',
 				theme:'light_square',

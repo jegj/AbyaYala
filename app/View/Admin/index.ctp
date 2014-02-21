@@ -1,21 +1,12 @@
-<h1>Módulo Administración</h1>
-
 <div class="row content">
 	<div class="col-md-12">
 
-	<p align="justify">
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-	magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetuer 
-	</p>
+    <img src="<?php echo $this->webroot;?>img/admin.jpg" width=700 height=700 class="img-responsive" alt="Mod.Administración" style=" display: block;margin-left: auto;margin-right: auto; margin-top:30px;">
+  </div>
 </div>
-</div>
+
 <?
+/*
 function printVideoEntry($videoEntry) 
 {
   // the videoEntry object contains many helper functions
@@ -52,4 +43,5 @@ function printVideoEntry($videoEntry)
     echo ' width=' . $videoThumbnail['width'] . "\n";
   }
 }
+*/
 ?>

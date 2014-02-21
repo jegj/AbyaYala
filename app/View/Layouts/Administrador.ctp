@@ -86,6 +86,17 @@
 							 	<li>
 							 		<?php
 	      						echo $this->Html->link(
+						    			'Principal',
+								    array(
+								        'controller' => 'admins',
+								        'action' => 'index',
+								    )	
+									);
+	      						?>
+							 	</li>
+							 	<li>
+							 		<?php
+	      						echo $this->Html->link(
 						    			'Contenido',
 								    array(
 								        'controller' => 'contents',

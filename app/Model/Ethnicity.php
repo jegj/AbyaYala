@@ -32,22 +32,22 @@ class Ethnicity extends AppModel {
 			'alphaNumeric' => array(
         'rule'     => 'alphaNumeric',
         'required' => true,
-        'message'  => 'Solo letras y números'
+        'message'  => 'El campo solo permite letras y números'
       ),
       'between' => array(
           'rule'    => array('between', 5, 45),
-          'message' => 'Entre 5 y 45 caracteres'
+          'message' => 'EL campo solo pemite entre 5 y 45 caracteres'
       )
 		),
 		'type'=>array(
 			'alphaNumeric' => array(
         'rule'     => 'alphaNumeric',
         'required' => true,
-        'message'  => 'Solo letras y números'
+        'message'  => 'El campo solo permite letras y números'
       ),
       'between' => array(
           'rule'    => array('between', 5, 45),
-          'message' => 'Entre 5 y 45 caracteres'
+          'message' => 'EL campo solo pemite entre 5 y 45 caracteres'
       )
 		),
 	);
