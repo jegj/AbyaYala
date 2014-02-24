@@ -1,36 +1,45 @@
 <div class="row content">
 	<div style='margin-left:15px;'>
 		<h1>Etnias Indigenas</h1>
-		<h3>Agregar Ancla(<?echo $ethnicityName?>)</h3>
 	</div>	
 	<hr>
 	<div class="col-md-12">
-		<?php
-		echo $this->Form->create('Anchor', array('class'=>'form-horizontal'));
-		?>
-
-		<div class="form-group">
-			<label for="data[Anchor][name]" class="col-sm-1 control-label">Nombre:</label>
-			<div class="col-sm-11">
-					<?php echo $this->Form->input('name',array('label'=>false));?>
-			</div>
-		</div>
-
-		<?php echo $this->Form->hidden('ethnicitiesId',array('value'=>$ethnicityId));?>
-
-		<div class="form-group" style="margin-left:2px;">
-			<?php
-			echo $this->Form->input('description', array('label'=>'Descripción:'));
-			?>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-10">
-				<?php
-				echo $this->Form->submit('Agregar Ancla', array('class'=>'btn btn-success'));
+		<div class="panel panel-success">
+	  	<div class="panel-heading">
+	  		<h3>
+	  			Agregar Ancla(<?echo $ethnicityName?>)
+	  		</h3>
+	  		<p>
+  				En esta sección podra agregar una ancla a la Etnia Indigena <b><?echo $ethnicityName?></b>.
+				</p>
+	  	</div>
+	  	<div class="panel-body">
+	  		<?php
+					echo $this->Form->create('Anchor', array('role'=>'form'));
 				?>
-			</div>
-		</div>
+				<div class="form-group">
+					<label for="data[Anchor][name]">		Nombre:
+					</label>
+					<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Ancla'));?>
+				</div>
+
+				<?php echo $this->Form->hidden('ethnicitiesId',array('value'=>$ethnicityId));?>
+
+				<div class="form-group">
+					<label for="data[Ethnicity][description]">		Descripción:
+					</label>
+					<?php echo $this->Form->input('description',array('label'=>false,));?>
+				</div>
+
+
+				<div class="form-group">
+					<?php
+					echo $this->Form->submit('Crear Ancla', array('class'=>'btn btn-success', ));
+					?>
+				</div>
+
+	  	</div>
+	  </div>
 	</div>
 </div>
 
@@ -92,6 +101,9 @@
 </div>
 
 <script>
+
+	
+
 	function formValido()
 	{
 		var noteName=$('#noteName').val();
@@ -150,13 +162,51 @@
 
 	$(document).ready(function(){
 
+
+		for (var i in CKEDITOR.instances) {
+        CKEDITOR.instances[i].on('blur', function() {
+        		CKEDITOR.instances[i].updateElement();
+        		$('#AnchorDescription').valid();
+        	}
+        );
+    }
+
+		$('#AnchorAddForm').validate({
+			 ignore: "input:hidden:not(input:hidden.required)",
+			rules: {
+				"data[Anchor][name]":{
+					required:true,
+					rangelength: [3, 45]
+				},
+				"data[Anchor][description]":{
+					required: true
+				},
+			},
+			messages: {
+				"data[Anchor][name]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+				},
+				"data[Anchor][description]":{
+					required: 'Campo Obligatorio',
+				},
+			},
+
+		 	highlight: function(element) {
+          $(element).closest('.form-group').addClass('has-error');
+      },
+      unhighlight: function(element) {
+          $(element).closest('.form-group').removeClass('has-error');
+      },
+			errorElement: 'span',
+      errorClass: 'help-block',
+		});
+
 		CKEDITOR.replace( 'AnchorDescription', {
 	    filebrowserBrowseUrl: '/AbyaYala/contents/browse',
 	    filebrowserUploadUrl: '/AbyaYala/contents/upload',
 	    width: "100%",
 	    height: "250px"
 		});
-
-		//$('#modal-form').modal('show');
 	});
 </script>
