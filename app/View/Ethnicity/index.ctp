@@ -99,7 +99,7 @@ $this->Paginator->options(array(
 			</li>
 			<li>
 				<p>
-					Puede administrar el contenido de la etnia haciendo click en <i>Nombre.</i>
+					Puede administrar el contenido de la etnia haciendo click en el <i>Nombre</i> de la Etnia.
 				</p>
 			</li>
 			<li>

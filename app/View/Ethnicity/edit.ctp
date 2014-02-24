@@ -1,39 +1,52 @@
 <div class="row content">
 	<div style='margin-left:15px;'>
-	<h1>Etnias Indigenas</h1>
-	<hr>
-	<h3>Modificar Etnia: <?php echo $ethnicity['Ethnicity']['name'] ?></h3>
-	<p>En esta sección modificar la informacion Básica de las etnias indigenas.
-	</p>
-	<div class="col-md-12 center">
-		<?php
-			echo $this->Form->create('Ethnicity', array('class'=>'form-horizontal'));
-		?>
-		<div class="form-group">
-			<label for="data[Ethnicity][name]" class="col-sm-4 control-label">Nombre:</label>
-			<div class="col-sm-8">
-					<?php echo $this->Form->input('name',array('label'=>false));?>
-			</div>
-		</div>
+		<h1>Etnias Indigenas</h1>
+		<hr>
+		<div class="col-md-12">
+			<div class="panel panel-success">
+	  		<div class="panel-heading">
+	  			<h3>Modifcar Etnia</h3>
+	  			<p>En esta sección podra modificar una Etnia Indigena del portal AbyaYala.
+						</p>
+	  		</div>
+	  		<div class="panel-body">
+				  <?php
+					echo $this->Form->create('Ethnicity', array('role'=>'form'));
+					?>
 
-		<div class="form-group">
-			<label for="data[Ethnicity][type]" class="col-sm-4 control-label">Clasificación:</label>
-			<div class="col-sm-8">
-				<?php echo $this->Form->input('type',array('label'=>false));?>
-			</div>
-		</div>
+					<div class="form-group">
+						<label for="data[Ethnicity][name]">		Nombre:
+						</label>
+						<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Etnia'));?>
+					</div>
 
-		<div class="form-group">
-			<div class="col-sm-10">
-				<?php
-				echo $this->Form->submit('Modificar Etnia', array('class'=>'btn btn-success'));
-				?>
+					<div class="form-group">
+						<label for="data[Ethnicity][type]">		Clasificación:
+						</label>
+						<?php 
+							$type = array(
+								'Independiente' => 'Independiente', 
+								'Guajibo' => 'Guajibo', 
+								'Tupi-Guarani' => 'Tupi-Guarani',
+								'Chibcha' => 'Chibcha',
+								'Karibe' => 'Karibe',
+								'Arawak' => 'Arawak'
+							);
+							echo $this->Form->input('type', array('label'=>false, 'options'=>$type, 'default'=>'Independiente', 'class'=>'form-control'));
+						?>
+					</div>
+
+					<div class="form-group">
+						<?php
+						echo $this->Form->submit('Modificar Etnia', array('class'=>'btn btn-success'));
+						?>
+					</div>
+					
+	  		</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="row content">
 	<div class="col-md-12">
@@ -57,34 +70,26 @@
 
 <script>
 	$(document).ready(function(){
-		$('#EthnicityEditForm').validate({
+		$('#EthnicityAddForm').validate({
 			rules: {
 				"data[Ethnicity][name]":{
 					required:true,
-					rangelength: [5, 45]
-				},
-				"data[Ethnicity][type]":{
-					required:true,
-					rangelength: [5, 45]
+					rangelength: [3, 45]
 				},
 			},
 			messages: {
 				"data[Ethnicity][name]":{
 					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 5 y 45 caracteres'
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
 				},
-				"data[Ethnicity][type]":{
-					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 5 y 45 caracteres'
-				},
-
 			},
-			 highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
+			
+		 	highlight: function(element) {
+          $(element).closest('.form-group').addClass('has-error');
+      },
+      unhighlight: function(element) {
+          $(element).closest('.form-group').removeClass('has-error');
+      },
 			errorElement: 'span',
       errorClass: 'help-block',
 		});

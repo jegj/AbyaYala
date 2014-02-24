@@ -35,19 +35,18 @@ class Ethnicity extends AppModel {
         'message'  => 'El campo solo permite letras y números'
       ),
       'between' => array(
-          'rule'    => array('between', 5, 45),
-          'message' => 'EL campo solo pemite entre 5 y 45 caracteres'
-      )
+          'rule'    => array('between', 3, 45),
+          'message' => 'El campo solo pemite entre 3 y 45 caracteres'
+      ),
+      'unique' => array(
+        'rule' => 'isUnique',
+        'message' => 'Existe otra etnia con el mismo nombre'
+      ),
 		),
 		'type'=>array(
-			'alphaNumeric' => array(
-        'rule'     => 'alphaNumeric',
-        'required' => true,
-        'message'  => 'El campo solo permite letras y números'
-      ),
       'between' => array(
-          'rule'    => array('between', 5, 45),
-          'message' => 'EL campo solo pemite entre 5 y 45 caracteres'
+          'rule'    => array('between', 3, 45),
+          'message' => 'EL campo solo pemite entre 3 y 45 caracteres'
       )
 		),
 	);
