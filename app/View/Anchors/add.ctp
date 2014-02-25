@@ -12,6 +12,9 @@
 	  		<p>
   				En esta sección podra agregar una ancla a la Etnia Indigena <b><?echo $ethnicityName?></b>.
 				</p>
+				<p>
+					<b>Nota: </b>No olvide agregar el titulo correspondiente a la Ancla.
+				</p>
 	  	</div>
 	  	<div class="panel-body">
 	  		<?php

@@ -37,6 +37,29 @@ class EthnicitiesController extends AppController {
 		$this->set('ethnicity',$content);
 	}
 
+    public function resultsIndex()
+    {
+        if(isset($this->request->query['term']))
+            $term=$this->request->query['term'];
+        else
+            $term=false;
+
+        if($term)
+            $this->Paginator->settings = array(
+            'limit' => 5,
+            'paramType'=>'querystring',
+            'conditions' => array('Ethnicity.name LIKE' => "%$term%")     
+        );
+        try{
+       $content = $this->Paginator->paginate('Ethnicity');
+        }catch (NotFoundException $e) {
+            return $this->redirect(array('action'=>'index'));
+        }
+
+        $this->set('ethnicity',$content);
+
+    }
+
 	public function add()
 	{
 		if ($this->request->is('post')) {
