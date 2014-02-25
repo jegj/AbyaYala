@@ -3,17 +3,32 @@
 	<div class="col-md-8">
 		<h1>Etnia <?echo $ethnicity['ethnicity']['Ethnicity']['name']?></h1>
 		<hr>
-		<?php foreach ($ethnicity['anchors'] as $anchor):?>
-			<?php
-				$name = str_replace(' ', '', $anchor['Anchor']['name']);
-				$id = $name.'_'.$anchor['Anchor']['anchor_id']
-			?>
-			<div id = "<?php echo $id?>" >
-				<div>
-					<?php echo $anchor['Anchor']['description']?>
+		<?php if(count($ethnicity['anchors'])>0):?>
+			<?php foreach ($ethnicity['anchors'] as $anchor):?>
+				<?php
+					$name = str_replace(' ', '', $anchor['Anchor']['name']);
+					$id = $name.'_'.$anchor['Anchor']['anchor_id']
+				?>
+				<div id = "<?php echo $id?>" >
+					<div>
+						<?php echo $anchor['Anchor']['description']?>
+					</div>
 				</div>
+			<?endforeach;?>
+		<?php else:?>
+			<div class="alert alert-warning" style="margin-top:40px;">
+				<strong>Oops!</strong> No existen anclas para esta Etnia.
+				<?php 
+					  echo $this->Html->link(
+							'Agregue Anclas',
+							array(
+							'controller'=>'anchors',
+							'action' => 'add',
+							$ethnicity['ethnicity']['Ethnicity']['ethnicity_id'],$ethnicity['ethnicity']['Ethnicity']['name']), array('class'=>'alert-link'));
+				?>	
+				para poder visualizar el contenido.
 			</div>
-		<?endforeach;?>
+		<?php endif;?>
 	</div>
 
 	<div class="col-md-4" style="margin-top:120px;" id="sidebar_preview">
