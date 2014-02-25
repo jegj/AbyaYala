@@ -28,7 +28,7 @@
 				<div class="form-group">
 					<label for="data[Ethnicity][description]">		Descripción:
 					</label>
-					<?php echo $this->Form->input('description',array('label'=>false,));?>
+					<?php echo $this->Form->input('description',array('label'=>false,'id'=>"data[Ethnicity][description]"));?>
 				</div>
 
 
@@ -162,24 +162,24 @@
 
 	$(document).ready(function(){
 
-
-		for (var i in CKEDITOR.instances) {
-        CKEDITOR.instances[i].on('blur', function() {
-        		CKEDITOR.instances[i].updateElement();
-        		$('#AnchorDescription').valid();
-        	}
-        );
-    }
-
 		$('#AnchorAddForm').validate({
-			 ignore: "input:hidden:not(input:hidden.required)",
+			ignore: [],
 			rules: {
 				"data[Anchor][name]":{
 					required:true,
 					rangelength: [3, 45]
 				},
 				"data[Anchor][description]":{
-					required: true
+					required:  
+						function(text) {
+							
+							for (var i in CKEDITOR.instances)
+								CKEDITOR.instances[i].updateElement();
+
+							var editorcontent = text.value.replace(/<[^>]*>/gi, ''); 
+
+    					return editorcontent.length === 0;
+						}
 				},
 			},
 			messages: {
@@ -193,20 +193,40 @@
 			},
 
 		 	highlight: function(element) {
-          $(element).closest('.form-group').addClass('has-error');
+
+		 		if( $(element).is('textarea')){
+		 			var tag=document.getElementById('cke_data[Ethnicity][description]');
+		 			$(tag).css('border', '1px solid #B94A48');
+		 		}
+
+		 		$(element).closest('.form-group').removeClass('has-success');
+				$(element).closest('.form-group').addClass('has-error');
+					
       },
+
       unhighlight: function(element) {
-          $(element).closest('.form-group').removeClass('has-error');
+      	if( $(element).is('textarea')){
+      		var tag=document.getElementById('cke_data[Ethnicity][description]');
+		 			$(tag).removeAttr('style');
+		 			$(tag).css('border', '1px solid #468847');
+      	}
+
+				$(element).closest('.form-group').removeClass('has-error');
+				$(element).closest('.form-group').addClass('has-success');
+						
       },
+
 			errorElement: 'span',
       errorClass: 'help-block',
 		});
 
-		CKEDITOR.replace( 'AnchorDescription', {
+		CKEDITOR.replace( 'data[Anchor][description]', {
 	    filebrowserBrowseUrl: '/AbyaYala/contents/browse',
 	    filebrowserUploadUrl: '/AbyaYala/contents/upload',
 	    width: "100%",
 	    height: "250px"
 		});
+
+
 	});
 </script>

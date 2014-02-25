@@ -70,7 +70,7 @@
 
 <script>
 	$(document).ready(function(){
-		$('#EthnicityAddForm').validate({
+		$('#EthnicityEditForm').validate({
 			rules: {
 				"data[Ethnicity][name]":{
 					required:true,
@@ -85,11 +85,15 @@
 			},
 			
 		 	highlight: function(element) {
+		 			$(element).closest('.form-group').removeClass('has-success');
           $(element).closest('.form-group').addClass('has-error');
+
       },
       unhighlight: function(element) {
           $(element).closest('.form-group').removeClass('has-error');
+          $(element).closest('.form-group').addClass('has-success');
       },
+
 			errorElement: 'span',
       errorClass: 'help-block',
 		});

@@ -28,13 +28,13 @@
 				<div class="form-group">
 					<label for="data[Ethnicity][description]">		Descripción:
 					</label>
-					<?php echo $this->Form->input('description',array('label'=>false,));?>
+					<?php echo $this->Form->input('description',array('label'=>false,'id'=>"data[Ethnicity][description]"));?>
 				</div>
 
 
 				<div class="form-group">
 					<?php
-					echo $this->Form->submit('Crear Ancla', array('class'=>'btn btn-success', ));
+					echo $this->Form->submit('Modificar Ancla', array('class'=>'btn btn-success', ));
 					?>
 				</div>
 
@@ -74,9 +74,69 @@
 
 <script>
 	$(document).ready(function(){
-		CKEDITOR.replace( 'AnchorDescription', {
+
+		$('#AnchorEditForm').validate({
+			ignore: [],
+			rules: {
+				"data[Anchor][name]":{
+					required:true,
+					rangelength: [3, 45]
+				},
+				"data[Anchor][description]":{
+					required:  
+						function(text) {
+							
+							for (var i in CKEDITOR.instances)
+								CKEDITOR.instances[i].updateElement();
+
+							var editorcontent = text.value.replace(/<[^>]*>/gi, ''); 
+
+    					return editorcontent.length === 0;
+						}
+				},
+			},
+			messages: {
+				"data[Anchor][name]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+				},
+				"data[Anchor][description]":{
+					required: 'Campo Obligatorio',
+				},
+			},
+
+		 	highlight: function(element) {
+
+		 		if( $(element).is('textarea')){
+		 			var tag=document.getElementById('cke_data[Ethnicity][description]');
+		 			$(tag).css('border', '1px solid #B94A48');
+		 		}
+
+		 		$(element).closest('.form-group').removeClass('has-success');
+				$(element).closest('.form-group').addClass('has-error');
+					
+      },
+
+      unhighlight: function(element) {
+      	if( $(element).is('textarea')){
+      		var tag=document.getElementById('cke_data[Ethnicity][description]');
+		 			$(tag).removeAttr('style');
+		 			$(tag).css('border', '1px solid #468847');
+      	}
+
+				$(element).closest('.form-group').removeClass('has-error');
+				$(element).closest('.form-group').addClass('has-success');
+						
+      },
+
+			errorElement: 'span',
+      errorClass: 'help-block',
+		});
+
+
+		CKEDITOR.replace( 'data[Anchor][description]', {
 	    filebrowserBrowseUrl: '/AbyaYala/contents/browse',
-		  filebrowserUploadUrl: '/AbyaYala/contents/upload',
+	    filebrowserUploadUrl: '/AbyaYala/contents/upload',
 	    width: "100%",
 	    height: "250px"
 		});

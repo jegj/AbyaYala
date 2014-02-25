@@ -30,19 +30,18 @@ class Anchor extends AppModel {
 
 	public $validate = array(
 		
-		'name'=>array(
-			'alphaNumeric' => array(
-        'rule'     => 'alphaNumeric',
-        'required' => true,
-        'message'  => 'Solo letras y números'
-      ),
-      
+		'name'=>array(      
       'between' => array(
-          'rule'    => array('between', 5, 45),
-          'message' => 'Entre 5 y 45 caracteres'
+          'rule'    => array('between', 3, 45),
+          'message' => 'Entre 3 y 45 caracteres'
       )
-
 		),
+		'description'=>array(
+			'between' => array(
+          'rule'    => array('between', 1, 1000),
+          'message' => 'Campo Obligatorio'
+      )			
+		)
 	);
 
 
