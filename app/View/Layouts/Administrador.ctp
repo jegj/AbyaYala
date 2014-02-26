@@ -117,7 +117,15 @@
 	      					?>
 								</li>	
 								<li>
-							 		<a href="#">Noticias</a>
+							 		<?php
+		          			echo $this->Html->link(
+									    'Noticias',
+									    array(
+									        'controller' => 'news',
+									        'action' => 'index',
+									    )
+										);
+	      					?>
 							 	</li>
 							</ul>
 						</div>

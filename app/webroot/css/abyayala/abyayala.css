@@ -133,6 +133,19 @@ form .error,form .error-message {
 	box-shadow: none;
 	text-shadow: none;
 }
+
+/***************BOOSTRAP****************/
+.has-feedback .form-control-feedback {
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    position: absolute;
+    right: 30px;
+    text-align: center;
+    top: 40px;
+    width: 34px;
+}
+
 /*
 #navbar{
 	margin-bottom: 10px !important;

@@ -1,6 +1,6 @@
 <div class="row content">
 	<div style='margin-left:15px;'>
-		<h1>Etnias Indigenas</h1>
+		<h1>Módulo de Etnias Indigenas</h1>
 		<hr>
 		<div class="col-md-12">
 			<div class="panel panel-success">
