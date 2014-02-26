@@ -37,6 +37,7 @@
 		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
 		echo $this->Html->script('underscore/underscore',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 	?>
 		
 	<?php

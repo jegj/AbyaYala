@@ -70,7 +70,7 @@
 <?php endif;?>
 
 <?php if(isset($error)):?>
-   <div>
-    <p><strong>Error!</strong> No es posible cargar el contenido especificado.</p>
+  <div class="alert alert-danger">
+    <strong>Oops!</strong> Hubo un error por favor intentalo mas tarde.
   </div>
 <?php endif;?>
