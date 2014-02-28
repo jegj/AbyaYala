@@ -99,13 +99,12 @@ class AnchorsController extends AppController {
 
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Anchor->read(null, $id);
-			if ($this->Anchor->saveModel($this->request->data,false)) {
+			if ($this->Anchor->save($this->request->data)){
 				$this->Session->setFlash('Se actualizó la ancla exitosamente', 'default', array(), 'success');
-				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			} else {
 				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
-				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			}
+			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 		} else {
 			$options = array('conditions' => array('Anchor.' . $this->Anchor->primaryKey => $id));
 			$this->request->data = $this->Anchor->find('first', $options);

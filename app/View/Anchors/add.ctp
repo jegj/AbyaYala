@@ -90,7 +90,7 @@
 				<li>
 					<?php	 
 					echo $this->Html->link(
-				    'Regresar',
+				    'Anclas de '.$ethnicityName,
 				    array(
 				    		'controller' => 'ethnicities',
 				        'action' => 'view',

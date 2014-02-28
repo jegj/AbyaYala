@@ -9,8 +9,15 @@
 					$name = str_replace(' ', '', $anchor['Anchor']['name']);
 					$id = $name.'_'.$anchor['Anchor']['anchor_id']
 				?>
-				<div id = "<?php echo $id?>" >
-					<div>
+
+							
+				<div id = "<?php echo $id?>" class="panel panel-default">
+					<div class="panel-heading">
+								<h3 class="panel-title">
+									<?php echo $anchor['Anchor']['name']?>
+								</h3>
+					</div>
+					<div class="panel-body">
 						<?php echo $anchor['Anchor']['description']?>
 					</div>
 				</div>
@@ -67,7 +74,7 @@
 			<h3>Acciones:</h3>
 			<ul>
 				<li>
-					<?php echo $this->Html->link('Regresar', array('controller'=>'ethnicities','action' => 'index'))?>
+					<?php echo $this->Html->link('Etnias Registradas', array('controller'=>'ethnicities','action' => 'index'))?>
 				</li>
 			</ul>
 		</div>
@@ -121,6 +128,7 @@
 				$(this).attr('src', '/AbyaYala/img/no-disponible.jpeg');
 			})
 		});
+
 		$('#anchor-description img').each(function() {
 			$(this).attr('src', $(this).attr('src')+'?'+Math.random());
 		});
@@ -148,6 +156,19 @@
 			$('html, body').animate({ scrollTop: 0 }, 800);
 			return false;
 		});
+
+		$('a[href*=#]:not([href=#])').click(function() {
+				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+				  var target = $(this.hash);
+				  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				  if (target.length) {
+					$('html,body').animate({
+					  scrollTop: target.offset().top
+					}, 1000);
+					return false;
+				  }
+				}
+			});
 });
 
 	

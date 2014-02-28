@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('MiscLib', 'Lib');
 /**
  * Contents Controller
  *

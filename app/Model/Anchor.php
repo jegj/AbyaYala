@@ -38,7 +38,7 @@ class Anchor extends AppModel {
 		),
 		'description'=>array(
 			'between' => array(
-          'rule'    => array('between', 1, 1000),
+          'rule'    => array('between', 1, 100000),
           'message' => 'Campo Obligatorio'
       )			
 		)

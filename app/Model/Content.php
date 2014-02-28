@@ -150,4 +150,14 @@ class Content extends AppModel {
 		return $success;
 	}
 
+	function beforeSave($options = array())
+	{
+	  if ( empty($this->content_id) and empty($this->data[$this->name]['content_id']) )
+	    $this->data[$this->name]['create_date'] = date('Y-m-d H:i:s');
+	  else
+	  	$this->data[$this->name]['modified_date'] = date('Y-m-d H:i:s');
+
+	  return parent::beforeSave();
+	} 
+
 }

@@ -48,7 +48,7 @@
 				<li>
 					<?php 
 							echo $this->Html->link(
-												    'Regresar',
+												    'Ir Módulo de Contenido',
 												    array(
 												        'action' => 'index',
 												    ));

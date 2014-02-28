@@ -56,7 +56,7 @@
 				<li>					
 					<?php 
 						echo $this->Html->link(
-						    'Regresar',
+						    'Etnias Registradas',
 						    array(
 						        'action' => 'index',
 						    ));
