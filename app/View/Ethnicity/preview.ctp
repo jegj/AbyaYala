@@ -74,7 +74,7 @@
 			<h3>Acciones:</h3>
 			<ul>
 				<li>
-					<?php echo $this->Html->link('Etnias Registradas', array('controller'=>'ethnicities','action' => 'index'))?>
+					<?php echo $this->Html->link('Ir a Etnias Registradas', array('controller'=>'ethnicities','action' => 'index'))?>
 				</li>
 			</ul>
 		</div>

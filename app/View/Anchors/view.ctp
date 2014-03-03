@@ -1,17 +1,20 @@
 <div class="row content">
-	<div style='margin-left:15px;'>
-		<h1>Etnias Indigenas</h1>
-		<h3>
-			Ancla <?php echo h($anchor['Anchor']['name']); ?>
-		</h3>
-	</div>	
-	<hr>
 	<div class="col-md-12">
-		<div id="anchor-description">
-			<?php echo html_entity_decode(h($anchor['Anchor']['description'])); ?>
+		<h1>Etnias Indigenas</h1>
+		<hr>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<?php echo $anchor['Anchor']['name']?>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<?php echo $anchor['Anchor']['description']?>
+			</div>
 		</div>
-	</div>	
+	</div>
 </div>
+
 <div class="row content">
 	<div class="col-md-12">
 		<div>

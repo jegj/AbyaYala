@@ -116,11 +116,11 @@
 			<ul>
 				<li>
 					<?php 
-					echo $this->Html->link(
-				    'Regresar',
-				    array(
-				        'action' => 'index',
-				    ));
+							echo $this->Html->link(
+												    'Ir a Contenido Registrado',
+												    array(
+												        'action' => 'index',
+												    ));
 					?>
 				</li>
 			</ul>

@@ -73,7 +73,7 @@
 				<li>
 					<?php	 
 							echo $this->Html->link(
-								'Etnias Registradas',
+								'Ir a Etnias Registradas',
 								array(
 								'action' => 'index',
 							));

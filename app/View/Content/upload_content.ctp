@@ -48,7 +48,7 @@
 				<li>
 					<?php 
 							echo $this->Html->link(
-												    'Ir Módulo de Contenido',
+												    'Ir a Contenido Registrado',
 												    array(
 												        'action' => 'index',
 												    ));

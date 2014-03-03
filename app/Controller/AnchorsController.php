@@ -37,7 +37,7 @@ class AnchorsController extends AppController {
  */
 	public function view($id = null, $ethnicityId=null) {
 		if (!$this->Anchor->exists($id)) {
-			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'success');
+			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'error');
     	return $this->redirect(array('action'=>'index'));
 		}
 		$options = array('conditions' => array('Anchor.' . $this->Anchor->primaryKey => $id));
