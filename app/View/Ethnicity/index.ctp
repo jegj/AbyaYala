@@ -15,6 +15,11 @@
 		<ul>
 			<li>
 				<p>
+					La búsqueda se realiza en base al nombre de las Etnias.
+				</p>
+			</li>
+			<li>
+				<p>
 				Para cambiar la información de una etnia entre en <i>Modificar</i>.</p>
 			</li>
 			<li>

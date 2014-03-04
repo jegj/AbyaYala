@@ -12,6 +12,11 @@
 		<ul>
 			<li>
 				<p>
+					La búsqueda se realiza en base al nombre del contenido.
+				</p>
+			</li>
+			<li>
+				<p>
 				Para agregar la información adicional al contenido entre en <i>Modificar Información</i>.</p>
 			</li>
 			<li>

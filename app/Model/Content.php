@@ -27,7 +27,13 @@ class Content extends AppModel {
  */
 	public $displayField = 'name';
 
-
+	
+	public $hasOne = array(
+		 'News' => array(
+            'className' => 'News',
+            'foreignKey' => 'content_id'
+      )
+	);
 
 	public function saveModel($data=null, $newRecord=true)
 	{

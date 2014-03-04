@@ -109,31 +109,31 @@
 	    data:'data[Content][id]='+id,
 	    dataType: 'HTML',
 	    success: function (data) {
-	    	console.log(data);
-	    	
 	    	$('#myModalLabel').html('Reproductor de AbyaYala');
 	      $('#modal-body-anchor').html(data);
 	      $('#modal-anchor').modal('show')
 	      $('#modal-anchor').on('hidden.bs.modal', function (e) {
-  			$("#jquery_jplayer_1").jPlayer("stop");
-		})
+  				$("#jquery_jplayer_1").jPlayer("stop");
+				})
 	    }
 		});
 		return false;
 	}
 
 	$(document).ready(function(){
-		$('#anchor-description img').each(function() {
+
+		/****** Para que no obtenga las img de cache****/
+		$('.panel-body img').each(function() {
 			$(this).error(function(){
 				$(this).attr('src', '/AbyaYala/img/no-disponible.jpeg');
 			})
 		});
 
-		$('#anchor-description img').each(function() {
+		$('.panel-body').each(function() {
 			$(this).attr('src', $(this).attr('src')+'?'+Math.random());
 		});
 
-
+		/**** Para obtener los link que impliquen musica***/
 		var links=$('a[href*=".ogg?"]').click(function(){
 				var link=$(this).attr('href');
 				var id=_.last(link.split('?'));
@@ -141,7 +141,9 @@
 				return false;;
 			});	
 
+		/*** Scroll de las anclas**/
 		$('.scroll-to-top').hide();
+
 
 		$(window).scroll(function () {
 			console.log('hola');
@@ -152,10 +154,12 @@
 			}
 		});
 
+		
 		$('.scroll-to-top').click(function () {
 			$('html, body').animate({ scrollTop: 0 }, 800);
 			return false;
 		});
+
 
 		$('a[href*=#]:not([href=#])').click(function() {
 				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
