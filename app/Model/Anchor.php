@@ -36,12 +36,12 @@ class Anchor extends AppModel {
           'message' => 'Entre 3 y 45 caracteres'
       )
 		),
-		'description'=>array(
-			'between' => array(
-          'rule'    => array('between', 1, 100000),
-          'message' => 'Campo Obligatorio'
-      )			
-		)
+		'description' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Campo Obligatorio',
+			),
+		),
 	);
 
 

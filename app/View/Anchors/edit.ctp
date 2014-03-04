@@ -12,9 +12,6 @@
 	  		<p>
   				En esta sección podra modificar la ancla seleccionada.
 				</p>
-				<p>
-					<b>Nota: </b>No olvide agregar el titulo correspondiente a la Ancla.
-				</p>	
 	  	</div>
 	  	<div class="panel-body">
 	  		<?php

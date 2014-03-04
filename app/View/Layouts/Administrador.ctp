@@ -128,6 +128,17 @@
 										);
 	      					?>
 							 	</li>
+							 	<li>
+							 		<?php
+		          			echo $this->Html->link(
+									    'Mensajes',
+									    array(
+									        'controller' => 'messages',
+									        'action' => 'index',
+									    )
+										);
+	      					?>
+							 	</li>
 							</ul>
 						</div>
 					</div>
@@ -196,7 +207,7 @@
 					<p>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
-						<a href="#"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="#"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
 					</p>
 				</div>
