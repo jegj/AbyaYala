@@ -61,7 +61,7 @@ class AnchorsController extends AppController {
 					'EthnicitiesHasAnchor' => array(
 						'anchor_id' => $anchorId,
 						'ethnicity_id' => $ethnicityId
-					)conditions
+					)
 				);
 				
 				if($this->EthnicitiesHasAnchor->saveModel($data)){
