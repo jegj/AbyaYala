@@ -60,6 +60,30 @@ class EthnicitiesController extends AppController {
 
     }
 
+    public function synonyms($id, $ethnicityName){
+        if(isset($id) && isset($ethnicityName)){
+            if ($this->Ethnicity->exists($id)) {
+                $this->Paginator->settings = array(
+                        'conditions' => array('Ethnicity.ethnicity_father_id ' => $id),
+                        'limit' => 5,
+                        'paramType'=>'querystring',
+                    );
+                try{
+                   $ethnicity = $this->Paginator->paginate('Ethnicity');
+                }catch (NotFoundException $e) {
+                    return $this->redirect(array('action'=>'imagenes'));
+                }   
+                $this->set(compact('ethnicity', 'ethnicityName'));
+            }else{
+                $this->Session->setFlash('<strong>Error!</strong> No existe la Etnia especificada.', 'default', array(), 'error');
+                return $this->redirect(array('action'=>'index'));
+            }
+        }else{
+            $this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
+
 	public function add()
 	{
 		if ($this->request->is('post')) {
