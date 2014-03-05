@@ -41,8 +41,9 @@
 						echo $this->Html->link(
 							'Agregar Etnia',
 							array(
-							'action' => 'add',
-						));	
+								'action' => 'add',
+								0
+							));	
 					?>		
 				</li>
 			</ul>

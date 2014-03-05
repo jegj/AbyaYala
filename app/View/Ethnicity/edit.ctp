@@ -5,9 +5,15 @@
 		<div class="col-md-12">
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
-	  			<h3>Modifcar Etnia</h3>
-	  			<p>En esta sección podra modificar una Etnia Indigena del portal AbyaYala.
+	  			<?if(!$synonym):?>
+		  			<h3>Modifcar Etnia</h3>
+		  			<p>En esta sección podra modificar una Etnia Indigena del portal AbyaYala.
 						</p>
+					<?else:?>
+						<h3>Modificar Sinónimo</h3>
+						<p>En esta sección podra modificar el Sinónimo especificado.
+							</p>
+					<?endif;?>
 	  		</div>
 	  		<div class="panel-body">
 				  <?php
@@ -20,6 +26,7 @@
 						<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Etnia'));?>
 					</div>
 
+					<?if(!$synonym):?>
 					<div class="form-group">
 						<label for="data[Ethnicity][type]">		Clasificación:
 						</label>
@@ -35,6 +42,7 @@
 							echo $this->Form->input('type', array('label'=>false, 'options'=>$type, 'default'=>'Independiente', 'class'=>'form-control'));
 						?>
 					</div>
+					<?endif;?>
 
 					<div class="form-group">
 						<?php

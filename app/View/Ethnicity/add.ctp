@@ -5,9 +5,15 @@
 		<div class="col-md-12">
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
-	  			<h3>Registrar Etnia</h3>
-	  			<p>En esta sección podra agregar una Etnia Indigena al portal AbyaYala y poder administrar su contenido.
-						</p>
+	  			<?if(!$synonym):?>
+		  			<h3>Registrar Etnia</h3>
+		  			<p>En esta sección podra agregar una Etnia Indigena al portal AbyaYala y poder administrar su contenido.
+							</p>
+					<?else:?>
+						<h3>Registrar Sinónimo(<?= $ethnicityName?>)</h3>
+		  			<p>En esta sección podra agregar un Sinónimo a la Etnia Indigena <?=$ethnicityName?>.
+							</p>
+					<?endif;?>
 	  		</div>
 	  		<div class="panel-body">
 				  <?php
@@ -17,29 +23,42 @@
 					<div class="form-group">
 						<label for="data[Ethnicity][name]">		Nombre:
 						</label>
-						<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Etnia'));?>
-					</div>
-
-					<div class="form-group">
-						<label for="data[Ethnicity][type]">		Clasificación:
-						</label>
 						<?php 
-							$type = array(
-								'Independiente' => 'Independiente', 
-								'Guajibo' => 'Guajibo', 
-								'Tupi-Guarani' => 'Tupi-Guarani',
-								'Chibcha' => 'Chibcha',
-								'Karibe' => 'Karibe',
-								'Arawak' => 'Arawak'
-							);
-							echo $this->Form->input('type', array('label'=>false, 'options'=>$type, 'default'=>'Independiente', 'class'=>'form-control'));
+						$place=$synonym?'Nombre del Sinónimo':'Nombre de la Etnia';
+						echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>$place));
 						?>
 					</div>
 
+					<?if(!$synonym):?>
+						<div class="form-group">
+							<label for="data[Ethnicity][type]">		Clasificación:
+							</label>
+							<?php 
+								$type = array(
+									'Independiente' => 'Independiente', 
+									'Guajibo' => 'Guajibo', 
+									'Tupi-Guarani' => 'Tupi-Guarani',
+									'Chibcha' => 'Chibcha',
+									'Karibe' => 'Karibe',
+									'Arawak' => 'Arawak'
+								);
+								echo $this->Form->input('type', array('label'=>false, 'options'=>$type, 'default'=>'Independiente', 'class'=>'form-control'));
+							?>
+						</div>
+						<?else:?>
+							<?php echo $this->Form->hidden('ethnicity_father_id ',array('value'=>$ethnicityId));?>
+						<?endif;?>
+
 					<div class="form-group">
-						<?php
-						echo $this->Form->submit('Crear Etnia', array('class'=>'btn btn-success'));
-						?>
+						<?if(!$synonym):?>
+							<?php
+							echo $this->Form->submit('Crear Etnia', array('class'=>'btn btn-success'));
+							?>
+						<?else:?>
+							<?php
+							echo $this->Form->submit('Crear Sinónimo', array('class'=>'btn btn-success'));
+							?>
+						<?endif;?>
 					</div>
 					
 	  		</div>
@@ -69,6 +88,7 @@
 </div>
 
 <script>
+
 	$(document).ready(function(){
 		$('#EthnicityAddForm').validate({
 			rules: {

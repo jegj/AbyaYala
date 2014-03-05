@@ -26,6 +26,7 @@ class EthnicitiesController extends AppController {
         $this->Paginator->settings = array(
             'limit' => 5,
             'paamType'=>'querystring',     
+            'conditions' => array('Ethnicity.ethnicity_father_id is null'),
         );
 
         try{
@@ -73,7 +74,7 @@ class EthnicitiesController extends AppController {
                 }catch (NotFoundException $e) {
                     return $this->redirect(array('action'=>'imagenes'));
                 }   
-                $this->set(compact('ethnicity', 'ethnicityName'));
+                $this->set(compact('id', 'ethnicity', 'ethnicityName'));
             }else{
                 $this->Session->setFlash('<strong>Error!</strong> No existe la Etnia especificada.', 'default', array(), 'error');
                 return $this->redirect(array('action'=>'index'));
@@ -84,26 +85,36 @@ class EthnicitiesController extends AppController {
         }
     }
 
-	public function add()
+	public function add($synonym=false, $ethnicityId=null, $ethnicityName=null)
 	{
 		if ($this->request->is('post')) {
+
+            if(isset($ethnicityId)){
+                $this->request->data['Ethnicity']['ethnicity_father_id'] = $ethnicityId;
+                $message='<strong>Exito!</strong> Se creo el sinónimo exitosamente.';
+            }else{
+                $message='<strong>Exito!</strong> Se creo la etnia exitosamente.';
+            }
+
 
             $this->Ethnicity->set($this->request->data);
 
             if($this->Ethnicity->validates()){
-
-        	    if ($this->Ethnicity->saveModel($this->request->data)) {
-        	       $this->Session->setFlash('<strong>Exito!</strong> Se creo la etnia exitosamente.', 'default', array(), 'success');
+        	    if ($this->Ethnicity->save ()){
+        	       $this->Session->setFlash($message, 'default', array(), 'success');
                     return $this->redirect(array('action'=>'index'));
         	    }else{
     	           $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
                   return $this->redirect(array('action'=>'index'));
-              }
-          }
+                }
+            }
         }
+
+        $this->set(compact('synonym', 'ethnicityId', 'ethnicityName'));
+
 	}
 
-	public function delete($id)
+	public function delete($id, $synonym)
 	{
 		      
         if ($this->request->is('get') || !isset($id)) {
@@ -112,7 +123,12 @@ class EthnicitiesController extends AppController {
         }
 
         if ($this->Ethnicity->deleteModel($id)) {
-           $this->Session->setFlash('<strong>Exito!</strong> Se eliminó  la etnia exitosamente.', 'default', array(), 'success');
+            if($synonym)
+                $message='el Sinónimo';
+            else
+                $message='la Etnia';
+
+           $this->Session->setFlash('<strong>Exito!</strong> Se eliminó '.$message.' exitosamente.', 'default', array(), 'success');
             return $this->redirect(array('action'=>'index'));
         }else{
         	$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
@@ -121,7 +137,7 @@ class EthnicitiesController extends AppController {
 
 	}  
 
-	public function edit($id = null) {
+	public function edit($id = null, $synonym=null) {
        if (!$id) {
             $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
             return $this->redirect(array('action'=>'index'));
@@ -153,7 +169,7 @@ class EthnicitiesController extends AppController {
             $this->request->data = $ethnicity;
         }
 
-        $this->set('ethnicity', $ethnicity);
+        $this->set(compact('ethnicity', 'synonym'));
 	}
 
 	public function view($id)

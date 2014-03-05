@@ -29,10 +29,10 @@ class Ethnicity extends AppModel {
 
 	public $validate = array(
 		'name'=>array(
-			'alphaNumeric' => array(
-        'rule'     => 'alphaNumeric',
+			'notEmpty' => array(
+        'rule' => array('notEmpty'),
+        'message' => 'Campo Obligatorio',
         'required' => true,
-        'message'  => 'El campo solo permite letras y números'
       ),
       'between' => array(
           'rule'    => array('between', 3, 45),
@@ -40,14 +40,8 @@ class Ethnicity extends AppModel {
       ),
       'unique' => array(
         'rule' => 'isUnique',
-        'message' => 'Existe otra etnia con el mismo nombre'
+        'message' => 'El nombre se encuentra repetido'
       ),
-		),
-		'type'=>array(
-      'between' => array(
-          'rule'    => array('between', 3, 45),
-          'message' => 'EL campo solo pemite entre 3 y 45 caracteres'
-      )
 		),
 	);
 
