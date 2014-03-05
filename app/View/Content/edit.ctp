@@ -83,7 +83,7 @@
 						<div class="form-group">
 							<label for="data[Content][type_document]">Tipo Documento:</label>
 							<?php
-								$type = array(0 => 'Ley', 1 => 'Trabajo/Articulo');
+								$type = array(1 => 'Ley', 2 => 'Trabajo/Articulo');
 								echo $this->Form->input('type_document', array('label'=>false, 'options'=>$type, 'default'=>0, 'class'=>'form-control'));
 							?>
 						</div>

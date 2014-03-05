@@ -49,7 +49,9 @@ class EthnicitiesController extends AppController {
             $this->Paginator->settings = array(
             'limit' => 5,
             'paramType'=>'querystring',
-            'conditions' => array('Ethnicity.name LIKE' => "%$term%")     
+            'conditions' => array('Ethnicity.name LIKE' => "%$term%",
+                'Ethnicity.ethnicity_father_id is null'
+                )     
         );
         try{
        $content = $this->Paginator->paginate('Ethnicity');

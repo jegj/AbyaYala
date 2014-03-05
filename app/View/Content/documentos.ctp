@@ -23,12 +23,15 @@
    						</a>
    					</td>
    					<td>
-   						<?if (isset($docs['Content']['type_document'])){
-   								echo $docs['Content']['type_document']==0?'Ley':'Trabajo/Articulo';
-   							}else{
-   								echo 'No Asignado';
-   							}
-   						?>
+   						<?if (isset($docs['Content']['type_document'])):?>
+                  <?if($docs['Content']['type_document']==1):?>
+                      Ley
+                  <?else:?>
+                      Trabajo/Articulo
+                  <?endif;?>
+                <?else:?>
+                  <p style="color:red;">No Asignada</p>
+                <?endif;?>
    					</td>
    					<td>
    						<a href="#" onclick="cargarDocumentoLocal('<?php echo $docs['Content']['access_path']?>','<?php echo $docs['Content']['content_id']?> ')">
