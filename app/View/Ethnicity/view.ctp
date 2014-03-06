@@ -99,6 +99,7 @@
 	                  	'controller'=>'notes',
 	                  	'action' => 'delete',
 	                  	$notes['note_id'],
+	                  	$ethnicity['Ethnicity']['ethnicity_id']
 	                  ),
 	                  array('confirm' => '¿Esta usted seguro que desea eliminar la Nota '.$notes['name'].'?'));
 	              ?>

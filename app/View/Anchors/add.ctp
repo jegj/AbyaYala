@@ -23,7 +23,10 @@
 					<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Ancla'));?>
 				</div>
 
-				<?php echo $this->Form->hidden('ethnicitiesId',array('value'=>$ethnicityId));?>
+				<?=
+					$this->Form->input('Ethnicity.ethnicity_id',array('value'=>$ethnicityId));
+				?>
+
 
 				<div class="form-group">
 					<label for="data[Ethnicity][description]">		Descripción:

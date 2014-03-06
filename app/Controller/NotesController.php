@@ -56,13 +56,10 @@ class NotesController extends AppController {
 
 			if($this->Note->save($this->request->data)) {
 				$this->Session->setFlash('<strong>Exito!</strong> Se creo la nota exitosamente.', 'default', array(), 'success');
-        return $this->redirect(array(
-        	'controller' => 'ethnicities',
-        	'action'=>'index')
-        );
 			}else {
 				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 			}
+			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 		}
 
 		$this->set(compact('ethId', 'ethName'));
@@ -99,7 +96,7 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $ethId=null ) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
@@ -114,11 +111,6 @@ class NotesController extends AppController {
 		} else {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 		}
-		return $this->redirect(
-			array(
-        	'controller' => 'ethnicities',
-        	'action'=>'index'
-      )
-    );
+		return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 	}
 }

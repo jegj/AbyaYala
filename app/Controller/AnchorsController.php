@@ -16,17 +16,6 @@ class AnchorsController extends AppController {
 	var $helpers=array('Html','Form', 'Js', 'Session');
 	public $components = array('Paginator', 'Session');
 	var $layout='Administrador';
-	var $uses = array('EthnicitiesHasAnchor','Anchor');
-
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Anchor->recursive = 0;
-		$this->set('anchors', $this->Paginator->paginate());
-	}
 
 /**
  * view method
@@ -52,27 +41,12 @@ class AnchorsController extends AppController {
  */
 	public function add($ethnicityId,$ethnicityName) {
 		if ($this->request->is('post')) {
-			if ($this->Anchor->saveModel($this->request->data)) {
-			
-				$ethnicityId=$this->data['Anchor']['ethnicitiesId'];
-				$anchorId=$this->Anchor->id;
-
-				$data = array(
-					'EthnicitiesHasAnchor' => array(
-						'anchor_id' => $anchorId,
-						'ethnicity_id' => $ethnicityId
-					)
-				);
+			if ($this->Anchor->save($this->request->data)) {
+				$this->Session->setFlash('<strong>Exito!</strong> Se creo la ancla exitosamente.', 'default', array(), 'success');
+				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 				
-				if($this->EthnicitiesHasAnchor->saveModel($data)){
-					$this->Session->setFlash('Se creó la ancla exitosamente', 'default', array(), 'success');
-					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
-				}else{
-					 $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
-					return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
-				}
 			} else {	
-				 $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 			}
 		}
@@ -100,7 +74,7 @@ class AnchorsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Anchor->read(null, $id);
 			if ($this->Anchor->save($this->request->data)){
-				$this->Session->setFlash('Se actualizó la ancla exitosamente', 'default', array(), 'success');
+				$this->Session->setFlash('<strong>Error!</strong> Se actualizó la ancla exitosamente', 'default', array(), 'success');
 			} else {
 				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 			}
