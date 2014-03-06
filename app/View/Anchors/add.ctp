@@ -82,9 +82,6 @@
 			<h3>Acciones:</h3>
 			<ul>
 				<li>
-					<a href="#" onclick="return desplegarFormulario()">Agregar Nota</a>
-				</li>
-				<li>
 					<?php	 
 					echo $this->Html->link(
 				    'Anclas de '.$ethnicityName,
@@ -101,63 +98,6 @@
 </div>
 
 <script>
-
-	
-
-	function formValido()
-	{
-		var noteName=$('#noteName').val();
-		var noteDesc=$('#noteDescription').val();
-		if(noteName && noteDesc)
-			return true;
-		else
-			return false;
-	}
-
-	function desplegarFormulario()
-	{
-		$('#noteName').val('');
-		$('#noteDescription').val('');
-		$('#formNoteName').removeClass('has-error');
-		$('#formNoteDesc').removeClass('has-error');
-		$('#modalForm').show();
-		$('#modalResul').hide();
-		$('#modal-form').modal('show');
-		return false;		
-	}
-
-	function crearNota()
-	{
-		if(formValido()){
-			$.ajax({
-				url: '/AbyaYala/notes/add',
-				type: 'POST',
-				data:'data[Note][name]='+$('#noteName').val()+'&& data[Note][description]='+$('#noteDescription').val(),
-		    dataType: 'json',
-		    success: function (data) {
-		    	$('#modalForm').hide();
-		    	if(data.status){
-		    		$('#modalResul').html("<div class='alert alert-success'><strong>Exito!</strong> Se creó la nota correctamente</div>");
-		    	}else{
-		    		$('#modalResul').html("<div class='alert alert-danger'><strong>Error!</strong> No se pudo crear la nota correctamente</div>");
-		    	}
-		    	$('#modalResul').show();
-		    }
-		    
-			});
-		}else{
-			var noteName=$('#noteName').val();
-			var noteDesc=$('#noteDescription').val();
-			alert('Rellene todos los campos necesarios');
-			if(!noteName)
-				$('#formNoteName').addClass('has-error');
-
-			if(!noteDesc)
-				$('#formNoteDesc').addClass('has-error');
-		}
-
-		return false;
-	}
 
 
 	$(document).ready(function(){

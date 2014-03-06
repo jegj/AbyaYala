@@ -182,7 +182,7 @@ class EthnicitiesController extends AppController {
             return $this->redirect(array('action'=>'index'));
         }
 
-        $ethnicity = $this->Ethnicity->getCompactInformation($id);
+        $ethnicity=$this->Ethnicity->findByEthnicityId($id);
 
         if (!$ethnicity) {
             $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
@@ -209,7 +209,6 @@ class EthnicitiesController extends AppController {
         }
 
         $this->set(compact('ethnicity'));
-        
     }
 
 

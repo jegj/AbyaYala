@@ -13,7 +13,9 @@ class NotesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'RequestHandler');
+	var $helpers=array('Html','Form', 'Js', 'Session');
+    
+  public $components = array('Session', 'RequestHandler', 'Paginator');
 
 	var $layout='Administrador';
 
@@ -48,22 +50,22 @@ class NotesController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		$this->autoRender=false;
-		$this->response->type('json');
-
+	public function add($ethId=null, $ethName=null)
+	{
 		if ($this->request->is('post')) {
-			
-			$name=$this->data['Note']['name'];
-			$description=$this->data['Note']['description'];
 
-	
-			$status=$this->Note->saveModel($this->data,true);
-
-			$json = json_encode(array('status'=>$status));
-
-			$this->response->body($json);
+			if($this->Note->save($this->request->data)) {
+				$this->Session->setFlash('<strong>Exito!</strong> Se creo la nota exitosamente.', 'default', array(), 'success');
+        return $this->redirect(array(
+        	'controller' => 'ethnicities',
+        	'action'=>'index')
+        );
+			}else {
+				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+			}
 		}
+
+		$this->set(compact('ethId', 'ethName'));
 	}
 
 /**
@@ -100,13 +102,23 @@ class NotesController extends AppController {
 	public function delete($id = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Invalid note'));
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+      return $this->redirect(array(
+        	'controller' => 'ethnicities',
+        	'action'=>'index')
+      );
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Note->delete()) {
-			$this->Session->setFlash(__('The note has been deleted.'));
+			$this->Session->setFlash('<strong>Exito!</strong> Se eliminó  la nota exitosamente.', 'default', array(), 'success');
 		} else {
-			$this->Session->setFlash(__('The note could not be deleted. Please, try again.'));
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+		return $this->redirect(
+			array(
+        	'controller' => 'ethnicities',
+        	'action'=>'index'
+      )
+    );
+	}
+}

@@ -53,6 +53,15 @@ class Anchor extends AppModel {
         )
   );
 
+  public $hasAndBelongsToMany = array(
+    'Ethnicity' =>
+        array(
+          'className' => 'Ethnicity',
+          'joinTable' => 'ethnicities_has_anchors',
+          'associationForeignKey' => 'ethnicity_id',
+        )
+  );
+
 
 	public function saveModel($data=null, $newRecord=true)
 	{

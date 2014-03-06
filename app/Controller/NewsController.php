@@ -115,7 +115,7 @@ class NewsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->News->create();
 			$this->request->data['current_date']=date('Y-m-d H:i:s');
-			print_r($this->request->data);
+			
 			if ($this->News->save($this->request->data)) {
 				$this->Session->setFlash('<strong>Exito!</strong> Se creo la noticia exitosamente.', 'default', array(), 'success');
         return $this->redirect(array('action'=>'index'));

@@ -53,6 +53,22 @@ class Ethnicity extends AppModel {
         )
   );
 
+
+  public $hasAndBelongsToMany = array(
+    'Anchors' =>
+      array(
+        'className' => 'Anchor',
+        'joinTable' => 'ethnicities_has_anchors',
+        'associationForeignKey' => 'anchor_id',
+      ),
+    'Notes' =>
+      array(
+        'className' => 'Note',
+        'joinTable' => 'ethnicities_has_notes',
+        'associationForeignKey' => 'note_id',
+      )
+  );
+
   public function saveModel($data=null,$newRecord=true)
   {
       $success=false;
@@ -93,6 +109,7 @@ class Ethnicity extends AppModel {
     return $success;
   }
 
+  /*
   public function getCompactInformation($id)
   {
     $ethnicity=$this->findByEthnicityId($id);
@@ -110,5 +127,5 @@ class Ethnicity extends AppModel {
     
     return compact('anchors','ethnicity');
   }
-
+  */
 }

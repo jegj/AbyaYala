@@ -1,18 +1,112 @@
-<div class="notes form">
-<?php echo $this->Form->create('Note'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Note'); ?></legend>
-	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<div class="row content">
+	<div style='margin-left:15px;'>
+		<h1>Módulo de Etnias Indigenas</h1>
+		<hr>
+		<div class="col-md-12">
+			<div class="panel panel-success">
+	  		<div class="panel-heading">
+	  			<h3>Registrar Nota(<?= $ethName?>)</h3>
+	  			<p>En esta sección podra agregar una Nota para ser referenciada en el cuerpo de las Anclas perteneciente a la Etnia 
+	  			<?=$ethName?>
+					</p>
+	  		</div>
 
-		<li><?php echo $this->Html->link(__('List Notes'), array('action' => 'index')); ?></li>
-	</ul>
+	  		<div class="panel-body">
+	  			<?=
+	  				$this->Form->create('Note', array('role'=>'form'));
+					?>
+
+	  			<div class="form-group">
+						<label for="data[Note][name]">		Nombre:
+						</label>
+						<?=
+							$this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Nombre de la Nota'));
+						?>
+					</div>
+
+						<?=
+							$this->Form->input('Ethnicity.ethnicity_id',array('value'=>$ethId));
+						?>
+
+					<div class="form-group">
+						<label for="data[Note][description]">		Descripción:
+						</label>
+						<?=
+							$this->Form->input('description',array('label'=>false, 'class'=>'form-control'));
+						?>
+					</div>
+
+		  		<div class="form-group">
+						<?=
+						$this->Form->submit('Crear Nota', array('class'=>'btn btn-success'));
+						?>
+					</div>
+				</div>
+	  	</div>
+	  </div>
+	 </div>
+
+
+<div class="row content">
+	<div class="col-md-12">
+		<div>
+			<h3>Acciones:</h3>
+			<ul>
+				<li>					
+					<?php 
+						echo $this->Html->link(
+					    'Ir a Etnia '.$ethName,
+					    array(
+				    		'controller' => 'ethnicities',
+					      'action' => 'view',
+					      $ethId
+					    ));
+					?>
+				</li>
+			</ul>
+		
+		</div>
+	</div>	
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#NoteAddForm').validate({
+			ignore: [],
+			rules: {
+				"data[Note][name]":{
+					required:true,
+					rangelength: [3, 45]
+				},
+				"data[Note][description]":{
+					required:true,
+				},
+			},
+
+			messages: {
+				"data[Note][name]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+				},
+				"data[Note][description]":{
+					required: 'Campo Obligatorio',
+				},
+			},
+
+			highlight: function(element) {
+		 		$(element).closest('.form-group').removeClass('has-success');
+				$(element).closest('.form-group').addClass('has-error');					
+      },
+
+      unhighlight: function(element)  {
+				$(element).closest('.form-group').removeClass('has-error');
+				$(element).closest('.form-group').addClass('has-success');
+      },
+
+      errorElement: 'span',
+      errorClass: 'help-block',
+
+		});
+	});
+
+</script>
