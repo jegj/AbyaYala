@@ -37,12 +37,17 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $ethId=null) {
 		if (!$this->Note->exists($id)) {
-			throw new NotFoundException(__('Invalid note'));
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 		}
+
 		$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
-		$this->set('note', $this->Note->find('first', $options));
+
+		$note=$this->Note->find('first', $options);
+
+		$this->set(compact('note', 'ethId'));
 	}
 
 /**
@@ -72,20 +77,29 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $ethId=null, $ethName=null) {
 		if (!$this->Note->exists($id)) {
-			throw new NotFoundException(__('Invalid note'));
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+      return $this->redirect(array(
+        	'controller' => 'ethnicities',
+        	'action'=>'index')
+      );
 		}
+
 		if ($this->request->is(array('post', 'put'))) {
+
+			$this->Note->read(null, $id);
+
 			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('The note has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('<strong>Exito!</strong> Se modificó la nota exitosamente.', 'default', array(), 'success');
+				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 			} else {
-				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
+				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
 			$this->request->data = $this->Note->find('first', $options);
+			$this->set(compact('ethName', 'ethId'));
 		}
 	}
 

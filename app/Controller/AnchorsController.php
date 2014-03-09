@@ -94,13 +94,16 @@ class AnchorsController extends AppController {
  * @return void
  */
 	public function delete($id = null,$ethnicityId=null) {
-		$this->Anchor->read(null,$id);
-		if (!$this->Anchor->exists()) {
+		
+		if (!$this->Anchor->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No existe la ancla especificada.', 'default', array(), 'error');
 			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethnicityId));
 		}
+		$this->Anchor->read(null,$id);
+
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Anchor->deleteModel($id)) {
+
+		if ($this->Anchor->delete()) {
 			$this->Session->setFlash('Se eliminó la ancla exitosamente.', 'default', array(), 'success');
 		} else {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');

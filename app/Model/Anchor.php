@@ -61,34 +61,4 @@ class Anchor extends AppModel {
           'associationForeignKey' => 'ethnicity_id',
         )
   );
-
-
-	public function saveModel($data=null, $newRecord=true)
-	{
-		$success=false;
-		try{
-			if($newRecord)
-				$this->create();
-			
-			if($this->save($data))
-				$success=true;
-		}catch(Exception $e){
-			CakeLog::write('development', $e->message);
-		}
-
-		return $success;
-	}
-
-	public function deleteModel($id)
-	{
-		$success=false;
-    try{
-    	if ($this->delete($id,true))
-        $success=true;
-    }catch(Exception $e){
-      CakeLog::write('development', $e->message);
-    }
-    return $success;
-	}
-
 }

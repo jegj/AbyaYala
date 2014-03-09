@@ -60,6 +60,15 @@
 									);
 								?>
 							</li>
+
+							<li>
+								<?php
+									echo $this->Html->link("<span class='glyphicon glyphicon-folder-close'></span> Notas", array('action' => 'notes', '?'=>array('ckeditor'=>$ckeditor)),
+										array('escape' => false, 'id'=>'link_docs')
+									);
+								?>
+							</li>
+
 							<li>
 								<form action="search" role="search" class="navbar-form">
           				<div class="input-group">

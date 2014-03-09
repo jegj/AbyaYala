@@ -73,21 +73,22 @@
 									'controller'=>'notes',
 									'action' => 'view',
 									$notes['note_id'],
+									$ethnicity['Ethnicity']['ethnicity_id']
 								)
 							);
 							?>
 						</td>
 
 						<td>
-							<?= 
-							$this->Html->link(
-								'Modificar',
-								array(
-									'controller'=>'notes',
+							<?=
+							   $this->Html->link(
+									'Modificar',
+									array(
+										'controller'=>'notes',
 									'action' => 'edit',
-									$notes['note_id']
-								)
-							);
+									$notes['note_id'],
+									$ethnicity['Ethnicity']['ethnicity_id'],
+									$ethnicity['Ethnicity']['name']));
 							?>
 						</td>
 

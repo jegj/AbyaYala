@@ -1,24 +1,24 @@
 <div class="row content">
 	
 	<div class="col-md-8">
-		<h1>Etnia <?echo $ethnicity['ethnicity']['Ethnicity']['name']?></h1>
+		<h1>Etnia <?echo $ethnicity['Ethnicity']['name']?></h1>
 		<hr>
-		<?php if(count($ethnicity['anchors'])>0):?>
-			<?php foreach ($ethnicity['anchors'] as $anchor):?>
+		<?php if(count($ethnicity['Anchors'])>0):?>
+			<?php foreach ($ethnicity['Anchors'] as $anchor):?>
 				<?php
-					$name = str_replace(' ', '', $anchor['Anchor']['name']);
-					$id = $name.'_'.$anchor['Anchor']['anchor_id']
+					$name = str_replace(' ', '', $anchor['name']);
+					$id = $name.'_'.$anchor['anchor_id']
 				?>
 
 							
 				<div id = "<?php echo $id?>" class="panel panel-default">
 					<div class="panel-heading">
 								<h3 class="panel-title">
-									<?php echo $anchor['Anchor']['name']?>
+									<?php echo $anchor['name']?>
 								</h3>
 					</div>
 					<div class="panel-body">
-						<?php echo $anchor['Anchor']['description']?>
+						<?php echo $anchor['description']?>
 					</div>
 				</div>
 			<?endforeach;?>
@@ -31,7 +31,7 @@
 							array(
 							'controller'=>'anchors',
 							'action' => 'add',
-							$ethnicity['ethnicity']['Ethnicity']['ethnicity_id'],$ethnicity['ethnicity']['Ethnicity']['name']), array('class'=>'alert-link'));
+							$ethnicity['Ethnicity']['ethnicity_id'],$ethnicity['Ethnicity']['name']), array('class'=>'alert-link'));
 				?>	
 				para poder visualizar el contenido.
 			</div>
@@ -42,16 +42,16 @@
 		<div class="sidebar-nav">
 			<div style="padding: 8px 0;" class="well">
 				<ul class="nav nav-list"> 
-					<li class="dropdown-header">Anclas de <?echo $ethnicity['ethnicity']['Ethnicity']['name']?></li>
-					<?php foreach ($ethnicity['anchors'] as $anchor):?>
+					<li class="dropdown-header">Anclas de <?echo $ethnicity['Ethnicity']['name']?></li>
+					<?php foreach ($ethnicity['Anchors'] as $anchor):?>
 						<li>
 							<?php
-								$name = str_replace(' ', '', $anchor['Anchor']['name']);
-								$id = $name.'_'.$anchor['Anchor']['anchor_id']
+								$name = str_replace(' ', '', $anchor['name']);
+								$id = $name.'_'.$anchor['anchor_id']
 							?>
 							<a href='#<?php echo $id ?>'>
 								<?php
-									echo $anchor['Anchor']['name']
+									echo $anchor['name']
 								?>
 							</a>
 						</li>

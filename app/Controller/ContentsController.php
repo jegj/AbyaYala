@@ -238,6 +238,15 @@ class ContentsController extends AppController {
 		
 	}
 
+	public function notes()
+	{
+		$this->layout = 'ckeditor';
+		$ckeditor=$this->request->query['ckeditor'];
+
+
+		$this->set(compact('ckeditor'));	
+	}
+
 	public function edit($id=null)
 	{
 		if (!$id) {

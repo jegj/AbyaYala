@@ -69,45 +69,6 @@ class Ethnicity extends AppModel {
       )
   );
 
-  public function saveModel($data=null,$newRecord=true)
-  {
-      $success=false;
-    try{
-      if($newRecord)
-        $this->create();
-
-      if($this->save($data))
-        $success=true;
-    }catch(Exception $e){
-      CakeLog::write('development', $e->message);
-    }
-
-    return $success;
-  }
-
-  public function deleteAnchors($id)
-  {
-    $ethnicity=$this->findByEthnicityId($id);
-    $staticAnchor = ClassRegistry::init('Anchor');
-    $success=true;
-    foreach ($ethnicity['HasAnchors'] as $anchor){   
-      $success &= $staticAnchor->deleteModel($anchor['anchor_id'],true);
-    }
-    return $success;
-  }
-
-  public function deleteModel($id)
-  {
-    $success=false;
-    try{
-      if($this->deleteAnchors($id))
-        if ($this->delete($id,true))
-          $success=true;
-    }catch(Exception $e){
-      CakeLog::write('development', $e->message);
-    }
-    return $success;
-  }
 
   /*
   public function getCompactInformation($id)

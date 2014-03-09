@@ -124,16 +124,33 @@ class EthnicitiesController extends AppController {
             return $this->redirect(array('action'=>'index'));
         }
 
-        if ($this->Ethnicity->deleteModel($id)) {
-            if($synonym)
-                $message='el Sinónimo';
-            else
-                $message='la Etnia';
+        $this->Ethnicity->id = $id;
 
-           $this->Session->setFlash('<strong>Exito!</strong> Se eliminó '.$message.' exitosamente.', 'default', array(), 'success');
+        if (!$this->Ethnicity->exists()) {
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
             return $this->redirect(array('action'=>'index'));
+        }
+
+        //Borro los sinonimos
+        if($this->Ethnicity->deleteAll(array('Ethnicity.ethnicity_father_id ' => $id), false)){
+
+            /*OJO*/
+            //Metodo para eliminar las anclas
+
+            if ($this->Ethnicity->delete()) {
+                if($synonym)
+                    $message='el Sinónimo';
+                else
+                    $message='la Etnia';
+
+               $this->Session->setFlash('<strong>Exito!</strong> Se eliminó '.$message.' exitosamente.', 'default', array(), 'success');
+                return $this->redirect(array('action'=>'index'));
+            }else{
+            	$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+                return $this->redirect(array('action'=>'index'));
+            }
         }else{
-        	$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
             return $this->redirect(array('action'=>'index'));
         }
 
@@ -201,7 +218,7 @@ class EthnicitiesController extends AppController {
             return $this->redirect(array('action'=>'index'));
         }
 
-        $ethnicity = $this->Ethnicity->getCompactInformation($id);
+        $ethnicity = $this->Ethnicity->findByEthnicityId($id);
 
         if (!$ethnicity) {
             $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
