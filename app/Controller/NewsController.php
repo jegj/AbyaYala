@@ -120,7 +120,7 @@ class NewsController extends AppController {
 				$this->Session->setFlash('<strong>Exito!</strong> Se creo la noticia exitosamente.', 'default', array(), 'success');
         return $this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> Hubo problemas para agregar la Noticia.', 'default', array(), 'error');
 			}
 		}
 		$contents= $this->Content->find('list', array('conditions'=>array('Content.type'=>'imagen')));
@@ -151,9 +151,10 @@ class NewsController extends AppController {
 
 			} else {
 
-				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> Hubo problemas para modificar la noticia.', 'default', array(), 'error');
 			}
 			return $this->redirect(array('action' => 'index'));
+			
 		} else {
 			$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 			

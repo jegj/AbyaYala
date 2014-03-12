@@ -101,15 +101,18 @@ class EthnicitiesController extends AppController {
 
             $this->Ethnicity->set($this->request->data);
 
-            if($this->Ethnicity->validates()){
-        	    if ($this->Ethnicity->save ()){
-        	       $this->Session->setFlash($message, 'default', array(), 'success');
-                    return $this->redirect(array('action'=>'index'));
+           
+            if ($this->Ethnicity->save ()){
+        	    $this->Session->setFlash($message, 'default', array(), 'success');
+
+                return $this->redirect(
+                        array('action'=>'index'));
+
         	    }else{
-    	           $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+    	           $this->Session->setFlash('<strong>Error!</strong> Hubo problemas al crear la Etnia.', 'default', array(), 'error');
                   return $this->redirect(array('action'=>'index'));
                 }
-            }
+        
         }
 
         $this->set(compact('synonym', 'ethnicityId', 'ethnicityName'));
@@ -173,7 +176,7 @@ class EthnicitiesController extends AppController {
                 $this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la etnia exitosamente.', 'default', array(), 'success');
                 return $this->redirect(array('action'=>'index'));
             }else{
-                $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+                $this->Session->setFlash('<strong>Error!</strong> Hubo problemas al modificar la Etnia.', 'default', array(), 'error');
                 return $this->redirect(array('action'=>'index'));
             }
             

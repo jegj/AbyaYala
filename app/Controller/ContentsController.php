@@ -248,32 +248,35 @@ class ContentsController extends AppController {
 
 		$ckeditor=$this->request->query['ckeditor'];
 
-
 		$this->set(compact('ckeditor', 'ethnicity'));	
 	}
 
 	public function edit($id=null)
 	{
-		if (!$id) {
-    	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
-	  	return $this->redirect(array('action'=>'index'));
-    }
-    $content = $this->Content->findByContentId($id);
+		if (!$this->Content->exists($id)) {
+			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+      return $this->redirect(array('action'=>'index'));
+		}
 
-    if(!$content){
-    	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
-	  	return $this->redirect(array('action'=>'index'));
-	  }
+    $content = $this->Content->findByContentId($id);
 
   	if ($this->request->is(array('post', 'put'))) {
 	    $this->Content->read(null, $id);
 	  
-	  	if($this->Content->saveModel($this->request->data, false)){
+	  	if($this->Content->save($this->request->data)){
+
 	  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido exitosamente.', 'default', array(), 'success');
-	  		return $this->redirect(array('action'=>'index'));
+
+	  		return $this->redirect(
+	  			array('action'=>'index')
+	  		);
+
 	  	}else{
-	  		  $this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
-	  		  return $this->redirect(array('action'=>'index'));
+	  		$this->Session->setFlash('<strong>Error!</strong> Hubo problemas al modificar el contenido.', 'default', array(), 'error');
+
+	  		return $this->redirect(
+	  			array('action'=>'index')
+	  		);
 	  	}
     }
 

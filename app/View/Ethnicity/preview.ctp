@@ -5,6 +5,7 @@
 		<hr>
 		<?php if(count($ethnicity['Anchors'])>0):?>
 			<?php foreach ($ethnicity['Anchors'] as $anchor):?>
+
 				<?php
 					$name = str_replace(' ', '', $anchor['name']);
 					$id = $name.'_'.$anchor['anchor_id']
@@ -23,11 +24,13 @@
 				</div>
 			<?endforeach;?>
 			<div id="notas">
-				
+				<h3>Notas:</h3>
 				<?php foreach ($ethnicity['Notes'] as $note):?>
+
 					<?
-				$name = str_replace(' ', '', $note['name']);
-				?>
+					$name = str_replace(' ', '', $note['name']);
+					?>
+
 					<div id = "<?php echo $name.'_'.$note['note_id']?>" class="panel panel-default">
 						<i>"<?= $note['description']?>"</i>
 					</div>

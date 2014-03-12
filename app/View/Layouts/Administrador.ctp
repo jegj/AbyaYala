@@ -84,6 +84,7 @@
 						<div style="padding: 8px 0;" class="well">
 							<ul class="nav nav-list"> 
 							 	<li class="dropdown-header">Menú Administrador</li>
+							 
 							 	<li>
 							 		<?php
 	      						echo $this->Html->link(
@@ -95,6 +96,19 @@
 									);
 	      						?>
 							 	</li>
+
+						 		<li>
+							 		<?php
+	      						echo $this->Html->link(
+						    			'Administradores',
+								    array(
+								        'controller' => 'admins',
+								        'action' => 'index',
+								    )	
+									);
+	      						?>
+							 	</li>
+
 							 	<li>
 							 		<?php
 	      						echo $this->Html->link(
@@ -144,7 +158,7 @@
 					</div>
 				</div>
 				
-						
+
 				<div class="col-md-10" id="container-administrador">
 				
 						<?php 
