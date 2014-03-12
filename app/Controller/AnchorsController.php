@@ -74,7 +74,7 @@ class AnchorsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Anchor->read(null, $id);
 			if ($this->Anchor->save($this->request->data)){
-				$this->Session->setFlash('<strong>Error!</strong> Se actualizó la ancla exitosamente', 'default', array(), 'success');
+				$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la ancla exitosamente', 'default', array(), 'success');
 			} else {
 				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 			}

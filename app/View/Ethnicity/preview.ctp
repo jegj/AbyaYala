@@ -22,6 +22,17 @@
 					</div>
 				</div>
 			<?endforeach;?>
+			<div id="notas">
+				
+				<?php foreach ($ethnicity['Notes'] as $note):?>
+					<?
+				$name = str_replace(' ', '', $note['name']);
+				?>
+					<div id = "<?php echo $name.'_'.$note['note_id']?>" class="panel panel-default">
+						<i>"<?= $note['description']?>"</i>
+					</div>
+				<?php endforeach;?>
+			</div>
 		<?php else:?>
 			<div class="alert alert-warning" style="margin-top:40px;">
 				<strong>Oops!</strong> No existen anclas para esta Etnia.
@@ -56,6 +67,9 @@
 							</a>
 						</li>
 					<?endforeach;?>
+					<li>
+						<a href="#notas">Notas</a>
+					</li>
 					<li >
 						<a href="#preview_actions">Acciones</a>
 					</li>

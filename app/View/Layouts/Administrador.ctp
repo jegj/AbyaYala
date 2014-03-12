@@ -143,7 +143,10 @@
 						</div>
 					</div>
 				</div>
+				
+						
 				<div class="col-md-10" id="container-administrador">
+				
 						<?php 
 							$success=$this->Session->flash('success'); 
 							$error=$this->Session->flash('error');
@@ -171,13 +174,8 @@
 						<?endif;?>
 
 						<?php echo $this->fetch('content'); ?>
-						<?php
-			        echo $this->Html->image(
-			            'spinner.gif',
-			            array('id' => 'spinner')
-			        );
-    				?>
 					</div>
+
       </div>
 		</div>
 		

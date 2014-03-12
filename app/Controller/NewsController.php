@@ -144,7 +144,8 @@ class NewsController extends AppController {
 
 			$this->News->read(null, $id);
 
-			if ($this->News->save($this->request->data)) {
+			if ($this->News->save($this->request->data)) 
+			{
 
 				$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la noticia exitosamente.', 'default', array(), 'success');
 

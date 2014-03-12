@@ -16,11 +16,12 @@ class ContentsController extends AppController {
 
 	var $name ='Content';
 
-	var $uses = array('ImageContent', 'Content');
+	var $uses = array('ImageContent', 'Content', 'Ethnicity', 'EthnicityNoteForm');
 
 
 	public function index()
 	{
+		
 		
 		$this->Paginator->settings = array(
         'limit' => 5,
@@ -118,6 +119,7 @@ class ContentsController extends AppController {
 
 
     $contentPath = $content['Content']['path'];
+    
     if($contentPath){
 	    if ($this->Content->deleteModel($id)) {
 	    		if(unlink($contentPath)){
@@ -241,10 +243,13 @@ class ContentsController extends AppController {
 	public function notes()
 	{
 		$this->layout = 'ckeditor';
+
+		$ethnicity= $this->Ethnicity->find('list');
+
 		$ckeditor=$this->request->query['ckeditor'];
 
 
-		$this->set(compact('ckeditor'));	
+		$this->set(compact('ckeditor', 'ethnicity'));	
 	}
 
 	public function edit($id=null)

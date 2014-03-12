@@ -138,9 +138,17 @@ $this->Paginator->options(array(
 				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
 			?>
 			<div style="text-align:right;">
-			<?php
-				echo $this->Paginator->numbers();
-			?>
+				<div id="spinner" style="display:none;">
+						<?php
+			        echo $this->Html->image(
+			            'spinner.gif',
+			            array('id' => 'spinner:img')
+			        );
+	  				?>
+				</div>
+				<?php
+					echo $this->Paginator->numbers();
+				?>
 			</div>
 	</div>
 </div>

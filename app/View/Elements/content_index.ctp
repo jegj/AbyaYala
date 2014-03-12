@@ -18,12 +18,12 @@ $this->Paginator->options(array(
 
 <div class="row content">	
 	<div class="col-md-12">
-		<h1>Módulo de Contenido</h1>
-
+			<h1>Módulo de Contenido</h1>
+			
 		
 
 		<?php if(!$result):?>
-			<h3>Contenido en AbyaYala:</h3>
+			<h3>Contenido en AbyaYala:</h3>			
 			<form action="/AbyaYala/contents/resultsIndex" role="search" class="navbar-form" method="get">
 				<div class="input-group">
 	        <input type="text" id="srch-term" name="term" placeholder="Buśqueda" class="form-control" required>
@@ -177,9 +177,20 @@ $this->Paginator->options(array(
 				echo $this->Paginator->prev("<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-left'></span>", array('escape'=>false, 'tag'=>false));
 
 				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
-			?>
+			?>			
+
 			<div style="text-align:right;">
+			<div id="spinner" style="display:none;">
+					<?php
+		        echo $this->Html->image(
+		            'spinner.gif',
+		            array('id' => 'spinner:img')
+		        );
+  				?>
+			</div>
+	
 			<?php
+
 				echo $this->Paginator->numbers();
 			?>
 			</div>

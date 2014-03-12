@@ -61,6 +61,7 @@ $(function(){
 
 
             var estado=data.result.status;
+            //estado = jQuery.parseJSON(data.result).status;
 
             if(estado=='success'){
                 $('#upload_files li:last-child img').attr('src','../app/webroot/assets/imagenes/test-pass-icon.png')

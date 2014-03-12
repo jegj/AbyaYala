@@ -44,3 +44,6 @@ function cargaExitosa()
 	$('#ckeditor_contenidos').html(data);
 }
 
+
+
+

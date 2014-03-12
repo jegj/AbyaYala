@@ -157,31 +157,26 @@ class EthnicitiesController extends AppController {
 	}  
 
 	public function edit($id = null, $synonym=null) {
-       if (!$id) {
+
+        if (!$this->Ethnicity->exists($id)) {
             $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
             return $this->redirect(array('action'=>'index'));
         }
 
         $ethnicity = $this->Ethnicity->findByEthnicityId($id);
 
-        if (!$ethnicity) {
-            $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
-            return $this->redirect(array('action'=>'index'));
-        }
+        $this->Ethnicity->read(null, $id);
 
         if ($this->request->is(array('post', 'put'))) {
-            
-            $this->Ethnicity->read(null, $id);
-            $this->Ethnicity->set($this->request->data);
-            if($this->Ethnicity->validates()){
-                if ($this->Ethnicity->saveModel($this->request->data,false)) {
-                    $this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la etnia exitosamente.', 'default', array(), 'success');
-                    return $this->redirect(array('action'=>'index'));
-                }else{
-                    $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
-                    return $this->redirect(array('action'=>'index'));
-                }
+
+            if ($this->Ethnicity->save($this->request->data)){
+                $this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la etnia exitosamente.', 'default', array(), 'success');
+                return $this->redirect(array('action'=>'index'));
+            }else{
+                $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+                return $this->redirect(array('action'=>'index'));
             }
+            
         }
 
         if (!$this->request->data) {
@@ -228,5 +223,19 @@ class EthnicitiesController extends AppController {
         $this->set(compact('ethnicity'));
     }
 
+    public function notes()
+    {
+        if ($this->request->is('post')) {
+
+            $id=$this->data['Ethnicity']['id'];
+            $ethnicity=$this->Ethnicity->findByEthnicityId($id);
+            if($ethnicity)
+                $this->set('ethnicity',$ethnicity);     
+            else{
+                $error=true;
+                $this->set('error',$error);
+            }
+        }   
+    }
 
 }
