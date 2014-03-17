@@ -91,7 +91,7 @@ img.member-box-avatar {
 	position: fixed; bottom: 100px; right: 100px;
 	width: 80px;
 	height: 25px;
-	font: bold 0.9em/1.2em Arial, Helvetica, sans-serif; 
+	font: bold 0.9em/1.2em Arial, |vetica, sans-serif; 
 	color: #bbb !important; text-transform: uppercase; text-decoration: none;
 	padding: 10px;
 	border-radius: 5px;
@@ -147,11 +147,20 @@ form .error,form .error-message {
 .carousel-caption{
 	padding-bottom: 0px;
 	bottom: 0px;
-	background-color:rgba(0,0,0,.5);
+	
 }
 
 .carousel-caption h3{
 	color: white;
+}
+
+/*
+.peopleCarouselImg img {
+ 	width: auto;
+ 	width: auto;
+
+  height: 150px !important;
+  max-height: 150px !important;
 }
 
 /*

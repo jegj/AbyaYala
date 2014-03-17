@@ -10,14 +10,25 @@ class UsersController extends AppController
 	var $name ='User';
 	var $layout = 'Usuario';
 
+	var $uses = array('ImageContent', 'Content', 'Ethnicity', 'EthnicityNoteForm', 'News');
+
 	public function index()
 	{	
-		$this->set('prueba', 'esto es una prueba');
+		$news = $this->News->find('all', 
+			array('limit'=>5)
+		);
+
+		$this->set(compact('news'));
 	}
 
-	public function index2()
-	{	
-		$this->layout='UsuarioLogos';
-		$this->set('prueba', 'esto es una prueba');
+	public function abyayala()
+	{
+
 	}
+
+	public function address()
+	{
+
+	}
+
 }

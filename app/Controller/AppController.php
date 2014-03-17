@@ -34,6 +34,18 @@ App::uses('Controller', 'Controller');
 
 
 class AppController extends Controller {
-	 public $components = array('DebugKit.Toolbar');
-	 public $theme = 'Cakestrap';
+	public $components = array('DebugKit.Toolbar');
+	public $theme = 'Cakestrap';
+
+	public function canAccess(){
+		if(!$this->Session->check('Admin')){
+      $this->Session->setFlash('<strong>Ups!</strong> Debe Autenticarse como Administrador para acceder a esta Página', 'default', array(), 'error');
+    	return $this->redirect(
+      	array('action'=>'login',
+      		'controller' => 'admins'
+      	)
+    	);
+    }else
+    	return true;
+  }
 }

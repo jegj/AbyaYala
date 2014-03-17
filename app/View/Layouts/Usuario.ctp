@@ -10,9 +10,12 @@
 		echo $this->Html->css('bootstrap/bootstrap.min');
 		echo $this->Html->css('abyayala/abyayala');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
+		echo $this->Html->css('../js/upload/css/style');
+		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
+		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
 	?>
 	<!-- Archivos Javascript-->
-	<?
+		<?
 		echo $this->Html->script('jquery/jquery-1.10.2.min', array('inline' => false));
 
 		echo $this->Html->script('prettyPhoto/jquery.prettyPhoto', array('inline' => false));
@@ -23,9 +26,18 @@
 
 		echo $this->Html->script('jquery-validation/additional-methods.min', array('inline' => false));
 
-		//echo $this->Html->script('ckeditor/ckeditor');
+		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
-		//echo $this->Html->script('AbyaYala/validaciones', array('inline' => false));
+		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	
+		echo $this->Html->script('upload/js/jquery.fileupload', array('inline' => false));		
+		echo $this->Html->script('upload/js/script', array('inline' => false));
+		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
+		echo $this->Html->script('underscore/underscore',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 	?>
 		
 	<?php
@@ -35,108 +47,136 @@
 	?>
 </head>
 <body>
-	<div id="wrapper">
-		<div class="container">
-			<!-- ------- NAVBAR-------- -->
-			<nav class="navbar navbar-default" role="navigation" id="navbar">
-			  <div class="navbar-header">
-			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			      <span class="sr-only">Toggle navigation</span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			    </button>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<div class="row">
+		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" style="color:#D5AE37;">AbyaYala</a>
+				</div>
+				<div class="collapse navbar-collapse">
 				  <ul class="nav navbar-nav">
-				    <li class="active">
-				    	<a href="#">Inicio</a>
-				    </li>
-				    <li>
-				    	<a href="#">Proyecto AbyaYala</a>	
-				    </li>
-				    <li>
-				    	<a href="#">Familia Lingüística</a>
-				    </li>
-				    <li>
-				    	<a href="#">Rastros Indígenas</a>
-				    </li>
-				    <li>
-				    	<a href="#">Galería</a>
-				    </li>
-				    <li class="dropdown">
-			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Investigación 
-			        	<b class="caret"></b>
-			        </a>
-			        <ul class="dropdown-menu">
-			          <li>
-			          	<a href="#">Leyes Indígenas</a>
-			          </li>
-			          <li class="divider"></li>
-			          <li>
-			          	<a href="#">Trabajos y Artículos</a>
-			          </li>
-			        </ul>
-			      </li>
-				    
-				    <li>
-				    	<a href="#">Administrador</a>
-				    </li>
-			       <form class="navbar-form navbar-right" role="search">
-				      <div class="form-group">
-				        <input type="text" class="form-control" placeholder="Búsqueda">
-				      </div>
-				      <button type="submit" class="btn btn-default">Buscar</button>
+						<li class="active">
+							<?=
+								$this->Html->link('Inicio', array(
+										'controller'=>'users',
+										'action' => 'index'
+										)
+									);
+							?>
+						</li>
+
+						<li>
+							<?=
+								$this->Html->link('Proyecto AbyaYala', array(
+										'controller'=>'users',
+										'action' => 'abyayala'
+										)
+									);
+							?>
+						</li>
+
+					<li><a href="#contact">Familia Linguistica</a></li>
+					<li><a href="#contact">Rastros Indigenas</a></li>
+					<li><a href="#contact">Galeria</a></li>
+					<li><a href="#contact">Investigación</a></li>
+					<form role="search" class="navbar-form navbar-right">
+				      <input class="form-control" type="text" placeholder="Búsqueda...">
 				    </form>
 				  </ul>
-		  	</div>	
-			</nav>
-		</div>
+				</div><!-- /.nav-collapse -->
+			</div><!-- /.container -->
+		</div><!-- /.navbar -->
+	</div>
 
-		<!--CONTENIDO-->
-		<div class="container">			
-		  <div id="background-banner" class="col-md-12">
+	<div class="row" style="margin-top:30px;">
+		<div class="container-fluid">
+			<div id="background-banner" class="col-md-12">
 				<div id="logo" class="col-md-11">
 		  		<a href="#">
-		  			<img alt="AbyaYala" height="76" src="app/webroot/assets/imagenes/banner.png" width="250"> 
+		  			<img alt="AbyaYala" height="76" src="<?php echo $this->webroot;?>assets/imagenes/banner.png" width="250"> 
 		  		</a>
 				</div>
 				<div class="col-md-1" style="padding-left:0px;">
-					<img alt="Tehedor"  src="app/webroot/assets/imagenes/indio_7.jpg" width="100" height="115"> 
+					<img alt="Tehedor" class="img-responsive" src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
 				</div>
 			</div>
-			<?php echo $this->Session->flash(); ?>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="container">
+			<?php 
+				$success=$this->Session->flash('success'); 
+				$error=$this->Session->flash('error');
+				$warning=$this->Session->flash('warning');
+			?>
+
+			<div style="margin-top:30px;">
+				<?php if($success):?>
+					<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<?php echo $success; ?>
+					</div>
+				<?endif;?>
+
+				<?php if($error):?>
+					<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<?php echo $error; ?>
+					</div>
+				<?endif;?>
+
+				<?php if($warning):?>
+					<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<?php echo $warning; ?>
+					</div>
+				<?endif;?>
+			</div>
+			
 			<?php echo $this->fetch('content'); ?>
 		</div>
-</div>
+	</div>
 
-		<!--FOOTER-->
-	<div class = "navbar navbar-default navbar-fixed-bottom">
-		 <div id="footer">
-	  	<div class = "container">  
-				<div id="footer-text">
-					<p>
-						<a href="http://www.ciens.ucv.ve/ciens/">
-							<img src="app/webroot/assets/imagenes/logo_ucv_fc.png" alt="Ciencias" width="30" height="30">
-						</a>
-						::
-						<a href="http://www.ucv.ve/">Universidad Central de Venezuela</a>
-						::
-						<a href="#">Contáctenos </a>
-						::
-						<a href="#">Créditos</a>
-						::
-						<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion.html">
-							<img src="app/webroot/assets/imagenes/logo_ucv_fhe.png" alt="Humanidades" width="30" height="30">
-						</a
-					</p>
-						
-					<p>
-						© 2014 Universidad Central de Venezuela. Derechos reservados. 
-					</p>
+
+	<!--FOOTER-->
+	<footer class="bs-docs-footer" role="contentinfo">
+		<div class="container-fluid">
+			<div class="row" >
+				
+				<div id="logos">
+					<img src="<?php echo $this->webroot;?>img/ceneac_logo.png" width=110, height=110>
+					<img src="<?php echo $this->webroot;?>img/esc_comp.png" width=110, height=110>
+					<img src="<?php echo $this->webroot;?>img/ucv_ciencias_logo.png" width=110, height=110>
+					<img src="<?php echo $this->webroot;?>img/ucv_log.png">
+					<img src="<?php echo $this->webroot;?>img/ucv_hum_logo.png" width=110, height=110>
+					<img src="<?php echo $this->webroot;?>img/esc_arte.png" width=110, height=110>
+					<img src="<?php echo $this->webroot;?>img/cediarte_logo.png" width=110, height=110>
 				</div>
+				
+				
+				<p class="copyright">©2014 Universidad Central de Venezuela</p>
+				<p class="copyright">Ciudad Universitaria, Los Chaguaramos Caracas, Venezuela.</p>
+				<p class="copyright">Código Postal: 1050 Rif: G-20000062-7</p>
+				<p></p>
+				<p></p>
+				<p>
+					<a href="#"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
+					<a href="#"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
+					<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
+					<a href="#"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
+				</p>
 			</div>
-	  </div>          
-  </div>
+		</div>
+	</footer>
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdec7hQ_YxfvvwaejZYtQcrUZzDPE9Evo&sensor=true">
+	</script>
 </body>
 </html>

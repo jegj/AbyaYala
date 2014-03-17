@@ -27,41 +27,28 @@ class Admin extends AppModel {
 		'admin_id' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-
-		/*Validaciones para el nombre del Admin*/
 		'name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'El nombre no puede ser vacío'
-			),
-			'onlyLetters' => array(
-				'rule' => array('custom', '|^[a-zA-Z ]*$|'),
-				'message' => 'El nombre debe contener solo letras'
 			),
 			'length' => array(
 				'rule'=> array('between', 5, 45),
 				'message' => 'El nombre debe estar entre 3 y 45 caracteres'
 			),
 		),
-		/*Validaciones para el apellido del Admin*/
 		'last_name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'EL apellido no puede ser vacío',
-			),
-			'onlyLetters' => array(
-				'rule' => array('custom', '|^[a-zA-Z ]*$|'),
-				'message' => 'El apellido debe contener solo letras'
 			),
 			'length' => array(
 				'rule'=> array('between', 5, 45),
 				'message' => 'El apellido debe estar entre 3 y 45 caracteres'
 			),
 		),
-		/* Validaciones para el email del Admin*/
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
@@ -80,13 +67,11 @@ class Admin extends AppModel {
 				'message' => 'EL email no puede ser vacío'
 			)
 		),
-		/*Validaciones para el tipo de Admin*/
 		'type' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 			),
 		),
-		/*Validaciones para la contraseña del Admin*/
 		'password' => array(
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
@@ -132,5 +117,7 @@ class Admin extends AppModel {
   	}	
     return $data;
   }
+
+
 
 }

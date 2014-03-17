@@ -47,7 +47,6 @@
 	?>
 </head>
 <body>
-
 		<div id="background-banner" class="col-md-12">
 			<div id="logo" class="col-md-11">
 	  		<a href="#">
@@ -67,15 +66,28 @@
 	    				<img class="member-box-avatar" src="<?php echo $this->webroot;?>img/member.png">
 	    			</a>
 		        <span>
-		            <strong>Administrador</strong><br>
-		            <a>Javier Galarza</a><br>
+		            <b>
+		            	<?php
+		            		echo $this->Session->read('Admin')['Admin']['name']. ' '.$this->Session->read('Admin')['Admin']['last_name'];
+		            	?>
+		            </b>
+		            <br>
+		            <br>
 		            <p></p>
 		            <span class="member-box-links">
 		            	<p>
-		            		<a href="#">Opciones</a>
+		            		<?php
+		            			echo $this->Html->link('Cambiar Contraseña', array('action'=>'changePassword', 'controller' => 'admins'))
+		            		?>
 		            	</p>
 		            	<p>
-		            		<a href="#">Salir</a>
+		            		<?php 
+		            		echo $this->Html->link('			Salir', array(
+		            					'action'=>'closeSession',
+		            					'controller' =>
+		            					'admins'
+		            			));
+		            		?>
 		            	</p>
 		            </span>
 		        </span>

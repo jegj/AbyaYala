@@ -22,6 +22,7 @@ class ContentsController extends AppController {
 	public function index()
 	{
 		
+		$this->canAccess();
 		
 		$this->Paginator->settings = array(
         'limit' => 5,
