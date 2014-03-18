@@ -52,22 +52,30 @@ class AdminsController extends AppController
   {
     $this->canAccess();
 
-    $obtenerID= $this->Session->read('Admin')['Admin']['admin_id']; 
+    $obtenerID= $this->Session->read('Admin')['Admin']['admin_id'];  
 
-    // $ObtenerTipoAdmin= $this->Session->read('Admin.type');   
-
-    $this->Admin->id = $obtenerID;
+    $this->Admin->read(null, $obtenerID);
 
     if ($this->request->is('post')) {
-      $change= $this->request->data['Admin']['password'];
-      if ($this->Admin->guardarEdit($change)==true) {
-          if ($ObtenerTipoAdmin==0) {
-              $this->Session->setFlash('ha modificado su contraseña');
-               $this->redirect(array('action' => 'adminGlobal'));
-          }else{
-              $this->Session->setFlash('ha modificado su contraseña');
-              $this->redirect(array('action' => 'adminContenido'));
-         }
+
+      $oldPassword = $this->request->data['Admin']['oldPassword'];
+      $newPassword = $this->request->data['Admin']['newPassword'];
+      $confNewPassword = $this->request->data['Admin']['confNewPassword'];
+
+      $rpta = $this->Admin->changePassword( 
+        $oldPassword, $newPassword, 
+        $confNewPassword);
+
+      if($rpta['error']){      
+        $this->Session->setFlash($rpta['error'], 'default', array(), 'error');
+        return $this->redirect(
+          array('action'=>'changePassword')
+        );
+      }else if ($rpta['success']){
+        $this->Session->setFlash($rpta['success'], 'default', array(), 'success');
+        return $this->redirect(
+          array('action'=>'index')
+        );
       }
     }
   }

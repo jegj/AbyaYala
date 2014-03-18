@@ -73,36 +73,19 @@ class Admin extends AppModel {
 			),
 		),
 		'password' => array(
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-			),
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'La contraseña no puede ser vacía'
 			),
 			'length' => array(
-				'rule' => array('between', 8, 45),
-				'message' => 'La contraseña debe estar entre 8 y 45 caracteres'
+				'rule' => array('between', 5, 45),
+				'message' => 'La contraseña debe estar entre 5 y 45 caracteres'
 			)
 		),
-		'passwordConfirm' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'La confirmación de la contraseña no puede ser vacía'
-			),
-			'length' => array(
-				'rule' => array('between', 8, 45),
-				'message' => 'La confirmación de la contraseña debe estar entre 8 y 45 caracteres'
-			),
-			'match' => array(
-				'rule' => 'validatePasswdConfirm',
-				'message' => 'Las contraseñas no coinciden'
 
-			)
-		)
 	);
 
-	function validatePasswdConfirm($data)
+	public function validatePasswdConfirm($data)
   {
     if ($this->data['Admin']['password'] !== $data['passwd_confirm']) 
       return false;
@@ -110,12 +93,36 @@ class Admin extends AppModel {
     return true;
   }
 
+  public function changePassword($old, $new, $confNew)
+  {
+	 	$result = array();
+    try{
+
+    	if($this->data['Admin']['password'] != md5($old)){
+    		$result['error'] = '<strong>Error!</strong> La Contraseña Antigua no es correcta.';
+    	}else{
+    		if($new != $confNew){
+    			$result['error'] = '<strong>Error!</strong> La Contraseña Nueva y su confirmación no son iguales.';
+    		}else{
+    			if($this->saveField('password', $new)){
+            $result['success'] = '<strong>Exito!</strong> Ha cambiado su contraseña exitosamente.';
+        	}else{
+        		$result['error'] = '<strong>Error!</strong> No se puedo guardar la contraseña Nueva.';
+        	}
+    		}
+    	}
+    }catch (Exception $e){
+      CakeLog::write('exception', $e->getMessage('Error'));       
+    }
+    return $result;
+  }
+
+
   function beforesave($options = array()) {
    	if (isset($this->data['Admin']['password'])) {
     	 $this->data['Admin']['password'] = md5($this->data['Admin']['password']);
-   		return $data;
   	}	
-    return $data;
+    return parent::beforeSave();
   }
 
 
