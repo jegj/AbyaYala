@@ -49,8 +49,8 @@ class NewsController extends AppController {
  */
 	public function index() {
 		$this->Paginator->settings = array(
-            'limit' => 5,
-            'paamType'=>'querystring',     
+      'limit' => 5,
+      'paamType'=>'querystring',     
     );
 
 		try{
@@ -147,22 +147,22 @@ class NewsController extends AppController {
 			if ($this->News->save($this->request->data)) 
 			{
 
-				$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la noticia exitosamente.', 'default', array(), 'success');
+				$this->Session->setFlash('<strong>Exito!</strong> Se actualizó modificó la noticia exitosamente.', 'default', array(), 'success');
+				return $this->redirect(array('action' => 'index'));
 
 			} else {
 
 				$this->Session->setFlash('<strong>Error!</strong> Hubo problemas para modificar la noticia.', 'default', array(), 'error');
 			}
-			return $this->redirect(array('action' => 'index'));
+		
 			
-		} else {
+		} 
 			$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 			
 			$contents= $this->Content->find('list', array('conditions'=>array('Content.type'=>'imagen')));
 			$this->request->data = $this->News->find('first', $options);
 			
 			$this->set(compact('contents'));
-		}
 	}
 
 /**
@@ -177,8 +177,8 @@ class NewsController extends AppController {
 		if (!$this->News->exists()) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
       return $this->redirect(array('action'=>'index'));
-
 		}
+		
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->News->delete()) {
 			$this->Session->setFlash('<strong>Exito!</strong> Se eliminó  la noticia exitosamente.', 'default', array(), 'success');

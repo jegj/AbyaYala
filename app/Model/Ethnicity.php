@@ -36,11 +36,11 @@ class Ethnicity extends AppModel {
       ),
       'between' => array(
           'rule'    => array('between', 3, 45),
-          'message' => 'El campo solo pemite entre 3 y 45 caracteres'
+          'message' => 'El campo debe tener entre 3 y 45 caracteres'
       ),
       'unique' => array(
         'rule' => 'isUnique',
-        'message' => 'El nombre se encuentra repetido'
+        'message' => 'El nombre de la Etnia se encuentra repetido'
       ),
 		),
 	);
@@ -68,25 +68,4 @@ class Ethnicity extends AppModel {
         'associationForeignKey' => 'note_id',
       )
   );
-
-
-  /*
-  public function getCompactInformation($id)
-  {
-    $ethnicity=$this->findByEthnicityId($id);
-    $staticAnchor = ClassRegistry::init('Anchor');
-    $anchors=array();
-    
-    foreach ($ethnicity['HasAnchors'] as $anchor) {   
-      array_push($anchors, $staticAnchor->find('first',
-        array(
-          'conditions' => array('anchor_id' =>$anchor['anchor_id'] ),
-          'fields' => array('anchor_id', 'name', 'description'),
-        )
-      ));
-    }
-    
-    return compact('anchors','ethnicity');
-  }
-  */
 }

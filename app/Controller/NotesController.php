@@ -61,10 +61,10 @@ class NotesController extends AppController {
 
 			if($this->Note->save($this->request->data)) {
 				$this->Session->setFlash('<strong>Exito!</strong> Se creo la nota exitosamente.', 'default', array(), 'success');
+				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 			}else {
-				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> Hubo problemas para crear la Nota.', 'default', array(), 'error');
 			}
-			return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 		}
 
 		$this->set(compact('ethId', 'ethName'));
@@ -94,13 +94,13 @@ class NotesController extends AppController {
 				$this->Session->setFlash('<strong>Exito!</strong> Se modificó la nota exitosamente.', 'default', array(), 'success');
 				return $this->redirect(array('controller'=>'ethnicities','action' => 'view',$ethId));
 			} else {
-				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+				$this->Session->setFlash('<strong>Error!</strong> Hubo problema para modificar la Nota.', 'default', array(), 'error');
 			}
-		} else {
-			$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
-			$this->request->data = $this->Note->find('first', $options);
-			$this->set(compact('ethName', 'ethId'));
-		}
+		} 
+		$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
+		$this->request->data = $this->Note->find('first', $options);
+		$this->set(compact('ethName', 'ethId'));
+		
 	}
 
 /**

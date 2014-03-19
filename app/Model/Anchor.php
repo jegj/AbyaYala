@@ -33,7 +33,7 @@ class Anchor extends AppModel {
 		'name'=>array(      
       'between' => array(
           'rule'    => array('between', 3, 45),
-          'message' => 'Entre 3 y 45 caracteres'
+          'message' => 'El campo debe tener entre 3 y 45 caracteres'
       )
 		),
 		'description' => array(

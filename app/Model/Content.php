@@ -27,6 +27,20 @@ class Content extends AppModel {
  */
 	public $displayField = 'name';
 
+
+	public $validate = array(
+		'name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'El nombre no puede ser vacío'
+			),
+			'length' => array(
+				'rule'=> array('between', 3, 45),
+				'message' => 'El nombre debe estar entre 3 y 45 caracteres'
+			),
+		)
+	);
+
 	
 	public $hasOne = array(
 		 'News' => array(

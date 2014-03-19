@@ -35,7 +35,7 @@ class Admin extends AppModel {
 				'message' => 'El nombre no puede ser vacío'
 			),
 			'length' => array(
-				'rule'=> array('between', 5, 45),
+				'rule'=> array('between', 3, 45),
 				'message' => 'El nombre debe estar entre 3 y 45 caracteres'
 			),
 		),
@@ -45,7 +45,7 @@ class Admin extends AppModel {
 				'message' => 'EL apellido no puede ser vacío',
 			),
 			'length' => array(
-				'rule'=> array('between', 5, 45),
+				'rule'=> array('between', 3, 45),
 				'message' => 'El apellido debe estar entre 3 y 45 caracteres'
 			),
 		),
@@ -59,7 +59,7 @@ class Admin extends AppModel {
 				'message' => 'El email ya esta siendo utilizado por otro usuario'
 			),
 			'length' => array(
-				'rule' => array('between', 12, 45),
+				'rule' => array('between', 3, 45),
 				'message' => 'El email debe estar entre 3 y 45 caracteres'
 			),
 			'notEmpty' => array(
@@ -82,7 +82,20 @@ class Admin extends AppModel {
 				'message' => 'La contraseña debe estar entre 5 y 45 caracteres'
 			)
 		),
-
+		'passwd_confirm' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'La Confirmación de la Contraseña no puede ser vacía'
+			),
+			'length' => array(
+				'rule' => array('between', 5, 45),
+				'message' => 'La Confirmación de la Contraseña debe estar entre 5 y 45 caracteres'
+			),
+			'match' => array(
+				'rule' => 'validatePasswdConfirm',
+				'message' => 'Las Contraseñas deben coincidir'
+			),
+		)
 	);
 
 	public function validatePasswdConfirm($data)

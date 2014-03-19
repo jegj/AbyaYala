@@ -102,6 +102,7 @@
 				},
 				"data[Admin][password]":{
 					required:true,
+					rangelength: [5, 45],
 				},
 			},
 			messages: {
@@ -112,7 +113,7 @@
 				},
 				"data[Admin][password]":{
 					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+					rangelength: 'El campo debe tener entre 5 y 45 caracteres'
 				}
 			},
 			highlight: function(element) {

@@ -109,17 +109,23 @@
 	      						?>
 							 	</li>
 
+							 	<?php
+							 		if(!$this->Session->read('Admin')['Admin']['type']):
+							 	?>
 						 		<li>
 							 		<?php
 	      						echo $this->Html->link(
 						    			'Administradores',
 								    array(
 								        'controller' => 'admins',
-								        'action' => 'index',
+								        'action' => 'allAdmins',
 								    )	
 									);
 	      						?>
 							 	</li>
+							 	<?php
+							 		endif;
+							 	?>
 
 							 	<li>
 							 		<?php

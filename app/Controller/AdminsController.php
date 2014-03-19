@@ -17,7 +17,6 @@ class AdminsController extends AppController
   {
     $this->canAccess();
 
-
   }     
 
   public function login ()
@@ -47,6 +46,49 @@ class AdminsController extends AppController
       }
     }
   }
+
+  public function allAdmins()
+  {
+    $this->canAccess();
+    $this->onlyGlobalAdmin();
+
+    $this->Paginator->settings = array(
+      'limit' => 5,
+      'paamType'=>'querystring',     
+    );
+
+    try{
+      $admins = $this->Paginator->paginate('Admin');
+    }catch (NotFoundException $e) {
+      return $this->redirect(array('action'=>'index'));
+    }
+
+    $this->set('admins', $admins);
+
+  }
+
+  public function resultsIndex()
+  {
+    if(isset($this->request->query['term']))
+      $term=$this->request->query['term'];
+    else
+      $term=false;
+
+    if($term)
+      $this->Paginator->settings = array(
+          'limit' => 5,
+          'paramType'=>'querystring',
+          'conditions' => array('Admin.name LIKE' => "%$term%")     
+      );
+    try{
+       $admins = $this->Paginator->paginate('Admin');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'index'));
+    }
+
+    $this->set(compact('admins'));
+  }
+
 
   public function changePassword()
   {
@@ -78,6 +120,26 @@ class AdminsController extends AppController
         );
       }
     }
+  }
+
+  public function add()
+  {
+    $this->canAccess();
+    $this->onlyGlobalAdmin();
+    if ($this->request->is('post')) {      
+      if ($this->Admin->save($this->request->data)) {
+        $this->Session->setFlash('<strong>Exito!</strong> Se creo el Administrador exitosamente.', 'default', array(), 'success');
+        return $this->redirect(array('action' => 'index'));
+      }else{
+        $this->Session->setFlash('<strong>Error!</strong> Hubo problemas para crear el Administrador.', 'default', array(), 'error');
+      }
+    }
+  }
+
+  public function delete($id = null)
+  {
+    $this->canAccess();
+    $this->onlyGlobalAdmin();
   }
 
   public function closeSession(){

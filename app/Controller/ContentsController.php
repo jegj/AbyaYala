@@ -274,10 +274,9 @@ class ContentsController extends AppController {
 
 	  	}else{
 	  		$this->Session->setFlash('<strong>Error!</strong> Hubo problemas al modificar el contenido.', 'default', array(), 'error');
-
-	  		return $this->redirect(
+	  		/*return $this->redirect(
 	  			array('action'=>'index')
-	  		);
+	  		);*/
 	  	}
     }
 

@@ -57,7 +57,7 @@ class News extends AppModel {
 			),
 			'between' => array(
 	      'rule'    => array('between', 3, 150),
-	      'message' => 'El campo solo pemite entre 3 y 150 caracteres'
+	      'message' => 'El campo debe tener entre 3 y 150 caracteres'
       ),
 		),
 
@@ -76,7 +76,7 @@ class News extends AppModel {
 			),
 			'between' => array(
 	      'rule'    => array('between', 3, 45),
-	      'message' => 'El campo solo pemite entre 3 y 45 caracteres'
+	      'message' => 'El campo debe tener entre 3 y 45 caracteres'
       ),
 		),
 

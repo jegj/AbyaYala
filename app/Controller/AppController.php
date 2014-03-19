@@ -48,4 +48,21 @@ class AppController extends Controller {
     }else
     	return true;
   }
+
+  public function onlyGlobalAdmin()
+  {
+    $adminType = $this->Session->read('Admin')['Admin']['type'];
+
+    if(!$adminType)
+      return true;
+    else{
+       $this->Session->setFlash('<strong>Ups!</strong> Debe ser Administrador Global para acceder a esta Sección', 'default', array(), 'error');
+      return $this->redirect(
+        array('action'=>'index',
+          'controller' => 'admins'
+        )
+      );
+    }
+
+  }
 }

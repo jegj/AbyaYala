@@ -110,7 +110,6 @@ class EthnicitiesController extends AppController {
 
         	    }else{
     	           $this->Session->setFlash('<strong>Error!</strong> Hubo problemas al crear la Etnia.', 'default', array(), 'error');
-                  return $this->redirect(array('action'=>'index'));
                 }
         
         }
@@ -136,9 +135,6 @@ class EthnicitiesController extends AppController {
 
         //Borro los sinonimos
         if($this->Ethnicity->deleteAll(array('Ethnicity.ethnicity_father_id ' => $id), false)){
-
-            /*OJO*/
-            //Metodo para eliminar las anclas
 
             if ($this->Ethnicity->delete()) {
                 if($synonym)
@@ -176,8 +172,7 @@ class EthnicitiesController extends AppController {
                 $this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información de la etnia exitosamente.', 'default', array(), 'success');
                 return $this->redirect(array('action'=>'index'));
             }else{
-                $this->Session->setFlash('<strong>Error!</strong> Hubo problemas al modificar la Etnia.', 'default', array(), 'error');
-                return $this->redirect(array('action'=>'index'));
+                $this->Session->setFlash('<strong>Error!</strong> Hubo problemas para modificar la Etnia.', 'default', array(), 'error');
             }
             
         }
