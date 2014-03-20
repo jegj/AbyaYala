@@ -48,6 +48,9 @@ class NewsController extends AppController {
  * @return void
  */
 	public function index() {
+
+		$this->canAccess();
+
 		$this->Paginator->settings = array(
       'limit' => 5,
       'paamType'=>'querystring',     
@@ -69,6 +72,8 @@ class NewsController extends AppController {
  */
 	public function resultsIndex()
 	{
+		$this->canAccess();
+
 		if(isset($this->request->query['term']))
 			$term=$this->request->query['term'];
 		else
@@ -97,6 +102,9 @@ class NewsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+
+		$this->canAccess();
+
 		if (!$this->News->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No existe la noticia especificada.', 'default', array(), 'error');
     	return $this->redirect(array('action'=>'index'));
@@ -112,6 +120,9 @@ class NewsController extends AppController {
  * @return void
  */
 	public function add() {
+
+		$this->canAccess();
+
 		if ($this->request->is('post')) {
 			$this->News->create();
 			$this->request->data['current_date']=date('Y-m-d H:i:s');
@@ -135,6 +146,9 @@ class NewsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+
+		$this->canAccess();
+
 		if (!$this->News->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
       return $this->redirect(array('action'=>'index'));
@@ -173,6 +187,9 @@ class NewsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+
+		$this->canAccess();
+		
 		$this->News->id = $id;
 		if (!$this->News->exists()) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');

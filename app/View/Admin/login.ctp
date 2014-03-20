@@ -6,9 +6,14 @@
           	Administradores
           </div>
           <div style="float:right; font-size: 80%; position: relative; top:-10px">
-          	<a href="#">
-          		¿Olvido su contraseña?
-          	</a>
+          	<?php
+          		echo $this->Html->link('¿Olvido su contraseña?',
+          			array(
+          				'action' => 'forgot',
+          				'controller' => 'admins'
+          			)
+          		);	
+          	?>|
           </div>
       </div>     
 

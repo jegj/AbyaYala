@@ -27,6 +27,8 @@ class MessagesController extends AppController {
  */
 	public function index() {
 
+		$this->canAccess();
+
 		$this->Paginator->settings = array(
             'limit' => 5,
             'paamType'=>'querystring',
@@ -55,6 +57,8 @@ class MessagesController extends AppController {
  */
 	public function resultsIndex()
 	{
+		$this->canAccess();
+
 		if(isset($this->request->query['term']))
 			$term=$this->request->query['term'];
 		else
@@ -90,6 +94,8 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->canAccess();
+
 		if (!$this->Message->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No existe el mensaje especificado.', 'default', array(), 'error');
     	return $this->redirect(array('action'=>'index'));
@@ -135,6 +141,9 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		
+		$this->canAccess();
+
 		$this->Message->id = $id;
 
 		if (!$this->Message->exists()) {

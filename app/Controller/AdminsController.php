@@ -4,6 +4,9 @@
 *
 */
 
+App::uses('CakeEmail', 'Network/Email');
+App::uses('MiscLib', 'Lib');
+
 class AdminsController extends AppController
 {
 	var $name ='Admin';
@@ -69,6 +72,8 @@ class AdminsController extends AppController
 
   public function resultsIndex()
   {
+    $this->canAccess();
+
     if(isset($this->request->query['term']))
       $term=$this->request->query['term'];
     else
@@ -125,6 +130,7 @@ class AdminsController extends AppController
   public function add()
   {
     $this->canAccess();
+    
     $this->onlyGlobalAdmin();
     if ($this->request->is('post')) {      
       if ($this->Admin->save($this->request->data)) {
@@ -140,6 +146,45 @@ class AdminsController extends AppController
   {
     $this->canAccess();
     $this->onlyGlobalAdmin();
+
+    $this->Admin->id =$id;
+
+    if (!$this->Admin->exists($id)) {
+      $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+      return $this->redirect(array('action'=>'index'));
+    }
+
+    $this->request->onlyAllow('post', 'delete');
+
+    if ($this->Admin->delete()) {
+      $this->Session->setFlash('<strong>Exito!</strong> Se eliminó  el Administrador exitosamente.', 'default', array(), 'success');
+    } else {
+      $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+    }
+    return $this->redirect(array('action' => 'index'));
+
+  }
+
+  public function forgot()
+  {
+    $this->layout = 'Usuario';
+    if ($this->request->is('post')){
+      $email = $this->request->data['Admin']['email'];
+      $admin  = $this->Admin->find('first',
+        array('conditions' => array(
+          'email' => $email)
+        )
+      );
+
+      if(!$admin){
+         $this->Session->setFlash('<strong>Error!</strong> El correo suministrado no se encuntra registrado en AbyaYala.', 'default', array(), 'error');
+      }else{
+        $this->Admin->recoverPassword($email, $admin);
+        $this->Session->setFlash('<strong>Exito!</strong> Se envio una contraseña nueva al correo suministrado.', 'default', array(), 'success');
+      }
+
+      return $this->redirect(array('action' => 'forgot'));
+    }
   }
 
   public function closeSession(){

@@ -20,11 +20,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
-	<title><?php echo $title_for_layout; ?></title>
+	<title>AbyaYala</title>
 </head>
 <body>
-	<?php echo $this->fetch('content'); ?>
 
-	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
+	<h2>Universidad Central de Venezuela</h2>
+	<h2 style="color:#339966">
+		Facultad de Humanidades/Escuela de Arte
+	</h2>
+	<h2 style="color:#339966">
+		Equipo de AbyaYala
+	</h2>
+	<div>
+		Saludos <?echo $name?>
+	</div>
+	<?php echo $this->fetch('content'); ?>
 </body>
 </html>

@@ -58,9 +58,9 @@
 					
 					<label>
 						<?php echo $this->Form->checkbox('type');?>
-						Administrador Global
+						Administrador Contenido
 					</label>
-					<span class="help-block">Si esta opcion no esta seleccionada, el administrador a crear sera de Contenido( Solo sube y modifica contenido).</span>
+					<span class="help-block">Si esta opcion  esta seleccionada, el administrador a crear sera de Contenido( Solo sube y modifica contenido).</span>
 			  	
 					<div class="form-group">
 						<?php

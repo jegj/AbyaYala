@@ -62,9 +62,11 @@ $this->Paginator->options(array(
               <?php echo $this->Paginator->sort('create_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
              </th>
 
-             <th>
-              Eliminar
-             </th>
+             <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+               <th>
+                Eliminar
+               </th>
+             <?php endif;?>
           </tr>
         </thead>
         <tbody>
@@ -98,15 +100,17 @@ $this->Paginator->options(array(
                 ?>
               </td>
 
-              <td>
-                <?php
-                echo $this->Form->postLink(
-                    'Eliminar',
-                    array('action' => 'delete', $myMessage['Message']['messages_id']),
-                    array('confirm' => '¿Esta usted seguro que desea eliminar el Mensaje '.$myMessage['Message']['messages_id'].'?')
-                );
-                ?>
-              </td>
+              <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+                <td>
+                  <?php
+                  echo $this->Form->postLink(
+                      'Eliminar',
+                      array('action' => 'delete', $myMessage['Message']['messages_id']),
+                      array('confirm' => '¿Esta usted seguro que desea eliminar el Mensaje '.$myMessage['Message']['messages_id'].'?')
+                  );
+                  ?>
+                </td>
+              <?endif;?>
 
             </tr>
           <?endforeach;?>

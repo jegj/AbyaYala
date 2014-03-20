@@ -93,7 +93,7 @@ class Admin extends AppModel {
 			),
 			'match' => array(
 				'rule' => 'validatePasswdConfirm',
-				'message' => 'Las Contraseñas deben coincidir'
+				'message' => 'Las Contraseña y su Confirmación deben coincidir'
 			),
 		)
 	);
@@ -130,11 +130,29 @@ class Admin extends AppModel {
     return $result;
   }
 
+  public function recoverPassword($email, $admin)
+  {
+  	$fullName = $admin['Admin']['name'].' '.$admin['Admin']['last_name'];
+
+   	$Email = new CakeEmail();
+    $Email->config('smtp');
+    $Email->from(array('abyayala.arte@gmail.com' => 'AbyaYala'))
+    ->template('forgot', 'default')
+    ->viewVars(array('name' => $fullName))
+    ->emailFormat('html')
+    ->to($email)
+    ->subject('AbyaYala, Recuperación de Contraseña de Administrador')
+    ->send();
+  }
+
 
   function beforesave($options = array()) {
    	if (isset($this->data['Admin']['password'])) {
     	 $this->data['Admin']['password'] = md5($this->data['Admin']['password']);
-  	}	
+  	}
+
+  	$this->data[$this->name]['create_date'] = date('Y-m-d H:i:s');
+
     return parent::beforeSave();
   }
 

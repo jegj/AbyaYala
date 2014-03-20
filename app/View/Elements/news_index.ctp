@@ -64,9 +64,11 @@ $this->Paginator->options(array(
 				     	Modificar
 				     </th>
 
+				    <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
 				     <th>
 				     	Eliminar
 				     </th>
+				   	<?php endif;?>
 					</tr>
 				</thead>
 				<tbody>
@@ -107,15 +109,17 @@ $this->Paginator->options(array(
 	          		?>
 							</td>
 
-							<td>
-								<?php
-	              echo $this->Form->postLink(
-	                  'Eliminar',
-	                  array('action' => 'delete', $myNew['News']['new_id']),
-	                  array('confirm' => '¿Esta usted seguro que desea eliminar la Noticia '.$myNew['News']['title'].'?')
-	              );
-	          		?>
-							</td>
+							<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+								<td>
+									<?php
+		              echo $this->Form->postLink(
+		                  'Eliminar',
+		                  array('action' => 'delete', $myNew['News']['new_id']),
+		                  array('confirm' => '¿Esta usted seguro que desea eliminar la Noticia '.$myNew['News']['title'].'?')
+		              );
+		          		?>
+								</td>
+							<?php endif;?>
 
 						</tr>
 					<?endforeach;?>

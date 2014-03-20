@@ -55,6 +55,11 @@ $this->Paginator->options(array(
 				     </th>
 
 				     <th>
+				     Fecha Creación
+				     	<?php echo $this->Paginator->sort('create_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+				     </th>
+
+				     <th>
 				     Tipo.Admin
 				     	<?php echo $this->Paginator->sort('type',$this->Html->image('ordenar.png'), array('escape'=>false));?>
 				     </th>
@@ -86,6 +91,12 @@ $this->Paginator->options(array(
 							</td>
 
 							<td>
+								<?php
+				 					echo MiscLib::dateFormat($admin['Admin']['create_date'])
+				 				?>
+							</td>
+
+							<td>
 								<?
 				 					echo $admin['Admin']['type']==0?'Global':'Contenido';
 								?>
@@ -97,7 +108,7 @@ $this->Paginator->options(array(
 	              echo $this->Form->postLink(
                   'Eliminar',
                   array('action' => 'delete', $admin['Admin']['admin_id']),
-                  array('confirm' => '¿Esta usted seguro que desea eliminar el Administrador '.$admin['Admin']['name'].'?')
+                  array('confirm' => '¿Esta usted seguro que desea eliminar el Administrador '.$admin['Admin']['name'].' '.$admin['Admin']['last_name'].'?')
               		);
 	          		?>
 	          	<?php else:?>

@@ -67,9 +67,15 @@ $this->Paginator->options(array(
 			            	Clasificación
 			            </th>
 
-			            <th>Modificar Información</th>
+			            <th>
+			            Modificar Información
+			            </th>
+
 			            <th>Descargar</th>
-			            <th>Eliminar</th>
+
+			            <?if(!$this->Session->read('Admin')['Admin']['type']):?>
+			            	<th>Eliminar</th>
+			            <?endif;?>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -147,15 +153,18 @@ $this->Paginator->options(array(
 	                );
 	            		?>
 			    			</td>
-			    			<td>
-			    				<?php
-	                echo $this->Form->postLink(
-	                    'Eliminar',
-	                    array('action' => 'delete', $myContent['Content']['content_id']),
-	                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'? Es posible que el contenido este siendo usado en algún Módulo de AbyaYala')
-	                );
-	            		?>
-			    			</td>
+
+			    			<?if(!$this->Session->read('Admin')['Admin']['type']):?>
+				    			<td>
+				    				<?php
+		                echo $this->Form->postLink(
+		                    'Eliminar',
+		                    array('action' => 'delete', $myContent['Content']['content_id']),
+		                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'? Es posible que el contenido este siendo usado en algún Módulo de AbyaYala')
+		                );
+		            		?>
+				    			</td>
+				    		<?php endif;?>
 			    		</tr>
 			    	<?endforeach;?>
 			    </tbody>

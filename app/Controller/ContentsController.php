@@ -35,11 +35,13 @@ class ContentsController extends AppController {
         return $this->redirect(array('action'=>'index'));
     }
 
-    $this->set(compact('content'));
+    $this->set(compact('content', 'global'));
 	}
 
 	public function resultsIndex()
 	{
+		$this->canAccess();
+
 		if(isset($this->request->query['term']))
 			$term=$this->request->query['term'];
 		else
@@ -57,7 +59,9 @@ class ContentsController extends AppController {
         return $this->redirect(array('action'=>'index'));
     }
 
-    $this->set(compact('content'));
+    $global = $this->isGlobalAdmin();
+
+    $this->set(compact('content', 'global'));
 
 	}
 
@@ -68,6 +72,8 @@ class ContentsController extends AppController {
 
 	public function audio()
 	{
+		$this->canAccess();
+
 		if ($this->request->is('post')) {
 
 			$id=$this->data['Content']['id'];
@@ -83,6 +89,8 @@ class ContentsController extends AppController {
 
 	public function download($id, $viewOnline=false)
 	{
+		$this->canAccess();
+
 		if(isset($id)){
 			if ($this->request->is('get')) {
 				$content = $this->Content->findByContentId($id);
@@ -105,7 +113,8 @@ class ContentsController extends AppController {
 
 	public function delete($id)
 	{
-		
+		$this->canAccess();
+
 		if ($this->request->is('get') || !isset($id)) {
     	$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  	return $this->redirect(array('action'=>'index'));
@@ -142,17 +151,21 @@ class ContentsController extends AppController {
 
 	public function browse()
 	{
-			$this->layout = 'ckeditor';
+		$this->canAccess();
 
-			$langCode=$this->request->query['langCode'];	
-   		$funcnum=$this->request->query['CKEditor'];	
-   		$ckeditor=$this->request->query['CKEditorFuncNum'];
-			
-			$this->set(compact('ckeditor'));
+		$this->layout = 'ckeditor';
+
+		$langCode=$this->request->query['langCode'];	
+ 		$funcnum=$this->request->query['CKEditor'];	
+ 		$ckeditor=$this->request->query['CKEditorFuncNum'];
+		
+		$this->set(compact('ckeditor'));
 	}
 
 	public function imagenes()
 	{
+		$this->canAccess();
+
 		$this->layout = 'ckeditor';	
 
 		$ckeditor=$this->request->query['ckeditor'];	
@@ -175,6 +188,8 @@ class ContentsController extends AppController {
 
 	public function audios()
 	{
+		$this->canAccess();
+
 		$this->layout = 'ckeditor';
 		$ckeditor=$this->request->query['ckeditor'];
 
@@ -195,6 +210,8 @@ class ContentsController extends AppController {
 
 	public function documentos()
 	{
+		$this->canAccess();
+
 		$this->layout = 'ckeditor';
 		$ckeditor=$this->request->query['ckeditor'];
 
@@ -215,6 +232,8 @@ class ContentsController extends AppController {
 
 	public function search()
 	{
+		$this->canAccess();
+
 		$this->layout = 'ckeditor';
 		$ckeditor=$this->request->query['ckeditor'];
 		$term=$this->request->query['term'];
@@ -243,6 +262,8 @@ class ContentsController extends AppController {
 
 	public function notes()
 	{
+		$this->canAccess();
+
 		$this->layout = 'ckeditor';
 
 		$ethnicity= $this->Ethnicity->find('list');
@@ -254,6 +275,8 @@ class ContentsController extends AppController {
 
 	public function edit($id=null)
 	{
+		$this->canAccess();
+
 		if (!$this->Content->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
       return $this->redirect(array('action'=>'index'));
@@ -288,6 +311,8 @@ class ContentsController extends AppController {
 
 	public function upload()
 	{
+		$this->canAccess();
+		
 		$this->autoRender=false;
 		$file=$_FILES['upl'];
 		$result=$this->Content->saveFile($file, $this->webroot);

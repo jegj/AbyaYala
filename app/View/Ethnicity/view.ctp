@@ -18,7 +18,9 @@
 				<tr>
 					<th>Nombre</th>
 					<th>Modificar</th>
-					<th>Eliminar</th>
+					<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+						<th>Eliminar</th>
+					<?php endif;?>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,15 +39,17 @@
 								array('controller'=>'anchors', 'action'=>'edit', $anchors['anchor_id'],$ethnicity['Ethnicity']['ethnicity_id']));
 							?>
 						</td>
-						<td>
-							<?php 
-								echo $this->Form->postLink(
-									__('Eliminar'), 
-									array('controller'=>'anchors','action' => 'delete', $anchors['anchor_id'],$ethnicity['Ethnicity']['ethnicity_id']),
-									array('confirm' => '¿Esta usted seguro que desea eliminar la ancla '.$anchors['name'].'?')
-								);
-							?>
-						</td>
+						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+							<td>
+								<?php 
+									echo $this->Form->postLink(
+										__('Eliminar'), 
+										array('controller'=>'anchors','action' => 'delete', $anchors['anchor_id'],$ethnicity['Ethnicity']['ethnicity_id']),
+										array('confirm' => '¿Esta usted seguro que desea eliminar la ancla '.$anchors['name'].'?')
+									);
+								?>
+							</td>
+						<?php endif;?>
 					</tr>
 				<?endforeach;?>
 			</tbody>
@@ -59,7 +63,9 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Modificar</th>
-						<th>Eliminar</th>
+						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+							<th>Eliminar</th>
+						<?php endif;?>
 					</tr>
 				</thead>
 				<tbody>
@@ -92,19 +98,21 @@
 							?>
 						</td>
 
-						<td>
-							  <?= 
-							  $this->Form->postLink(
-	                  'Eliminar',
-	                  array(
-	                  	'controller'=>'notes',
-	                  	'action' => 'delete',
-	                  	$notes['note_id'],
-	                  	$ethnicity['Ethnicity']['ethnicity_id']
-	                  ),
-	                  array('confirm' => '¿Esta usted seguro que desea eliminar la Nota '.$notes['name'].'?'));
-	              ?>
-						</td>
+						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+							<td>
+								  <?= 
+								  $this->Form->postLink(
+		                  'Eliminar',
+		                  array(
+		                  	'controller'=>'notes',
+		                  	'action' => 'delete',
+		                  	$notes['note_id'],
+		                  	$ethnicity['Ethnicity']['ethnicity_id']
+		                  ),
+		                  array('confirm' => '¿Esta usted seguro que desea eliminar la Nota '.$notes['name'].'?'));
+		              ?>
+							</td>
+						<?php endif;?>
 
 					</tr>
 				<?php endforeach;?>
