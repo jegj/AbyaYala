@@ -2,8 +2,9 @@
 			<div class="row" style="margin-top:50px;">				
 				<div class="col-md-2" id="sidebar" style="margin-top:20px;">
 					<div class="sidebar-nav">
-							
-						<?= $this->element('sidebar_contact')?>			
+						<?= 
+							$this->element('sidebar_contact')
+						?>			
 					</div>					
 				</div>
 

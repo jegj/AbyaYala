@@ -89,7 +89,7 @@ class ContentsController extends AppController {
 
 	public function download($id, $viewOnline=false)
 	{
-		$this->canAccess();
+
 
 		if(isset($id)){
 			if ($this->request->is('get')) {

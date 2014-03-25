@@ -1,4 +1,5 @@
 <?php
+App::uses('MiscLib', 'Lib');
 /*
 * Controlador que contiene la funcionalidades   principales de los usuarios
 *
@@ -18,17 +19,35 @@ class UsersController extends AppController
 			array('limit'=>5)
 		);
 
-		$this->set(compact('news'));
+		$images = $this->Content->find('all',	
+			array(
+				'conditions'=> array('Content.type' => 'imagen'),
+				'limit' => 4,
+				'order' => array('Content.create_date')
+			)
+		);
+
+		$papers = $this->Content->find('all',
+			array(
+				'conditions'=> array('Content.type' => 'documento'),
+				'limit' => 4,
+				'order' => array('Content.create_date')	
+			)
+		);
+
+		$this->set(compact('news', 'images', 'papers'));
 	}
 
 	public function abyayala()
 	{
-
 	}
 
 	public function address()
 	{
+	}
 
+	public function team()
+	{
 	}
 
 }

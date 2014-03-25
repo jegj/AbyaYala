@@ -38,6 +38,7 @@
 		echo $this->Html->script('underscore/underscore',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/main',array('inline'=>false));
 	?>
 		
 	<?php
@@ -60,8 +61,8 @@
 					<a class="navbar-brand" href="#" style="color:#D5AE37;">AbyaYala</a>
 				</div>
 				<div class="collapse navbar-collapse">
-				  <ul class="nav navbar-nav">
-						<li class="active">
+				  <ul id="navbar" class="nav navbar-nav">
+						<li>
 							<?=
 								$this->Html->link('Inicio', array(
 										'controller'=>'users',

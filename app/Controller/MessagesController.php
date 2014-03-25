@@ -120,6 +120,8 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->layout ='Usuario';
+		
 		if ($this->request->is('post')) {
 			$this->Message->create();
 			if ($this->Message->save($this->request->data)) {

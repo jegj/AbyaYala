@@ -1,11 +1,19 @@
-<div class="row content">
-	<div style='margin-left:15px;'>
-		<h1>Contactenos</h1>
-		<hr>
-		<div class="col-md-12">
+<div class="container">
+	<div class="row" style="margin-top:50px;">
+		<div class="col-md-2" id="sidebar" style="margin-top:20px;">
+			<div class="sidebar-nav">
+				<?= 
+					$this->element('sidebar_contact')
+				?>			
+			</div>					
+		</div>
+
+		<div class="col-md-10">
+			<h3>Contacto</h3>
+			<hr>
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
-	  			<h3>Enviar Mensaje</h3>
+	  			<h3>Mensaje</h3>
 	  			<p>Comuniquese con el equipo de AbyaYala acerca de cualquier inquietud, aporte o información que necesite.
 					</p>
 	  		</div>
