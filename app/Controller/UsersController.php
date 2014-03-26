@@ -23,7 +23,7 @@ class UsersController extends AppController
 			array(
 				'conditions'=> array('Content.type' => 'imagen'),
 				'limit' => 4,
-				'order' => array('Content.create_date')
+				'order' => array('Content.create_date DESC')
 			)
 		);
 

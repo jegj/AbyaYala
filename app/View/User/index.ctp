@@ -50,27 +50,23 @@
                                 <div class="col-sm-3">
                                     <div class="col-item">
                                         <div class="photo">
-                                        <a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
-                                        rel='prettyPhoto' title= '<?php echo $image['Content']['name']?>'
-                                        >
-                                            <img src='<?php echo $image['Content']['access_path']?>' class="img-responsive" alt='<?php echo $image['Content']['name']?>'  width="350" height="260" />
-                                        </a>
-                                            
+                                            <a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
+                                            rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
+                                            >
+                                                <div class="markup">
+                                                    <img src='<?php echo $image['Content']['access_path']?>' class="img-responsive" alt='<?php echo $image['Content']['name']?>'/>
+                                                </div>
+                                            </a>
                                         </div>
                                         <div class="info">
                                             <div class="row">
-                                                <div class="price col-md-12">
+                                                <div class="price col-md-12" style="padding-left:20px;">
                                                     <h5><b>
                                                         <?php
                                                             echo $image['Content']['name']
                                                         ?>
                                                         </b>
                                                     </h5>
-                                                    <p>
-                                                        <?php
-                                                            echo $image['Content']['description']
-                                                        ?>
-                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="clearfix">
@@ -178,7 +174,7 @@ $sxml = simplexml_load_file($feedURL);
                                 <div class="col-sm-3">
                                     <div class="col-item">
                                         <div class="photo">
-                                            <a target='_blank' href= '<?echo $image['Content']['access_path'].'?'.rand()?>'rel='prettyPhoto' title= '<?php echo $image['Content']['name']?>'>
+                                            <a target='_blank' href= '<?echo $image['Content']['access_path'].'?'.rand()?>' title= '<?php echo $image['Content']['name']?>'>
                                               <?php 
                                               echo $this->Html->image("descargar_pdf.jpeg", array('fullBase' => true));
                                               ?>
@@ -189,7 +185,7 @@ $sxml = simplexml_load_file($feedURL);
                                                 <div class="price col-md-12">
                                                     <h5>
                                                         <b>
-                                                            <a target='_blank' href= '<?echo $image['Content']['access_path'].'?'.rand()?>'rel='prettyPhoto' title= '<?php echo $image['Content']['name']?>'>
+                                                            <a target='_blank' href= '<?echo $image['Content']['access_path'].'?'.rand()?>' title= '<?php echo $image['Content']['name']?>'>
                                                                 <?php
                                                                     echo $image['Content']['name']
                                                                 ?>
@@ -255,7 +251,11 @@ $sxml = simplexml_load_file($feedURL);
 
 
 <style>
-	.carousel-caption {
+.markup {
+    height: 200px; width: 100%; overflow: hidden; 
+}
+
+.carousel-caption {
   position: relative;
   left: 0%;
   right: 0%;
@@ -291,10 +291,15 @@ $sxml = simplexml_load_file($feedURL);
     border-radius: 5px;
     background: #FFF;
 }
+.photo{
+    padding: 20px;
+}
+
 .col-item .photo img
 {
     margin: 0 auto;
     width: 100%;
+    height: 100%;
 }
 
 .col-item .info

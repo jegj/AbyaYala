@@ -59,9 +59,7 @@ class ContentsController extends AppController {
         return $this->redirect(array('action'=>'index'));
     }
 
-    $global = $this->isGlobalAdmin();
-
-    $this->set(compact('content', 'global'));
+    $this->set(compact('content'));
 
 	}
 
