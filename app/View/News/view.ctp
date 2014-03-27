@@ -5,12 +5,16 @@
 
 		<h3>Vista en Página Independiente</h3>
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<?php echo $news['News']['title']?>
-				</h3>
-			</div>
+		
 			<div class="panel-body">
+				<h2>
+					<?php echo $news['News']['title']?>
+				</h2>
+				<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>"width=800 height=400>
+				<div class="picture-caption">
+					<p align="justify"><?php echo $news['News']['previous_text']?></p>
+				</div>
+				<br>
 				<p>
 				<?php echo $news['News']['description']?>
 				</p>
@@ -37,26 +41,22 @@
 		</div>
 		<hr>
 		<h3>Vista en Página Principal</h3>
-		<div id="Carousel" class="carousel slide">
+
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="item active">
-				
-					<img src='<?php echo $news['Content']['access_path']?>' alt="<?php echo $news['Content']['name']?>"  height='600', width='570' class='img-responsive'>
-
+					<div class="holder col-sm-8">
+						<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>"width=800 height=400>
 					<div class="carousel-caption">
-						<h3><?php echo $news['Content']['name']?></h3>
-            <p><?php echo $news['Content']['description']?></p>
+						<h2>
+							<?php
+								echo $news['News']['title'];
+	            ?>
+            </h2>
+            <p align="justify"><?php echo $news['News']['previous_text']?></p>
 					</div>
 				</div>
 			</div>
-		</div>
-		<hr>
-		<h3>Vista en Miniatura</h3>
-		<div class="text-center">
-		  <img class="img-thumbnail" src='<?php echo $news['Content']['access_path']?>' alt="<?php echo $news['Content']['name']?>"  height='140', width='140'>
-		  <h3><?php echo $news['Content']['name']?></h3>
-      <p><?php echo $news['Content']['description']?></p>
-		  <p><a class="btn btn-default" href="#">Ver mas...</a></p>
 		</div>
 	</div>
 </div>

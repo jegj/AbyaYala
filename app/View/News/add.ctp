@@ -53,6 +53,15 @@
 									?>.
 						</p>
 
+					<div class="form-group">
+						<label for="data[News][previous_text]">		Texto Descriptivo:
+						</label>
+						<?php echo $this->Form->input('previous_text',array('label'=>false,'id'=>"data[News][previous_text]", 'class'=>'form-control', 'type'=>'textarea'));?>
+						<p class="help-block">
+							Este campo representa una pequeña descripción de la noticia que se muestra junto con la imagen principal.
+						</p>
+					</div>
+
 
 					<div class="form-group">
 						<label for="data[News][description]">		Descripción:
@@ -146,6 +155,10 @@
     					return editorcontent.length === 0;
 						}
 				},
+				"data[News][previous_text]":{
+					required:true,
+					rangelength: [3, 300]
+				}
 			},
 			messages: {
 				"data[News][title]":{
@@ -162,6 +175,10 @@
 				"data[News][description]":{
 					required: 'Campo Obligatorio',
 				},
+				"data[News][previous_text]":{
+					required: 'Campo Obligatorio',
+					rangelength: 'El campo debe tener entre 3 y 300 caracteres'
+				}
 			},
 			highlight: function(element) {
 
