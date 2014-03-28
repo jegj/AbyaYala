@@ -80,6 +80,18 @@ class News extends AppModel {
       ),
 		),
 
+		'previous_text' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Campo Obligatorio',
+				'required' => true,
+			),
+			'between' => array(
+	      'rule'    => array('between', 3, 300),
+	      'message' => 'El campo debe tener entre 3 y 300 caracteres'
+      ),
+		),
+
 	);
 
 	function beforeSave($options = array())

@@ -40,8 +40,7 @@
 						<?php echo $this->Form->input('content_id',array('label'=>false, 'class'=>'form-control'));?>
 					</div>
 
-						<p class="help-block">Esta imagen representara a la noticia en la sección de noticias de AbyaYala. Seleccione la imagen principal 
-							<button type="button" class="btn btn-primary btn-xs" onclick="getImages(1, 4, true)">Imagenes</button><br> o ingrese al módulo de contenido para 	<?php 
+						<p class="help-block" align="justify">Esta imagen representara a la noticia en la sección de noticias de AbyaYala. Seleccione la imagen principal <button type="button" class="btn btn-primary btn-xs" onclick="getImages(1, 4, true)">Imagenes</button><br> o ingrese al módulo de contenido para 	<?php 
 									echo $this->Html->link(
 								    'subir contenido',
 								    array(
@@ -51,6 +50,7 @@
 								    array('target'=>'_blank')
 								    );
 									?>.
+									De preferencia elija una imagen de tamaño grande para evitar deformaciones de la imagen 
 						</p>
 
 					<div class="form-group">
@@ -189,7 +189,6 @@
 
 		 		$(element).closest('.form-group').removeClass('has-success');
 				$(element).closest('.form-group').addClass('has-error');
-					
       },
       unhighlight: function(element) {
       	if( $(element).is('textarea')){

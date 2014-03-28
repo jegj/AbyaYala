@@ -4,28 +4,30 @@
             <h1>Ultimas Noticias</h1>
             <hr>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    			<div class="carousel-inner">
+    			<div class="carousel-inner" style='width:100%'>
     				<div class="item active">
     				    <div class="holder col-sm-8">
     				        <img class="img-responsive" src="<?php echo $news[0]['Content']['access_path']?>" alt="<?php echo $news[0]['Content']['name']?>"
                             width=800 height=400>
                             <div class="carousel-caption">
-                                <h2>
-                                <?php
-                                    echo $news[0]['News']['title']
-                                ?>
-                                </h2>
-                                <p align="justify">
-                                   <?php
-                                        
-                                        echo $this->Text->truncate($news[0]['News']['description'],
-                                            300,
-                                            array(
-                                                'ellipsis' => "...<a>leer mas</a>",
-                                                'exact' => true
-                                            )
-                                        );
+                                <h4>
+                                    <b>
+                                    <?php
+                                        echo $news[0]['News']['title']
                                     ?>
+                                    </b>
+                                </h4>
+                                <p align="justify">
+                                    <p class='title' align="justify">
+                                    <?php
+                                    echo  $news[0]['News']['previous_text']
+                                    ?>
+                                    </p>
+                                    <p class="date" align="left">
+                                    <?php
+                                    echo  $news[0]['News']['current_date']
+                                    ?>
+                                    </p>
                                 </p>
                             </div>
     				    </div>
@@ -35,11 +37,15 @@
                                <img class="img-responsive" src="<?php echo $news[1]['Content']['access_path']?>" alt="<?php echo $news[1]['Content']['name']?>" width=150 height=170>
                             </div>
 
-                            <div class="row">
+                            <div class="row" style="margin-top:25px;">
                                 <img class="img-responsive" src="<?php echo $news[1]['Content']['access_path']?>" alt="<?php echo $news[1]['Content']['name']?>" width=150 height=170>
                             </div>
 
-                            <div class="row">
+                            <div class="row" style="margin-top:25px;">
+                                <img class="img-responsive" src="<?php echo $news[1]['Content']['access_path']?>" alt="<?php echo $news[1]['Content']['name']?>" width=150 height=170>
+                            </div>
+
+                            <div class="row" style="margin-top:25px;">
                                 <img class="img-responsive" src="<?php echo $news[1]['Content']['access_path']?>" alt="<?php echo $news[1]['Content']['name']?>" width=150 height=170>
                             </div>
         				    

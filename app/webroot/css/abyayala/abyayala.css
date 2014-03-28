@@ -335,6 +335,21 @@ form .error,form .error-message {
     padding-top: 0;
 }
 
+.date {
+    color: #333333;
+    font-family: Georgia,Times,'Times New Roman',serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.title {
+   font-family: Georgia,Times,'Times New Roman',serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: normal; 
+}
+
 
 /*
 .peopleCarouselImg img {

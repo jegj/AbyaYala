@@ -16,7 +16,10 @@ class UsersController extends AppController
 	public function index()
 	{	
 		$news = $this->News->find('all', 
-			array('limit'=>5)
+			array(
+				'limit'=>5,
+				'order' => array('News.current_date DESC')
+			)
 		);
 
 		$images = $this->Content->find('all',	
