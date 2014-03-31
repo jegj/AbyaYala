@@ -57,10 +57,10 @@
 						<label for="data[News][previous_text]">		Texto Descriptivo:
 						</label>
 						<?php echo $this->Form->input('previous_text',array('label'=>false,'id'=>"data[News][previous_text]", 'class'=>'form-control', 'type'=>'textarea'));?>
-						<p class="help-block">
-							Este campo representa una pequeña descripción de la noticia que se muestra junto con la imagen principal.
-						</p>
 					</div>
+					<p class="help-block">
+						Este campo representa una pequeña descripción de la noticia que se muestra junto con la imagen principal.
+					</p>
 
 
 					<div class="form-group">
