@@ -53,7 +53,8 @@ class NewsController extends AppController {
 
 		$this->Paginator->settings = array(
       'limit' => 5,
-      'paamType'=>'querystring',     
+      'paamType'=>'querystring',  
+      'order' => array('News.current_date' => 'DESC')   
     );
 
 		try{
@@ -103,7 +104,10 @@ class NewsController extends AppController {
  */
 	public function view($id = null) {
 
-		$this->canAccess();
+		if($this->checkLogin())
+			$this->layout='Administrador';
+		else
+			$this->layout='Usuario';
 
 		if (!$this->News->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No existe la noticia especificada.', 'default', array(), 'error');

@@ -1,16 +1,22 @@
 <div class="row">
 	<div class="container">
-        <h1>Ultimas Noticias</h1>
+        <h1 class="titulo">Ultimas Noticias</h1>
         <hr>
 		<div class="col-md-6">			
 
             <img class="img-responsive" src="<?php echo $news[0]['Content']['access_path']?>" alt="<?php echo $news[0]['Content']['name']?>" style='width:100%'>
 
             <div >
-                <h4>
+                <h4 class="subtitulo">
                     <b>
                     <?php
-                        echo $news[0]['News']['title'];
+                        echo $this->Html->link(
+                            $news[0]['News']['title'],
+                            array('controller' => 'news', 
+                                'action' => 'view',
+                                $news[0]['News']['new_id']
+                            )   
+                        );
                     ?>
                     </b>
                 </h4>
@@ -47,7 +53,7 @@
                         <img src="<?php echo $new['Content']['access_path']?>" alt="<?php echo $new['Content']['name']?>" style="height:130px;width:160px;" >
                     </div>
                     <div class="col-md-8">
-                        <h5 style="margin-top:0px !important;">
+                        <h5 style="margin-top:0px !important;" class="subtitulo">
                             <p>
                                 <b>
                                     <?php
@@ -80,9 +86,9 @@ $sxml = simplexml_load_file($feedURL);
         <div class="row">
             <div class="row">
                 <div class="col-md-9">
-                    <h3>
+                    <h1 class="titulo">
                         Ultimos Videos
-                    </h3>
+                    </h1>
                 </div>  
             </div>
             <hr>
@@ -143,9 +149,9 @@ $sxml = simplexml_load_file($feedURL);
         <div class="row">
             <div class="row">
                 <div class="col-md-9">
-                    <h3>
+                    <h1 class="titulo">
                         Ultimas Imagenes
-                    </h3>
+                    </h1>
                 </div>  
             </div>
             <hr>
@@ -196,9 +202,9 @@ $sxml = simplexml_load_file($feedURL);
         <div class="row">
             <div class="row">
                 <div class="col-md-9">
-                    <h3>
+                    <h1 class="titulo">
                         Ultimos Documentos
-                    </h3>
+                    </h1>
                 </div>  
             </div>
             <hr>

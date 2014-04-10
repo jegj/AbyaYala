@@ -50,12 +50,12 @@ $this->Paginator->options(array(
 
 
 				     <th>
-				     Fecha Registro
+				     Fecha.Reg
 				     	<?php echo $this->Paginator->sort('current_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
 				     </th>
 
 				     <th>
-				     Fecha Modificación
+				     Fecha.Mod
 				     	<?php echo $this->Paginator->sort('modified_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
 				     </th>
 

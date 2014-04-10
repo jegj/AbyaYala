@@ -1,17 +1,13 @@
 <div class="row content">
 	<div class="col-md-12">
 		<h1>Noticias</h1>
-		<hr>
-
-		<h3>Vista en Página Independiente</h3>
-		<div class="panel panel-default">
-		
+		<div class="panel panel-default" id='panel_news'>		
 			<div class="panel-body">
 				<h2>
 					<?php echo $news['News']['title']?>
 				</h2>
 				<div style="overflow:hidden height:400px; width:100%">
-					<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>" style="width:100%;">
+					<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>">
 				</div>
 				<div class="picture-caption">
 					<p align="justify"><?php echo $news['News']['previous_text']?></p>
@@ -41,25 +37,6 @@
 				</div>
 			</div>
 		</div>
-		<hr>
-		<h3>Vista en Página Principal</h3>
-
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner">
-			<div class="item active">
-				<div class="holder col-sm-8">
-					<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>"width=800 height=400>
-					<div class="carousel-caption">
-						<h2>
-							<?php
-								echo $news['News']['title'];
-	            ?>
-            </h2>
-            <p align="justify"><?php echo $news['News']['previous_text']?></p>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -83,3 +60,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	#panel_news img{
+		width: 100%;
+	}
+</style>

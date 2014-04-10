@@ -349,7 +349,16 @@ form .error,form .error-message {
     font-style: italic;
     font-weight: normal; 
 }
+/*********************Usuario******************/
 
+.titulo{
+  font-family: 'Della Respira', serif;
+  color: black;
+}
+
+.subtitulo{
+  font-family: 'Arapey', serif;
+}
 
 /*
 .peopleCarouselImg img {

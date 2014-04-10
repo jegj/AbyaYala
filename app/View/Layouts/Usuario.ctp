@@ -5,6 +5,10 @@
 	<title>AbyaYala</title>
 	<?php echo $this->Html->meta('icon');?>
 
+	
+	<link href='http://fonts.googleapis.com/css?family=Della+Respira' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arapey' rel='stylesheet' type='text/css'>
+
 	<!-- Archivos CSS-->
 	<?
 		echo $this->Html->css('bootstrap/bootstrap.min');

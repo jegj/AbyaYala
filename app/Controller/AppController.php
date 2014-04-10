@@ -37,6 +37,11 @@ class AppController extends Controller {
 	public $components = array('DebugKit.Toolbar');
 	public $theme = 'Cakestrap';
 
+  public function checkLogin()
+  {
+    return $this->Session->check('Admin');
+  }
+
 	public function canAccess(){
 		if(!$this->Session->check('Admin')){
       $this->Session->setFlash('<strong>Ups!</strong> Debe Autenticarse como Administrador para acceder a esta Página', 'default', array(), 'error');
@@ -63,6 +68,5 @@ class AppController extends Controller {
         )
       );
     }
-
   }
 }

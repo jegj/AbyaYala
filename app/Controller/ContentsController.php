@@ -26,7 +26,8 @@ class ContentsController extends AppController {
 		
 		$this->Paginator->settings = array(
         'limit' => 5,
-        'paramType'=>'querystring',    	
+        'paramType'=>'querystring',   
+        'order' => array('Content.create_date' => 'DESC')   
     );
 
 		try{
