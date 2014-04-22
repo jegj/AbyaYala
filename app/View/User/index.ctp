@@ -13,7 +13,7 @@
                         echo $this->Html->link(
                             $news[0]['News']['title'],
                             array('controller' => 'news', 
-                                'action' => 'view',
+                                'action' => 'user_view',
                                 $news[0]['News']['new_id']
                             )   
                         );

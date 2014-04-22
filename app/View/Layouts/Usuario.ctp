@@ -43,6 +43,13 @@
 		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/main',array('inline'=>false));
+		echo $this->Html->script('social/comment.js',array('inline'=>false));
+		
+		echo $this->Html->script('social/face.js',array('inline'=>false));
+		echo $this->Html->script('social/faceShare.js',array('inline'=>false));
+		echo $this->Html->script('social/google.js',array('inline'=>false));
+		echo $this->Html->script('social/googleShare.js',array('inline'=>false));
+		echo $this->Html->script('social/social.js',array('inline'=>false));
 	?>
 		
 	<?php
@@ -88,7 +95,18 @@
 
 					<li><a href="#contact">Familia Linguistica</a></li>
 					<li><a href="#contact">Rastros Indigenas</a></li>
-					<li><a href="#contact">Galeria</a></li>
+
+					<!-- <li><a href="#contact">Galeria</a></li> -->
+
+					<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Fotos</a></li>
+	            <li><a href="#">Audio</a></li>
+	            <li><a href="#">Video</a></li>
+	          </ul>
+        	</li>
+
 					<li><a href="#contact">Investigación</a></li>
 					<form role="search" class="navbar-form navbar-right">
 				      <input class="form-control" type="text" placeholder="Búsqueda...">

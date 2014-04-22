@@ -207,4 +207,24 @@ class NewsController extends AppController {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	public function user_view($id = null)
+	{
+
+		$this->layout='Usuario';
+
+		if (!$this->News->exists($id)) {
+			$this->Session->setFlash('<strong>Error!</strong> No existe la noticia especificada.', 'default', array(), 'error');
+    	return $this->redirect(array
+    		('action'=>'index',
+    			'controller' => 'users'
+    		)
+    	);
+		}
+
+		$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
+		$this->set('news', $this->News->find('first', $options));	
+	}
+}
+

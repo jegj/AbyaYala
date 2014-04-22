@@ -13,7 +13,7 @@
           				'controller' => 'admins'
           			)
           		);	
-          	?>|
+          	?>
           </div>
       </div>     
 
@@ -79,8 +79,8 @@
 									<?php
 										echo $this->Html->link('Contacto',
 											array(
-												'controller' => 'users',
-												'action' => 'contact'
+												'controller' => 'messages',
+												'action' => 'add'
 											)
 										);
 									?>
