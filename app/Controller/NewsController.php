@@ -223,8 +223,17 @@ class NewsController extends AppController {
     	);
 		}
 
-		$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
-		$this->set('news', $this->News->find('first', $options));	
+		$options = array(
+			'conditions' => array('News.new_id' => $id),
+		);
+
+		$news = $this->News->find('first', $options);
+
+		$random = $this->randomContent($id);
+
+		$this->set(compact('news', 'random'));
+
 	}
+
 }
 

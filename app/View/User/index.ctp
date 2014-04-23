@@ -3,8 +3,15 @@
         <h1 class="titulo">Ultimas Noticias</h1>
         <hr>
 		<div class="col-md-6">			
-
-            <img class="img-responsive" src="<?php echo $news[0]['Content']['access_path']?>" alt="<?php echo $news[0]['Content']['name']?>" style='width:100%'>
+            <?php
+                echo $this->Html->link(
+                    "<img class='img-responsive' src='".$news[0]['Content']['access_path']."' alt='".$news[0]['Content']['name']."' style='width:100%'>",
+                    array('controller' => 'news', 
+                        'action' => 'user_view',
+                        $news[0]['News']['new_id']
+                    ),array('escape' => false)   
+                );
+            ?>
 
             <div >
                 <h4 class="subtitulo">
@@ -50,14 +57,28 @@
                     <div class="row" style="margin-top:20px;">
                 <?php endif;?>
                     <div class="col-md-4" style="overflow: hidden;">
-                        <img src="<?php echo $new['Content']['access_path']?>" alt="<?php echo $new['Content']['name']?>" style="height:130px;width:160px;" >
+                        <?php
+                            echo $this->Html->link(
+                                "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."' height:130px;width:160px;'>",
+                                array('controller' => 'news', 
+                                    'action' => 'user_view',
+                                    $new['News']['new_id']
+                                ),array('escape' => false)   
+                            );
+                        ?>
                     </div>
                     <div class="col-md-8">
                         <h5 style="margin-top:0px !important;" class="subtitulo">
                             <p>
                                 <b>
                                     <?php
-                                        echo $new['News']['title']
+                                        echo $this->Html->link(
+                                            $new['News']['title'],
+                                            array('controller' => 'news', 
+                                                'action' => 'user_view',
+                                                $new['News']['new_id']
+                                            )   
+                                        );
                                     ?>
                                 </b>
                             </p>
@@ -70,7 +91,7 @@
                     </div>
                 </div>
             <?endforeach;?>
-        </div>
+            </div>
     </div>
 
 

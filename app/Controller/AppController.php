@@ -36,6 +36,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components = array('DebugKit.Toolbar');
 	public $theme = 'Cakestrap';
+  var $uses = array('News','Content');
 
   public function checkLogin()
   {
@@ -68,5 +69,25 @@ class AppController extends Controller {
         )
       );
     }
+  }
+
+  public function randomContent($newid = null)
+  {
+    $newsOptions = array(
+      'conditions' => array('News.new_id <>' => $newid),
+      'order' => 'rand()',
+      'limit' => 2
+    );
+
+    $imagesOptions = array(
+      'conditions' => array('Content.type =' => 'imagen'),
+      'order' => 'rand()',
+      'limit' => 5
+    );
+
+    $news =  $this->News->find('all', $newsOptions);
+    $images = $this->Content->find('all', $imagesOptions);
+
+    return compact('news', 'images');
   }
 }
