@@ -6,6 +6,11 @@
 			return date( 'd-m-Y H:i:s A', strtotime($myDate));
 		}
 
+		public static function dateFormat2($myDate)
+		{
+			return date( 'd-m-Y', strtotime($myDate));
+		}
+
 		public static function truncate($text, $chars = 25) {
 	    $text = $text." ";
 	    $text = substr($text,0,$chars);

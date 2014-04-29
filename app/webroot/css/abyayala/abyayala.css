@@ -349,6 +349,13 @@ form .error,form .error-message {
     font-style: italic;
     font-weight: normal; 
 }
+
+.subtitle {
+   font-family: Georgia,Times,'Times New Roman',serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: normal; 
+}
 /*********************Usuario******************/
 
 .titulo{

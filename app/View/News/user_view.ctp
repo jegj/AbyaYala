@@ -1,6 +1,6 @@
 <div class="row content">
 	<div class="col-md-8">
-		<div class="panel panel-default" id='panel_news'>		
+		<div class="panel panel-default" id='panel_news' style="border:0;">		
 			<div class="panel-body">
 				<h1 class="titulo">
 					<?php echo $news['News']['title']?>
@@ -34,7 +34,10 @@
 							</a>
 						</p>
 					<?php endif;?>
-					<span class="glyphicon glyphicon-print"></span>
+					<a href="#" id="printNewUserView">
+						<span class="glyphicon glyphicon-print"></span>
+					</a>
+
 				</div>
 			</div>
 		</div>
@@ -45,40 +48,25 @@
 			<hr>
 			<?php foreach ($random['news'] as $new):?>
 				<div class="row">
+						<div class="col-md-12">
 							<?php
-	              echo $this->Html->link(
-	                  "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."' height:130px;width:160px;'>",
-	                  array('controller' => 'news', 
-	                      'action' => 'user_view',
-	                      $new['News']['new_id']
-	                  ),array('escape' => false)   
-	              );
-	            ?>
-	            <p class='title' align="justify">
+		            echo $this->Html->link(
+		                "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."' height:130px;width:160px;'>",
+		                array('controller' => 'news', 
+		                    'action' => 'user_view',
+		                    $new['News']['new_id']
+		                ),array('escape' => false)   
+		            );
+		          ?>
+		          <p class='subtitle' align="justify">
 								<?php echo $new['News']['title'];?>
-	            </p>
+								<br>
+								<?php echo MiscLib::dateFormat2($new['News']['current_date']);?>
+		          </p>
+						</div>
 				</div>
 				<br>
 			<?php endforeach;?>
-		</div>
-
-		<div id="randomImages" style="margin-top:20px;">
-			<h3 class="titulo">Algunas Imagenes</h3>
-			<div class="row">
-				<ul class= "gallery clearfix" style="padding-left:20px;">
-					<?php foreach ($random['images'] as $image):?>
-						<li>
-							<a href="<?php echo $image['Content']['access_path']?>" rel="prettyPhoto[gallery2]" title="<?php echo $image['Content']['description']?>">
-								<img src="<?php echo $image['Content']['access_path']?>" alt="<?php echo $image['Content']['name']?>" width="60" height="60">
-							</a>
-						</li>
-					<?php endforeach;?>
-				</ul>
-			</div>
-		</div>
-
-		<div id="Trabajos" style="margin-top:20px;">
-			<h3 class="titulo">Algunos Trabajos</h3>
 		</div>
 
 	</div>
@@ -110,12 +98,3 @@
 		display: inline; 
 	}
 </style>
-
-
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){
-		
-		$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'light_square',slideshow:3000, autoplay_slideshow: true});
-
-	});
-</script>

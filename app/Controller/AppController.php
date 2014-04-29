@@ -76,18 +76,18 @@ class AppController extends Controller {
     $newsOptions = array(
       'conditions' => array('News.new_id <>' => $newid),
       'order' => 'rand()',
-      'limit' => 2
+      'limit' => 4
     );
-
-    $imagesOptions = array(
-      'conditions' => array('Content.type =' => 'imagen'),
+/*
+    $documentOptions = array(
+      'conditions' => array('Content.type =' => 'documento'),
       'order' => 'rand()',
       'limit' => 5
     );
-
+*/
     $news =  $this->News->find('all', $newsOptions);
-    $images = $this->Content->find('all', $imagesOptions);
+    // $documents = $this->Content->find('all', $documentOptions);
 
-    return compact('news', 'images');
+    return compact('news' /*,'documents'*/);
   }
 }

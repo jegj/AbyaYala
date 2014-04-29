@@ -30,7 +30,7 @@
 
 		echo $this->Html->script('jquery-validation/additional-methods.min', array('inline' => false));
 
-		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
+		// echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
 		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
@@ -44,6 +44,7 @@
 		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/main',array('inline'=>false));
 		echo $this->Html->script('social/comment.js',array('inline'=>false));
+		echo $this->Html->script('jqueryPrint/jqueryPrint.js',array('inline'=>false));
 		
 		echo $this->Html->script('social/face.js',array('inline'=>false));
 		echo $this->Html->script('social/faceShare.js',array('inline'=>false));
@@ -93,7 +94,15 @@
 							?>
 						</li>
 
-					<li><a href="#contact">Familia Linguistica</a></li>
+					<li>
+						<?=
+							$this->Html->link('Familia Linguisticas', array(
+								'controller'=>'users',
+								'action' => 'map'
+								)
+							);
+						?>
+					</li>
 					<li><a href="#contact">Rastros Indigenas</a></li>
 
 					<!-- <li><a href="#contact">Galeria</a></li> -->
@@ -199,7 +208,7 @@
 		</div>
 	</footer>
 	<script type="text/javascript"
-		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdec7hQ_YxfvvwaejZYtQcrUZzDPE9Evo&sensor=true">
+		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdec7hQ_YxfvvwaejZYtQcrUZzDPE9Evo&sensor=true&libraries=drawing">
 	</script>
 </body>
 </html>

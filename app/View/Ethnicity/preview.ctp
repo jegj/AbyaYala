@@ -1,5 +1,4 @@
-<div class="row content">
-	
+<div class="row content">	
 	<div class="col-md-8">
 		<h1>Etnia <?echo $ethnicity['Ethnicity']['name']?></h1>
 		<hr>

@@ -14,6 +14,11 @@ function getMusic(id){
 	return false;
 }
 
+function printNewsUserView(){
+  $("#panel_news").printElement({printMode:'popup'});
+}
+
+
 
 
 
