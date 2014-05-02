@@ -10,7 +10,7 @@
 
 				<div class="col-md-10">
 				<div class="col-md-10">
-					<h3>Dirección</h3>
+					<h1 class="titulo">Dirección</h1>
 					<hr>
 					<div class="main-address-container" class="container">
 						<div class="row">

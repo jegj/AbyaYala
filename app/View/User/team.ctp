@@ -8,7 +8,7 @@
 			
 		</div>
 		<div class="col-md-10">
-			<h3>Equipo de  AbyaYala</h3>
+			<h1 class="titulo">Equipo de  AbyaYala</h1>
 			<hr>
 			<div class="main-address-container" class="container">
 				<div class="row">

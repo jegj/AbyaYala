@@ -10,6 +10,7 @@ class UsersController extends AppController
 	var $helpers=array('Html','Form', 'Js');
 	var $name ='User';
 	var $layout = 'Usuario';
+	public $components = array('Session', 'RequestHandler', 'Paginator');
 
 	var $uses = array('ImageContent', 'Content', 'Ethnicity', 'EthnicityNoteForm', 'News');
 
@@ -41,6 +42,25 @@ class UsersController extends AppController
 		$this->set(compact('news', 'images', 'papers'));
 	}
 
+	public function images()
+	{
+
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'imagen'),
+        'limit' => 8,
+        'paramType'=>'querystring',
+    );
+
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'imagenes'));
+    }
+
+    $this->set('content', $content);
+    	
+	}
+
 	public function abyayala()
 	{
 	}
@@ -55,7 +75,8 @@ class UsersController extends AppController
 
 	public function map()
 	{
-		
 	}
+
+
 
 }

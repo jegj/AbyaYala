@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="col-md-10">
-			<h3>Contacto</h3>
+			<h1 class="titulo">Contacto</h1>
 			<hr>
 			<div class="panel panel-success">
 	  		<div class="panel-heading">

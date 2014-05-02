@@ -70,7 +70,18 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#" style="color:#D5AE37;">AbyaYala</a>
+					<!-- <a class="navbar-brand" href="#" style="color:#D5AE37;">AbyaYala</a> -->
+						<?=
+								$this->Html->link('AbyaYala', array(
+										'controller'=>'users',
+										'action' => 'index'
+										),
+										array(
+											'style' => 'color:#D5AE37',
+											'class' => 'navbar-brand'
+										)
+									);
+						?>
 				</div>
 				<div class="collapse navbar-collapse">
 				  <ul id="navbar" class="nav navbar-nav">
@@ -110,7 +121,15 @@
 					<li class="dropdown">
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Fotos</a></li>
+	          	<li>
+		            <?=
+									$this->Html->link('Imagenes', array(
+										'controller'=>'users',
+										'action' => 'images'
+										)
+									);
+								?>
+							</li>
 	            <li><a href="#">Audio</a></li>
 	            <li><a href="#">Video</a></li>
 	          </ul>
@@ -143,6 +162,7 @@
 
 	<div class="row">
 		<div class="container">
+			<div  id="container-usuario">
 			<?php 
 				$success=$this->Session->flash('success'); 
 				$error=$this->Session->flash('error');
@@ -173,6 +193,7 @@
 			</div>
 			
 			<?php echo $this->fetch('content'); ?>
+			</div>
 		</div>
 	</div>
 
