@@ -21,20 +21,29 @@ $this->Paginator->options(array(
 	<h1 class="titulo">Galeria de Imagenes</h1>
 	<hr>
 
-	<div class="row galeria"> 
-			<?php foreach ($content as $image):?>
+	<!-- <div class="row galeria"> -->
+		<?php foreach ($content as $key => $image):?>
+				<?php if($key%4 == 0):?>
+					<div class="row galeria">
+				<?php endif;?>
 					<div class="col-md-3 col-sm-3 col-xs-6 ">
 						<a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
 	                                            rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
 	                                            >
 								<img class="img-responsive gallery" src='<?php echo $image['Content']['access_path']?>'   alt ='<?php echo $image['Content']['name']?>'/>
 						</a>
+						<b><?php echo $image['Content']['name'];?></b>
+						<p></p>
 					</div>
-			<?php endforeach;?>
-	</div>
+				<?php if(($key+1) %4 == 0):?>
+					</div>
+				<?php endif;?>
+		<?php endforeach;?>
+	<!-- </div> -->
+	
 
 	<div class='row' style="margin-top:20px;">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			<?php
 
 				echo $this->Paginator->counter(array(
@@ -48,7 +57,7 @@ $this->Paginator->options(array(
 				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
 			?>
 		</div>	
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?php
 					echo $this->Paginator->numbers();
 			?>
@@ -77,11 +86,9 @@ $this->Paginator->options(array(
     -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     margin-bottom:20px;
+    width:300px;
+    height:175px;
+    overflow:hidden;
 }
 
-.galeria img:hover {
-  filter: none; /* IE6-9 */
-  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
- 
-}
 </style>

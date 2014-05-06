@@ -47,8 +47,11 @@ class UsersController extends AppController
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'imagen'),
-        'limit' => 8,
+        'limit' => 12,
         'paramType'=>'querystring',
+        'order' => array(
+        	'Content.create_date' => 'desc'
+        )
     );
 
 		try{
