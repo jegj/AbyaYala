@@ -64,6 +64,11 @@ class UsersController extends AppController
     	
 	}
 
+	public function videos()
+	{
+		
+	}
+
 	public function abyayala()
 	{
 	}

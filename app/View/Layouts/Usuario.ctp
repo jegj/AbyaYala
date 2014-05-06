@@ -122,7 +122,7 @@
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
 	          <ul class="dropdown-menu">
 	          	<li>
-		            <?=
+		            <?php echo
 									$this->Html->link('Imagenes', array(
 										'controller'=>'users',
 										'action' => 'images'
@@ -131,7 +131,15 @@
 								?>
 							</li>
 	            <li><a href="#">Audio</a></li>
-	            <li><a href="#">Video</a></li>
+	            <li>
+	            	<?php echo
+									$this->Html->link('Videos', array(
+										'controller'=>'users',
+										'action' => 'videos'
+										)
+									);
+								?>
+	            </li>
 	          </ul>
         	</li>
 
