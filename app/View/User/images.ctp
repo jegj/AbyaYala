@@ -63,6 +63,7 @@ $this->Paginator->options(array(
 			?>
 		</div>
 	</div>
+	
 </div>
 </div>
 
