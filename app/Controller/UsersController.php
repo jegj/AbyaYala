@@ -66,7 +66,6 @@ class UsersController extends AppController
 
 	public function videos()
 	{
-		
 	}
 
 	public function abyayala()
@@ -83,6 +82,25 @@ class UsersController extends AppController
 
 	public function map()
 	{
+	}
+
+	public function traces()
+	{
+		$this->Paginator->settings = array(
+        'limit' => 8,
+        'paramType'=>'querystring',
+        'order' => array(
+        	'News.current_date' => 'desc'
+        )
+    );
+
+		try{
+       $content = $this->Paginator->paginate('News');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'traces'));
+    }
+
+    $this->set('content', $content);
 	}
 
 

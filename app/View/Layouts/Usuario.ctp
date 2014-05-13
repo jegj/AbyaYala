@@ -114,9 +114,16 @@
 							);
 						?>
 					</li>
-					<li><a href="#contact">Rastros Indigenas</a></li>
 
-					<!-- <li><a href="#contact">Galeria</a></li> -->
+					<li>
+						<?=
+							$this->Html->link('Rastros Indigenas', array(
+								'controller'=>'users',
+								'action' => 'traces'
+								)
+							);
+						?>
+					</li>
 
 					<li class="dropdown">
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
