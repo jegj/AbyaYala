@@ -68,6 +68,31 @@ class UsersController extends AppController
 	{
 	}
 
+	public function audio()
+	{
+
+	}
+
+	public function research()
+	{
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'documento'),
+        'limit' => 12,
+        'paramType'=>'querystring',
+        'order' => array(
+        	'Content.create_date' => 'desc'
+        )
+    );
+
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'research'));
+    }
+
+    $this->set('content', $content);
+	}
+
 	public function abyayala()
 	{
 	}

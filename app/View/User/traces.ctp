@@ -13,7 +13,6 @@ $this->Paginator->options(array(
   
   'convertKeys'=>array('term')
 ));
-
 ?>
 <div class="container-fluid">
     <div class="container container-pad" id="property-listings">
@@ -65,11 +64,11 @@ $this->Paginator->options(array(
                                 </p>
 
                                 <span class="fnt-smaller fnt-lighter fnt-arial">
-                                    <?php echo $new['News']['current_date'];?>
+                                    <b>Fecha Publicación:</b> <?php echo $new['News']['current_date'];?>
                                 </span>
                                 <p></p>
                                 <span class="fnt-smaller fnt-lighter fnt-arial">
-                                    <?php echo $new['News']['author'];?>
+                                    <b> Autor:</b> <?php echo $new['News']['author'];?>
                                 </span>
                             </div>
                         </div>

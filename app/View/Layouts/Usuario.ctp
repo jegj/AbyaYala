@@ -137,7 +137,15 @@
 									);
 								?>
 							</li>
-	            <li><a href="#">Audio</a></li>
+	            <li>
+	            	<?php echo
+									$this->Html->link('Muestras de Audio', array(
+										'controller'=>'users',
+										'action' => 'audio'
+										)
+									);
+								?>
+	            </li>
 	            <li>
 	            	<?php echo
 									$this->Html->link('Videos', array(
@@ -150,7 +158,16 @@
 	          </ul>
         	</li>
 
-					<li><a href="#contact">Investigación</a></li>
+					<li>
+						<?php echo
+									$this->Html->link('Investigación', array(
+										'controller'=>'users',
+										'action' => 'research'
+										)
+									);
+								?>
+					</li>
+
 					<form role="search" class="navbar-form navbar-right">
 				      <input class="form-control" type="text" placeholder="Búsqueda...">
 				    </form>
@@ -160,17 +177,17 @@
 		</div><!-- /.navbar -->
 	</div>
 
-	<div class="row" style="margin-top:30px;">
+	<div class="row" style="margin-top:40px;">
 		<div class="container-fluid">
 			<div id="background-banner" class="col-md-12">
-				<div id="logo" class="col-md-11">
+				<!-- <div id="logo" class="col-md-11">
 		  		<a href="#">
 		  			<img alt="AbyaYala" height="76" src="<?php echo $this->webroot;?>assets/imagenes/banner.png" width="250"> 
 		  		</a>
 				</div>
 				<div class="col-md-1" style="padding-left:0px;">
 					<img alt="Tehedor" class="img-responsive" src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
