@@ -28,7 +28,12 @@
 
 		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
-		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/circle.player', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.grab', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.transform2d', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/mod.csstransforms.min', array('inline' => false));	
+		
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	

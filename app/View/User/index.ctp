@@ -1,5 +1,12 @@
 <div class="row">
 	<div class="container">
+        <div class="jumbotron">
+          <h1 class="titulo">Bienvenidos a AbyaYala</h1>
+          <p class="title">
+            “Abya Yala, cuyo significado es 'tierra en plena madurez', es un término empleado por los indios Cuna de Panamá, para nombrar lo que en otro registro se denominó Indias Occidentales primero y América después. El líder indígena Takir Mamani sugirió que todos los movimientos indígenas lo utilicen tanto en sus documentos como en sus declaraciones orales” - Walter Mignolo, 2001.
+          </p>
+        </div>
+
         <h1 class="titulo">Ultimas Noticias</h1>
         <hr>
 		<div class="col-md-6">			

@@ -44,6 +44,21 @@ $this->Paginator->options(array(
               <span class="fnt-smaller fnt-lighter fnt-arial">
                   <b> Autor:</b> <?php echo $pdf['Content']['author'];?>
               </span>
+              <p>
+                <?php if(!$pdf['Content']['only_read']):?>
+                      <?php  
+                          echo $this->Html->link(
+                              "<span class='glyphicon glyphicon-download-alt' data-toggle='tooltip' data-placement='left' title='Descargar Pista de Audio' class='icono_descarga'></span>",
+                              array('action' => 'download', 'controller' =>'contents',$pdf['Content']['content_id'], true),
+                              array('escape' => false)
+                          );
+                      ?>
+                <?php else:?>
+                  <span class="fnt-smaller fnt-lighter fnt-arial">
+                    <b> No disponible para descargar</b>
+                </span>
+                <?php endif;?>
+              </p>
 	        </div>
 	      </div>
 	  	</div>

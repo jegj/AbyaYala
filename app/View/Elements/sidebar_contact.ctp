@@ -1,3 +1,25 @@
+<div class="mini-submenu">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</div>
+<div class="list-group">
+   
+    <a href="/AbyaYala/users/abyayala" class="list-group-item">
+        <i class="fa fa-comment-o"></i> <span class="glyphicon glyphicon-book"></span> AbyaYala
+    </a>
+    <a href="/AbyaYala/users/address" class="list-group-item">
+        <i class="fa fa-search"></i> <span class="glyphicon glyphicon-map-marker"></span> Dirección
+    </a>
+    <a href="/AbyaYala/users/team" class="list-group-item">
+        <i class="fa fa-user"></i> <span class="glyphicon glyphicon-user"></span> Equipo
+    </a>
+    <a href="/AbyaYala/messages/add" class="list-group-item">
+        <i class="fa fa-folder-open-o"></i> <span class="glyphicon glyphicon-envelope"></span> Contacto
+    </a>
+</div>      
+
+<!--
 <ul class="nav nav-list"> 
 	<li>
 		<?php
@@ -48,3 +70,4 @@
 	</li>
 
 </ul>
+-->

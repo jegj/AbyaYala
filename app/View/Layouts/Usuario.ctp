@@ -15,8 +15,8 @@
 		echo $this->Html->css('abyayala/abyayala');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
 		echo $this->Html->css('../js/upload/css/style');
-		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
 		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
+		echo $this->Html->css('../js/jplayer/circle.skin/circle.player.css');
 	?>
 	<!-- Archivos Javascript-->
 		<?
@@ -32,7 +32,12 @@
 
 		// echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
-		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/circle.player', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.grab', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.transform2d', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/mod.csstransforms.min', array('inline' => false));	
+
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.iframe-transport', array('inline' => false));	
@@ -43,6 +48,7 @@
 		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/main',array('inline'=>false));
+		echo $this->Html->script('AbyaYala/AudioUser/audio_user.js',array('inline'=>false));
 		echo $this->Html->script('social/comment.js',array('inline'=>false));
 		echo $this->Html->script('jqueryPrint/jqueryPrint.js',array('inline'=>false));
 		
@@ -51,6 +57,7 @@
 		echo $this->Html->script('social/google.js',array('inline'=>false));
 		echo $this->Html->script('social/googleShare.js',array('inline'=>false));
 		echo $this->Html->script('social/social.js',array('inline'=>false));
+		
 	?>
 		
 	<?php

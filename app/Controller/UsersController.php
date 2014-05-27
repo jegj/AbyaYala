@@ -66,11 +66,27 @@ class UsersController extends AppController
 
 	public function videos()
 	{
+		//Se uso XML feed en las vistas
 	}
 
 	public function audio()
 	{
+		$this->Paginator->settings = array(
+        'conditions' => array('Content.type =' => 'audio'),
+        'limit' => 12,
+        'paramType'=>'querystring',
+        'order' => array(
+        	'Content.create_date' => 'desc'
+        )
+    );
 
+		try{
+       $content = $this->Paginator->paginate('Content');
+    }catch (NotFoundException $e) {
+        return $this->redirect(array('action'=>'imagenes'));
+    }
+
+    $this->set('content', $content);
 	}
 
 	public function research()
