@@ -17,7 +17,7 @@
 	<?
 		echo $this->Html->script('jquery/jquery-1.10.2.min', array('inline' => false));
 		echo $this->Html->script('bootstrap/bootstrap.min', array('inline' => false));
-		echo $this->Html->script('jplayer/jquery.jplayer.min', array('inline' => false));	
+		echo $this->Html->script('jplayer/js/jquery.jplayer.min', array('inline' => false));	
 		echo $this->Html->script('AbyaYala/ckeditor', array('inline' => false));	
 		echo $this->Html->script('ckeditor/ckeditor',array('inline'=>false));
 		echo $this->Html->script('underscore/underscore',array('inline'=>false));

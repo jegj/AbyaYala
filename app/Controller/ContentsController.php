@@ -234,8 +234,8 @@ class ContentsController extends AppController {
 		$this->canAccess();
 
 		$this->layout = 'ckeditor';
-		$ckeditor=$this->request->query['ckeditor'];
-		$term=$this->request->query['term'];
+		$ckeditor = $this->request->query['ckeditor'];
+		$term = $this->request->query['term'];
 
 		$this->Paginator->settings = array(
         'conditions' => 

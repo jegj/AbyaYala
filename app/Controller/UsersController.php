@@ -144,6 +144,10 @@ class UsersController extends AppController
     $this->set('content', $content);
 	}
 
-
-
+	public function search()
+	{
+		$term = $this->request->query['term'];
+		$number = 3;
+		$this->set(compact('term', 'number'));
+	}
 }

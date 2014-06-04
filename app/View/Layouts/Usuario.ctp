@@ -168,15 +168,14 @@
 					<li>
 						<?php echo
 									$this->Html->link('Investigación', array(
-										'controller'=>'users',
+										'controller'=>'users', 
 										'action' => 'research'
 										)
 									);
 								?>
 					</li>
-
-					<form role="search" class="navbar-form navbar-right">
-				      <input class="form-control" type="text" placeholder="Búsqueda...">
+					<form role="search" class="navbar-form navbar-right" action="/AbyaYala/users/search">
+				      <input class="form-control" type="text" placeholder="Búsqueda..." name="term" required>
 				    </form>
 				  </ul>
 				</div><!-- /.nav-collapse -->
