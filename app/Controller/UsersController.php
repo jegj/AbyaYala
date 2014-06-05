@@ -10,9 +10,9 @@ class UsersController extends AppController
 	var $helpers=array('Html','Form', 'Js');
 	var $name ='User';
 	var $layout = 'Usuario';
-	public $components = array('Session', 'RequestHandler', 'Paginator');
+	public $components = array('Session', 'RequestHandler', 'Paginator', 'Search.Prg');
 
-	var $uses = array('ImageContent', 'Content', 'Ethnicity', 'EthnicityNoteForm', 'News');
+	var $uses = array('News','ImageContent', 'Content', 'Ethnicity', 'EthnicityNoteForm');
 
 	public function index()
 	{	
@@ -146,8 +146,11 @@ class UsersController extends AppController
 
 	public function search()
 	{
-		$term = $this->request->query['term'];
-		$number = 3;
-		$this->set(compact('term', 'number'));
+		 // Array ( [title] => vene ) 
+		$this->Prg->commonProcess();
+		$this->Paginator->settings['conditions'] = $this->News->parseCriteria($this->Prg->parsedParams());
+		$this->set('news', $this->Paginator->paginate());
+		/*$number = 3;
+		$this->set(compact('term', 'number'));*/
 	}
 }

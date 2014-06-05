@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="row" >				
+<div class="row" >				
+	<div class="container">
 		<div class="col-md-2" id="sidebar" style="margin-top:20px;">
 
 		<div class="sidebar-nav">						

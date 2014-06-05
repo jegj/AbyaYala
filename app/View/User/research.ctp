@@ -48,7 +48,7 @@ $this->Paginator->options(array(
                 <?php if(!$pdf['Content']['only_read']):?>
                       <?php  
                           echo $this->Html->link(
-                              "<span class='glyphicon glyphicon-download-alt' data-toggle='tooltip' data-placement='left' title='Descargar Pista de Audio' class='icono_descarga'></span>",
+                              "<span class='glyphicon glyphicon-download-alt' data-toggle='tooltip' data-placement='left' title='Descargar Documento' class='icono_descarga'></span>",
                               array('action' => 'download', 'controller' =>'contents',$pdf['Content']['content_id'], true),
                               array('escape' => false)
                           );

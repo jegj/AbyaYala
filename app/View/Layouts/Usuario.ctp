@@ -77,7 +77,6 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!-- <a class="navbar-brand" href="#" style="color:#D5AE37;">AbyaYala</a> -->
 						<?=
 								$this->Html->link('AbyaYala', array(
 										'controller'=>'users',
@@ -174,63 +173,86 @@
 									);
 								?>
 					</li>
-					<form role="search" class="navbar-form navbar-right" action="/AbyaYala/users/search">
-				      <input class="form-control" type="text" placeholder="Búsqueda..." name="term" required>
-				    </form>
+
+					  <?php
+							echo $this->Form->create('Buscador', array(
+								'url' => array_merge(
+										array(
+											'controller' => 'users',
+											'action' => 'search'
+										),
+										$this->params['pass']
+									),
+									'class' => 'navbar-form navbar-right',
+									'role' => 'search'
+								)
+							);
+							echo $this->Form->input('title', array(
+									'div' => false,
+									'label' => false,
+									'class' => 'form-control',
+									'type' => 'text',
+									'placeholder' => 'Búsqueda',
+									'name' => 'data[News][title]'
+								)
+							);
+
+							echo $this->Form->end();
+					  ?>
+
 				  </ul>
 				</div><!-- /.nav-collapse -->
 			</div><!-- /.container -->
 		</div><!-- /.navbar -->
 	</div>
 
-	<div class="row" style="margin-top:40px;">
-		<div class="container-fluid">
-			<div id="background-banner" class="col-md-12">
-				<!-- <div id="logo" class="col-md-11">
-		  		<a href="#">
-		  			<img alt="AbyaYala" height="76" src="<?php echo $this->webroot;?>assets/imagenes/banner.png" width="250"> 
-		  		</a>
-				</div>
-				<div class="col-md-1" style="padding-left:0px;">
-					<img alt="Tehedor" class="img-responsive" src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
-				</div> -->
-			</div>
-		</div>
+	<div class="row-fluid" style="margin-top:50px;">
+  		<a href="#">
+  			<?php echo $this->Html->image('header08.png', 
+  					array(
+  						'alt' => 'Banner AbyaYala',
+  						'height'=>'100%',
+  						'width' => '100%',
+  						'class' => 'img-responsive'
+  					)
+  				);
+  			?>
+  		</a>
 	</div>
 
 	<div class="row">
 		<div class="container">
 			<div  id="container-usuario">
-			<?php 
-				$success=$this->Session->flash('success'); 
-				$error=$this->Session->flash('error');
-				$warning=$this->Session->flash('warning');
-			?>
+				<?php 
+					$success=$this->Session->flash('success'); 
+					$error=$this->Session->flash('error');
+					$warning=$this->Session->flash('warning');
+				?>
 
-			<div style="margin-top:30px;">
-				<?php if($success):?>
-					<div class="alert alert-success alert-dismissable">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<?php echo $success; ?>
-					</div>
-				<?endif;?>
+				<div style="margin-top:30px;">
+					<?php if($success):?>
+						<div class="alert alert-success alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<?php echo $success; ?>
+						</div>
+					<?endif;?>
 
-				<?php if($error):?>
-					<div class="alert alert-danger alert-dismissable">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<?php echo $error; ?>
-					</div>
-				<?endif;?>
+					<?php if($error):?>
+						<div class="alert alert-danger alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<?php echo $error; ?>
+						</div>
+					<?endif;?>
 
-				<?php if($warning):?>
-					<div class="alert alert-warning alert-dismissable">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<?php echo $warning; ?>
-					</div>
-				<?endif;?>
-			</div>
+					<?php if($warning):?>
+						<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<?php echo $warning; ?>
+						</div>
+					<?endif;?>
+				</div>
 			
-			<?php echo $this->fetch('content'); ?>
+				<?php echo $this->fetch('content'); ?>
 			</div>
 		</div>
 	</div>

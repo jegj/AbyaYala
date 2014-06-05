@@ -1,5 +1,11 @@
 <div class="container">
-
+		<?php foreach ($news as $new):?>
+				<h1><?php echo $new['News']['title'];?></h1>
+				<p><?php echo $new['News']['current_date'];?></p>
+				<p></p>
+		<?php endforeach;?>
+		
+		<!--
     <hgroup class="mb20">
 			<h1 class="titulo">Resultados de la busqueda</h1>
 			<h2 class="lead"><strong class="text-danger"><?php echo $number?></strong> resultados encontrados por <strong class="text-danger"><?php echo $term?></strong></h2>								
@@ -60,4 +66,5 @@
 				<span class="clearfix border"></span>
 			</article>			
 		</section>
+		-->
 </div>

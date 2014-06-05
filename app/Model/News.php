@@ -7,6 +7,16 @@ App::uses('AppModel', 'Model');
  */
 class News extends AppModel {
 
+	public $actsAs = array(
+		'Search.Searchable'
+	);
+
+	public $filterArgs = array(
+		'title' => array(
+			'type' => 'like',
+		),
+	);
+
 /**
  * Use database config
  *
