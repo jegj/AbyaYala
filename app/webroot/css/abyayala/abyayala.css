@@ -243,7 +243,7 @@ form .error,form .error-message {
 
 .col-item .info
 {
-    padding: 10px;
+    margin: 20px;
     border-radius: 0 0 5px 5px;
     margin-top: 1px;
 }

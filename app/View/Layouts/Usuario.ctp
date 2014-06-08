@@ -67,146 +67,147 @@
 	?>
 </head>
 <body>
-	<div class="row">
-		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-						<?=
-								$this->Html->link('AbyaYala', array(
-										'controller'=>'users',
-										'action' => 'index'
-										),
-										array(
-											'style' => 'color:#D5AE37',
-											'class' => 'navbar-brand'
-										)
-									);
-						?>
-				</div>
-				<div class="collapse navbar-collapse">
-				  <ul id="navbar" class="nav navbar-nav">
-						<li>
-							<?=
-								$this->Html->link('Inicio', array(
-										'controller'=>'users',
-										'action' => 'index'
-										)
-									);
-							?>
-						</li>
+	<nav class="navbar navbar-inverse" role="navigation" style="margin-bottom: 0px; !important;">
+  
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    	<?=
+					$this->Html->link('AbyaYala', array(
+							'controller'=>'users',
+							'action' => 'index'
+							),
+							array(
+								'style' => 'color:#D5AE37',
+								'class' => 'navbar-brand'
+							)
+					);
+				?>
+	  </div>
 
-						<li>
-							<?=
-								$this->Html->link('Proyecto AbyaYala', array(
+  
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+	       <li>
+								<?=
+									$this->Html->link('Inicio', array(
+											'controller'=>'users',
+											'action' => 'index'
+											)
+										);
+								?>
+							</li>
+
+		 					<li>
+								<?=
+									$this->Html->link('Proyecto AbyaYala', array(
+											'controller'=>'users',
+											'action' => 'abyayala'
+											)
+										);
+								?>
+							</li>
+
+							<li>
+								<?=
+									$this->Html->link('Familia Linguisticas', array(
 										'controller'=>'users',
-										'action' => 'abyayala'
-										)
-									);
-							?>
-						</li>
-
-					<li>
-						<?=
-							$this->Html->link('Familia Linguisticas', array(
-								'controller'=>'users',
-								'action' => 'map'
-								)
-							);
-						?>
-					</li>
-
-					<li>
-						<?=
-							$this->Html->link('Rastros Indigenas', array(
-								'controller'=>'users',
-								'action' => 'traces'
-								)
-							);
-						?>
-					</li>
-
-					<li class="dropdown">
-          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
-	          <ul class="dropdown-menu">
-	          	<li>
-		            <?php echo
-									$this->Html->link('Imagenes', array(
-										'controller'=>'users',
-										'action' => 'images'
+										'action' => 'map'
 										)
 									);
 								?>
 							</li>
-	            <li>
-	            	<?php echo
-									$this->Html->link('Muestras de Audio', array(
-										'controller'=>'users',
-										'action' => 'audio'
-										)
-									);
-								?>
-	            </li>
-	            <li>
-	            	<?php echo
-									$this->Html->link('Videos', array(
-										'controller'=>'users',
-										'action' => 'videos'
-										)
-									);
-								?>
-	            </li>
-	          </ul>
-        	</li>
 
-					<li>
-						<?php echo
-									$this->Html->link('Investigación', array(
-										'controller'=>'users', 
-										'action' => 'research'
+							<li>
+								<?=
+									$this->Html->link('Rastros Indigenas', array(
+										'controller'=>'users',
+										'action' => 'traces'
 										)
 									);
 								?>
-					</li>
+							</li>
 
-					  <?php
-							echo $this->Form->create('Buscador', array(
-								'url' => array_merge(
-										array(
-											'controller' => 'users',
-											'action' => 'search'
-										),
-										$this->params['pass']
+							<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
+			          <ul class="dropdown-menu">
+			          	<li>
+				            <?php echo
+											$this->Html->link('Imagenes', array(
+												'controller'=>'users',
+												'action' => 'images'
+												)
+											);
+										?>
+									</li>
+			            <li>
+			            	<?php echo
+											$this->Html->link('Muestras de Audio', array(
+												'controller'=>'users',
+												'action' => 'audio'
+												)
+											);
+										?>
+			            </li>
+			            <li>
+			            	<?php echo
+											$this->Html->link('Videos', array(
+												'controller'=>'users',
+												'action' => 'videos'
+												)
+											);
+										?>
+			            </li>
+			          </ul>
+		        	</li>
+
+							<li>
+								<?php echo
+											$this->Html->link('Investigación', array(
+												'controller'=>'users', 
+												'action' => 'research'
+												)
+											);
+										?>
+							</li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      <li>
+	      	<?php
+						echo $this->Form->create('Buscador', array(
+							'url' => array_merge(
+									array(
+										'controller' => 'users',
+										'action' => 'search'
 									),
-									'class' => 'navbar-form navbar-right',
-									'role' => 'search'
-								)
-							);
-							echo $this->Form->input('title', array(
-									'div' => false,
-									'label' => false,
-									'class' => 'form-control',
-									'type' => 'text',
-									'placeholder' => 'Búsqueda',
-									'name' => 'data[News][title]'
-								)
-							);
+									$this->params['pass']
+								),
+								'class' => 'navbar-form navbar-right',
+								'role' => 'search'
+							)
+						);
+						echo $this->Form->input('title', array(
+								'div' => false,
+								'label' => false,
+								'class' => 'form-control',
+								'type' => 'text',
+								'placeholder' => 'Búsqueda',
+								'name' => 'data[News][title]'
+							)
+						);
 
-							echo $this->Form->end();
-					  ?>
+						echo $this->Form->end();
+					?>
+	      </li>
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
+	</nav>
 
-				  </ul>
-				</div><!-- /.nav-collapse -->
-			</div><!-- /.container -->
-		</div><!-- /.navbar -->
-	</div>
-
-	<div class="row-fluid" style="margin-top:50px;">
+	<div class="row-fluid">
   		<a href="#">
   			<?php echo $this->Html->image('header08.png', 
   					array(

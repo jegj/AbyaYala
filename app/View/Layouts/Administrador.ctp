@@ -52,15 +52,18 @@
 	?>
 </head>
 <body>
-		<div id="background-banner" class="col-md-12">
-			<div id="logo" class="col-md-11">
-	  		<a href="#">
-	  			<img alt="AbyaYala" height="76" src="<?php echo $this->webroot;?>assets/imagenes/banner.png" width="250"> 
-	  		</a>
-			</div>
-			<div class="col-md-1" style="padding-left:0px;">
-				<img alt="Tehedor" class="img-responsive" src="<?php echo $this->webroot;?>assets/imagenes/indio_7.jpg" width="100" height="115">
-			</div>
+		<div class="row-fluid">
+  		<a href="#">
+  			<?php echo $this->Html->image('header08.png', 
+  					array(
+  						'alt' => 'Banner AbyaYala',
+  						'height'=>'100%',
+  						'width' => '100%',
+  						'class' => 'img-responsive'
+  					)
+  				);
+  			?>
+  		</a>
 		</div>
 
 		<div class="container">
