@@ -190,13 +190,13 @@
 								'role' => 'search'
 							)
 						);
-						echo $this->Form->input('title', array(
+						echo $this->Form->input('name', array(
 								'div' => false,
 								'label' => false,
 								'class' => 'form-control',
 								'type' => 'text',
 								'placeholder' => 'Búsqueda',
-								'name' => 'data[News][title]'
+								'name' => 'data[Search][name]'
 							)
 						);
 

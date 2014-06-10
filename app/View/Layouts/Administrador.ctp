@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<?php echo $this->Html->charset()	; ?>
 	<title>AbyaYala</title>
 	<?php echo $this->Html->meta('icon');?>
 

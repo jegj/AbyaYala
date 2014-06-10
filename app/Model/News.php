@@ -113,4 +113,61 @@ class News extends AppModel {
 
 	  return parent::beforeSave();
 	} 
+
+	function afterSave(	$created, $options = array())
+	{
+
+		$this->Search = ClassRegistry::init('Search');
+
+		if($created){
+			$data = array(
+        'Search' => array(
+          'name' => $this->data['News']['title'],
+          'description' => $this->data['News']['description'],
+          'date' => $this->data['News']['current_date'],
+          'author' => $this->data['News']['author'],
+          'model' => 'News',
+          'model_pk' => $this->data['News']['new_id'],
+          'previous_text' => $this->data['News']['previous_text'],
+        )
+			);
+			$this->Search->save($data);
+		}else{
+			$search = $this->Search->find('first', 
+				array(
+					'conditions' => array(
+						'Search.model_pk' => $this->data['News']['new_id'],
+						'model' => 'News'
+					),
+				)
+			);
+			$this->Search->read(null, $search['Search']['id']);
+			$data = array(
+        'Search' => array(
+          'name' => $this->data['News']['title'],
+          'description' => $this->data['News']['description'],
+          'date' => $this->data['News']['current_date'],
+          'author' => $this->data['News']['author'],
+          'model' => 'News',
+          'model_pk' => $this->data['News']['new_id'],
+          'previous_text' => $this->data['News']['previous_text'],	
+        )
+			);
+			$this->Search->save($data);
+		}
+		return true;
+	}
+
+	function beforeDelete($cascade = true) {
+    $this->Search = ClassRegistry::init('Search');
+
+    $this->Search->deleteAll(
+    	array(
+    		'Search.model' => 'News',
+    		'Search.model_pk' => $this->id
+    	), 
+    	false);
+
+    return true;	
+	}
 }
