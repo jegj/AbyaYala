@@ -17,7 +17,7 @@ $this->Paginator->options(array(
 
 
 <div class="container"> 
-    <h1 class="titulo">Galeria de Pistas de Audio</h1>
+    <h1 class="titulo">Galeria de Muestras de Audio</h1>
     <hr>
 
     <div class="row">

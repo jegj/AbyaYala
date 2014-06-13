@@ -71,7 +71,7 @@ class ContentsController extends AppController {
 
 	public function audio()
 	{
-		$this->canAccess();
+		// $this->canAccess();
 
 		if ($this->request->is('post')) {
 
@@ -85,6 +85,25 @@ class ContentsController extends AppController {
 			}
     }
 	}
+
+
+	public function image()
+	{
+		// $this->canAccess();
+
+		if ($this->request->is('post')) {
+
+			$id=$this->data['Content']['id'];
+			$content=$this->Content->findByContentId($id);
+			if($content)
+				$this->set('content',$content);		
+			else{
+				$error=true;
+				$this->set('error',$error);		
+			}
+    }
+	}
+
 
 	public function download($id, $viewOnline=false)
 	{
@@ -313,7 +332,8 @@ class ContentsController extends AppController {
 		$this->canAccess();
 		
 		$this->autoRender=false;
-		$file=$_FILES['upl'];
+		
+		$file = $_FILES['upl'];
 		$result=$this->Content->saveFile($file, $this->webroot);
 		$this->response->type('json');
 		$json = json_encode(array('status'=>$result['complete']['result']));

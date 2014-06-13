@@ -1,5 +1,6 @@
 
-function getMusic(id){
+function getMusic(id)
+{
 	$.ajax({
     url: '/AbyaYala/contents/audio',
     type: 'POST',
@@ -12,6 +13,22 @@ function getMusic(id){
     }
 	});
 	return false;
+}
+
+function getImage(id)
+{
+  $.ajax({
+    url: '/AbyaYala/contents/image',
+    type: 'POST',
+    data:'data[Content][id]='+id,
+    dataType: 'HTML',
+    success: function (data) {
+      $('#myModalLabel').html('Visor de Imagenes de AbyaYala');
+      $('#modal-body').html(data);
+      $('#myModal').modal('show');
+    }
+  });
+  return false;
 }
 
 function printNewsUserView(){

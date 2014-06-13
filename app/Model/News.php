@@ -158,7 +158,8 @@ class News extends AppModel {
 		return true;
 	}
 
-	function beforeDelete($cascade = true) {
+	function beforeDelete($cascade = true) 
+	{
     $this->Search = ClassRegistry::init('Search');
 
     $this->Search->deleteAll(

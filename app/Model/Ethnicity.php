@@ -68,4 +68,14 @@ class Ethnicity extends AppModel {
         'associationForeignKey' => 'note_id',
       )
   );
+
+  public function getEthnicityFather()
+  {
+    $fatherId = $this->data['Ethnicity']['ethnicity_father_id'];
+
+    $id = isset($fatherId)?$fatherId:$this->data['Ethnicity']['ethnicity_id'];
+    
+    return $id;
+  }
+
 }

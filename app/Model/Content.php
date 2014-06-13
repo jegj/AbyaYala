@@ -180,4 +180,62 @@ class Content extends AppModel {
 	  return parent::beforeSave();
 	} 
 
+	function afterSave(	$created, $options = array())
+	{
+
+		$this->Search = ClassRegistry::init('Search');
+
+		if($created){
+			$data = array(
+        'Search' => array(
+          'name' => $this->data['Content']['name'],
+          'description' => $this->data['Content']['description'],
+          'date' => $this->data['Content']['create_date'],
+          'author' => isset($this->data['Content']['author'])?$this->data['Content']['author']:null,
+          'model' => 'Content',
+          'type' => $this->data['Content']['type'],
+          'model_pk' => $this->data['Content']['content_id'],
+        )
+			);
+			$this->Search->save($data);
+		}else{
+			$search = $this->Search->find('first', 
+				array(
+					'conditions' => array(
+						'Search.model_pk' => $this->data['Content']['content_id'],
+						'model' => 'Content'
+					),
+				)
+			);
+			$this->Search->read(null, $search['Search']['id']);
+			$data = array(
+        'Search' => array(
+          'name' => $this->data['Content']['name'],
+          'description' => $this->data['Content']['description'],
+          'date' => $this->data['Content']['create_date'],
+          'author' => isset($this->data['Content']['author'])?$this->data['Content']['author']:null,
+          'model' => 'Content',
+          'type' => $this->data['Content']['type'],
+          'model_pk' => $this->data['Content']['content_id'],
+        )
+			);
+			$this->Search->save($data);
+		}
+		return true;
+	}
+
+	function beforeDelete($cascade = true) 
+	{
+    $this->Search = ClassRegistry::init('Search');
+
+    $this->Search->deleteAll(
+    	array(
+    		'Search.model' => 'Content',
+    		'Search.model_pk' => $this->id
+    	), 
+    	false);
+
+    return true;	
+	}
+
 }

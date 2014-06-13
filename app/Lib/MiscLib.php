@@ -19,27 +19,71 @@
 	    return $text;
 		}
 
-		public static function generateUrl($model = null, $id = null)
+		public static function generateUrl($model = null, $id = null, $type = null)
 		{
+
 			$controller = null;
 			$action = null;
+
 			if(isset($model) && isset($id)){
 				if($model == 'News'){
-					$controller = 'news';
-					$action = 'user_view';
-				}else if($model == 'Content'){
-					$controller = 'news';
-					$action = 'user_view';
+
+					return array(
+						'controller' => 'news',
+						'action' => 'user_view',
+						$id
+					);
+
+				}else if($model == 'Content' && $type != null){
+					switch ($type) {
+						case 'imagen':
+							return array(
+								'controller' => '',
+								'action' => '',
+								'ajax_'.$id,
+							);
+							break;
+
+						case 'documento':
+							return array(
+								'controller' => 'contents',
+								'action' => 'download',
+								$id,
+								false
+							);
+							break;
+
+						case 'audio':
+							return array(
+								'controller' => '',
+								'action' => '',
+								'ajax_'.$id,
+							);
+							break;
+
+						default:
+							return array(
+								'controller' => '',
+								'action' => '',
+								$id,
+							);
+							break;
+					}
+
 				}else if($model == 'Ethnicity'){
-					$controller = 'ethnicities';
-					$action = 'user_view';
+					
+					$ethnicity = ClassRegistry::init('Ethnicity');
+					$ethnicity->read(null, $id);
+
+					$realId = $ethnicity->getEthnicityFather();
+	
+
+					return array(
+						'controller' => 'ethnicities',
+						'action' => 'preview',
+						$realId,
+					);
 				}
 			}
-
-			return array(
-				'controller' => $controller,
-				'action' => $action,
-				$id
-			);
 		}
 	}
