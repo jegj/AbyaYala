@@ -129,6 +129,7 @@ class News extends AppModel {
           'model' => 'News',
           'model_pk' => $this->data['News']['new_id'],
           'previous_text' => $this->data['News']['previous_text'],
+          'type' => 'noticia',
         )
 			);
 			$this->Search->save($data);

@@ -205,6 +205,7 @@ class EthnicitiesController extends AppController {
 
     public function preview($id)
     {
+        $this->canAccess();
 
         if (!$id) {
             $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
@@ -219,6 +220,35 @@ class EthnicitiesController extends AppController {
         }
 
         $this->set(compact('ethnicity'));
+    }
+
+    public function user_preview($id)
+    {
+        $this->layout = 'Usuario';
+        
+        if (!$id) {
+            $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
+            return $this->redirect(
+                array(
+                    'controller' => 'users',
+                    'action'=>'index'
+                )
+            );
+        }
+
+        $ethnicity = $this->Ethnicity->findByEthnicityId($id);
+
+        if (!$ethnicity) {
+            $this->Session->setFlash('<strong>Error!</strong> No existe la etnia especificada.', 'default', array(), 'error');
+            return $this->redirect(
+                array(
+                    'controller' => 'users',
+                    'action'=>'index'
+                )
+            );
+        }
+
+        $this->set(compact('ethnicity'));   
     }
 
     public function notes()

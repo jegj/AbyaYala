@@ -148,7 +148,17 @@ class UsersController extends AppController
 	{
 		$this->Prg->commonProcess();
 		$this->Paginator->settings['conditions'] = $this->Search->parseCriteria($this->Prg->parsedParams());
+		$this->Paginator->settings['limit'] = 5;
 		$this->set('results', $this->Paginator->paginate());
-		$this->set('term', $this->Prg->parsedParams()['name']);
+
+		if(count($this->Prg->parsedParams()) > 1)
+			$this->set('term', 'Búsqueda Compuesta');
+		else
+			$this->set('term', $this->Prg->parsedParams()['name']);
+	}
+
+	public function advanced_search()
+	{
+
 	}
 }

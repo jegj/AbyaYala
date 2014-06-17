@@ -111,10 +111,44 @@ class Search extends AppModel {
 			'type' => 'like',
 		),
 		'type' => array(
-			'type' => 'like'
+			'type' => 'query',
+			'method' => 'findType'
 		),
 		'author' => array(
 			'type' => 'like'
 		),
+
+		'date' => array(
+			'type' => 'query',
+			'method' => 'findDate'
+		)
 	);
+
+	public function findType($data = array())
+	{
+		$type = $data['type'];
+		if($type == 'cualquiera')
+			return array();
+		else{
+			$condition = array(
+				'AND' => array(
+						$this->alias . '.type LIKE' => '%' . $type . '%',
+				)
+			);
+
+			return $condition;
+		}
+	}
+
+	public function findDate($data = array())
+	{
+		$date = $data['date'];
+		$condition = array(
+			'AND' => array(
+					"DATE(".$this->alias . '.date'.")" => $date,
+			)
+		);
+
+		return $condition;
+	}
 }

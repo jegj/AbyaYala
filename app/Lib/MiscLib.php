@@ -80,7 +80,7 @@
 
 					return array(
 						'controller' => 'ethnicities',
-						'action' => 'preview',
+						'action' => 'user_preview',
 						$realId,
 					);
 				}

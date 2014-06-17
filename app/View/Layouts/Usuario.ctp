@@ -17,6 +17,7 @@
 		echo $this->Html->css('../js/upload/css/style');
 		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
 		echo $this->Html->css('../js/jplayer/circle.skin/circle.player.css');
+		echo $this->Html->css('../js/datepicker/css/datepicker.css');
 	?>
 	<!-- Archivos Javascript-->
 		<?
@@ -37,6 +38,8 @@
 		echo $this->Html->script('jplayer/js/jquery.grab', array('inline' => false));	
 		echo $this->Html->script('jplayer/js/jquery.transform2d', array('inline' => false));	
 		echo $this->Html->script('jplayer/js/mod.csstransforms.min', array('inline' => false));	
+		echo $this->Html->script('datepicker/js/bootstrap-datepicker', array('inline' => false));	
+		echo $this->Html->script('datepicker/js/locales/bootstrap-datepicker.es', array('inline' => false));	
 
 		echo $this->Html->script('upload/js/jquery.knob', array('inline' => false));	
 		echo $this->Html->script('upload/js/jquery.ui.widget', array('inline' => false));	

@@ -17,14 +17,22 @@ $this->Paginator->options(array(
 <div class="row">
 	<div class="container">
 	  <hgroup class="mb20">
-			<h1 class="titulo">Resultados de la busqueda</h1>
+			<h1 class="titulo">Resultados de la búsqueda</h1>
 			<h2 class="lead">
 				<strong class="text-danger">
 					<?php echo $this->Paginator->counter(
 				    '{:count}'
 					);?>
 				</strong> resultados encontrados para <strong class="text-danger"><?php echo $term?></strong>
-				<strong style="float:right">Busqueda Avanzada</strong>
+				<strong style="float:right">
+					<?php
+						echo $this->Html->link(
+							'¿Búsqueda Avanzada?',
+							array('action'=> 'advanced_search')
+	          );
+					?>
+					
+				</strong>
 			</h2>		
 		</hgroup>
 

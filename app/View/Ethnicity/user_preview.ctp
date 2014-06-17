@@ -1,6 +1,6 @@
 <div class="row content">	
 	<div class="col-md-8">
-		<h1>Etnia <?echo $ethnicity['Ethnicity']['name']?></h1>
+		<h1 class="titulo">Etnia <?echo $ethnicity['Ethnicity']['name']?></h1>
 		<hr>
 		<?php if(count($ethnicity['Anchors'])>0):?>
 			<?php foreach ($ethnicity['Anchors'] as $anchor):?>
@@ -13,7 +13,7 @@
 							
 				<div id = "<?php echo $id?>" class="panel panel-default">
 					<div class="panel-heading">
-								<h3 class="panel-title">
+								<h3 class="panel-title titulo">
 									<?php echo $anchor['name']?>
 								</h3>
 					</div>
@@ -23,7 +23,7 @@
 				</div>
 			<?endforeach;?>
 			<div id="notas">
-				<h3>Notas:</h3>
+				<h3 class="titulo">Notas:</h3>
 				<?php if(count($ethnicity['Notes'])):?>
 					<?php foreach ($ethnicity['Notes'] as $note):?>
 
@@ -44,15 +44,6 @@
 		<?php else:?>
 			<div class="alert alert-warning" style="margin-top:40px;">
 				<strong>Oops!</strong> No existen anclas para esta Etnia.
-				<?php 
-					  echo $this->Html->link(
-							'Agregue Anclas',
-							array(
-							'controller'=>'anchors',
-							'action' => 'add',
-							$ethnicity['Ethnicity']['ethnicity_id'],$ethnicity['Ethnicity']['name']), array('class'=>'alert-link'));
-				?>	
-				para poder visualizar el contenido.
 			</div>
 		<?php endif;?>
 	</div>
@@ -78,9 +69,6 @@
 					<li>
 						<a href="#notas">Notas</a>
 					</li>
-					<li >
-						<a href="#preview_actions">Acciones</a>
-					</li>
 				</ul>
 				<div class="scroll-to-top">
 					<a href="#">Subir</a>
@@ -89,7 +77,7 @@
 		</div>
 	</div>
 </div>
-<hr>
+<!-- <hr>
 <div class="row content">
 	<div class="col-md-12">
 		<div id="preview_actions">
@@ -101,7 +89,7 @@
 			</ul>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 <div class="modal fade" id="modal-anchor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
