@@ -1,4 +1,9 @@
 <?php
+
+print FeedLib::prueba();
+
+
+
 $this->Paginator->options(array(
   'update' => '#container-usuario',
   'evalScripts' => true,
@@ -14,29 +19,37 @@ $this->Paginator->options(array(
   'convertKeys'=>array('name')
 ));
 ?>
+
 <div class="row">
 	<div class="container">
 	  <hgroup class="mb20">
 			<h1 class="titulo">Resultados de la búsqueda</h1>
-			<h2 class="lead">
-				<strong class="text-danger">
-					<?php echo $this->Paginator->counter(
-				    '{:count}'
-					);?>
-				</strong> resultados encontrados para <strong class="text-danger"><?php echo $term?></strong>
-				<strong style="float:right">
-					<?php
-						echo $this->Html->link(
-							'¿Búsqueda Avanzada?',
-							array('action'=> 'advanced_search')
-	          );
-					?>
-					
-				</strong>
-			</h2>		
+			<div class="row">
+				<div class="col-md-6">
+					<h2 class="lead">
+					<strong class="text-danger">
+						<?php echo $this->Paginator->counter(
+					    '{:count}'
+						);?>
+					</strong> resultados encontrados para <strong class="text-danger"><?php echo $term?></strong>
+					</h2>
+				</div>
+				<div class="col-md-6" style="text-align:right">
+					<h2 class="lead">
+						<strong>
+							<?php
+								echo $this->Html->link(
+									'¿Búsqueda Avanzada?',
+									array('action'=> 'advanced_search')
+			          );
+							?>
+						</strong>
+					</h2>		
+				</div>
+			</div>
 		</hgroup>
 
-	  <section class="col-xs-12 col-sm-6 col-md-12">
+	  <section class="col-md-12">
 			<?php foreach ($results as $result):?>
 				<article class="search-result row">
 					<div class="col-md-12 excerpet">
@@ -111,8 +124,10 @@ $this->Paginator->options(array(
 		</section>
 	</div>
 </div>
-<div class='row' style="margin-top:20px;">
-  <div class="col-md-11">
+
+<div class="container">
+	<div class='row' style="margin-top:20px;">
+  	<div class="col-md-11">
       <?php
           echo $this->Paginator->counter(array(
           'format' => __('Página {:page} de {:pages}, mostrando {:current} resultados.')
@@ -124,12 +139,13 @@ $this->Paginator->options(array(
           echo('|');
           echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
       ?>
-  </div>  
-  <div class="col-md-1">
-    <?php
-			echo $this->Paginator->numbers();
-    ?>
-  </div>
+  	</div>  
+	  <div class="col-md-1" style="text-align:right">
+	    <?php
+				echo $this->Paginator->numbers();
+	    ?>
+	  </div>
+	</div>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

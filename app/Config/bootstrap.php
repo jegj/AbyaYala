@@ -105,8 +105,12 @@ CakeLog::config('debug', array(
 	'types' => array('notice', 'info', 'debug'),
 	'file' => 'debug',
 ));
+
 CakeLog::config('error', array(
 	'engine' => 'File',
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+/*********** Variables de configuración ***************/
+Configure::write('google_developer_key', 'AIzaSyCCYATAthltGU1TgZ1bQ1_23OsNcDgYCL4');

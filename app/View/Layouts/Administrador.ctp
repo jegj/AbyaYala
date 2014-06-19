@@ -53,17 +53,20 @@
 </head>
 <body>
 		<div class="row-fluid">
-  		<a href="#">
-  			<?php echo $this->Html->image('header08.png', 
-  					array(
-  						'alt' => 'Banner AbyaYala',
-  						'height'=>'100%',
-  						'width' => '100%',
-  						'class' => 'img-responsive'
-  					)
-  				);
-  			?>
-  		</a>
+  		<?php 
+				echo $this->Html->link(
+					$this->Html->image('header08.png', 
+						array(
+							'alt' => 'Banner AbyaYala',
+							'height'=>'100%',
+							'width' => '100%',
+							'class' => 'img-responsive'
+						)
+					),
+					array('action' => 'index', 'controller' => 'users'),
+					array('escape' => false)
+				);
+			?>
 		</div>
 
 		<div class="container">

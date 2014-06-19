@@ -1,5 +1,6 @@
 <?php
 App::uses('MiscLib', 'Lib');
+App::uses('FeedLib', 'Lib');
 /*
 * Controlador que contiene la funcionalidades   principales de los usuarios
 *
@@ -150,6 +151,8 @@ class UsersController extends AppController
 		$this->Paginator->settings['conditions'] = $this->Search->parseCriteria($this->Prg->parsedParams());
 		$this->Paginator->settings['limit'] = 5;
 		$this->set('results', $this->Paginator->paginate());
+
+		//die(print_r($this->request->params['paging']['Search']['page']));
 
 		if(count($this->Prg->parsedParams()) > 1)
 			$this->set('term', 'Búsqueda Compuesta');
