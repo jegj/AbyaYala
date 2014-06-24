@@ -114,3 +114,5 @@ CakeLog::config('error', array(
 
 /*********** Variables de configuración ***************/
 Configure::write('google_developer_key', 'AIzaSyCCYATAthltGU1TgZ1bQ1_23OsNcDgYCL4');
+Configure::write('channel_id', 'UCLH_bLD2ELRO_3EHph6_drQ');
+

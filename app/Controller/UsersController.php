@@ -148,20 +148,48 @@ class UsersController extends AppController
 	public function search()
 	{
 		$this->Prg->commonProcess();
+
+		// die(print_r($this->Search->parseCriteria($this->Prg->parsedParams())));
+
 		$this->Paginator->settings['conditions'] = $this->Search->parseCriteria($this->Prg->parsedParams());
 		$this->Paginator->settings['limit'] = 5;
-		$this->set('results', $this->Paginator->paginate());
 
-		//die(print_r($this->request->params['paging']['Search']['page']));
 
-		if(count($this->Prg->parsedParams()) > 1)
-			$this->set('term', 'Búsqueda Compuesta');
-		else
+		if(count($this->Prg->parsedParams()) > 1){
+			$this->set('term', 'Búsqueda Compuesta');			
+		}else
 			$this->set('term', $this->Prg->parsedParams()['name']);
+
+		// die(print_r($this->request->params));
+		try{
+       $results = $this->Paginator->paginate();
+    }catch (NotFoundException $e) {
+       $results = array();
+    }
+
+
+		$this->set('results', $results);
+
+		/**Interseccion con los videos**/
+		$page = $this->request->params['paging']['Search']['page'];
+		$api = FeedLib::getInstance();
+		$result = $api->search($page, $this->Prg->parsedParams());
+
+		// die(print_r($result));
+		// die(print_r($this->request->params['paging']['Search']));
+
+		$this->request->params['paging']['Search']['count'] += $result['total_results'];
+		$this->request->params['paging']['Search']['current'] += count($result);
+		$this->request->params['paging']['Search']['nextPage'] = 1;
+		
+
+
+		$this->set('videos', $result['videos']);
 	}
 
 	public function advanced_search()
 	{
 
 	}
+
 }
