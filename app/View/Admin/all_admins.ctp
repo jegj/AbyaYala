@@ -34,4 +34,4 @@
 		</div>
 	</div>
 </div>
-<? echo $this->Js->writeBuffer();?>
+<?php echo $this->Js->writeBuffer();?>

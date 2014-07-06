@@ -29,7 +29,7 @@
 					);
 				?>
                                     
-          <div style="margin-bottom: 25px" class="input-group">
+          <div style="margin-bottom: 10px" class="input-group">
           	<span class="input-group-addon">
           		<i class="glyphicon glyphicon-user"></i>
           	</span>
@@ -43,7 +43,7 @@
           	?>
           </div>
                                 
-          <div style="margin-bottom: 25px" class="input-group">
+          <div style="margin-bottom: 10px" class="input-group">
           	<span class="input-group-addon">
           		<i class="glyphicon glyphicon-lock"></i>
           	</span>
@@ -102,7 +102,7 @@
 			rules: {
 				"data[Admin][email]":{
 					required:true,
-					rangelength: [3, 150],
+					rangelength: [3, 45],
 					email: true
 				},
 				"data[Admin][password]":{
@@ -113,7 +113,7 @@
 			messages: {
 				"data[Admin][email]":{
 					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 3 y 150 caracteres',
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres',
 					email: 'El campo debe ser un Correo valido'
 				},
 				"data[Admin][password]":{

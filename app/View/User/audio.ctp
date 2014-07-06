@@ -78,7 +78,7 @@ $this->Paginator->options(array(
                         </h3>
                         <p></p>
                         <div class="btn-group">
-                            <a id="rep_player_<?php echo $id;?>" href="#" onclick="cargarAudio('<?echo $id;?>','<?echo $audio['Content']['name']?>','<?php echo $audio['Content']['access_path']?>')">
+                            <a id="rep_player_<?php echo $id;?>" href="#" onclick="cargarAudio('<?echo $id;?>','<?php echo $audio['Content']['name']?>','<?php echo $audio['Content']['access_path']?>')">
                                 <span class="glyphicon glyphicon-music"></span>
                             </a>
                         </div>

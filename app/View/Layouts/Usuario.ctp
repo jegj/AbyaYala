@@ -79,7 +79,7 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    	<?=
+	    	<?php echo
 					$this->Html->link('AbyaYala', array(
 							'controller'=>'users',
 							'action' => 'index'
@@ -96,7 +96,7 @@
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav">
 	       <li>
-								<?=
+								<?php echo
 									$this->Html->link('Inicio', array(
 											'controller'=>'users',
 											'action' => 'index'
@@ -106,7 +106,7 @@
 							</li>
 
 		 					<li>
-								<?=
+								<?php echo
 									$this->Html->link('Proyecto AbyaYala', array(
 											'controller'=>'users',
 											'action' => 'abyayala'
@@ -116,7 +116,7 @@
 							</li>
 
 							<li>
-								<?=
+								<?php echo
 									$this->Html->link('Familia Linguisticas', array(
 										'controller'=>'users',
 										'action' => 'map'
@@ -126,7 +126,7 @@
 							</li>
 
 							<li>
-								<?=
+								<?php echo
 									$this->Html->link('Rastros Indigenas', array(
 										'controller'=>'users',
 										'action' => 'traces'
@@ -298,5 +298,6 @@
 	<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdec7hQ_YxfvvwaejZYtQcrUZzDPE9Evo&sensor=true&libraries=drawing">
 	</script>
+	<script type="text/javascript" src="/AbyaYala/js/google/MarkerLabel.js"></script>	
 </body>
 </html>

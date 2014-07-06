@@ -10,8 +10,8 @@
 		  			<p>En esta sección podra agregar una Etnia Indigena al portal AbyaYala y poder administrar su contenido.
 							</p>
 					<?else:?>
-						<h3>Registrar Sinónimo(<?= $ethnicityName?>)</h3>
-		  			<p>En esta sección podra agregar un Sinónimo a la Etnia Indigena <?=$ethnicityName?>.
+						<h3>Registrar Sinónimo(<?php echo $ethnicityName?>)</h3>
+		  			<p>En esta sección podra agregar un Sinónimo a la Etnia Indigena <?php echo $ethnicityName?>.
 							</p>
 					<?endif;?>
 	  		</div>

@@ -32,8 +32,18 @@
 					Para visualizar la etnia con todo su contenido entre en <i>Vista Previa.</i>
 				</p>
 			</li>
+			<li>
+				<p>
+					Para que los usuarios puedan visualizar el contenido de una Etnia, esta debe estar <b> Activa</b>.
+				</p>
+			</li>
+			<li>
+				<p>
+					Para activar o desactivar una etnia presione el boton correspondiente al <b>estado</b>.
+				</p>
+			</li>
 		</ul>
-		<div class="acciones">
+		<!-- <div class="acciones">
 			<h3>Acciones:</h3>
 			<ul>
 				<li>
@@ -47,7 +57,45 @@
 					?>		
 				</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 </div>
 <? echo $this->Js->writeBuffer();?>
+
+
+<script>
+function cambiarEstado(id, estado)
+{
+	$.ajax({
+		url: '/AbyaYala/ethnicities/change_status',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			id: id,
+			estado: estado
+		}
+	})
+	.done(function(data) {
+		console.log(data);
+		if(data.exito){
+			var clase = $('#estado_'+id).attr('class');
+			if(clase == 'btn btn-danger btn-sm'){
+				$('#estado_'+id).removeClass();
+				$('#estado_'+id).addClass('btn btn-success btn-sm');
+				$('#estado_'+id).text('Activa');
+			}else{
+				$('#estado_'+id).removeClass();
+				$('#estado_'+id).addClass('btn btn-danger btn-sm');
+				$('#estado_'+id).text('Inactiva');
+			}
+			alert(data.msg);
+		}else{
+			alert(data.msg);
+		}
+	})
+	.fail(function() {
+		alert('Hubo problemas para completar la operación.')
+	})	
+}
+
+</script>

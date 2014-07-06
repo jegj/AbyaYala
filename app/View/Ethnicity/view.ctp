@@ -72,7 +72,7 @@
 				<?php foreach ($ethnicity['Notes'] as $notes):?>
 					<tr>
 						<td>
-							<?= 
+							<?php echo
 							$this->Html->link(
 								$notes['name'],
 								array(
@@ -86,7 +86,7 @@
 						</td>
 
 						<td>
-							<?=
+							<?php echo
 							   $this->Html->link(
 									'Modificar',
 									array(
@@ -100,7 +100,7 @@
 
 						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
 							<td>
-								  <?= 
+								  <?php echo
 								  $this->Form->postLink(
 		                  'Eliminar',
 		                  array(

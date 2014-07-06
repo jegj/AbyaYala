@@ -76,7 +76,7 @@
 				            <div class="input-group-btn">
 				              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 				            </div>
-				            <input type="hidden" name="ckeditor" value=<?echo $ckeditor ?> />
+				            <input type="hidden" name="ckeditor" value=<?echo $ckeditor?>/>
           				</div>
         				</form>
 							</li>

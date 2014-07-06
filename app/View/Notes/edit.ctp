@@ -6,35 +6,35 @@
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
 	  			<h3>
-	  				Modificar Nota(<?= $ethName?>)
+	  				Modificar Nota(<?php echo $ethName?>)
 	  			</h3>
 	  			<p>En esta sección podra modificar la Nota para ser referenciada en el cuerpo de las Anclas perteneciente a la Etnia 
-	  			<?=$ethName?>
+	  			<?php echo $ethName?>
 					</p>
 	  		</div>
 
 	  		<div class="panel-body">
-	  			<?=
+	  			<?php echo
 	  				$this->Form->create('Note', array('role'=>'form'));
 					?>
 
 	  			<div class="form-group">
 						<label for="data[Note][name]">		Nombre:
 						</label>
-						<?=
+						<?php echo
 							$this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Nombre de la Nota'));
 						?>
 					</div>
 					<div class="form-group">
 						<label for="data[Note][description]">		Descripción:
 						</label>
-						<?=
+						<?php echo
 							$this->Form->input('description',array('label'=>false, 'class'=>'form-control'));
 						?>
 					</div>
 
 		  		<div class="form-group">
-						<?=
+						<?php echo
 						$this->Form->submit('Modiificar Nota', array('class'=>'btn btn-success'));
 						?>
 					</div>

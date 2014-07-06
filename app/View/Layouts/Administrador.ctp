@@ -178,6 +178,9 @@
 									    array(
 									        'controller' => 'messages',
 									        'action' => 'index',
+									    ),
+									    array(
+									    	'id' => 'messages'
 									    )
 										);
 	      					?>
@@ -257,3 +260,21 @@
 
 </body>
 </html>
+
+<script>
+$(document).ready(function() {
+	$.ajax({
+		url: '/AbyaYala/messages/count_messages',
+		type: 'POST',
+		dataType: 'json',
+	})
+	.done(function(data) {
+		var text = $('#messages').html();
+		$('#messages').html(text +" <span class='badge'>"+data+"</span>");
+	})
+	.fail(function() {
+		console.log("error|Layout Adminsitrador");
+
+	})
+});
+</script>

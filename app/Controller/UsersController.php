@@ -122,8 +122,108 @@ class UsersController extends AppController
 	{
 	}
 
+
 	public function map()
 	{
+		$independientes = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Independiente',
+						'Ethnicity.active' => 1,
+					)
+				),
+				'contain' => false
+			)
+		);
+
+		$karibe = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Karibe',
+						'Ethnicity.active' => 1,
+					)
+				),
+				'contain' => false
+			)
+		);
+
+		$arawak = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Arawak',
+						'Ethnicity.active' => 1,
+					)
+				),
+				'contain' => false
+			)
+		);
+
+		$chibcha = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Chibcha',
+						'Ethnicity.active' => 1,
+					)
+				),
+				'contain' => false
+			)
+		);
+
+		$tupi = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Tupí Guaraní',
+						'Ethnicity.active' => 1,
+					)
+				),
+				'contain' => false
+			)
+		);
+
+		$guajibo = $this->Ethnicity->find('all', 
+			array(
+				'conditions' => array(
+					'AND' => array(
+						'Ethnicity.type' => 'Guajibo',
+						'Ethnicity.active' => 1,
+					),
+				),
+				'contain' => false
+			)
+		);
+
+		$this->set(compact('independientes', 'karibe', 'arawak', 'chibcha', 'tupi', 'guajibo'));
+	}
+
+
+	public function draw()
+	{
+		$this->response->type('json');
+    $this->autoRender=false;
+
+    $etnias = $this->Ethnicity->find('all',
+    	array(
+	    	'conditions' => array(
+					'AND' => array(
+						'Ethnicity.active' => 1,
+					),
+				),
+				'contain' => 'Map'
+	    )
+    );
+
+    foreach ($etnias as $key => $etnia) {
+    	$etnia['Ethnicity']['url'] = Router::url(array('controller' => 'ethnicities', 'action' => 'user_preview', $etnia['Ethnicity']['ethnicity_id']));
+    	$etnias[$key] = $etnia;
+    }
+
+    $json = json_encode($etnias);
+    $this->response->body($json); 
 	}
 
 	public function traces()
@@ -149,8 +249,6 @@ class UsersController extends AppController
 	{
 		$this->Prg->commonProcess();
 
-		// die(print_r($this->Search->parseCriteria($this->Prg->parsedParams())));
-
 		$this->Paginator->settings['conditions'] = $this->Search->parseCriteria($this->Prg->parsedParams());
 		$this->Paginator->settings['limit'] = 5;
 
@@ -160,7 +258,6 @@ class UsersController extends AppController
 		}else
 			$this->set('term', $this->Prg->parsedParams()['name']);
 
-		// die(print_r($this->request->params));
 		try{
        $results = $this->Paginator->paginate();
     }catch (NotFoundException $e) {
@@ -170,21 +267,6 @@ class UsersController extends AppController
 
 		$this->set('results', $results);
 
-		/**Interseccion con los videos**/
-		$page = $this->request->params['paging']['Search']['page'];
-		$api = FeedLib::getInstance();
-		$result = $api->search($page, $this->Prg->parsedParams());
-
-		// die(print_r($result));
-		// die(print_r($this->request->params['paging']['Search']));
-
-		$this->request->params['paging']['Search']['count'] += $result['total_results'];
-		$this->request->params['paging']['Search']['current'] += count($result);
-		$this->request->params['paging']['Search']['nextPage'] = 1;
-		
-
-
-		$this->set('videos', $result['videos']);
 	}
 
 	public function advanced_search()

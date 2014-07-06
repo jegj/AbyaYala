@@ -19,7 +19,6 @@ class AdminsController extends AppController
 	public function index()
   {
     $this->canAccess();
-
   }     
 
   public function login ()
@@ -135,7 +134,7 @@ class AdminsController extends AppController
     if ($this->request->is('post')) {      
       if ($this->Admin->save($this->request->data)) {
         $this->Session->setFlash('<strong>Exito!</strong> Se creo el Administrador exitosamente.', 'default', array(), 'success');
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'allAdmins'));
       }else{
         $this->Session->setFlash('<strong>Error!</strong> Hubo problemas para crear el Administrador.', 'default', array(), 'error');
       }
@@ -161,7 +160,7 @@ class AdminsController extends AppController
     } else {
       $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
     }
-    return $this->redirect(array('action' => 'index'));
+    return $this->redirect(array('action' => 'allAdmins'));
 
   }
 
@@ -179,6 +178,7 @@ class AdminsController extends AppController
       if(!$admin){
          $this->Session->setFlash('<strong>Error!</strong> El correo suministrado no se encuntra registrado en AbyaYala.', 'default', array(), 'error');
       }else{
+        $this->Admin->read(null, $admin['Admin']['admin_id']);
         $this->Admin->recoverPassword($email, $admin);
         $this->Session->setFlash('<strong>Exito!</strong> Se envio una contraseña nueva al correo suministrado.', 'default', array(), 'success');
       }

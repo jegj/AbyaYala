@@ -255,7 +255,8 @@
 						};
 
 						imgPreloader.onerror = function(){
-							alert('Image cannot be loaded. Make sure the path is correct and image exist.');
+							// alert('Image cannot be loaded. Make sure the path is correct and image exist.');
+							alert('No se puede acceder a la imagen. Aseguerese que se cargo correctamente.');
 							$.prettyPhoto.close();
 						};
 					

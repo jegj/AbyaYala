@@ -34,7 +34,7 @@
                 <?endif;?>
    					</td>
    					<td>
-   						<a href="#" onclick="cargarDocumentoLocal('<?php echo $docs['Content']['access_path']?>','<?php echo $docs['Content']['content_id']?> ')">
+   						<a href="#" onclick="cargarDocumentoLocal('<?php echo $docs['Content']['access_path']?>','<?php echo $docs['Content']['content_id']?>')">
    							<span class="glyphicon glyphicon-cloud-download"></span>
    						</a>
    					</td>

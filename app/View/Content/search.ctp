@@ -30,7 +30,7 @@
 		   				
 		   			</td>
 		   			<td>
-		   				<a href="#" onclick="cargarContenidoLocal('<?php echo $cont['Content']['access_path']?>','<?php echo $cont['Content']['content_id']?> ')">
+		   				<a href="#" onclick="cargarContenidoLocal('<?php echo $cont['Content']['access_path']?>','<?php echo $cont['Content']['content_id']?>')">
    							<span class="glyphicon glyphicon-cloud-download"></span>
    						</a>
 		   			</td>

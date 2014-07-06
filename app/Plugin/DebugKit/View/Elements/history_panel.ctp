@@ -20,7 +20,7 @@
 <?php if (empty($content)): ?>
 	<p class="warning"><?php echo __d('debug_kit', 'No previous requests logged.'); ?></p>
 <?php else: ?>
-	<?php echo count($content); ?> <?php echo __d('debug_kit', 'previous requests available') ?>
+	<?php echo count($content); ?><?php echo __d('debug_kit', 'previous requests available') ?>
 	<ul class="history-list">
 		<li><?php echo $this->Html->link(__d('debug_kit', 'Restore to current request'),
 			'#', array('class' => 'history-link', 'id' => 'history-restore-current')); ?>
@@ -29,4 +29,4 @@
 			<li><?php echo $this->Html->link($previous['title'], $previous['url'], array('class' => 'history-link')); ?></li>
 		<?php endforeach; ?>
 	</ul>
-<?php endif;
+<?php endif;?>

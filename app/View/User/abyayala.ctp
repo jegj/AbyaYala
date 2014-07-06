@@ -3,7 +3,7 @@
 		<div class="col-md-2" id="sidebar" style="margin-top:20px;">
 
 		<div class="sidebar-nav">						
-			<?= $this->element('sidebar_contact')?>			
+			<?php echo $this->element('sidebar_contact')?>			
 		</div>
 			
 		</div>

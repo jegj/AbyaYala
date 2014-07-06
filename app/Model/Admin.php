@@ -134,15 +134,20 @@ class Admin extends AppModel {
   {
   	$fullName = $admin['Admin']['name'].' '.$admin['Admin']['last_name'];
 
+  	$password = trim((string)Admin::randomPassword());
+
    	$Email = new CakeEmail();
     $Email->config('smtp');
     $Email->from(array('abyayala.arte@gmail.com' => 'AbyaYala'))
     ->template('forgot', 'default')
-    ->viewVars(array('name' => $fullName))
+    ->viewVars(array('name' => $fullName, 'password' => $password))
     ->emailFormat('html')
     ->to($email)
     ->subject('AbyaYala, Recuperación de Contraseña de Administrador')
     ->send();
+
+    $this->data['Admin']['password'] = $password;
+  	$this->save();
   }
 
 
@@ -156,6 +161,18 @@ class Admin extends AppModel {
     return parent::beforeSave();
   }
 
+  public static function randomPassword() {
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    $pass = array(); 
+    $alphaLength = strlen($alphabet) - 1; 
+
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+
+    return implode($pass); 
+	}
 
 
 }

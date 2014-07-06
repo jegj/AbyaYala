@@ -71,6 +71,6 @@
 
 <?php if(isset($error)):?>
   <div class="alert alert-danger">
-    <strong>Oops!</strong> Hubo un error por favor intentalo mas tarde.
+    <strong>Oops!</strong> No se pudo acceder al contenido. Aseguerese que se cargo correctamente.
   </div>
 <?php endif;?>

@@ -88,6 +88,6 @@ END;
     <title>YouTube Search</title>
   </head>
   <body>
-    <?=$htmlBody?>
+    <?php echo $htmlBody?>
   </body>
 </html>

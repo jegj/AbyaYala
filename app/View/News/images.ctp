@@ -84,8 +84,8 @@
 <?php endif;?>
 
 <?php if (isset($error)):?>
-	<div class="alert alert-danger">
-		<strong>Oops!</strong> Hubo un error por favor intentalo mas tarde.
+	<div class="alert alert-warning">
+		<strong>Oops!</strong> No se encontró ninguna imagen.
 	</div>
 <?php endif;?>
 

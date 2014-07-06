@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  */
 class Ethnicity extends AppModel {
 
+  public $actsAs = array('Containable');
 /**
  * Use database config
  *
@@ -51,6 +52,13 @@ class Ethnicity extends AppModel {
             'foreignKey' => 'ethnicity_id', 
             'dependent'  =>  true, 
         )
+  );
+
+  public $belongsTo = array(
+    'Map' => array(
+      'className' => 'Map',
+      'foreignKey' => 'map_id', 
+    )
   );
 
 

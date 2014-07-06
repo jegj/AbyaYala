@@ -75,7 +75,7 @@ class ContentsController extends AppController {
 
 		if ($this->request->is('post')) {
 
-			$id=$this->data['Content']['id'];
+			$id = $this->data['Content']['id'];
 			$content=$this->Content->findByContentId($id);
 			if($content)
 				$this->set('content',$content);		

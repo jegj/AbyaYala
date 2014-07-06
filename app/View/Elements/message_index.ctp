@@ -20,7 +20,8 @@ $this->Paginator->options(array(
     <?php if(!$result):?>
       <h3>Mensajes de Contacto de AbyaYala:</h3>
 
-      <a href="#">Mensajes No Leídos: <span class="badge"><?echo $unreadMessages?></span></a>
+      <p><b>Mensajes Totales: <span class="badge"><?echo $totalMessages?></span></b></p>
+      <p><b>Mensajes No Leidos: <span class="badge"><?echo $unreadMessages?></span></b></p>
 
 
       <form action="/AbyaYala/messages/resultsIndex" role="search" class="navbar-form" method="get">
@@ -62,6 +63,11 @@ $this->Paginator->options(array(
               <?php echo $this->Paginator->sort('create_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
              </th>
 
+             <th>
+              Estado
+              <?php echo $this->Paginator->sort('read',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+             </th>
+
              <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
                <th>
                 Eliminar
@@ -73,7 +79,7 @@ $this->Paginator->options(array(
           <?foreach ($messages as $myMessage):?>
             <tr>
               <td>
-                <?
+                <?php
                   if($myMessage['Message']['read']){
                   echo $this->Html->link($myMessage['Message']['subject'], array('action' => 'view', $myMessage['Message']['messages_id'])); 
                 }else{
@@ -83,21 +89,29 @@ $this->Paginator->options(array(
               </td>
 
               <td>
-                <?
+                <?php
                   echo $myMessage['Message']['author'];
                 ?>
               </td>
 
               <td>
-                <?
+                <?php
                   echo $myMessage['Message']['email'];
                 ?>
               </td>
 
               <td>
-                <?
-                echo MiscLib::dateFormat($myMessage['Message']['create_date']);
+                <?php
+                  echo MiscLib::dateFormat($myMessage['Message']['create_date']);
                 ?>
+              </td>
+
+              <td>
+              <?php if($myMessage['Message']['read']):?>
+                <b> Leido </b>
+              <?php else:?>
+                <b style="color:red;"> No Leido</b>
+              <?php endif;?>
               </td>
 
               <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
@@ -110,10 +124,10 @@ $this->Paginator->options(array(
                   );
                   ?>
                 </td>
-              <?endif;?>
+              <?php endif;?>
 
             </tr>
-          <?endforeach;?>
+          <?php endforeach;?>
         </tbody>
       </table>
     </div>

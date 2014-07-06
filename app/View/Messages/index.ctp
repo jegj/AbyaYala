@@ -3,6 +3,7 @@
 		array(
 		'messages'=> $messages,
 		'unreadMessages'=>$unreadMessages,
+		'totalMessages' => $total,
 		'result' => false
 		)
 	);

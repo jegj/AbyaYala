@@ -43,11 +43,13 @@ class MessagesController extends AppController {
       $unreadMessages = $this->Message->find('count', 
       	array('conditions'=>array('Message.read'=>0)));
 
+      $total = $this->Message->find('count');
+
     }catch (NotFoundException $e) {
       return $this->redirect(array('action'=>'index'));
     }
 		
-		$this->set(compact('messages', 'unreadMessages'));
+		$this->set(compact('messages', 'unreadMessages', 'total'));
 	}
 
 /**
@@ -126,7 +128,7 @@ class MessagesController extends AppController {
 			$this->Message->create();
 			if ($this->Message->save($this->request->data)) {
 				$this->Session->setFlash('<strong>Exito!</strong> Se envio el mensaje exitosamente.', 'default', array(), 'success');
-				return $this->redirect(array('action'=>'index'));
+				return $this->redirect(array('action'=>'index', 'controller' => 'users'));
 			} else {
 				$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 			}
@@ -160,4 +162,17 @@ class MessagesController extends AppController {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	public function count_messages()
+	{
+		$this->response->type('json');
+    $this->autoRender=false;
+
+    $unreadMessages = $this->Message->find('count', 
+      	array('conditions'=>array('Message.read'=>0)));
+
+    $json = json_encode($unreadMessages);
+    $this->response->body($json); 
+	}
+}

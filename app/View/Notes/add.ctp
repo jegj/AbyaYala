@@ -5,39 +5,37 @@
 		<div class="col-md-12">
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
-	  			<h3>Registrar Nota(<?= $ethName?>)</h3>
+	  			<h3>Registrar Nota(<?php echo $ethName?>)</h3>
 	  			<p>En esta sección podra agregar una Nota para ser referenciada en el cuerpo de las Anclas perteneciente a la Etnia 
-	  			<?=$ethName?>
+	  			<?php echo  $ethName?>
 					</p>
 	  		</div>
 
 	  		<div class="panel-body">
-	  			<?=
-	  				$this->Form->create('Note', array('role'=>'form'));
-					?>
+	  			<?php echo $this->Form->create('Note', array('role'=>'form'));?>
 
 	  			<div class="form-group">
 						<label for="data[Note][name]">		Nombre:
 						</label>
-						<?=
+						<?php echo
 							$this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Nombre de la Nota'));
 						?>
 					</div>
 
-						<?=
+						<?php echo
 							$this->Form->input('Ethnicity.ethnicity_id',array('value'=>$ethId));
 						?>
 
 					<div class="form-group">
 						<label for="data[Note][description]">		Descripción:
 						</label>
-						<?=
+						<?php echo
 							$this->Form->input('description',array('label'=>false, 'class'=>'form-control'));
 						?>
 					</div>
 
 		  		<div class="form-group">
-						<?=
+						<?php echo
 						$this->Form->submit('Crear Nota', array('class'=>'btn btn-success'));
 						?>
 					</div>

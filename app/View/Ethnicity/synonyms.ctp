@@ -15,7 +15,7 @@ $this->Paginator->options(array(
 <div class="row content"> 
   <div class="col-md-12">
     <h1>Módulo de Etnias Indigenas</h1>
-    <h3>Sinónimos Registrados para <?= $ethnicityName?>:</h3>
+    <h3>Sinónimos Registrados para <?echo $ethnicityName;?>:</h3>
     <div class="table-responsive">
       <table id="ethnicity" class="table table-hover">
         <thead>
@@ -32,15 +32,15 @@ $this->Paginator->options(array(
           <?foreach ($ethnicity as $data):?>
             <tr>
             <td>
-              <?= $data['Ethnicity']['name']?>
+              <?php echo $data['Ethnicity']['name'];?>
             </td>
 
             <td>
-              <?= $this->Html->link('Modificar', array('action' => 'edit', $data['Ethnicity']['ethnicity_id'], 1));?>
+              <?php echo $this->Html->link('Modificar', array('action' => 'edit', $data['Ethnicity']['ethnicity_id'], 1));?>
             </td>
 
             <td>
-              <?=
+              <?php echo
                 $this->Form->postLink(
                     'Eliminar',
                     array('action' => 'delete', $data['Ethnicity']['ethnicity_id'],1),
@@ -98,8 +98,7 @@ $this->Paginator->options(array(
                 1,
                 $id,
                 $ethnicityName
-              )); 
-          ?>     
+              ));?>
         </li>
         <li>
           <?php 
@@ -107,8 +106,7 @@ $this->Paginator->options(array(
               'Ir a Etnias Registradas',
               array(
               'action' => 'index',
-            )); 
-          ?>    
+            ));?>
         </li>
       </ul>
     </div>

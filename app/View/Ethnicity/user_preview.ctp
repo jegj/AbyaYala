@@ -32,7 +32,7 @@
 						?>
 
 						<div id = "<?php echo $name.'_'.$note['note_id']?>" class="panel panel-default">
-							<i>"<?= $note['description']?>"</i>
+							<i>"<?php echo $note['description'];?>"</i>
 						</div>
 					<?php endforeach;?>
 				<?php else:?>
@@ -156,7 +156,6 @@
 
 
 		$(window).scroll(function () {
-			console.log('hola');
 			if ($(this).scrollTop() > 200) {
 				$('.scroll-to-top').fadeIn();
 			} else {

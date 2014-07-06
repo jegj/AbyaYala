@@ -86,6 +86,6 @@ if ($_GET['q'] && $_GET['maxResults']) {
     <title>YouTube Search</title>
   </head>
   <body>
-    <?=$htmlBody?>
+    <?php echo $htmlBody?>
   </body>
 </html>

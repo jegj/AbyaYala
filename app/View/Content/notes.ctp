@@ -1,15 +1,14 @@
 <div class="row">
 	<div style="margin-left:10px;">
 		<h3>Seleccione la Etnia</h3>
-		<?= 
-
-			$this->Form->create('EthnicityNoteForm', array('role'=>'form'));
+		<?php 
+			echo $this->Form->create('EthnicityNoteForm', array('role'=>'form'));
 		?>
 		<div class="form-group">
 			<label for="data[EthnicityNoteForm][ethnicity]">		Etnia:
 			</label>
-			<?=
-	 		$this->Form->input(
+			<?php
+	 		echo $this->Form->input(
     	'ethnicity',
     	array('options' => $ethnicity,
     		'label'=>false, 
@@ -20,8 +19,8 @@
     	));
 			?>	
 		</div>		
-		<?=  
-			$this->Form->end(); 
+		<?php
+			echo $this->Form->end(); 
 		?>
 	</div>
 	<hr>

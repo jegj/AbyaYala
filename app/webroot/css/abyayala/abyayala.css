@@ -95,14 +95,13 @@ img.member-box-avatar {
 /************Boton SUbir***********/
 .scroll-to-top {
 	display: none;
-	position: fixed; bottom: 100px; right: 100px;
+	position: fixed; bottom: 100px; right: 40px;
 	width: 80px;
 	height: 25px;
 	font: bold 0.9em/1.2em Arial, |vetica, sans-serif; 
 	color: #bbb !important; text-transform: uppercase; text-decoration: none;
 	padding: 10px;
 	border-radius: 5px;
-
 	text-align:center;
 }
 .scroll-to-top:hover { text-decoration: none; }

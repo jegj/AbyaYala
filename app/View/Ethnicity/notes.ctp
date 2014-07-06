@@ -13,9 +13,7 @@
  				<?foreach ($ethnicity['Notes'] as $note):?>
  					<tr>
 		   			<td>
-		   				<?= 
-		   					$note['name']
-		   				?>
+		   				<?php echo $note['name'];?>
 		   			</td>
 		   			<td>
 		   				<a href="#" onclick="cargarNota('<?php echo $note['note_id']?>', '<?php echo $note['name']?>')">

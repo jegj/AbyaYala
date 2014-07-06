@@ -72,3 +72,69 @@
 	  </div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#AdminAddForm').validate({
+	    rules: {
+	        "data[Admin][name]": {
+	            required:true,
+	            rangelength: [3, 45]
+	        },
+	        "data[Admin][last_name]": {
+	            required:true,
+	            rangelength: [3, 45]
+	        },
+	        "data[Admin][email]": {
+	            required:true,
+	            rangelength: [3, 45],
+	            email: true
+	        },
+	        "data[Admin][password]": {
+	            required:true,
+	            rangelength: [5, 45],
+	        },
+	        "data[Admin][passwd_confirm]": {
+	            required:true,
+	            rangelength: [5, 45],
+	            equalTo: "#AdminPassword"
+	        },
+	    },
+	    messages: {
+	    	"data[Admin][name]": {
+	    		required: 'Campo Obligatorio',
+	    		rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+	    	},
+	    	"data[Admin][last_name]": {
+	    		required: 'Campo Obligatorio',
+	    		rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+	    	},
+	    	"data[Admin][email]": {
+	        required: 'Campo Obligatorio',
+	    		rangelength: 'El campo debe tener entre 3 y 45 caracteres',
+	    		email: 'El campo debe ser un Correo valido'
+	      },
+	      "data[Admin][password]": {
+	        required: 'Campo Obligatorio',
+	    		rangelength: 'El campo debe tener entre 5 y 45 caracteres'
+	      },
+	       "data[Admin][passwd_confirm]": {
+	        required: 'Campo Obligatorio',
+	    		rangelength: 'El campo debe tener entre 5 y 45 caracteres',
+	    		equalTo: 'Las contraseñas deben ser iguales.'
+	      },
+
+	    },
+		  highlight: function(element) {
+		  	$(element).closest('.form-group').removeClass('has-success');
+		  	$(element).closest('.form-group').addClass('has-error');
+		  },
+	    unhighlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-error');
+				$(element).closest('.form-group').addClass('has-success');
+	    },
+	  	errorElement: 'span',
+	  	errorClass: 'help-block',
+  	});
+	});
+</script>

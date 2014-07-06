@@ -8,7 +8,7 @@
 		<hr>
 		<div class="row content">
 			<div class="col-md-6">
-				<form id="upload" method="post" action="/AbyaYala/contents/upload" enctype="multipart/form-data">
+				<form id="upload" method="post" action="/AbyaYala/contents/upload	" enctype="multipart/form-data">
 					<div id="drop">
 						¡Arrastra el contenido hasta aquí!
 						<a>Buscar</a>

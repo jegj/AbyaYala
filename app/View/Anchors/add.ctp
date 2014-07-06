@@ -23,8 +23,8 @@
 					<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre de la Ancla'));?>
 				</div>
 
-				<?=
-					$this->Form->input('Ethnicity.ethnicity_id',array('value'=>$ethnicityId));
+				<?php
+					echo $this->Form->input('Ethnicity.ethnicity_id',array('value'=>$ethnicityId));
 				?>
 
 

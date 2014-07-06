@@ -76,7 +76,7 @@
    			</td>
 
    			<td>
-   				<a href="#" onclick="cargarAudioLocal('<?php echo $audio['Content']['access_path']?>','<?php echo $audio['Content']['content_id']?> ')">
+   				<a href="#" onclick="cargarAudioLocal('<?php echo $audio['Content']['access_path']?>','<?php echo $audio['Content']['content_id']?>')">
    					<span class="glyphicon glyphicon-cloud-download"></span>
    				</a>
    			</td>

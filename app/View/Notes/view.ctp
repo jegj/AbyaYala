@@ -5,12 +5,12 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					<?=$note['Note']['name']?>
+					<?php echo $note['Note']['name']?>
 				</h3>
 			</div>
 			<div class="panel-body">
 				<p>
-					<?=$note['Note']['description']?>
+					<?php echo $note['Note']['description']?>
 				</p>
 			</div>
 		</div>

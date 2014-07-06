@@ -14,16 +14,10 @@ $this->Paginator->options(array(
   'convertKeys'=>array('term')
 ));
 ?>
-<div class="container-fluid">
+<div class="container"> 
+    <h1 class="titulo">Rastros Indigenas</h1>
+    <hr>
     <div class="container container-pad" id="property-listings">
-        
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="titulo">Rastros Indigenas</h1>
-            <hr>
-          </div>
-        </div>
-
         <div class="row">
             <?php foreach ($content as $new):?>
                 <div class="col-sm-12"> 

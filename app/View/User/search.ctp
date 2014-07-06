@@ -117,7 +117,7 @@ $this->Paginator->options(array(
 				</article>		
 			<?php endforeach;?>
 
-			<?php foreach ($videos as $video):?>
+<!--			<?php foreach ($videos as $video):?>
 				<article class="search-result row">
 					<div class="col-md-12 excerpet">
 						<h3>
@@ -144,7 +144,7 @@ $this->Paginator->options(array(
 						</ul>
 					</div>
 				</article>
-			<?php endforeach;?>
+			<?php endforeach;?>-->
 		</section>
 	</div>
 </div>

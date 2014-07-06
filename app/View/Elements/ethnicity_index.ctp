@@ -45,7 +45,11 @@ $this->Paginator->options(array(
 		          <th>Vista Previa</th>
 		          <th>Sinónimos</th>
 		          <th>Modificar</th>
-		          <th>Eliminar</th>
+		          <th>
+		          	Estado
+		          	<?php echo $this->Paginator->sort('active',$this->Html->image('ordenar.png'), array('escape'=>false));?>
+		          </th>
+		          <!-- <th>Eliminar</th> -->
 		      </tr>
 			   </thead>
 				 <tbody>
@@ -76,7 +80,16 @@ $this->Paginator->options(array(
 	              echo $this->Html->link('Modificar', array('action' => 'edit', $data['Ethnicity']['ethnicity_id'], 0)); 
 	          		?>
 		    			</td>
+
 		    			<td>
+		    				<?php if($data['Ethnicity']['active']):?>
+  								<button id="estado_<?php echo $data['Ethnicity']['ethnicity_id'];?>" type="button" class="btn btn-success btn-sm" onclick="return cambiarEstado(<?php echo $data['Ethnicity']['ethnicity_id'];?>,<?php echo $data['Ethnicity']['active'];?>);">Activa</button>
+  							<?php else:?>
+  								<button id="estado_<?php echo $data['Ethnicity']['ethnicity_id'];?>" type="button" class="btn btn-danger btn-sm" onclick="return cambiarEstado(<?php echo $data['Ethnicity']['ethnicity_id'];?>,<?php echo $data['Ethnicity']['active'];?>);">Inactiva</button>
+  							<?php endif;?>
+		    			</td>
+
+		    			<!-- <td>
 		    				<?php
 	              echo $this->Form->postLink(
 	                  'Eliminar',
@@ -84,7 +97,7 @@ $this->Paginator->options(array(
 	                  array('confirm' => '¿Esta usted seguro que desea eliminar la etnia '.$data['Ethnicity']['name'].'?')
 	              );
 	          		?>
-		    			</td>
+		    			</td> -->
 				 		</tr>
 				 	<?endforeach;?>
 				 </tbody>

@@ -60,7 +60,7 @@ $this->Paginator->options(array(
 
 			            <th>
 			            Fec.Reg
-			            <?php echo $this->Paginator->sort('create_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>       
+			            <?php echo $this->Paginator->sort('create_date',$this->Html->image('ordenar.png'), array('escape'=>false));?>
 			            </th>
 
 			            <th>
@@ -160,7 +160,7 @@ $this->Paginator->options(array(
 		                echo $this->Form->postLink(
 		                    'Eliminar',
 		                    array('action' => 'delete', $myContent['Content']['content_id']),
-		                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'? Es posible que el contenido este siendo usado en algún Módulo de AbyaYala')
+		                    array('confirm' => '¿Esta usted seguro de eliminar el contenido '.$myContent['Content']['name'].'? Es posible que el contenido este siendo usado en algún Módulo de AbyaYala y su eliminación puede afectar la visualización de algunas secciones.')
 		                );
 		            		?>
 				    			</td>

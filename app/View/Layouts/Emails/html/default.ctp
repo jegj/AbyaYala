@@ -24,16 +24,19 @@
 </head>
 <body>
 
-	<h2>Universidad Central de Venezuela</h2>
-	<h2 style="color:#339966">
-		Facultad de Humanidades/Escuela de Arte
-	</h2>
-	<h2 style="color:#339966">
-		Equipo de AbyaYala
-	</h2>
 	<div>
-		Saludos <?echo $name?>
+		Saludos <b><?echo $name?></b>
+		<p>
+			La solicitud de envio de su contraseña se ha realizado. Si usted no solicitó esta petición, simplemente ignore este mensaje. Si realizó esta solicitud simplemente utilice la contraseña:
+		</p>
+		<p><span style="border-style:solid; border-color:#FF0000;"> <?php echo $password;?></span></p>
+		<p> para ingresar al sistema.</p>
 	</div>
 	<?php echo $this->fetch('content'); ?>
+
+	<div>
+		<p>Saludos cordiales,</p>
+		<p>Equipo AbyaYala</p>
+	</div>
 </body>
 </html>
