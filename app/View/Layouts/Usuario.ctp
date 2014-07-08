@@ -221,7 +221,7 @@
 						'class' => 'img-responsive'
 					)
 				),
-				array('action' => 'index'),
+				array('action' => 'index', 'controller' => 'users'),
 				array('escape' => false)
 			);
 		?>

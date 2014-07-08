@@ -40,7 +40,10 @@ class UsersController extends AppController
 			)
 		);
 
-		$this->set(compact('news', 'images', 'papers'));
+		$cliente = FeedLib::getInstance();
+		$videos = $cliente->search();
+
+		$this->set(compact('news', 'images', 'papers', 'videos'));
 	}
 
 	public function images()
@@ -68,6 +71,10 @@ class UsersController extends AppController
 	public function videos()
 	{
 		//Se uso XML feed en las vistas
+		$cliente = FeedLib::getInstance();
+		$videos = $cliente->search(1, null, 12);
+
+		$this->set(compact('videos'));
 	}
 
 	public function audio()

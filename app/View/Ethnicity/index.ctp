@@ -79,6 +79,7 @@ function cambiarEstado(id, estado)
 		console.log(data);
 		if(data.exito){
 			var clase = $('#estado_'+id).attr('class');
+			var nuevo = estado==0?1:0
 			if(clase == 'btn btn-danger btn-sm'){
 				$('#estado_'+id).removeClass();
 				$('#estado_'+id).addClass('btn btn-success btn-sm');
@@ -88,6 +89,7 @@ function cambiarEstado(id, estado)
 				$('#estado_'+id).addClass('btn btn-danger btn-sm');
 				$('#estado_'+id).text('Inactiva');
 			}
+			$('#estado_'+id).attr("onclick","cambiarEstado('"+id+"','"+nuevo+"');");	
 			alert(data.msg);
 		}else{
 			alert(data.msg);

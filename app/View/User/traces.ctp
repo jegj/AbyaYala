@@ -19,56 +19,64 @@ $this->Paginator->options(array(
     <hr>
     <div class="container container-pad" id="property-listings">
         <div class="row">
-            <?php foreach ($content as $new):?>
-                <div class="col-sm-12"> 
-                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <?php if($content && count($content)):?>
+                <?php foreach ($content as $new):?>
+                    <div class="col-sm-12"> 
+                        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
 
-                        <div class="media">
-                            <?php
-                            echo $this->Html->link(
-                                "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."'>",
-                                array('controller' => 'news', 
-                                    'action' => 'user_view',
-                                    $new['News']['new_id']
-                                ),array(
-                                    'escape' => false,
-                                    'class' => 'pull-left'
-                                )   
-                            );
-                            ?>
-                            <div class="clearfix visible-sm"></div>
+                            <div class="media">
+                                <?php
+                                echo $this->Html->link(
+                                    "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."'>",
+                                    array('controller' => 'news', 
+                                        'action' => 'user_view',
+                                        $new['News']['new_id']
+                                    ),array(
+                                        'escape' => false,
+                                        'class' => 'pull-left'
+                                    )   
+                                );
+                                ?>
+                                <div class="clearfix visible-sm"></div>
 
-                            <div class="media-body fnt-smaller">
-                                <a href="#" target="_parent"></a>
-                                <h4 class="media-heading">
-                                    
-                                    <?php
-                                        echo $this->Html->link(
-                                            $new['News']['title'],
-                                            array('controller' => 'news', 
-                                                'action' => 'user_view',
-                                                $new['News']['new_id']
-                                            )   
-                                        );
-                                    ?>
-                                </h4>
+                                <div class="media-body fnt-smaller">
+                                    <a href="#" target="_parent"></a>
+                                    <h4 class="media-heading">
+                                        
+                                        <?php
+                                            echo $this->Html->link(
+                                                $new['News']['title'],
+                                                array('controller' => 'news', 
+                                                    'action' => 'user_view',
+                                                    $new['News']['new_id']
+                                                )   
+                                            );
+                                        ?>
+                                    </h4>
 
-                                <p class="hidden-xs">
-                                    <?php echo $new['News']['previous_text'];?>
-                                </p>
+                                    <p class="hidden-xs">
+                                        <?php echo $new['News']['previous_text'];?>
+                                    </p>
 
-                                <span class="fnt-smaller fnt-lighter fnt-arial">
-                                    <b>Fecha Publicación:</b> <?php echo $new['News']['current_date'];?>
-                                </span>
-                                <p></p>
-                                <span class="fnt-smaller fnt-lighter fnt-arial">
-                                    <b> Autor:</b> <?php echo $new['News']['author'];?>
-                                </span>
+                                    <span class="fnt-smaller fnt-lighter fnt-arial">
+                                        <b>Fecha Publicación:</b> <?php echo $new['News']['current_date'];?>
+                                    </span>
+                                    <p></p>
+                                    <span class="fnt-smaller fnt-lighter fnt-arial">
+                                        <b> Autor:</b> <?php echo $new['News']['author'];?>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                <?php endforeach;?>
+            <?php else:?>
+                <div class="col-md-12">
+                  <div class="alert alert-warning" role="alert">
+                      <strong>Actualmente no existen noticias en AbyaYala</strong>
+                  </div>
                 </div>
-            <?php endforeach;?>
+            <?php endif;?>
         </div>
 
         <div class='row' style="margin-top:20px;">

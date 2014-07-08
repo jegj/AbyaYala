@@ -86,4 +86,31 @@ class Ethnicity extends AppModel {
     return $id;
   }
 
+  function updateSearch($status, $data)
+  {
+    $this->Search = ClassRegistry::init('Search');
+
+    if($status  ){
+      $data = array(
+        'Search' => array(
+          'name' => $data['Ethnicity']['name'],
+          'description' => $data['Ethnicity']['name'],
+          'date' => null,
+          'author' => $status,
+          'model' => 'Ethnicity',
+          'type' => 'etnia',
+          'model_pk' => $data['Ethnicity']['ethnicity_id'],
+        )
+      );
+      return $this->Search->save($data);
+    }else{
+      return $this->Search->deleteAll(
+      array(
+        'Search.model' => 'Ethnicity',
+        'Search.model_pk' => $data['Ethnicity']['ethnicity_id']
+      ), 
+      false);
+    }
+  }
+
 }

@@ -289,9 +289,8 @@ class EthnicitiesController extends AppController {
             if (!$this->Ethnicity->exists($id)) {
                 $json = json_encode(array('exito'=>false, 'msg' => 'La Etnia especificada no existe.'));
             }else{
-                $this->Ethnicity->read(null, $id);
-                $this->Ethnicity->set('active', $estadoNuevo);
-                if($this->Ethnicity->save()){
+                $data = $this->Ethnicity->read(null, $id);
+                if($this->Ethnicity->saveField('active', $estadoNuevo) && $this->Ethnicity->updateSearch($estadoNuevo, $data)){
                     $json = json_encode(array('exito'=>true, 'msg' => 'Se cambio el estado de la Etnia correctamente.'));
                 }else{
                     $json = json_encode(array('exito'=>false, 'msg' => 'Hubo problemas para completar la operación.'));

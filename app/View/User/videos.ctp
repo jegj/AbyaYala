@@ -1,44 +1,41 @@
 <div class="container">
 	<h1 class="titulo">Galeria de Videos</h1>
 	<hr>
-	<?php
-		error_reporting(E_ALL);
-		$feedURL = 'http://gdata.youtube.com/feeds/api/users/farfanestella/uploads';
-		$sxml = simplexml_load_file($feedURL);
-	?>
-	<div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
-    <div class="carousel-inner">
-    	<div class="item active">
-    			<?php $index = 0;?>
-			    <?php foreach ($sxml->entry as $key => $entry):?>
-			        <?php  
-			            $media = $entry->children('media',true);
-			            $watch = (string)$media->group->player->attributes()->url;
-			            $thumbnail = (string)$media->group->thumbnail[0]->attributes()->url;
-			        ?>
-			        <?php if($index%4 == 0):?>
-								<div class="row">
-							<?php endif;?>
-				        <div class="col-sm-3">
-			            <div >
-	                	<a href="<?php echo $watch; ?>" class="watchvideo" target='_blank'>
-	                    <img class="gallery" src="<?php echo $thumbnail;?>" alt="<?php echo $media->group->title; ?>" />
-	                	</a>
-                    <b>
-                      <a href="<?php echo $watch; ?>" target='_blank'> <?php echo $media->group->title; ?></a>
-                    </b>
-                    <p></p>
-				          </div>                        
-				        </div>
-				      <?php if(($index+1) %4 == 0):?>
-								</div>
-							<?php endif;?>
-							<?php $index++;?>
-			    <?php endforeach;?>
+
+	<?php if($videos['videos'] && count($videos['videos']) && $videos['exito']):?>
+	  <?php foreach ($videos['videos'] as $key => $video):?>
+				<?php if($key%4 == 0):?>
+					<div class="row galeria">
+				<?php endif;?>
+					<?php $url = "https://www.youtube.com/watch?v=".$video['id'];?>
+					<div class="col-md-3 col-sm-3 col-xs-6 ">
+						<a href= '<?php echo $url?>' rel='prettyPhoto' title= '<?php echo $video['title'];?>'>
+							<img class="img-responsive gallery" src='<?php echo $video['thumbail'];?>'  alt ='<?php echo $video['title']?>'/>
+						</a>
+						<b><?php echo $video['title'] ?></b>
+						<p></p>
+					</div>
+				<?php if(($key+1) %4 == 0):?>
+					</div>
+				<?php endif;?>
+	  <?php endforeach;?>
+  <?php elseif(!$videos['exito']):?>
+  	<div class="row galeria">
+      <div class="col-md-12">
+          <div class="alert alert-danger" role="alert">
+              <strong>Ocurrió un error al obtener los videos de AbyaYala: </strong><?php echo $videos['msg'];?>
           </div>
       </div>
-  </div>
-</div>
+    </div>
+  <?php else:?>
+  	<div class="row galeria">
+      <div class="col-md-12">
+          <div class="alert alert-warning" role="alert">
+              <strong>Actualmente no existen videos en AbyaYala</strong>
+          </div>
+      </div>
+    </div>
+  <?php endif;?>
 
 <style>
 .gallery {

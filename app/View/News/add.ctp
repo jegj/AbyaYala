@@ -46,10 +46,7 @@
 								    array(
 								    		'controller'=>'contents',
 								        'action' => 'uploadContent',
-								    ),
-								    array('target'=>'_blank')
-								    );
-									?>.
+								    ));?>.
 									De preferencia elija una imagen de tamaño grande para evitar deformaciones de la imagen 
 						</p>
 

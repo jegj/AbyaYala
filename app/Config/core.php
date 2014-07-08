@@ -264,7 +264,7 @@
  */
 	Configure::write('Acl.classname', 'DbAcl');
 	Configure::write('Acl.database', 'default');
-	Configure::write('debug', 1);
+	// Configure::write('debug', 1);
 
 /**
  * Uncomment this line and correct your server timezone to fix

@@ -20,25 +20,34 @@ $this->Paginator->options(array(
 	
 	<h1 class="titulo">Galeria de Imagenes</h1>
 	<hr>
-
 	<!-- <div class="row galeria"> -->
-		<?php foreach ($content as $key => $image):?>
-				<?php if($key%4 == 0):?>
-					<div class="row galeria">
-				<?php endif;?>
-					<div class="col-md-3 col-sm-3 col-xs-6 ">
-						<a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
-	                                            rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
-	                                            >
-								<img class="img-responsive gallery" src='<?php echo $image['Content']['access_path']?>'   alt ='<?php echo $image['Content']['name']?>'/>
-						</a>
-						<b><?php echo $image['Content']['name'];?></b>
-						<p></p>
-					</div>
-				<?php if(($key+1) %4 == 0):?>
-					</div>
-				<?php endif;?>
-		<?php endforeach;?>
+		<?php if($content && count($content)):?>
+			<?php foreach ($content as $key => $image):?>
+					<?php if($key%4 == 0):?>
+						<div class="row galeria">
+					<?php endif;?>
+						<div class="col-md-3 col-sm-3 col-xs-6 ">
+							<a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
+		                                            rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
+		                                            >
+									<img class="img-responsive gallery" src='<?php echo $image['Content']['access_path']?>'   alt ='<?php echo $image['Content']['name']?>'/>
+							</a>
+							<b><?php echo $image['Content']['name'];?></b>
+							<p></p>
+						</div>
+					<?php if(($key+1) %4 == 0):?>
+						</div>
+					<?php endif;?>
+			<?php endforeach;?>
+		<?php else:?>
+			<div class="row galeria">
+				<div class="col-md-12">
+          <div class="alert alert-warning" role="alert">
+              <strong>Actualmente no existen imagenes en AbyaYala</strong>
+          </div>
+        </div>
+			</div>
+		<?php endif;?>
 	<!-- </div> -->
 	
 

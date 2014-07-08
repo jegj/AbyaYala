@@ -21,6 +21,7 @@ $this->Paginator->options(array(
     <hr>
 
     <div class="row">
+      <?php if($content && count($content)):?>
         <div class="center">            
             <div id="jquery_jplayer_1" class="jp-jplayer"></div>
               <div id="jp_container_1" class="jp-audio" style="width:70%; margin: 0 auto;">
@@ -65,48 +66,55 @@ $this->Paginator->options(array(
                 </div>
             </div>
         </div>
-
         <?php foreach ($content as $id => $audio):?>
-        <div class="col-sm-12"> 
-            <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                <div class="media">
-                    <p>
-                        <h3 class="media-heading">
-                            <a target='_blank' href= '<?echo $audio['Content']['access_path'].'?'.rand()?>'>
-                            <?php echo $audio['Content']['name']?>
-                            </a>
-                        </h3>
-                        <p></p>
-                        <div class="btn-group">
-                            <a id="rep_player_<?php echo $id;?>" href="#" onclick="cargarAudio('<?echo $id;?>','<?php echo $audio['Content']['name']?>','<?php echo $audio['Content']['access_path']?>')">
-                                <span class="glyphicon glyphicon-music"></span>
-                            </a>
-                        </div>
-                    </p>
-                    <div class="clearfix visible-sm"></div>
-                    <div class="media-body fnt-smaller">
-                        <p class="hidden-xs">
-                            <?php echo $audio['Content']['description'];?>
-                        </p>
-                        <span class="fnt-smaller fnt-lighter fnt-arial">
-                            <b>Fecha Publicación:</b> <?php echo $audio['Content']['create_date'];?>
-                        </span>
-                        <p>
-                            <?php  
-                                echo $this->Html->link(
-                                    "<span class='glyphicon glyphicon-download-alt' data-toggle='tooltip' data-placement='left' title='Descargar Pista de Audio' class='icono_descarga'></span>",
-                                    array('action' => 'download', 'controller' =>'contents',$audio['Content']['content_id'], true),
-                                    array('escape' => false)
-                                );
-                            ?>
-                        </p>
-                        <p></p>
-                    </div>
-                    
-                </div>
-            </div>
+          <div class="col-sm-12"> 
+              <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                  <div class="media">
+                      <p>
+                          <h3 class="media-heading">
+                              <a target='_blank' href= '<?echo $audio['Content']['access_path'].'?'.rand()?>'>
+                              <?php echo $audio['Content']['name']?>
+                              </a>
+                          </h3>
+                          <p></p>
+                          <div class="btn-group">
+                              <a id="rep_player_<?php echo $id;?>" href="#" onclick="cargarAudio('<?echo $id;?>','<?php echo $audio['Content']['name']?>','<?php echo $audio['Content']['access_path']?>')">
+                                  <span class="glyphicon glyphicon-music"></span>
+                              </a>
+                          </div>
+                      </p>
+                      <div class="clearfix visible-sm"></div>
+                      <div class="media-body fnt-smaller">
+                          <p class="hidden-xs">
+                              <?php echo $audio['Content']['description'];?>
+                          </p>
+                          <span class="fnt-smaller fnt-lighter fnt-arial">
+                              <b>Fecha Publicación:</b> <?php echo $audio['Content']['create_date'];?>
+                          </span>
+                          <p>
+                              <?php  
+                                  echo $this->Html->link(
+                                      "<span class='glyphicon glyphicon-download-alt' data-toggle='tooltip' data-placement='left' title='Descargar Pista de Audio' class='icono_descarga'></span>",
+                                      array('action' => 'download', 'controller' =>'contents',$audio['Content']['content_id'], true),
+                                      array('escape' => false)
+                                  );
+                              ?>
+                          </p>
+                          <p></p>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      <?php endforeach;?>
+    <?php else:?>
+
+      <div class="col-md-12">
+        <div class="alert alert-warning" role="alert">
+            <strong>Actualmente no existen pistas de audio en AbyaYala</strong>
         </div>
-    <?php endforeach;?>
+      </div>
+    <?php endif;?>
     </div>
 </div>
 

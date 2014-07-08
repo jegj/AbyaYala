@@ -116,35 +116,6 @@ $this->Paginator->options(array(
 					<span class="clearfix borda"></span>
 				</article>		
 			<?php endforeach;?>
-
-<!--			<?php foreach ($videos as $video):?>
-				<article class="search-result row">
-					<div class="col-md-12 excerpet">
-						<h3>
-							<?php $url = "https://www.youtube.com/watch?v=".$video['id'];?>
-							<a href= <?php echo $url;?> target='_blank'>
-								<?php echo $video['title'];?>
-							</a>
-						</h3>
-						<p><?php echo $video['description'];?></p>
-						<p> Clasificación: <b>Video</b></p>
-						<ul id ="tags_resultado_busqueda" class="meta-search">
-							<li>
-								<i class="glyphicon glyphicon-time"></i> 
-								<span>
-									<?php echo MiscLib::dateFormat($video['date']);?>
-								</span>
-							</li>
-							<li>
-								<i class="glyphicon glyphicon-tags"></i> 
-								<span>
-										Media
-								</span>
-							</li>
-						</ul>
-					</div>
-				</article>
-			<?php endforeach;?>-->
 		</section>
 	</div>
 </div>
