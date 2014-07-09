@@ -16,17 +16,28 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $name.'a' ?></h2>
-<p> error 400</p>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php printf(
-		__d('cake', 'The requested address %s was not found on this server.'),
-		"<strong>'{$url}'</strong>"
-	); ?>
-</p>
-<?php
-if (Configure::read('debug') > 0):
-	echo $this->element('exception_stack_trace');
-endif;
-?>
+<?php $this->layout='Usuario';?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1 class="titulo">Oops!</h1>
+                <h2 class="titulo">
+                    404 Página no encontrada</h2>
+                <div class="error-details">
+                    Lo sentimos, ha ocurrido un error. La página solicitada no se encontró en AbyaYala.
+                    <?php if (Configure::read('debug') > 0):
+												echo $this->element('exception_stack_trace');
+											endif;
+										?>
+                </div>
+                <div class="error-actions">
+                		<?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Llevame a Casa', array('action' => 'index', 'controller' =>'users'), array('class'=>'btn btn-primary btn-lg', 'escape' => false))?>
+
+                		<?php echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Contacto', array('action' => 'add', 'controller' =>'messages'), array('class'=>'btn btn-default btn-lg', 'escape' => false))?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -26,7 +26,6 @@
 
 		echo $this->Html->script('jquery-validation/additional-methods.min', array('inline' => false));
 
-		echo $this->Html->script('datatables/js/jquery.dataTables.min', array('inline' => false));
 
 		echo $this->Html->script('jplayer/js/jquery.jplayer.min', array('inline' => false));	
 		echo $this->Html->script('jplayer/js/circle.player', array('inline' => false));	
@@ -249,10 +248,10 @@
 					<p></p>
 					<p></p>
 					<p>
-						<a href="#"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
-						<a href="#"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="https://www.facebook.com/"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="https://twitter.com/"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
-						<a href="#"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="https://www.youtube.com/channel/UCLH_bLD2ELRO_3EHph6_drQ"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
 					</p>
 				</div>
 			</div>

@@ -70,9 +70,8 @@ class UsersController extends AppController
 
 	public function videos()
 	{
-		//Se uso XML feed en las vistas
 		$cliente = FeedLib::getInstance();
-		$videos = $cliente->search(1, null, 12);
+		$videos = $cliente->search(1, null, 13);
 
 		$this->set(compact('videos'));
 	}

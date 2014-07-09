@@ -17,6 +17,7 @@
 					</div>
 				<?php if(($key+1) %4 == 0):?>
 					</div>
+					<p></p>
 				<?php endif;?>
 	  <?php endforeach;?>
   <?php elseif(!$videos['exito']):?>
