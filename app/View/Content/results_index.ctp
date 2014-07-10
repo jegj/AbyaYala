@@ -2,8 +2,7 @@
 	echo $this->element('content_index', array(
 	    'content' => $content,
 	    'result' => true
-	));
-?>
+	));?>
 
 <div class="row content">
 	<div class="col-md-12">
@@ -90,4 +89,4 @@
 		})
 	});
 </script>
-<? echo $this->Js->writeBuffer();?>
+<?php echo $this->Js->writeBuffer();?>

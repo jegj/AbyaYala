@@ -12,8 +12,7 @@ $this->Paginator->options(array(
   ),
   
   'convertKeys'=>array('term')
-));
-?>
+));?>
 <div class="container"> 
     <h1 class="titulo">Rastros Indigenas</h1>
     <hr>
@@ -104,5 +103,4 @@ $this->Paginator->options(array(
     </div>
 </div>
 
-<? echo $this->Js->writeBuffer();?>
-              
+<?php echo $this->Js->writeBuffer();?>

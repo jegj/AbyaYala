@@ -1,4 +1,3 @@
-
 <?php
 	echo $this->element('ethnicity_index',
 		array(

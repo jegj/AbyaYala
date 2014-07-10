@@ -12,8 +12,7 @@ $this->Paginator->options(array(
   ),
   
   'convertKeys'=>array('term')
-));
-?>
+));?>
 <div class="container">	
 	<h1 class="titulo">Investigación</h1>
 	<hr>
@@ -100,5 +99,4 @@ $this->Paginator->options(array(
 
 </div>
 
-<? echo $this->Js->writeBuffer();?>
-
+<?php echo $this->Js->writeBuffer();?>

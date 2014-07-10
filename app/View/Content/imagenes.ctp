@@ -42,6 +42,4 @@
 					cargaExitosa();
       		return false;
       }
-    ");
-?>
-
+    ");?>

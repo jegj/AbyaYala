@@ -1,5 +1,4 @@
-
-  <?php if(isset($content)): ?>
+<?php if(isset($content)):?>
   <div>
     <p><b>Nombre: </b><?php echo $content['Content']['name']?></p>
     <p><b>Descripción: </b><?php echo $content['Content']['description']?></p>
@@ -37,9 +36,7 @@
       <div class="jp-title">
         <ul>
           <li>
-          	<?php
-          		echo $content['Content']['name'];
-          	?>
+          	<?php echo $content['Content']['name'];?>
           </li>
         </ul>
       </div>
@@ -65,8 +62,7 @@
           supplied: 'oga'
         });
       });
-    ");
-?>
+    ");?>
 <?php endif;?>
 
 <?php if(isset($error)):?>

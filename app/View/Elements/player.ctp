@@ -31,9 +31,7 @@
       <div class="jp-title">
         <ul>
           <li>
-          	<?php
-          		echo $name;
-          	?>
+          	<?php echo $name;?>
           </li>
         </ul>
       </div>
@@ -60,6 +58,4 @@
           
         });
       });
-    ");
-?>
-
+    ");?>

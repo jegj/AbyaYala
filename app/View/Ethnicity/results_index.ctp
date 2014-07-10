@@ -6,7 +6,6 @@
 		)
 	);
 ?>
-
 <div class="row content">
 	<div class="col-md-12">
 		<p></p>
@@ -52,4 +51,4 @@
 		</div>
 	</div>
 </div>
-<? echo $this->Js->writeBuffer();?>
+<?php echo $this->Js->writeBuffer();?>
