@@ -292,6 +292,9 @@ class EthnicitiesController extends AppController {
                 $data = $this->Ethnicity->read(null, $id);
                 if($this->Ethnicity->saveField('active', $estadoNuevo) && $this->Ethnicity->updateSearch($estadoNuevo, $data)){
                     $json = json_encode(array('exito'=>true, 'msg' => 'Se cambio el estado de la Etnia correctamente.'));
+                    
+                    $admin = $this->Session->read('Admin');
+      			 	CakeLog::write('activity', sprintf("El administrador %s %s cambio el estado de la etnia %s a %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $data['Ethnicity']['name'], $estadoNuevo==1?'Activa':'Desactivada'));
                 }else{
                     $json = json_encode(array('exito'=>false, 'msg' => 'Hubo problemas para completar la operación.'));
                 }

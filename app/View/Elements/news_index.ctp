@@ -64,7 +64,9 @@ $this->Paginator->options(array(
 				     	Modificar
 				     </th>
 
-				    <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+				    <?php 
+				    	$admin = $this->Session->read('Admin');
+				    	if(!$admin['Admin']['type']):?>
 				     <th>
 				     	Eliminar
 				     </th>
@@ -109,7 +111,7 @@ $this->Paginator->options(array(
 	          		?>
 							</td>
 
-							<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+							<?php if(!$admin['Admin']['type']):?>
 								<td>
 									<?php
 		              echo $this->Form->postLink(

@@ -18,7 +18,9 @@
 				<tr>
 					<th>Nombre</th>
 					<th>Modificar</th>
-					<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+					<?php 
+					$admin = $this->Session->read('Admin');
+					if(!$admin['Admin']['type']):?>
 						<th>Eliminar</th>
 					<?php endif;?>
 				</tr>
@@ -39,7 +41,7 @@
 								array('controller'=>'anchors', 'action'=>'edit', $anchors['anchor_id'],$ethnicity['Ethnicity']['ethnicity_id']));
 							?>
 						</td>
-						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+						<?php if(!$admin['Admin']['type']):?>
 							<td>
 								<?php 
 									echo $this->Form->postLink(
@@ -63,7 +65,7 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Modificar</th>
-						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+						<?php if(!$admin['Admin']['type']):?>
 							<th>Eliminar</th>
 						<?php endif;?>
 					</tr>
@@ -72,8 +74,7 @@
 				<?php foreach ($ethnicity['Notes'] as $notes):?>
 					<tr>
 						<td>
-							<?php echo
-							$this->Html->link(
+							<?php echo $this->Html->link(
 								$notes['name'],
 								array(
 									'controller'=>'notes',
@@ -86,8 +87,7 @@
 						</td>
 
 						<td>
-							<?php echo
-							   $this->Html->link(
+							<?php echo $this->Html->link(
 									'Modificar',
 									array(
 										'controller'=>'notes',
@@ -98,10 +98,9 @@
 							?>
 						</td>
 
-						<?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+						<?php if(!$admin['Admin']['type']):?>
 							<td>
-								  <?php echo
-								  $this->Form->postLink(
+								  <?php echo $this->Form->postLink(
 		                  'Eliminar',
 		                  array(
 		                  	'controller'=>'notes',

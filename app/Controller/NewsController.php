@@ -130,10 +130,15 @@ class NewsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->News->create();
 			$this->request->data['current_date']=date('Y-m-d H:i:s');
+			$nombre = $this->request->data['News']['title'];
 			
 			if ($this->News->save($this->request->data)) {
 				$this->Session->setFlash('<strong>Exito!</strong> Se creo la noticia exitosamente.', 'default', array(), 'success');
-        return $this->redirect(array('action'=>'index'));
+				
+				$admin = $this->Session->read('Admin');
+      			CakeLog::write('activity', sprintf("El administrador %s %s creó la noticia %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $nombre));
+      			
+        		return $this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash('<strong>Error!</strong> Hubo problemas para agregar la Noticia.', 'default', array(), 'error');
 			}
@@ -161,9 +166,13 @@ class NewsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			$this->News->read(null, $id);
+			$nombre = $this->News->data['News']['title'];
 
 			if ($this->News->save($this->request->data)) 
-			{
+			{	
+				
+				$admin = $this->Session->read('Admin');
+      			CakeLog::write('activity', sprintf("El administrador %s %s creó la noticia %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $nombre));
 
 				$this->Session->setFlash('<strong>Exito!</strong> Se actualizó modificó la noticia exitosamente.', 'default', array(), 'success');
 				return $this->redirect(array('action' => 'index'));
@@ -194,14 +203,23 @@ class NewsController extends AppController {
 
 		$this->canAccess();
 		
-		$this->News->id = $id;
-		if (!$this->News->exists()) {
+		
+		if (!$this->News->exists($id)) {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
-      return $this->redirect(array('action'=>'index'));
+      		return $this->redirect(array('action'=>'index'));
 		}
+		
+		$this->News->read(null, $id);
+		$nombre = $this->News->data['News']['title'];
+		
+		$this->News->id = $id;
 		
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->News->delete()) {
+			
+			$admin = $this->Session->read('Admin');
+      		CakeLog::write('activity', sprintf("El administrador %s %s creó la noticia %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $nombre));
+      		
 			$this->Session->setFlash('<strong>Exito!</strong> Se eliminó  la noticia exitosamente.', 'default', array(), 'success');
 		} else {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');

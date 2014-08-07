@@ -5,16 +5,15 @@
 	<title>AbyaYala</title>
 	<?php echo $this->Html->meta('icon');?>
 
-	<?
+	<?php
 		echo $this->Html->css('bootstrap/bootstrap.min');
 		echo $this->Html->css('abyayala/ckeditor');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
 		echo $this->Html->css('../js/upload/css/style');
-		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
 		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
 	?>
 	<!-- Archivos Javascript-->
-	<?
+	<?php
 		echo $this->Html->script('jquery/jquery-1.10.2.min', array('inline' => false));
 		echo $this->Html->script('bootstrap/bootstrap.min', array('inline' => false));
 		echo $this->Html->script('jplayer/js/jquery.jplayer.min', array('inline' => false));	
@@ -64,13 +63,13 @@
 							<li>
 								<?php
 									echo $this->Html->link("<span class='glyphicon glyphicon-folder-close'></span> Notas", array('action' => 'notes', '?'=>array('ckeditor'=>$ckeditor)),
-										array('escape' => false, 'id'=>'link_docs')
+										array('escape' => false, 'id'=>'link_notes')
 									);
 								?>
 							</li>
 
 							<li>
-								<form action="search" role="search" class="navbar-form">
+								<form action="search" role="search" class="navbar-form" >
           				<div class="input-group">
 				            <input type="text" id="srch-term" name="term" placeholder="Buśqueda" class="form-control" required>
 				            <div class="input-group-btn">

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="titulo">Familia Linguisticas</h1>
+  <h1 class="titulo">Familias Lingüísticas</h1>
   <hr>  
   <div class="row">
     <div class="col-md-12">
@@ -154,12 +154,15 @@
   var polygonsInfo;
 
   $(document).ready(function () {
+  	
+  	$('#nav-usuario li').removeClass("activetae");
+    $('#familias').addClass('activetae');
 
     polygonsInfo = new Object ();  
 
     var mapOptions = {
       center: new google.maps.LatLng( 7.601382, -65.467529),
-      zoom: 5,
+      zoom: 6,
       scrollwheel: true,
       navigationControl: true,
     };

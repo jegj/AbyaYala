@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
 
 
 class AppController extends Controller {
-	public $components = array('DebugKit.Toolbar');
+	//public $components = array('DebugKit.Toolbar');
 	public $theme = 'Cakestrap';
   var $uses = array('News','Content');
 
@@ -57,7 +57,8 @@ class AppController extends Controller {
 
   public function onlyGlobalAdmin()
   {
-    $adminType = $this->Session->read('Admin')['Admin']['type'];
+    $admin = $this->Session->read('Admin');
+    $adminType = $admin['Admin']['type'];
 
     if(!$adminType)
       return true;

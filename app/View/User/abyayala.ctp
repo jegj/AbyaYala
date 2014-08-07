@@ -1,21 +1,24 @@
 <div class="row" >				
-	<div class="container">
-		<div class="col-md-2" id="sidebar" style="margin-top:20px;">
+	<!--<div class="container">-->
+		<!--<div class="col-md-2" id="sidebar" style="margin-top:20px;">
 
-		<div class="sidebar-nav">						
-			<?php echo $this->element('sidebar_contact')?>			
-		</div>
+			<div class="sidebar-nav">						
+				<?php 
+				//echo $this->element('sidebar_contact')
+				?>			
+			</div>
 			
 		</div>
-		<div class="col-md-10">
+		-->
+		<div class="col-md-12">
 			<h1 class="titulo">Proyecto AbyaYala</h1>
 			<hr>
 			<div class="main-address-container" class="container">
 				<div class="row">
 					<div class="col-md-8">
 						<p align='justify'>
-						Abya  Yala, continente que se contempla de norte a sur, desde Alaska hasta la Patagonia, es un territorio ancestralmente indígena. El Centro de Estudios de los Pueblos Indígenas de Abya Yala busca generar conocimiento académicamente relevante, apoyándose en el recurso audiovisual, para establecer una plataforma integral e interactiva en la red, que permita un mayor acceso y contacto con la cultura y realidad de los pueblos indígenas de Abya Yala, es decir, del continente llamado América. 
-						Su objetivo es fomentar la investigación académica y de campo sobre y por las culturas ancestrales del continente americano, fundamentada en la defensa del medio ambiente y de los descendientes de los primeros pobladores de Abya Yala, y así, propiciar relaciones interculturales para nuevas condiciones de participación, diálogo y debate sobre el reconocimiento de los pueblos originarios y el respeto a la diversidad cultural. 
+						AbyaYala, continente que se contempla de norte a sur, desde Alaska hasta la Patagonia, es un territorio ancestralmente indígena. El Centro de Estudios de los Pueblos Indígenas de AbyaYala busca generar conocimiento académicamente relevante, apoyándose en el recurso audiovisual, para establecer una plataforma integral e interactiva en la red, que permita un mayor acceso y contacto con la cultura y realidad de los pueblos indígenas de AbyaYala, es decir, del continente llamado América. 
+						Su objetivo es fomentar la investigación académica y de campo sobre y por las culturas ancestrales del continente americano, fundamentada en la defensa del medio ambiente y de los descendientes de los primeros pobladores de AbyaYala, y así, propiciar relaciones interculturales para nuevas condiciones de participación, diálogo y debate sobre el reconocimiento de los pueblos originarios y el respeto a la diversidad cultural. 
 						</p>
 					</div>
 					<div class="col-md-4">
@@ -38,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<p align="justify">
-							<h3 class="titulo">Objetivos específicos</h3>
+							<h3 class="titulo">Objetivos Específicos</h3>
 							<ul>
 								<li>
 								Contribuir a la producción y acceso al conocimiento sobre y por los pueblos indígenas empleando recursos audiovisuales.
@@ -58,5 +61,19 @@
 				</div>
 			</div>
 		</div>	
-	</div>
+	<!--</div> -->
 </div>
+
+
+<script>
+    $(document).ready(function(){
+       
+
+		$("#creditsTabs li").removeClass("active");
+		$("#tabAbyayala").addClass("active");
+	
+		$('#nav-usuario li').removeClass("activetae");
+        $('#proyecto').addClass('activetae');
+
+    });
+</script>

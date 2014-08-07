@@ -79,8 +79,8 @@ class Content extends AppModel {
 
 		ini_set('post_max_size', '10M');
 		ini_set('upload_max_filesize', '10M');
-		ini_set('max_execution_time', 300);
-		ini_set('max_input_time', 300);
+		ini_set('max_execution_time', 60*10);
+		ini_set('max_input_time', 60*10);
 
 		$maxFileSize=10;
 
@@ -122,7 +122,7 @@ class Content extends AppModel {
 						$realName='contenido';
 
 					if(!$this->checkContent($realName,$extension, $path)){
-						if(move_uploaded_file($file['tmp_name'], $path)){
+						if(move_uploaded_file(utf8_encode($file['tmp_name']), $path)){
 								$data = array(
 		              'Content' => array(
 		                'name' => $realName,
@@ -130,12 +130,15 @@ class Content extends AppModel {
 		                'type' => $type,
 		                'filesize' => $size,
 		                'extesion_document' => $extension,
-		                'access_path' => $pathDB.$file['name'],
+		                'access_path' => utf8_encode($pathDB.$file['name']),
 		                'description' => $realName
 		              )
 	        			);
 							if ($this->saveModel($data)){
 								$result['complete']=array('result'=>'success','message'=>'Se agrego el archivo correctamente');
+								
+								
+      			 				
 								return $result;	
 							}else{
 								$result['complete']=array('result'=>'error','message'=>'Hubo problemas para agregar el registro del archivo en Base de datos');

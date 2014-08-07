@@ -27,7 +27,7 @@ $this->Paginator->options(array(
   					</p>
   					<p>
   		        <h3 class="media-heading">
-  			        <a target='_blank' href= '<?echo $pdf['Content']['access_path'].'?'.rand()?>'>
+  			        <a target='_blank' href= '<?echo utf8_decode($pdf['Content']['access_path']).'?'.rand()?>'>
   			        	<?php echo $pdf['Content']['name']?>
   			        </a>
   		        </h3>
@@ -100,3 +100,10 @@ $this->Paginator->options(array(
 </div>
 
 <?php echo $this->Js->writeBuffer();?>
+
+<script>
+	$(document).ready(function(){
+		$('#nav-usuario li').removeClass("activetae");
+        $('#trabajos').addClass('activetae');
+    });
+</script>

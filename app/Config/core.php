@@ -33,6 +33,8 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
+ 	//Poner debug en 0 para las descargas y visiones de img. pdf .. etc
+	// Configure::write('debug', 0);
 	Configure::write('debug', 2);
 
 /**

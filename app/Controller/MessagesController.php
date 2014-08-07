@@ -122,7 +122,7 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function add() {
-		$this->layout ='Usuario';
+		$this->layout = 'Proyecto';
 		
 		if ($this->request->is('post')) {
 			$this->Message->create();
@@ -148,15 +148,25 @@ class MessagesController extends AppController {
 		
 		$this->canAccess();
 
-		$this->Message->id = $id;
+		
 
-		if (!$this->Message->exists()) {
-				$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
-	  	return $this->redirect(array('action'=>'index'));
+		if (!$this->Message->exists($id)) {
+			$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
+	  	    return $this->redirect(array('action'=>'index'));
 		}
+		
+		$this->Message->read(null, $id);
+		$nombre = $this->Message->data['Message']['subject'];
+		
+		
+		
+		$this->Message->id = $id;
 
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Message->delete()) {
+			$admin = $this->Session->read('Admin');
+      		CakeLog::write('activity', sprintf("El administrador %s %s eliminó el mensaje  %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $nombre));
+      		
 			$this->Session->setFlash('<strong>Exito!</strong> Se eliminó  el mensaje exitosamente.', 'default', array(), 'success');
 		} else {
 			$this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');

@@ -11,7 +11,6 @@
 		echo $this->Html->css('abyayala/abyayala');
 		echo $this->Html->css('prettyPhoto/prettyPhoto');
 		echo $this->Html->css('../js/upload/css/style');
-		echo $this->Html->css('../js/datatables/css/jquery.dataTables');
 		echo $this->Html->css('jplayer_blue/jplayer.blue.monday');
 	?>
 	<!-- Archivos Javascript-->
@@ -78,7 +77,8 @@
 		        <span>
 		            <b>
 		            	<?php
-		            		echo $this->Session->read('Admin')['Admin']['name']. ' '.$this->Session->read('Admin')['Admin']['last_name'];
+		            		$admin = $this->Session->read('Admin');
+		            		echo $admin['Admin']['name']. ' '.$admin['Admin']['last_name'];
 		            	?>
 		            </b>
 		            <br>
@@ -92,7 +92,7 @@
 		            	</p>
 		            	<p>
 		            		<?php 
-		            		echo $this->Html->link('			Salir', array(
+		            		echo $this->Html->link('Salir', array(
 		            					'action'=>'closeSession',
 		            					'controller' =>
 		            					'admins'
@@ -120,7 +120,8 @@
 							 	</li>
 
 							 	<?php
-							 		if(!$this->Session->read('Admin')['Admin']['type']):
+							 		$admin = $this->Session->read('Admin');
+							 		if(!$admin['Admin']['type']):
 							 	?>
 						 		<li>
 							 		<?php
@@ -184,6 +185,20 @@
 										);
 	      					?>
 							 	</li>
+							 	<li>
+							 		<?php
+		          			echo $this->Html->link(
+									    'Respaldo',
+									    array(
+									        'controller' => 'admins',
+									        'action' => 'respaldo',
+									    ),
+									    array(
+									    	'id' => 'messages'
+									    )
+										);
+	      					?>
+							 	</li>
 							</ul>
 						</div>
 					</div>
@@ -217,8 +232,9 @@
   									<?php echo $warning; ?>
 							</div>
 						<?endif;?>
-
+						
 						<?php echo $this->fetch('content'); ?>
+						
 					</div>
 
       </div>
@@ -232,12 +248,12 @@
 				<div class="row" >
 					
 					<div id="logos">
-						<img src="<?php echo $this->webroot;?>img/ceneac_logo.png" width=110, height=110>
+						<a href="http://www.ceneac.com.ve/"><img src="<?php echo $this->webroot;?>img/ceneac_logo.png" width=110, height=110></a>
 						<img src="<?php echo $this->webroot;?>img/esc_comp.png" width=110, height=110>
-						<img src="<?php echo $this->webroot;?>img/ucv_ciencias_logo.png" width=110, height=110>
-						<img src="<?php echo $this->webroot;?>img/ucv_log.png">
-						<img src="<?php echo $this->webroot;?>img/ucv_hum_logo.png" width=110, height=110>
-						<img src="<?php echo $this->webroot;?>img/esc_arte.png" width=110, height=110>
+						<a href="http://www.ciens.ucv.ve/"><img src="<?php echo $this->webroot;?>img/ucv_ciencias_logo.png" width=110, height=110></a>
+						<a href="http://www.ucv.ve/"><img src="<?php echo $this->webroot;?>img/ucv_log.png"></a>
+						<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion.html"><img src="<?php echo $this->webroot;?>img/ucv_hum_logo.png" width=110, height=110></a>
+						<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion/escuelas/artes.html"><img src="<?php echo $this->webroot;?>img/esc_arte.png" width=110, height=110></a>
 						<img src="<?php echo $this->webroot;?>img/cediarte_logo.png" width=110, height=110>
 					</div>
 					
@@ -248,8 +264,8 @@
 					<p></p>
 					<p></p>
 					<p>
-						<a href="https://www.facebook.com/"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
-						<a href="https://twitter.com/"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="https://www.facebook.com/profile.php?id=100006582465476"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						<a href="https://twitter.com/Ucv_AbyaYala"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
 						<a href="https://www.youtube.com/channel/UCLH_bLD2ELRO_3EHph6_drQ"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
 					</p>

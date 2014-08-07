@@ -41,8 +41,8 @@
         </ul>
       </div>
       <div class="jp-no-solution">
-        <span>Update Required</span>
-        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+        <span>Requiere Actualizacion</span>
+        Para reproducir la pista actual necesita actualizar su plugin de <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash</a>.
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
         $('#jquery_jplayer_1').jPlayer({
           ready: function () {
             $(this).jPlayer('setMedia', {
-              oga:'".$content['Content']['access_path']."' 
+              oga:'".utf8_decode($content['Content']['access_path'])."' 
             });
           },
           swfPath: '/AbyaYala/js/jplayer',
@@ -67,6 +67,6 @@
 
 <?php if(isset($error)):?>
   <div class="alert alert-danger">
-    <strong>Oops!</strong> No se pudo acceder al contenido. Aseguerese que se cargo correctamente.
+    <strong>Oops!</strong> No se pudo acceder al contenido. Aseguerese que se cargo correctamente o no fue eliminado.
   </div>
 <?php endif;?>

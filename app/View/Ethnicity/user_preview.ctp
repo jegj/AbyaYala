@@ -13,9 +13,9 @@
 							
 				<div id = "<?php echo $id?>" class="panel panel-default">
 					<div class="panel-heading">
-								<h3 class="panel-title titulo">
-									<?php echo $anchor['name']?>
-								</h3>
+						<h3 class="panel-title titulo">
+							<?php echo $anchor['name']?>
+						</h3>
 					</div>
 					<div class="panel-body">
 						<?php echo $anchor['description']?>
@@ -43,39 +43,41 @@
 			</div>
 		<?php else:?>
 			<div class="alert alert-warning" style="margin-top:40px;">
-				<strong>Oops!</strong> No existen anclas para esta Etnia.
+				<strong>Oops!</strong> No existe información para esta Etnia.
 			</div>
 		<?php endif;?>
 	</div>
-
-	<div class="col-md-4" style="margin-top:120px;" id="sidebar_preview">
-		<div class="sidebar-nav">
-			<div style="padding: 8px 0;" class="well">
-				<ul class="nav nav-list"> 
-					<li class="dropdown-header">Anclas de <?echo $ethnicity['Ethnicity']['name']?></li>
-					<?php foreach ($ethnicity['Anchors'] as $anchor):?>
-						<li>
-							<?php
-								$name = str_replace(' ', '', $anchor['name']);
-								$id = $name.'_'.$anchor['anchor_id']
-							?>
-							<a href='#<?php echo $id ?>'>
-								<?php
-									echo $anchor['name']
-								?>
-							</a>
-						</li>
-					<?endforeach;?>
-					<li>
-						<a href="#notas">Notas</a>
-					</li>
-				</ul>
-				<div class="scroll-to-top">
-					<a href="#">Subir</a>
+	
+	<?php if(!empty($ethnicity['Anchors'])):?>
+		<div class="col-md-4" style="margin-top:120px;" id="sidebar_preview">
+			<div class="sidebar-nav">
+				<div style="padding: 8px 0;" class="well">
+					<ul class="nav nav-list"> 
+						
+							<?php foreach ($ethnicity['Anchors'] as $anchor):?>
+								<li>
+									<?php
+										$name = str_replace(' ', '', $anchor['name']);
+										$id = $name.'_'.$anchor['anchor_id']
+									?>
+									<a href='#<?php echo $id ?>'>
+										<?php
+											echo $anchor['name']
+										?>
+									</a>
+								</li>
+							<?endforeach;?>
+							<li>
+								<a href="#notas">Notas</a>
+							</li>
+					</ul>
+					<div class="scroll-to-top">
+						<a href="#">Subir</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<?php endif;?>
 </div>
 <!-- <hr>
 <div class="row content">

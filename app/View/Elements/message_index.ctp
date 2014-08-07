@@ -68,7 +68,9 @@ $this->Paginator->options(array(
               <?php echo $this->Paginator->sort('read',$this->Html->image('ordenar.png'), array('escape'=>false));?>
              </th>
 
-             <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+             <?php 
+             	$admin = $this->Session->read('Admin');
+             	if(!$admin['Admin']['type']):?>
                <th>
                 Eliminar
                </th>
@@ -114,7 +116,7 @@ $this->Paginator->options(array(
               <?php endif;?>
               </td>
 
-              <?php if(!$this->Session->read('Admin')['Admin']['type']):?>
+              <?php if(!$admin['Admin']['type']):?>
                 <td>
                   <?php
                   echo $this->Form->postLink(

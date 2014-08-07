@@ -137,7 +137,7 @@ $this->Paginator->options(array(
   	</div>  
 	  <div class="col-md-1" style="text-align:right">
 	    <?php
-				echo $this->Paginator->numbers();
+			echo $this->Paginator->numbers();
 	    ?>
 	  </div>
 	</div>
@@ -156,7 +156,7 @@ $this->Paginator->options(array(
       	<div class="row">
       		<div class="col-md-8" style="text-align:left;">
       			<span class="help-block">
-      				Para más informacion visite la Galeria de AbyaYala
+      				Para más informacion visite la <?php echo $this->Html->link('Galeria de AbyaYala', array('controller'=>'users', 'action' => 'images'));?>
       			</span>
       		</div>
       		<div class="col-md-4">

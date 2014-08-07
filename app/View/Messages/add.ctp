@@ -1,16 +1,15 @@
-<div class="container">
+<!--<div class="container">-->
 	<div class="row" >
-		<div class="col-md-2" id="sidebar" style="margin-top:20px;">
+		<!--<div class="col-md-2" id="sidebar" style="margin-top:20px;">
 			<div class="sidebar-nav">
-				<?php echo
-					$this->element('sidebar_contact')
+				<?php 
+					//echo $this->element('sidebar_contact');
 				?>			
 			</div>					
 		</div>
+		-->
 
-		<div class="col-md-10">
-			<h1 class="titulo">Contacto</h1>
-			<hr>
+		<div class="col-md-12">
 			<div class="panel panel-success">
 	  		<div class="panel-heading">
 	  			<h3>Mensaje</h3>
@@ -23,25 +22,33 @@
 					<div class="form-group">
 						<label for="data[Message][subject]">		Asunto:
 						</label>
-						<?php echo $this->Form->input('subject',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Asunto'));?>
+						<?php echo $this->Form->input('subject',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Asunto'));
+						echo ('Debe tener mínimo 3 caracteres y es el titulo del mensaje.');
+						?>
 					</div>
 
 					<div class="form-group">
 						<label for="data[Message][author]">		Nombre:
 						</label>
-						<?php echo $this->Form->input('author',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre'));?>
+						<?php echo $this->Form->input('author',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre'));
+						echo ('Nombre de la persona que envia el mensaje, debe contener solo letras minimo 3.');
+						?>
 					</div>
 
 					<div class="form-group">
 						<label for="data[Message][email]">		Email:
 						</label>
-						<?php echo $this->Form->input('email',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Email'));?>
+						<?php echo $this->Form->input('email',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Email'));
+						echo ('Ej: perdro123@gmail.com');
+						?>
 					</div>
 
 					<div class="form-group">
 						<label for="data[Message][body]">		Descripción:
 						</label>
-						<?php echo $this->Form->input('body',array('label'=>false, 'class'=>'form-control', 'rows'=>'3'));?>
+						<?php echo $this->Form->input('body',array('label'=>false, 'class'=>'form-control', 'rows'=>'3'));
+						echo ('Cuerpo del mensaje a enviar, evite las malas palabras.');
+						?>
 					</div>
 
 					<div class="form-group">
@@ -52,11 +59,15 @@
 
 	  		</div>
 		</div>
-	</div>
+	<!--</div>-->
 </div>
 
 <script>
 	$(document).ready(function(){
+
+		$("#creditsTabs li").removeClass("active");
+		$("#tabMessage").addClass("active");
+    
 		$('#MessageAddForm').validate({
 			ignore: [],
 			rules: {

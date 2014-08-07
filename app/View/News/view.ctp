@@ -7,7 +7,7 @@
 					<?php echo $news['News']['title']?>
 				</h2>
 				<div style="overflow:hidden height:400px; width:100%">
-					<img class="img-responsive" src="<?php echo $news['Content']['access_path']?>" alt="<?php echo $news['Content']['name']?>">
+					<img class="img-responsive" src="<?php echo utf8_decode($news['Content']['access_path'])?>" alt="<?php echo $news['Content']['name']?>">
 				</div>
 				<div class="picture-caption">
 					<p align="justify"><?php echo $news['News']['previous_text']?></p>

@@ -24,7 +24,7 @@ $this->Paginator->options(array(
       <?php if($content && count($content)):?>
         <div class="center">            
             <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-              <div id="jp_container_1" class="jp-audio" style="width:70%; margin: 0 auto;">
+               <div id="jp_container_1" class="jp-audio" style="width:70%; margin: 0 auto;">
                 <div class="jp-type-single">
                     <div class="jp-gui jp-interface">
                         <ul class="jp-controls">
@@ -60,9 +60,9 @@ $this->Paginator->options(array(
                         </ul>
                     </div>
                     <div class="jp-no-solution">
-                        <span>Update Required</span>
-                        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                    </div>
+        				<span>Requiere Actualizacion</span>
+        				Para reproducir la pista actual necesita actualizar su plugin de <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash</a>.
+      				</div>
                 </div>
             </div>
         </div>
@@ -125,6 +125,9 @@ $this->Paginator->options(array(
 
 <script>
      $(document).ready(function(){
+     	$('#nav-usuario li').removeClass("activetae");
+        $('#galeria').addClass('activetae');
+        
         $('#jquery_jplayer_1').jPlayer({
           /*ready: function () {
             $(this).jPlayer('setMedia', {

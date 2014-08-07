@@ -157,7 +157,7 @@
 				},
 				"data[News][previous_text]":{
 					required:true,
-					rangelength: [3, 300]
+					rangelength: [3, 150]
 				}
 			},
 			messages: {
@@ -175,7 +175,7 @@
 				},
 				"data[News][previous_text]":{
 					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 3 y 300 caracteres'
+					rangelength: 'El campo debe tener entre 3 y 150 caracteres'
 				}
 			},
 			highlight: function(element) {

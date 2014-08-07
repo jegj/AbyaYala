@@ -14,8 +14,7 @@
 				</p>
 	  	</div>
 	  	<div class="panel-body">
-	  		<?php
-					echo $this->Form->create('Anchor', array('role'=>'form'));
+	  		<?php echo $this->Form->create('Anchor', array('role'=>'form'));
 				?>
 				<div class="form-group">
 					<label for="data[Anchor][name]">		Nombre:

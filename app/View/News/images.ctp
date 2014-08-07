@@ -5,7 +5,7 @@
 			<?php foreach($content as $image):?>
 				<li class="media">
 					<a class="pull-left" href="#">
-					  <img class="media-object" src='<?php echo $image['Content']['access_path'] ?>' width="80" height="80" alt="...">
+					  <img class="media-object" src='<?php echo utf8_decode($image['Content']['access_path']);?>' width="80" height="80" alt="...">
 					</a>
 					<div class="media-body">
 					  <h4 class="media-heading">

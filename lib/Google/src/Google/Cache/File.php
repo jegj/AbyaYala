@@ -35,6 +35,7 @@ class Google_Cache_File extends Google_Cache_Abstract
   public function __construct(Google_Client $client)
   {
     $this->path = $client->getClassConfig($this, 'directory');
+    
   }
   
   public function get($key, $expiration = false)

@@ -51,11 +51,12 @@
 		echo $this->Html->script('AbyaYala/general_content',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/news',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/main',array('inline'=>false));
+		echo $this->Html->script('lazyloading/lazyloading',array('inline'=>false));
 		echo $this->Html->script('AbyaYala/AudioUser/audio_user.js',array('inline'=>false));
 		echo $this->Html->script('social/comment.js',array('inline'=>false));
 		echo $this->Html->script('jqueryPrint/jqueryPrint.js',array('inline'=>false));
 		
-		echo $this->Html->script('social/face.js',array('inline'=>false));
+		//echo $this->Html->script('social/face.js',array('inline'=>false));
 		echo $this->Html->script('social/faceShare.js',array('inline'=>false));
 		echo $this->Html->script('social/google.js',array('inline'=>false));
 		echo $this->Html->script('social/googleShare.js',array('inline'=>false));
@@ -79,8 +80,7 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    	<?php echo
-					$this->Html->link('AbyaYala', array(
+	    	<?php echo $this->Html->link('AbyaYala', array(
 							'controller'=>'users',
 							'action' => 'index'
 							),
@@ -91,23 +91,12 @@
 					);
 				?>
 	  </div>
-
   
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <ul class="nav navbar-nav">
-	       <li>
-								<?php echo
-									$this->Html->link('Inicio', array(
-											'controller'=>'users',
-											'action' => 'index'
-											)
-										);
-								?>
-							</li>
+	    <ul  id = "nav-usuarios" class="nav navbar-nav">
 
-		 					<li>
-								<?php echo
-									$this->Html->link('Proyecto AbyaYala', array(
+		 					<li id ="proyecto">
+								<?php echo $this->Html->link('Proyecto AbyaYala', array(
 											'controller'=>'users',
 											'action' => 'abyayala'
 											)
@@ -115,9 +104,8 @@
 								?>
 							</li>
 
-							<li>
-								<?php echo
-									$this->Html->link('Familia Linguisticas', array(
+							<li id ="familias">
+								<?php echo $this->Html->link('Familias Lingüísticas', array(
 										'controller'=>'users',
 										'action' => 'map'
 										)
@@ -125,9 +113,8 @@
 								?>
 							</li>
 
-							<li>
-								<?php echo
-									$this->Html->link('Rastros Indigenas', array(
+							<li id="rastros">
+								<?php echo $this->Html->link('Rastros Indigenas', array(
 										'controller'=>'users',
 										'action' => 'traces'
 										)
@@ -135,42 +122,38 @@
 								?>
 							</li>
 
-							<li class="dropdown">
-		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
-			          <ul class="dropdown-menu">
-			          	<li>
-				            <?php echo
-											$this->Html->link('Imagenes', array(
-												'controller'=>'users',
-												'action' => 'images'
-												)
-											);
-										?>
-									</li>
-			            <li>
-			            	<?php echo
-											$this->Html->link('Muestras de Audio', array(
-												'controller'=>'users',
-												'action' => 'audio'
-												)
-											);
-										?>
-			            </li>
-			            <li>
-			            	<?php echo
-											$this->Html->link('Videos', array(
-												'controller'=>'users',
-												'action' => 'videos'
-												)
-											);
-										?>
-			            </li>
-			          </ul>
-		        	</li>
+							<li class="dropdown" id="galeria">
+		          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeria <b class="caret"></b></a>
+						          <ul class="dropdown-menu">
+						          	<li>
+							            <?php echo $this->Html->link('Imagenes', array(
+															'controller'=>'users',
+															'action' => 'images'
+															)
+														);
+													?>
+												</li>
+						            <li>
+						            	<?php echo $this->Html->link('Muestras de Audio', array(
+															'controller'=>'users',
+															'action' => 'audio'
+															)
+														);
+													?>
+						            </li>
+						            <li>
+						            	<?php echo $this->Html->link('Videos', array(
+															'controller'=>'users',
+															'action' => 'videos'
+															)
+														);
+													?>
+						            </li>
+						          </ul>
+		        			</li>
 
-							<li>
-								<?php echo
-											$this->Html->link('Investigación', array(
+							<li id="trabajos">
+								<?php echo $this->Html->link('Trabajos de Investigación', array(
 												'controller'=>'users', 
 												'action' => 'research'
 												)
@@ -271,29 +254,43 @@
 			<div class="row" >
 				
 				<div id="logos">
-					<img src="<?php echo $this->webroot;?>img/ceneac_logo.png" width=110, height=110>
-					<img src="<?php echo $this->webroot;?>img/esc_comp.png" width=110, height=110>
-					<img src="<?php echo $this->webroot;?>img/ucv_ciencias_logo.png" width=110, height=110>
-					<img src="<?php echo $this->webroot;?>img/ucv_log.png">
-					<img src="<?php echo $this->webroot;?>img/ucv_hum_logo.png" width=110, height=110>
-					<img src="<?php echo $this->webroot;?>img/esc_arte.png" width=110, height=110>
-					<img src="<?php echo $this->webroot;?>img/cediarte_logo.png" width=110, height=110>
+					<a href="http://www.ucv.ve/"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/ucv_log.png"></a>
+					<a href="http://www.ciens.ucv.ve/"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/ucv_ciencias_logo.png" width=110, height=110></a>
+					<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion.html"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/ucv_hum_logo.png" width=110, height=110></a>
+					<a href="http://www.ciens.ucv.ve/escueladecomputacion/inicio/index"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/esc_comp.png" width=110, height=110></a>
+					<a href="http://www.ucv.ve/estructura/facultades/facultad-de-humanidades-y-educacion/escuelas/artes.html"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/esc_arte.png" width=110, height=110></a>
+					<a href="http://www.ceneac.com.ve/"><img width="75px" height="75px" src="<?php echo $this->webroot;?>img/ceneac_logo.png" width=110, height=110></a>
+					<img width="75px" height="75px" src="<?php echo $this->webroot;?>img/cediarte_logo.png" width=110, height=110>
 				</div>
 				
 				
-				<p class="copyright">©2014 Universidad Central de Venezuela</p>
+				<p class="copyright"><a href="/AbyaYala/messages/add"> [Contactos] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> ©2014 Universidad Central de Venezuela <a href="/AbyaYala/users/team">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Créditos]</a></p>
 				<p class="copyright">Ciudad Universitaria, Los Chaguaramos Caracas, Venezuela.</p>
 				<p class="copyright">Código Postal: 1050 Rif: G-20000062-7</p>
 				<p></p>
-				<p></p>
+			
 				<p>
-					<a href="https://www.facebook.com/"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
-					<a href="https://twitter.com/"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
-					<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>
+					<a href="https://www.facebook.com/profile.php?id=100006582465476"><img src="<?php echo $this->webroot;?>img/facebook.png" width=40, height=40 style="margin-left:0px !important;"></a>
+					<a href="https://twitter.com/Ucv_AbyaYala"><img src="<?php echo $this->webroot;?>img/twitter.png" width=40, height=40 style="margin-left:0px !important;"></a>
+				<!--	<a href="/AbyaYala/messages/add"><img src="<?php echo $this->webroot;?>img/mail.png" width=40, height=40 style="margin-left:0px !important;"></a>-->
 					<a href="https://www.youtube.com/channel/UCLH_bLD2ELRO_3EHph6_drQ"><img src="<?php echo $this->webroot;?>img/youtube_2.png" width=40, height=40 style="margin-left:0px !important;"></a>
+						
+						<p>contador de visitas</p>
+						<script type="text/javascript" src="http://counter6.statcounterfree.com/private/countertab.js?c=73b79ae1c1866660c6637971fd93fba4"></script>
+						
+						<!-- Histats.com  START  (standard)-->
+						<script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+						<a href="http://www.histats.com" target="_blank" title="free contadores" ><script  type="text/javascript" >
+						try {Histats.start(1,2745902,4,511,95,18,"00000000");
+						Histats.track_hits();} catch(err){};
+						</script></a>
+						<noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?2745902&101" alt="free contadores" border="0"></a></noscript>
+						<!-- Histats.com  END  -->
+				
 				</p>
 			</div>
 		</div>
+
 	</footer>
 	<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDdec7hQ_YxfvvwaejZYtQcrUZzDPE9Evo&sensor=true&libraries=drawing">

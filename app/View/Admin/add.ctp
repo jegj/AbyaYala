@@ -20,6 +20,7 @@
 						</label>
 						<?php 
 							echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Nombre'));
+							echo ('Debe tener mínimo 3 caracteres, solo letras');
 						?>
 					</div>
 
@@ -28,6 +29,7 @@
 						</label>
 						<?php 
 							echo $this->Form->input('last_name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>' Apellido'));
+							echo ('Debe tener mínimo 3 caracteres, solo letras');
 						?>
 					</div>
 
@@ -36,6 +38,7 @@
 						</label>
 						<?php 
 							echo $this->Form->input('email',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Email'));
+							echo ('Ej: perdro123@gmail.com');
 						?>
 					</div>
 					
@@ -44,6 +47,7 @@
 						</label>
 						<?php 
 							echo $this->Form->input('password',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Contraseña', 'type' => 'password'));
+							echo ('Debe tener mínimo 8 caracteres entre números y letras');
 						?>
 					</div>
 
@@ -52,6 +56,7 @@
 						</label>
 						<?php 
 							echo $this->Form->input('passwd_confirm',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Confirmación de Contraseña', 'type' => 'password'));
+							echo ('Debe tener mínimo 8 caracteres entre números y letras, ademas de ser igual al campo anterior');
 						?>
 					</div>
 
@@ -71,6 +76,27 @@
 	  	</div>
 	  </div>
 	</div>
+</div>
+
+
+<div class="row content">
+	<div class="col-md-12">
+		<div>
+			<h3>Acciones:</h3>
+			<ul>
+				<li>
+					<?php 
+							echo $this->Html->link(
+						    'Ir a Administradores Registrados',
+						    array(
+						        'action' => 'allAdmins',
+						    ));
+					?>
+				</li>
+			</ul>
+		
+		</div>
+	</div>	
 </div>
 
 <script>

@@ -173,6 +173,10 @@ class Admin extends AppModel {
 
     return implode($pass); 
 	}
-
-
+	
+	
+	public function getAdminName()
+	{
+		return $this->data['Admin']['name']. ' '. $this->data['Admin']['last_name'];
+	}
 }

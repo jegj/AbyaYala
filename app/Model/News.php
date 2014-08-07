@@ -96,8 +96,8 @@ class News extends AppModel {
 				'required' => true,
 			),
 			'between' => array(
-	      'rule'    => array('between', 3, 300),
-	      'message' => 'El campo debe tener entre 3 y 300 caracteres'
+	      'rule'    => array('between', 3, 150),
+	      'message' => 'El campo debe tener entre 3 y 150 caracteres'
       ),
 		),
 

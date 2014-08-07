@@ -17,9 +17,7 @@
 	  			<div class="form-group">
 						<label for="data[Note][name]">		Nombre:
 						</label>
-						<?php echo
-							$this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Nombre de la Nota'));
-						?>
+						<?php echo $this->Form->input('name',array('label'=>false, 'class'=>'form-control', 'placeholder'=>'Nombre de la Nota'));?>
 					</div>
 
 						<?php echo
@@ -69,12 +67,18 @@
 
 <script>
 	$(document).ready(function(){
+		
+		$.validator.addMethod("nameRegex", function(value, element) {
+    	    return this.optional(element) || /^[a-z0-9]+$/i.test(value);
+    	}, "El campo debe tener solo letras y números.");
+    
 		$('#NoteAddForm').validate({
 			ignore: [],
 			rules: {
 				"data[Note][name]":{
 					required:true,
-					rangelength: [3, 45]
+					rangelength: [3, 45],
+					nameRegex: true
 				},
 				"data[Note][description]":{
 					required:true,
@@ -84,7 +88,8 @@
 			messages: {
 				"data[Note][name]":{
 					required: 'Campo Obligatorio',
-					rangelength: 'El campo debe tener entre 3 y 45 caracteres'
+					rangelength: 'El campo debe tener entre 3 y 45 caracteres',
+					nameRegex: "El campo debe tener solo letras y números"
 				},
 				"data[Note][description]":{
 					required: 'Campo Obligatorio',
@@ -105,6 +110,7 @@
       errorClass: 'help-block',
 
 		});
+
 	});
 
 </script>

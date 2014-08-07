@@ -24,6 +24,12 @@ class AdminsController extends AppController
   public function login ()
   {
   	$this->layout = 'Usuario';
+  	
+  	  if($this->Session->check('Admin'))
+  	  	return $this->redirect(
+          array('action'=>'index')
+        );
+  	
 	  if ($this->request->is('post')){
       $email = $this->request->data['Admin']['email'];
       $password = $this->request->data['Admin']['password'];
@@ -37,6 +43,9 @@ class AdminsController extends AppController
       );
       if($admin){
         $this->Session->write('Admin',$admin);
+        
+       CakeLog::write('activity', sprintf("El usuario %s %s entró en el sistema", $admin['Admin']['name'], $admin['Admin']['last_name']));
+        
         return $this->redirect(
           array('action'=>'index')
         );
@@ -97,8 +106,8 @@ class AdminsController extends AppController
   public function changePassword()
   {
     $this->canAccess();
-
-    $obtenerID= $this->Session->read('Admin')['Admin']['admin_id'];  
+	$admin = $this->Session->read('Admin');
+    $obtenerID= $admin['Admin']['admin_id'];  
 
     $this->Admin->read(null, $obtenerID);
 
@@ -129,11 +138,16 @@ class AdminsController extends AppController
   public function add()
   {
     $this->canAccess();
-    
     $this->onlyGlobalAdmin();
+    
     if ($this->request->is('post')) {      
       if ($this->Admin->save($this->request->data)) {
         $this->Session->setFlash('<strong>Exito!</strong> Se creo el Administrador exitosamente.', 'default', array(), 'success');
+        $newAdmin = $this->request->data;
+        
+        $admin = $this->Session->read('Admin');
+    	CakeLog::write('activity', sprintf("El administrador %s %s creó el administrador %s %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $newAdmin['Admin']['name'], $newAdmin['Admin']['last_name']));
+        
         return $this->redirect(array('action' => 'allAdmins'));
       }else{
         $this->Session->setFlash('<strong>Error!</strong> Hubo problemas para crear el Administrador.', 'default', array(), 'error');
@@ -145,18 +159,26 @@ class AdminsController extends AppController
   {
     $this->canAccess();
     $this->onlyGlobalAdmin();
-
-    $this->Admin->id =$id;
-
+    
+    $this->Admin->read(null, $id);
+	$nombre = $this->Admin->getAdminName();
+    
     if (!$this->Admin->exists($id)) {
       $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
       return $this->redirect(array('action'=>'index'));
     }
 
     $this->request->onlyAllow('post', 'delete');
+    
+    $this->Admin->id =$id;
 
     if ($this->Admin->delete()) {
+     
       $this->Session->setFlash('<strong>Exito!</strong> Se eliminó  el Administrador exitosamente.', 'default', array(), 'success');
+      
+      $admin = $this->Session->read('Admin');
+      CakeLog::write('activity', sprintf("El administrador %s %s eliminó el administrador %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $nombre));
+      
     } else {
       $this->Session->setFlash('<strong>Error!</strong> No se pudo completar la operación.', 'default', array(), 'error');
     }
@@ -181,6 +203,9 @@ class AdminsController extends AppController
         $this->Admin->read(null, $admin['Admin']['admin_id']);
         $this->Admin->recoverPassword($email, $admin);
         $this->Session->setFlash('<strong>Exito!</strong> Se envio una contraseña nueva al correo suministrado.', 'default', array(), 'success');
+        
+        $admin = $this->Session->read('Admin');
+    	CakeLog::write('activity', sprintf("El usuario %s %s recupero su contraseña", $admin['Admin']['name'], $admin['Admin']['last_name']));
       }
 
       return $this->redirect(array('action' => 'forgot'));
@@ -188,10 +213,24 @@ class AdminsController extends AppController
   }
 
   public function closeSession(){
+  	$admin = $this->Session->read('Admin');
+    CakeLog::write('activity', sprintf("El usuario %s %s salio del sistema", $admin['Admin']['name'], $admin['Admin']['last_name']));
+    
     $this->Session->destroy();
     $this->redirect(array(
       'action' => 'login')
     );  
+  }
+
+  /***Nuevo*******/
+  public function respaldo()
+  {
+    $this->canAccess();
+  }
+
+  public function respaldo_aplicacion()
+  {
+    
   }
 
 }

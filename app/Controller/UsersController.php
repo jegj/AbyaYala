@@ -39,10 +39,9 @@ class UsersController extends AppController
 				'order' => array('Content.create_date')	
 			)
 		);
-
-		$cliente = FeedLib::getInstance();
-		$videos = $cliente->search();
-
+	
+		$videos = FeedLib::getVideos(null, 4);
+	
 		$this->set(compact('news', 'images', 'papers', 'videos'));
 	}
 
@@ -70,28 +69,31 @@ class UsersController extends AppController
 
 	public function videos()
 	{
-		$cliente = FeedLib::getInstance();
-		$videos = $cliente->search(1, null, 13);
-
+		if(isset($this->params['url']['token']))
+			$token = $this->params['url']['token'];
+		else
+			$token = null;
+		
+		$videos = FeedLib::getVideos($token, 8);
 		$this->set(compact('videos'));
 	}
 
 	public function audio()
 	{
 		$this->Paginator->settings = array(
-        'conditions' => array('Content.type =' => 'audio'),
-        'limit' => 12,
-        'paramType'=>'querystring',
-        'order' => array(
-        	'Content.create_date' => 'desc'
-        )
-    );
+	        'conditions' => array('Content.type =' => 'audio'),
+	        'limit' => 12,
+	        'paramType'=>'querystring',
+	        'order' => array(
+	        	'Content.create_date' => 'desc'
+	        )
+    	);
 
 		try{
-       $content = $this->Paginator->paginate('Content');
-    }catch (NotFoundException $e) {
-        return $this->redirect(array('action'=>'imagenes'));
-    }
+       		$content = $this->Paginator->paginate('Content');
+	    }catch (NotFoundException $e) {
+	        return $this->redirect(array('action'=>'imagenes'));
+	    }
 
     $this->set('content', $content);
 	}
@@ -104,28 +106,30 @@ class UsersController extends AppController
         'paramType'=>'querystring',
         'order' => array(
         	'Content.create_date' => 'desc'
-        )
-    );
+        ));
 
 		try{
-       $content = $this->Paginator->paginate('Content');
-    }catch (NotFoundException $e) {
-        return $this->redirect(array('action'=>'research'));
-    }
+       		$content = $this->Paginator->paginate('Content');
+		}catch (NotFoundException $e) {
+        	return $this->redirect(array('action'=>'research'));
+		}
 
-    $this->set('content', $content);
+		$this->set('content', $content);
 	}
 
 	public function abyayala()
 	{
+		$this->layout = 'Proyecto';
 	}
 
 	public function address()
 	{
+		$this->layout = 'Proyecto';
 	}
 
 	public function team()
 	{
+		$this->layout = 'Proyecto';
 	}
 
 
@@ -261,8 +265,10 @@ class UsersController extends AppController
 
 		if(count($this->Prg->parsedParams()) > 1){
 			$this->set('term', 'Búsqueda Compuesta');			
-		}else
-			$this->set('term', $this->Prg->parsedParams()['name']);
+		}else{
+			$param = $this->Prg->parsedParams();
+			$this->set('term', $param['name']);
+		}
 
 		try{
        $results = $this->Paginator->paginate();

@@ -44,6 +44,10 @@ class Note extends AppModel {
         'rule'    => array('between', 3, 45),
         'message' => 'El campo debe tener entre 3 y 45 caracteres'
       ),
+      'name' => array(
+      	'rule' => '/^[a-z0-9]+$/i',
+      	'message' => 'El campo debe tener solo letras y números'
+      )
     ),
     'description' => array(
       'notEmpty' => array(

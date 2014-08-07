@@ -12,7 +12,7 @@ class ContentsController extends AppController {
 	
 	public $components = array('Session', 'RequestHandler', 'Paginator');
 
-  var $layout='Administrador';
+    var $layout='Administrador';
 
 	var $name ='Content';
 
@@ -113,11 +113,11 @@ class ContentsController extends AppController {
 			if ($this->request->is('get')) {
 				$content = $this->Content->findByContentId($id);
 				if($content){
-			   	$this->response->file($content['Content']['path'], array('download' => $viewOnline));
-			   	return $this->response;
+			   		$this->response->file($content['Content']['path'], array('download' => $viewOnline));
+			   		return $this->response;
 			   }else{
-			   	$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
-		  		return $this->redirect(array('action' => 'index'));
+			   		$this->Session->setFlash('<strong>Error!</strong> No existe el contenido especificado.', 'default', array(), 'error');
+		  			return $this->redirect(array('action' => 'index'));
 			   }
 	    }else{
 	    	$this->Session->setFlash('<strong>Error!</strong> No se pudo descargar el contenido especificado.', 'default', array(), 'error');
@@ -152,7 +152,11 @@ class ContentsController extends AppController {
 	    if ($this->Content->deleteModel($id)) {
 	    		if(unlink($contentPath)){
 		         $this->Session->setFlash('<strong>Exito!</strong> Se elimino  contenido exitosamente', 'default', array(), 'success');
-            return $this->redirect(array('action'=>'index'));
+		         
+		         $admin = $this->Session->read('Admin');
+      			 CakeLog::write('activity', sprintf("El administrador %s %s eliminó el contenido %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $content['Content']['name']));
+      			 
+            	 return $this->redirect(array('action'=>'index'));
 	      	}else{
 	      		$this->Session->setFlash('<strong>Error!</strong> No se puede completar la operación.', 'default', array(), 'error');
 	  				return $this->redirect(array('action'=>'index'));
@@ -187,6 +191,8 @@ class ContentsController extends AppController {
 		$this->layout = 'ckeditor';	
 
 		$ckeditor=$this->request->query['ckeditor'];	
+		
+		$ckeditor = str_replace('/','', $ckeditor);
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'imagen'),
@@ -210,6 +216,8 @@ class ContentsController extends AppController {
 
 		$this->layout = 'ckeditor';
 		$ckeditor=$this->request->query['ckeditor'];
+		
+		$ckeditor = str_replace('/','', $ckeditor);
 
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'audio'),
@@ -233,6 +241,9 @@ class ContentsController extends AppController {
 		$this->layout = 'ckeditor';
 		$ckeditor=$this->request->query['ckeditor'];
 
+		$ckeditor = str_replace('/','', $ckeditor);
+		
+		
 		$this->Paginator->settings = array(
         'conditions' => array('Content.type =' => 'documento'),
         'limit' => 5,
@@ -255,6 +266,9 @@ class ContentsController extends AppController {
 		$this->layout = 'ckeditor';
 		$ckeditor = $this->request->query['ckeditor'];
 		$term = $this->request->query['term'];
+		
+		$ckeditor = str_replace('/','', $ckeditor);
+
 
 		$this->Paginator->settings = array(
         'conditions' => 
@@ -284,7 +298,9 @@ class ContentsController extends AppController {
 
 		$this->layout = 'ckeditor';
 
-		$ethnicity= $this->Ethnicity->find('list');
+		$ethnicity= $this->Ethnicity->find('list', 
+			array('conditions' => array('Ethnicity.ethnicity_father_id IS NULL'))
+		);
 
 		$ckeditor=$this->request->query['ckeditor'];
 
@@ -308,7 +324,10 @@ class ContentsController extends AppController {
 	  	if($this->Content->save($this->request->data)){
 
 	  		$this->Session->setFlash('<strong>Exito!</strong> Se actualizó la información del contenido exitosamente.', 'default', array(), 'success');
-
+	  		
+			$admin = $this->Session->read('Admin');
+      		CakeLog::write('activity', sprintf("El administrador %s %s modifico el contenido %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $content['Content']['name']));
+      
 	  		return $this->redirect(
 	  			array('action'=>'index')
 	  		);
@@ -335,6 +354,10 @@ class ContentsController extends AppController {
 		
 		$file = $_FILES['upl'];
 		$result=$this->Content->saveFile($file, $this->webroot);
+		
+		$admin = $this->Session->read('Admin');
+      	CakeLog::write('activity', sprintf("El administrador %s %s subio el contenido %s", $admin['Admin']['name'], $admin['Admin']['last_name'], $file['name']));	
+	
 		$this->response->type('json');
 		$json = json_encode(array('status'=>$result['complete']['result']));
 		$this->response->body($json);

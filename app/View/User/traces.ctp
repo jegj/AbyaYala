@@ -26,7 +26,7 @@ $this->Paginator->options(array(
                             <div class="media">
                                 <?php
                                 echo $this->Html->link(
-                                    "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."'>",
+                                    "<img class='img-responsive' src='".utf8_decode($new['Content']['access_path'])."' alt='".$new['Content']['name'].">'",
                                     array('controller' => 'news', 
                                         'action' => 'user_view',
                                         $new['News']['new_id']
@@ -95,8 +95,7 @@ $this->Paginator->options(array(
             </div>  
             <div class="col-md-1">
                 <?php
-                        echo $this->Paginator->numbers();
-
+					echo $this->Paginator->numbers();
                 ?>
             </div>
         </div>
@@ -104,3 +103,10 @@ $this->Paginator->options(array(
 </div>
 
 <?php echo $this->Js->writeBuffer();?>
+
+<script>
+	$(document).ready(function(){
+		$('#nav-usuario li').removeClass("activetae");
+        $('#rastros').addClass('activetae');
+    });
+</script>

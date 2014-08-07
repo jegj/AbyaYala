@@ -73,9 +73,11 @@ $this->Paginator->options(array(
 
 			            <th>Descargar</th>
 
-			            <?if(!$this->Session->read('Admin')['Admin']['type']):?>
+			            <?php 
+			            $admin = $this->Session->read('Admin');
+			            if(!$admin['Admin']['type']):?>
 			            	<th>Eliminar</th>
-			            <?endif;?>
+			            <?php endif;?>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -83,7 +85,7 @@ $this->Paginator->options(array(
 			    		<tr>
 			    			<td>
 		    					<?php if($myContent['Content']['type']=='imagen'):?>
-				    					<a href= '<?echo $myContent['Content']['access_path'].'?'.rand()?>'
+				    					<a href= '<?echo utf8_decode($myContent['Content']['access_path']).'?'.rand()?>'
 				    					rel='prettyPhoto' title= '<?php echo $myContent['Content']['name']?>'
 				    					>
 				    						<?php echo $myContent['Content']['name']?>
@@ -154,7 +156,7 @@ $this->Paginator->options(array(
 	            		?>
 			    			</td>
 
-			    			<?if(!$this->Session->read('Admin')['Admin']['type']):?>
+			    			<?if(!$admin['Admin']['type']):?>
 				    			<td>
 				    				<?php
 		                echo $this->Form->postLink(

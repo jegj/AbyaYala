@@ -11,10 +11,11 @@
         <h1 class="titulo">Ultimas Noticias</h1>
         <hr>
         <?php if($news && count($news)):?>
-    		<div class="col-md-6">			
+    		<div class="col-md-6">
+    			
                 <?php
                     echo $this->Html->link(
-                        "<img class='img-responsive' src='".$news[0]['Content']['access_path']."' alt='".$news[0]['Content']['name']."' style='width:100%'>",
+                        "<img id='principal' class='img-responsive' src='".utf8_decode($news[0]['Content']['access_path'])."' alt='".$news[0]['Content']['name']."' style='width:100%'>",
                         array('controller' => 'news', 
                             'action' => 'user_view',
                             $news[0]['News']['new_id']
@@ -69,7 +70,7 @@
                             <div class="col-md-4" style="overflow: hidden;">
                                 <?php
                                     echo $this->Html->link(
-                                        "<img class='img-responsive' src='".$new['Content']['access_path']."' alt='".$new['Content']['name']."' height:130px;width:160px;'>",
+                                        "<img class='img-responsive' src='".utf8_decode($new['Content']['access_path'])."' alt='".$new['Content']['name']."' height:130px;width:160px;'>",
                                         array('controller' => 'news', 
                                             'action' => 'user_view',
                                             $new['News']['new_id']
@@ -192,11 +193,11 @@
                     <div class="col-md-3">
                         <div class="col-item">
                             <div class="photo">
-                                <a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
+                                <a href= '<?echo utf8_decode($image['Content']['access_path']).'?'.rand()?>'
                                 rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
                                 >
                                     <div class="markup">
-                                        <img src='<?php echo $image['Content']['access_path']?>' class="img-responsive" alt='<?php echo $image['Content']['name']?>'/>
+                                        <img src='<?php echo utf8_decode($image['Content']['access_path']);?>' class="img-responsive" alt='<?php echo $image['Content']['name']?>'/>
                                     </div>
                                 </a>
                             </div>
@@ -249,7 +250,7 @@
                             <div class="info">
                                 <h5>
                                     <b>
-                                        <a target='_blank' href= '<?echo $image['Content']['access_path'].'?'.rand()?>' title= '<?php echo $image['Content']['name']?>'>
+                                        <a target='_blank' href= '<?echo utf8_decode($image['Content']['access_path']).'?'.rand()?>' title= '<?php echo $image['Content']['name']?>'>
                                             <?php
                                                 echo $image['Content']['name']
                                             ?>
@@ -306,5 +307,6 @@
                 theme:'light_square',
                 social_tools: false,
         });
+        
     });
 </script>

@@ -27,15 +27,15 @@ $this->Paginator->options(array(
 						<div class="row galeria">
 					<?php endif;?>
 						<div class="col-md-3 col-sm-3 col-xs-6 ">
-							<a href= '<?echo $image['Content']['access_path'].'?'.rand()?>'
+							<a href= '<?echo utf8_decode($image['Content']['access_path']).'?'.rand()?>'
 		                                            rel='prettyPhoto' title= '<?php echo $image['Content']['description']?>'
 		                                            >
-									<img class="img-responsive gallery" src='<?php echo $image['Content']['access_path']?>'   alt ='<?php echo $image['Content']['name']?>'/>
+									<img class="img-responsive gallery" src='<?php echo utf8_decode($image['Content']['access_path']);?>'   alt ='<?php echo $image['Content']['name']?>'/>
 							</a>
 							<b><?php echo $image['Content']['name'];?></b>
 							<p></p>
 						</div>
-					<?php if(($key+1) %4 == 0):?>
+					<?php if(($key+1) %4 == 0 ||$key == count($content)-1 ):?>
 						</div>
 					<?php endif;?>
 			<?php endforeach;?>
@@ -52,7 +52,7 @@ $this->Paginator->options(array(
 	
 
 	<div class='row' style="margin-top:20px;">
-		<div class="col-md-11">
+		<div class="col-md-12">
 			<?php
 
 				echo $this->Paginator->counter(array(
@@ -65,12 +65,19 @@ $this->Paginator->options(array(
 				echo('|');
 				echo $this->Paginator->next("<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false), "<span class='glyphicon glyphicon-chevron-right'></span>", array('escape'=>false, 'tag'=>false));
 			?>
+			<div style="text-align:right;">
+				<div id="spinner" style="display:none;">
+						<?php
+			        echo $this->Html->image(
+			            'spinner.gif',
+			            array('id' => 'spinner:img')
+			        );
+	  				?>
+				</div>
+			</div>
+			
 		</div>	
-		<div class="col-md-1">
-			<?php
-					echo $this->Paginator->numbers();
-			?>
-		</div>
+		
 	</div>
 	
 </div>
@@ -85,13 +92,16 @@ $this->Paginator->options(array(
                 theme:'light_square',
                 social_tools: false,
         });
+        	
+		$('#nav-usuario li').removeClass("activetae");
+        $('#galeria').addClass('activetae');
+
     });
 </script>
 
 <style>
 .galeria img {
-  filter: gray; /* IE6-9 */
-  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+
     -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
@@ -99,6 +109,7 @@ $this->Paginator->options(array(
     width:300px;
     height:175px;
     overflow:hidden;
+
 }
 
 </style>
