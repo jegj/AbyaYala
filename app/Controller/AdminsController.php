@@ -230,7 +230,17 @@ class AdminsController extends AppController
 
   public function respaldo_aplicacion()
   {
-    
+    $this->autoRender=false;
+    $this->response->type('json');
+
+    $respaldo = dirname(APP);
+    $temporal = TMP;
+
+    $var = exec("tar -cvf $temporal/AbyaYala.tar $respaldo");
+    $exito = $var != null?true:false;
+    $json = array('exito' => $exito);
+    $json = json_encode($json);
+    $this->response->body($json);
   }
 
 }
