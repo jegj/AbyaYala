@@ -6,6 +6,7 @@
 
 App::uses('CakeEmail', 'Network/Email');
 App::uses('MiscLib', 'Lib');
+App::uses('ConnectionManager', 'Model');
 
 class AdminsController extends AppController
 {
@@ -228,19 +229,53 @@ class AdminsController extends AppController
     $this->canAccess();
   }
 
-  public function respaldo_aplicacion()
+  public function respaldo_aplicacion($tipo)
   {
-    $this->autoRender=false;
-    $this->response->type('json');
-
-    $respaldo = dirname(APP);
     $temporal = TMP;
+    $tipoRespaldo = $tipo;
+   
+    switch ($tipoRespaldo){
+      case 1:
+        $respaldo = APP;
+        $comando = sprintf("tar -cvf %sAbyaYala.tar %s", $temporal, $respaldo);
+        break;
+      
+      case 2:
+        
+        $dataSource = ConnectionManager::getDataSource('default');
+        $dbUser = $dataSource->config['login'];
+        $dbPassw = $dataSource->config['password'];
+        $dbHost =  $dataSource->config['host'];
+        $dbName =  $dataSource->config['database'];
+        
+        $comando = sprintf("mysqldump --opt -h %s %s -u %s -p -r \"%s\"", $dbHost, $dbName, $dbUser, $temporal.'AbyaYala.sql');
+        break;
+      case 3:
+        $respaldo = WWW_ROOT.'media';
+        $comando = sprintf("tar -cvf %sMedia.tar %s", $temporal, $respaldo);
+        break;
+      default:
+        $comando = null;
+        break;
+    }
+    
+    if($comando){
+      die($comando);
+      $var = exec($comando);
+      if($var){
+        $this->response->file($respaldo, array('download' => true));
+        return $this->response;
+      }else{
+        $this->Session->setFlash('<strong>Error!</strong> No se pudo generar el respaldo correctamente.', 'default', array(), 'error');
+        return $this->redirect(array('action' => 'respaldo'));  
+      }
 
-    $var = exec("tar -cvf $temporal/AbyaYala.tar $respaldo");
-    $exito = $var != null?true:false;
-    $json = array('exito' => $exito);
-    $json = json_encode($json);
-    $this->response->body($json);
+    }else{
+
+      $this->Session->setFlash('<strong>Error!</strong> No se pudo generar el respaldo correctamente.', 'default', array(), 'error');
+      return $this->redirect(array('action' => 'respaldo'));
+    }
+    
   }
 
 }

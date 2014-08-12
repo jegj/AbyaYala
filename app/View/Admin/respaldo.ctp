@@ -2,66 +2,67 @@
 	<div style='margin-left:15px;'>
 		<h1>Módulo de Respaldos</h1>
 		<hr>
-		<div class="row" style="margin-top:20px;">
-			<div class="jumbotron">
-				<div class="media">
-				  <a class="pull-left" href="#">
-				    <?php echo $this->Html->image('backup_app.jpeg', array('width' =>'100', 'height' => '100', 'class' => 'img-responsive'));?>
-				  </a>
-				  <div class="media-body">
-				    <h4>Respaldo de Aplicación</h4>
-				    <p class="media-heading">
-				    Respalde la información de la aplicacion, así como todo el contenido subido a la aplicación como imagenes, pistas de audios, documentos y la información actual de la página. <a href="#"  onclick="return respaldoApp();" class="btn btn-primary btn-sm active">Generar Respaldo</a>
-				    <?php //echo $this->Html->link('Generar Respaldo', array('controller' => 'admins', 'action' =>'respaldo_aplicacion'), array('class' =>'btn btn-primary btn-sm active'));?>
-				    
-				   </p>
-				  </div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row" style="margin-top:20px;">
-			<div class="jumbotron">
-				<div class="media">
-				  <a class="pull-left" href="#">
-				    <?php echo $this->Html->image('bakcup_db.jpeg',array('width' =>'100', 'height' => '100', 'class' => 'img-responsive'));?>
-				  </a>
-				  <div class="media-body">
-				    <h4 class="media-heading">Respaldo de Base de Datos</h4>
-				    loreLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-				  </div>
-				</div>
-			</div>
-		</div>
+		<div class="row">
+			<div class="container">
+				<div class="col-md-3">
+	          		<div class="thumbnail">
+	            		<?php echo $this->Html->image('respaldo_aplicacion.jpg', array('alt' => 'Respaldo de Aplicación'));?>
+	              		<div class="caption">
+	                		<h4>Respaldo de Aplicación</h4>
+	                		<p>Respalde todo el contenido de la aplicación, incluyendo el código fuente, los log generados por la aplicación y todos los archivos de media relacionados.</p>
+	                		<?php echo $this->Html->link('Respaldar Aplicación', array('action'=>'respaldo_aplicacion', 1), array('class' => 'btn btn-info btn-xs'));?>
+	                		<!-- <a href="#" class="btn btn-info btn-xs" role="button">Respaldar Aplicación</a> -->
+	            		</div>
+	          		</div>
+	        	</div>
+	        	
+				<div class="col-md-3">
+	          		<div class="thumbnail">
+	            		<?php echo $this->Html->image('respaldo_base_datos.jpg', array('alt' => 'Respaldo de Base de Datos'));?>
+	              		<div class="caption">
+	                		<h4>Respaldo de Base de Datos</h4>
+	                		<p>Respalde toda la información guardada en la base de datos de la aplicación.</p>
+	                		<?php echo $this->Html->link('Respaldar Base de Datos', array('action'=>'respaldo_aplicacion', 2), array('class' => 'btn btn-info btn-xs'));?>
+	                		<!-- <a href="#" class="btn btn-info btn-xs" role="button">Respaldar Base de Datos</a>  -->
+	            		</div>
+	          		</div>
+	        	</div>
+	        	
+	        	<div class="col-md-3">
+	          		<div class="thumbnail">
+	            		<?php echo $this->Html->image('respaldo_media.jpg', array('alt' => 'Respaldo de Media'));?>
+	              		<div class="caption">
+	                		<h4>Respaldo de Media</h4>
+	                		<p>Respalde las imagenes, documentos PDF y las pistas de audio que se han subido a la aplicación.</p>
+	                		<?php echo $this->Html->link('Respaldar Archivos de Media', array('action'=>'respaldo_aplicacion', 3), array('class' => 'btn btn-info btn-xs'));?>
+	                		<!-- <a href="#" class="btn btn-info btn-xs" role="button" >Respaldar Archivos de Media</a> -->
+	            		</div>
+	          		</div>
+	        	</div>
+	        </div>
+        </div>
 	</div>
 </div>
 
 
-<script>
-	function respaldoApp(){
-		$.ajax({
-    onprogress: function(e) {
-        if(e.lengthComputable) {
-            var pct = (e.loaded / e.total) * 100;
-            console.log(pct);
-            /*$('#prog')
-                .progressbar('option', 'value', pct)
-                .children('.ui-progressbar-value')
-                .html(pct.toPrecision(3) + '%')
-                .css('display', 'block');*/
-        } else {
-            console.warn('Content Length not reported!');
-        }
-      },
-		  url: '/AbyaYala/admins/respaldo_aplicacion',
-			type: 'POST',
-			dataType: 'json',
-		  success: function(data){
-		    console.log(data);
-		  }
-		});
-
-		
-		return false;
-	}
-</script>
+<div class="modal fade" id="modal-respaldo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Generando Respaldo</h4>
+      </div>
+      <div class="modal-body" id="modal-respaldo-body">
+      	<div id = url style="display: none">
+      		Se genero el respaldo correctamente
+      	</div>
+      	<div  id="spinner" style=" margin-left: auto ; margin-right: auto ;  width: 200px; display: block;">
+			<?php echo $this->Html->image('spinner_respaldo.gif', array('alt' => 'Generando Respaldo'));?>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
